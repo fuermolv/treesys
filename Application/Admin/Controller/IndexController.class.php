@@ -22,8 +22,9 @@ class IndexController extends AdminBaseController{
 	/**
 	 * welcome
 	 */
-	public function welcome(){
-	    $this->display();
+	public function welcome($name='thinkphp'){
+	    $this->assign('name',$name);
+        $this->display();
 	}
 
 

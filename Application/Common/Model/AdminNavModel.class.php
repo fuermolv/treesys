@@ -31,13 +31,15 @@ class AdminNavModel extends BaseModel{
 		// 判断是否需要排序
 		if(empty($order)){
 			$data=$this->select();
+            
 		}else{
 			$data=$this->order('order_number is null,'.$order)->select();
 		}
 		// 获取树形或者结构数据
 		if($type=='tree'){
 			$data=\Org\Nx\Data::tree($data,'name','id','pid');
-		}elseif($type="level"){
+		}elseif($type="level")
+		{
 			$data=\Org\Nx\Data::channelLevel($data,0,'&nbsp;','id');
 			// 显示有权限的菜单
 			$auth=new \Think\Auth();
