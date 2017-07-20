@@ -77,7 +77,12 @@
         <li class="b-has-child"><a href="#" class="dropdown-toggle b-nav-parent"><i class="fa fa-{$v['ico']} icon-test"></i> <span class="menu-text">{$v['name']}</span><b class="arrow icon-angle-down"></b></a>
          <ul class="submenu">
           <foreach name="v['_data']" item="n">
-           <li class="b-nav-li"><a href="{:U($n['mca'])}" target="right_content"><i class="icon-double-angle-right"></i> {$n['name']}</a></li>
+           <li class="b-nav-li"><a href="{:U($n['mca'])}" target="right_content"><i class="icon-double-angle-right"></i> {$n['name']}</a>
+
+            
+
+
+           </li>
           </foreach>
          </ul></li>
        </empty>

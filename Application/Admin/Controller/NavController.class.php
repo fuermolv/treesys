@@ -13,6 +13,7 @@ class NavController extends AdminBaseController{
 		$assign=array(
 			'data'=>$data
 			);
+
 		$this->assign($assign);
 		$this->display();
 	}

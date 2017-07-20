@@ -23,6 +23,13 @@ class TreeController extends PublicBaseController{
         $this->display();
 	}
 
+	public function line($id='thinkphp')
+	{
+	    
+	     $this->assign('name',$name);
+        $this->display();
+	}
+
 
 
 }

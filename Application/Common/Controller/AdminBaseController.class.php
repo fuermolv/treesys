@@ -19,6 +19,7 @@ class AdminBaseController extends BaseController{
 		// 分配菜单数据
 		
 		$nav_data=D('AdminNav')->getTreeData('level','order_number,id');
+		var_dump($nav_data);
 		//dump($nav_data);
 		$assign=array(
 			'nav_data'=>$nav_data
