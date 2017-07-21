@@ -72,19 +72,32 @@
      <ul class="nav nav-list">
       <foreach name="nav_data" item="v">
        <empty name="v['_data']">
-        <li class="b-nav-li"><a href="{:U($v['mca'])}" target="right_content"><i class="fa fa-{$v['ico']} icon-test"></i> <span class="menu-text">{$v['name']}</span></a></li>
-        <else />
+      <li class="b-nav-li"><a href="{:U($v['mca'])}" ><i class="fa fa-{$v['ico']} icon-test"></i> <span class="menu-text">{$v['name']}</span></a></li>
+    <else />
+
         <li class="b-has-child"><a href="#" class="dropdown-toggle b-nav-parent"><i class="fa fa-{$v['ico']} icon-test"></i> <span class="menu-text">{$v['name']}</span><b class="arrow icon-angle-down"></b></a>
          <ul class="submenu">
-          <foreach name="v['_data']" item="n">
-           <li class="b-nav-li"><a href="{:U($n['mca'])}" target="right_content"><i class="icon-double-angle-right"></i> {$n['name']}</a>
+        <foreach name="v['_data']" item="n">
+         <!-- <li class="b-nav-li"><a href="{:U($n['mca'])}" ><i class="icon-double-angle-right"></i> {$n['name']}</a> -->
 
+
+          <li class="b-has-child"><a href="#" class="dropdown-toggle b-nav-parent"><i class="fa fa-{$v['ico']} icon-test"></i> <span class="menu-text">{$n['name']}</span><b class="arrow icon-angle-down"></b></a>
+         <ul class="submenu">
+        <foreach name="n['_data']" item="l">
+         <li class="b-nav-li"><a href="{:U($l['mca'])}" ><i class="icon-double-angle-right"></i> {$l['name']}</a>
+        </li>
+         </li>
+        </foreach>
+       </ul> 
+       
             
-
-
-           </li>
-          </foreach>
-         </ul></li>
+           
+              
+        </li>
+         </li>
+        </foreach>
+       </ul> 
+         </li>
        </empty>
       </foreach>
      </ul>

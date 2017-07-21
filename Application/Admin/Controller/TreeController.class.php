@@ -1,10 +1,10 @@
 <?php
 namespace Admin\Controller;
-use Common\Controller\PublicBaseController;
+use Common\Controller\AdminBaseController;
 /**
  * 后台首页控制器
  */
-class TreeController extends PublicBaseController{
+class TreeController extends AdminBaseController{
 	/**
 	 * 首页
 	 */
@@ -20,7 +20,7 @@ class TreeController extends PublicBaseController{
 	{
 	    
 	     $this->assign('name',$name);
-        $this->display();
+         $this->display();
 	}
 
 	public function line($id='thinkphp')

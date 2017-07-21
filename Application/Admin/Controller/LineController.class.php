@@ -1,10 +1,10 @@
 <?php
 namespace Admin\Controller;
-use Common\Controller\PublicBaseController;
+use Common\Controller\AdminBaseController;
 /**
  * 后台首页控制器
  */
-class LineController extends PublicBaseController{
+class LineController extends AdminBaseController{
 	/**
 	 * 首页
 	 */
