@@ -1,14 +1,14 @@
 {
-    "name": "bjy/bjyadmin",
-    "description": "the bjyadmin",
+    "name": "fuermolv/treesys",
+    "description": "treesys",
     "type": "framework",
-    "keywords": ["framework","bjyadmin","ORM"],
-    "homepage": "http://www.baijunyao.com",
+    "keywords": ["treesys","treesys","treesys"],
+    "homepage": "http://www.treesys.com",
     "license": "Apache2",
     "authors": [
         {
-            "name": "baijunyao",
-            "email": "baijunyao@baijunyao.com"
+            "name": "treesys",
+            "email": "treesys@treesys.com"
         }
     ],
     "require": {
