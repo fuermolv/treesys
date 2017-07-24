@@ -76,13 +76,14 @@
     <else />
 
         <li class="b-has-child"><a href="#" class="dropdown-toggle b-nav-parent"><i class="fa fa-{$v['ico']} icon-test"></i> <span class="menu-text">{$v['name']}</span><b class="arrow icon-angle-down"></b></a>
-         <ul class="submenu" style="display: block;">
+         <ul class="submenu" id="{$v['name']}">
+        <!--  style="display: block;" -->
         <foreach name="v['_data']" item="n">
          <!-- <li class="b-nav-li"><a href="{:U($n['mca'])}" ><i class="icon-double-angle-right"></i> {$n['name']}</a> -->
 
 
           <li class="b-has-child"><a href="#" class="dropdown-toggle b-nav-parent"><i class="fa fa-{$v['ico']} icon-test"></i> <span class="menu-text">{$n['name']}</span><b class="arrow icon-angle-down"></b></a>
-         <ul class="submenu" >
+         <ul class="submenu" id="{$n['name']}">
         <foreach name="n['_data']" item="l">
          <li class="b-nav-li"><a href="{:U($l['mca'])}" ><i class="icon-double-angle-right"></i> {$l['name']}</a>
         </li>
@@ -130,7 +131,17 @@
     </script><![endif]-->
   <script type="text/javascript">
     if("ontouchend" in document) document.write("<script src='__ADMIN_ACEADMIN__/js/jquery.mobile.custom.min.js'>"+"<"+"script>");
-</script>
+  </script>
+
+  <script type="text/javascript">
+   window.onload = function() 
+    { 
+        divset=document.getElementById("树木管理").style.display="block";
+     /*   divset=document.getElementById("输电线路一班").style.display="block";*/
+     
+    }
+   
+  </script>
   <script src="__ADMIN_ACEADMIN__/js/bootstrap.min.js"></script>
   <script src="__ADMIN_ACEADMIN__/js/typeahead-bs2.min.js"></script> 
   <!--[if lte IE 8]><script src="__ADMIN_ACEADMIN__/js/excanvas.min.js"></script><![endif]-->
