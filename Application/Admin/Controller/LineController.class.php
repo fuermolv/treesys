@@ -19,7 +19,7 @@ class LineController extends AdminBaseController{
 
 		
 
-		 var_dump($data);
+		// var_dump($data);
 		 $this->assign('data',$data['data']);
 		 $this->assign('pagehtml',$data['page']);
 		 $this->display();
