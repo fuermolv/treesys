@@ -1,10 +1,74 @@
 <extend name="Public:base"/><block name="title">树木列表</block>
 <block name="content">
-<div class="page-header"><h1><i class="fa fa-home"></i> 首页 &gt;树木列表</h1>
-</div>
 <div class="col-xs-12">
     <div class="tabbable">
-      <ul class="nav nav-tabs padding-12 tab-color-blue background-blue" id="myTab">
+    <table class="table table-striped table-bordered table-hover table-condensed">
+        <tr>
+          <td>
+            <form class="form-inline" action="">
+            
+            <select style="width:8%" name="test">
+            <option value ="">下拉框测试</option>
+            <option value ="volvo">测试0</option>
+            <option value ="saab">测试1</option>
+            <option value="opel">测试2</option>
+            <option value="audi">测试3</option>
+            </select>
+
+            <select style="width:8%" name="test">
+            <option value ="">下拉框测试</option>
+            <option value ="volvo">测试0</option>
+            <option value ="saab">测试1</option>
+            <option value="opel">测试2</option>
+            <option value="audi">测试3</option>
+            </select>
+
+            <select style="width:8%" name="test">
+            <option value ="">下拉框测试</option>
+            <option value ="volvo">测试0</option>
+            <option value ="saab">测试1</option>
+            <option value="opel">测试2</option>
+            <option value="audi">测试3</option>
+
+            </select>
+            <select style="width:8%" name="test">
+            <option value ="">下拉框测试</option>
+            <option value ="volvo">测试0</option>
+            <option value ="saab">测试1</option>
+            <option value="opel">测试2</option>
+            <option value="audi">测试3</option>
+            </select>
+
+            <select style="width:8%" name="test">
+            <option value ="">下拉框测试</option>
+            <option value ="volvo">测试0</option>
+            <option value ="saab">测试1</option>
+            <option value="opel">测试2</option>
+            <option value="audi">测试3</option>
+            </select>
+
+            <select style="width:8%" name="test">
+            <option value ="">下拉框测试</option>
+            <option value ="volvo">测试0</option>
+            <option value ="saab">测试1</option>
+            <option value="opel">测试2</option>
+            <option value="audi">测试3</option>
+            </select>
+            
+            <select style="width:8%" name="test">
+            <option value ="">下拉框测试</option>
+            <option value ="volvo">测试0</option>
+            <option value ="saab">测试1</option>
+            <option value="opel">测试2</option>
+            <option value="audi">测试3</option>
+            </select>
+           
+            <input class="btn btn-sm btn-success" type="submit" value="查询"></form>
+          </td>
+        </tr>
+      </table>
+      <!-- <ul class="nav nav-tabs padding-12 tab-color-blue background-blue" id="myTab">
+
         <li class="active">
         <a href="javascript:;">按钮1</a>
         </li>
@@ -14,52 +78,56 @@
         <li>
           <a href="javascript:;">按钮3</a>
          </li>
-      </ul>
+      </ul> -->
       <div class="tab-content">
         <table class="table table-striped table-bordered table-hover table-condensed">
           <tr>
-            <th width="5%">用户名</th>
-            <th width="5%">用户组</th>
-            <th width="5%">操作</th>
-            <th width="5%">操作</th>
-            <th width="5%">操作</th>
-            <th width="5%">操作</th>
-            <th width="5%">操作</th>
-            <th width="5%">操作</th>
-            <th width="5%">操作</th>
-            <th width="5%">操作</th>
-            <th width="5%">操作</th>
-            <th width="5%">操作</th>
-            <th width="5%">操作</th>
-            <th width="5%">操作</th>
-            <th width="5%">操作</th>
-            <th width="5%">操作</th>
-            <th width="5%">操作</th>
-            <th width="5%">操作</th>
+            <th width="3%">编号</th>
+            <th width="3%">线路名称</th>
+            <th width="3%">起始杆塔</th>
+            <th width="3%">结束杆塔</th>
+            <th width="3%">距离垂弧位置</th>
+            <th width="3%">威胁等级</th>
+            <th width="3%">面积</th>
+            <th width="3%">面积单位</th>
+            <th width="3%">高度</th>
+            <th width="3%">水平距离</th>
+            <th width="3%">垂直距离</th>
+            <th width="3%">是否高出</th>
             
-            <th width="30%">操作</th>
+            <th width="3%">树种</th>
+            <th width="3%">县</th>
+            <th width="3%">镇</th>
+            <th width="3%">村委会</th>
+            <th width="3%">拥有者</th>
+            <th width="3%">测量方式</th>
+            <th width="4%">测量时间</th>
+            
+            <th width="15%">操作</th>
             
             </tr>
           <foreach name="data" item="v">
             <tr>
               <td>{$v['id']}</td>
-              <td>{$v['line_id']}</td>
+              <td>{$v['name']}</td>
               <td>{$v['star_tower']}</td>
-              <td>{$v['danger_degree']}</td>
               <td>{$v['end_tower']}</td>
+               <td>{$v['place']}</td>
+              <td>{$v['danger_degree']}</td>
               <td>{$v['area']}</td>
               <td>{$v['area_type']}</td>
               <td>{$v['height']}</td>
               <td>{$v['horizontal']}</td>
               <td>{$v['vertical']}</td>
               <td>{$v['over']}</td>
-              <td>{$v['place']}</td>
+             
               <td>{$v['tree_type']}</td>
               <td>{$v['county']}</td>
               <td>{$v['town']}</td>
+              <td>{$v['village']}</td>
               <td>{$v['owner']}</td>
               <td>{$v['measure_way']}</td>
-              <td>{$v['measure_time']}</td>              
+              <td>{$v['measure_time']|date='Y-m-d',###}</td>              
               <td><a href="javascript:;">操作1</a>||<a href="javascript:;">操作2</a></td>
             </tr>
           </foreach>
