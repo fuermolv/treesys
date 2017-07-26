@@ -13,10 +13,22 @@ class LineController extends TreeSysController{
 	public function index(){
          
 
-           $id=I('get.id');
-           $map=array('line_id'=>$id);
-
+           
            $limit=20;
+           $id=I('get.id');
+
+            $map=array('line_id'=>$id);
+            $voltage_degree=I('get.voltage_degree');
+           
+           if(!empty($voltage_degree))
+           {
+            
+            $map['voltage_degree']=$voltage_degree;
+            
+           }
+          
+                      
+
                 
 		// $data=D('TreeBase')->getPage(new TreeBaseModel(),$map,$order,$limit);
          $model=new TreeBaseModel();
@@ -47,7 +59,8 @@ class LineController extends TreeSysController{
         
 		 
 
-		 //var_dump($data);
+		
+         $this->assign('querydata',$map);
 		 $this->assign('data',$data['data']);
 		 $this->assign('pagehtml',$data['page']);
 		 $this->display();

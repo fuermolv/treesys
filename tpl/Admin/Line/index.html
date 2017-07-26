@@ -12,7 +12,7 @@
       </ul>
         <tr>
           <td>
-            <form class="form-inline" action="">
+            <form class="form-inline" action="" id="my_form">
             
             <select style="width:8%" name="test">
             <option value ="">下拉框测试</option>
@@ -22,12 +22,12 @@
             <option value="audi">测试3</option>
             </select>
 
-            <select style="width:8%" name="test">
-            <option value ="">电压等级</option>
-            <option value ="volvo">测试0</option>
-            <option value ="saab">测试1</option>
-            <option value="opel">测试2</option>
-            <option value="audi">测试3</option>
+            <select style="width:8%" name="voltage_degree" onchange="submitForm();">
+            <option value ="" >电压等级</option>
+            <option value ="500">500kV</option>
+            <option value ="220" >220kV</option>
+            <option value="110" >110kV</option>
+           <option value="35"  >35kV</option>
             </select>
 
             <select style="width:8%" name="test">
@@ -116,7 +116,7 @@
           <foreach name="data" item="v">
             <tr>
               <td>{$v['tid']}</td>
-              <td>{$v['device_name']}</td>
+              <td>{$v['voltage_degree']}kV{$v['device_name']}</td>
               <td>{$v['star_tower']}</td>
               <td>{$v['end_tower']}</td>
                <td>{$v['place']}</td>
@@ -144,6 +144,18 @@
       </div>
     </div>
   </div>
+</block>
 
-
+<block name="js">
+  <script>
+    function submitForm()
+     {
+      var form = document.getElementById("my_form");//获取form表单对象
+      form.submit();//form表单提交
+     }
+      
+     
+    
+    
+    </script>
 </block>
