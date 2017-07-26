@@ -10,7 +10,7 @@ class TreeSysController extends BaseController{
 	 */
 	public function _initialize(){
 		parent::_initialize();
-		$auth=new \Think\Auth();
+		//$auth=new \Think\Auth();
 		$nav_data=D('AdminNav')->getTreeData('level','order_number,id');
 		$assign=array(
 			'nav_data'=>$nav_data

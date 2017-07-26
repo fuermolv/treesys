@@ -10,16 +10,21 @@ class LineController extends TreeSysController{
 	/**
 	 * 首页
 	 */
-	public function index($id='thinkphp'){
+	public function index(){
          
+
+           $id=I('get.id');
            $map=array('line_id'=>$id);
-           $limit=25;
+
+           $limit=20;
                 
 		// $data=D('TreeBase')->getPage(new TreeBaseModel(),$map,$order,$limit);
          $model=new TreeBaseModel();
 
 		 $count=$model
             ->where($map)
+            ->alias('base')
+            ->join('__DEVICE_LINE__ dl ON base.line_id=dl.did','LEFT')
             ->count();
 
         $page=new_page($count,$limit);
@@ -27,7 +32,7 @@ class LineController extends TreeSysController{
                 ->field($field)
                 ->where($map)
                 ->alias('base')
-                ->join('__DEVICE_LINE__ dl ON base.line_id=dl.id','LEFT')
+                ->join('__DEVICE_LINE__ dl ON base.line_id=dl.did','LEFT')
                 /*->order($order)*/
                 ->limit($page->firstRow.','.$page->listRows)
                 ->select();      
@@ -37,6 +42,9 @@ class LineController extends TreeSysController{
                  );
    
 
+
+
+        
 		 
 
 		 //var_dump($data);
