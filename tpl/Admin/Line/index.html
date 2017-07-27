@@ -14,12 +14,11 @@
           <td>
             <form class="form-inline" action="" id="my_form">
             
-            <select style="width:8%" name="test">
-            <option value ="">下拉框测试</option>
-            <option value ="volvo">测试0</option>
-            <option value ="saab">测试1</option>
-            <option value="opel">测试2</option>
-            <option value="audi">测试3</option>
+            <select style="width:8%" name="line_id" onchange="submitForm();">
+            <option value ="">全部线路</option>
+            <foreach name="querydata['device_lines']" item="v">
+             <option value ="{$v['did']}">{$v['device_name']}</option>
+            </foreach>
             </select>
 
             <select style="width:8%" name="voltage_degree" onchange="submitForm();">

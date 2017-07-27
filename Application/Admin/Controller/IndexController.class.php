@@ -13,7 +13,7 @@ class IndexController extends AdminBaseController{
 	{
 
 
-
+/*
       $device_lines = session('device_lines');
       if(empty($device_lines))
       {
@@ -53,7 +53,7 @@ class IndexController extends AdminBaseController{
         
          session('device_lines',$lines);
         }
-        
+        */
 
 
         
