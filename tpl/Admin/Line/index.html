@@ -14,19 +14,19 @@
           <td>
             <form class="form-inline" action="" id="my_form">
             
-            <select style="width:8%" name="line_id" onchange="submitForm();">
+            <select style="width:8%" name="line_id" id="line_id" onchange="submitForm();">
             <option value ="">全部线路</option>
             <foreach name="querydata['device_lines']" item="v">
-             <option value ="{$v['did']}">{$v['device_name']}</option>
+             <option value ="{$v['did']}">{$v['voltage_degree']}kV{$v['device_name']}</option>
             </foreach>
             </select>
 
-            <select style="width:8%" name="voltage_degree" onchange="submitForm();">
+            <select style="width:8%" name="voltage_degree" id="voltage_degree" onchange="submitForm();">
             <option value ="" >电压等级</option>
             <option value ="500">500kV</option>
             <option value ="220" >220kV</option>
             <option value="110" >110kV</option>
-           <option value="35"  >35kV</option>
+            <option value="35"  >35kV</option>
             </select>
 
             <select style="width:8%" name="test">
@@ -37,37 +37,35 @@
             <option value="audi">测试3</option>
 
             </select>
-            <select style="width:8%" name="test">
-            <option value ="">下拉框测试</option>
-            <option value ="volvo">测试0</option>
-            <option value ="saab">测试1</option>
-            <option value="opel">测试2</option>
-            <option value="audi">测试3</option>
+            <select style="width:8%" name="county"  id="county" onchange="submitForm();">
+            <option value ="">县区</option>
+            <option value ="1">清城区</option>
+            <option value ="2">清新县</option>
+            <option value="3">佛冈县</option>
+            <option value="4">英德市</option>
+            <option value ="5">阳山县</option>
+            <option value ="6">连州市</option>
+            <option value ="7">连南县</option>
+            <option value="8">连山县</option>
+            
             </select>
 
-            <select style="width:8%" name="test">
-            <option value ="">下拉框测试</option>
-            <option value ="volvo">测试0</option>
-            <option value ="saab">测试1</option>
-            <option value="opel">测试2</option>
-            <option value="audi">测试3</option>
+            <select style="width:8%" name="town"   id="town" onchange="submitForm();">
+            <option value ="">镇</option>
+            <foreach name="querydata['towns']" item="v">
+             <option value ="{$v['id']}">{$v['name']}</option>
+            </foreach>
             </select>
 
-            <select style="width:8%" name="test">
-            <option value ="">下拉框测试</option>
-            <option value ="volvo">测试0</option>
-            <option value ="saab">测试1</option>
-            <option value="opel">测试2</option>
-            <option value="audi">测试3</option>
+            <select style="width:8%" name="village"  id="village" onchange="submitForm();">
+            <option value ="">村</option>
+            <foreach name="querydata['villages']" item="v">
+             <option value ="{$v['id']}">{$v['name']}</option>
+             </foreach>
             </select>
             
-            <select style="width:8%" name="test">
-            <option value ="">下拉框测试</option>
-            <option value ="volvo">测试0</option>
-            <option value ="saab">测试1</option>
-            <option value="opel">测试2</option>
-            <option value="audi">测试3</option>
-            </select>
+            时间1：<input type="date" value="起始时间">
+            时间2：<input type="date" value="起始时间">
            
             <input class="btn btn-sm btn-success" type="submit" value="查询"></form>
           </td>
@@ -149,12 +147,29 @@
   <script>
     function submitForm()
      {
+      sessionStorage.setItem("voltage_degree",document.getElementById("voltage_degree").value);
+      sessionStorage.setItem("line_id",document.getElementById("line_id").value); 
+      sessionStorage.setItem("county",document.getElementById("county").value); 
+      sessionStorage.setItem("town",document.getElementById("town").value); 
+      sessionStorage.setItem("village",document.getElementById("village").value); 
+
       var form = document.getElementById("my_form");//获取form表单对象
       form.submit();//form表单提交
      }
-      
-     
-    
-    
     </script>
+    <script type="text/javascript">
+
+
+    $(document).ready(function()
+    {
+      
+      $("#voltage_degree").val(sessionStorage.getItem("voltage_degree"))
+      $("#line_id").val(sessionStorage.getItem("line_id"))
+      $("#county").val(sessionStorage.getItem("county"))
+      $("#town").val(sessionStorage.getItem("town"))
+      $("#village").val(sessionStorage.getItem("village"))
+      
+      
+    });   
+  </script>
 </block>
