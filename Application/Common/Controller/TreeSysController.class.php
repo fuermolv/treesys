@@ -1,4 +1,4 @@
-<?php
+hg<?php
 namespace Common\Controller;
 use Common\Controller\BaseController;
 /**

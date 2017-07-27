@@ -2,11 +2,12 @@
 namespace Admin\Controller;
 use Common\Controller\TreeSysController;
 use  Common\Model\TreeBaseModel;
+use Common\Controller\AdminBaseController;
 
 /**
  * 后台首页控制器
  */
-class LineController extends TreeSysController{
+class LineController extends AdminBaseController{
 	/**
 	 * 首页
 	 */
@@ -16,10 +17,13 @@ class LineController extends TreeSysController{
            
            $limit=20;
            $id=I('get.id');
+           $voltage_degree=I('get.voltage_degree');
 
-            $map=array('line_id'=>$id);
-            $voltage_degree=I('get.voltage_degree');
-           
+            if(!empty($id))
+           {
+              $map['line_id']=$id;
+            
+           }
            if(!empty($voltage_degree))
            {
             
