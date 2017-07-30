@@ -15,17 +15,22 @@ class LineController extends TreeSysController{
          
            
 
-            //$device_lines = session('device_lines');
-
-           
+            //$device_lines = session('device_li    
+           $orderBy=I('get.orderBy');
+           $dead_line_time_begin=I('get.dead_line_time_begin');
+           $dead_line_time_end=I('get.dead_line_time_end');
            $line_id=I('get.line_id');
            $voltage_degree=I('get.voltage_degree');
            $county=I('get.county');
            $town=I('get.town');
+           $danger_degree=I('get.danger_degree');
            $village=I('get.village');
+
+          
            $limit=20;
            $group_id=I('get.group_id');
 
+         
 
            //确定班组线路
            $map['id']=$group_id;
@@ -65,10 +70,23 @@ class LineController extends TreeSysController{
 
          
            $map=null;
+         
             if(!empty($line_id))
            {
               $map['line_id']=$line_id;
             
+           }else
+           {
+               $lines=array();
+        
+             foreach($device_lines as $d)
+            { 
+           
+              array_push($lines,$d['did']);      
+            } 
+
+            $map['line_id']=array('in',$lines);
+             
            }
           
            
@@ -96,6 +114,36 @@ class LineController extends TreeSysController{
             $map['village']=$village;
             
            }
+           if(!empty($danger_degree))
+           {
+            
+
+            $map['danger_degree']=$danger_degree;
+            
+           }
+           if(empty($orderBy))
+           {
+            
+
+            $orderBy='tid desc';
+            
+           }
+           if(!empty($dead_line_time_begin))
+           {
+            
+
+             $map['dead_line_time']=array('egt',strtotime($dead_line_time_begin));
+            
+           }
+           if(!empty($dead_line_time_end))
+           {
+            
+
+            $map['dead_line_time']=array('elt',strtotime($dead_line_time_end));
+            
+           }
+
+
 
           
                     
@@ -114,7 +162,7 @@ class LineController extends TreeSysController{
                 ->where($map)
                 ->alias('base')
                 ->join('__DEVICE_LINE__ dl ON base.line_id=dl.did','LEFT')
-                /*->order($order)*/
+                ->order($orderBy)
                 ->limit($page->firstRow.','.$page->listRows)
                 ->select();      
                  $data=array(
@@ -123,16 +171,19 @@ class LineController extends TreeSysController{
                  );
    
 
-
-
-    
-		
-        
          $this->assign('querydata',$querydata);
 		 $this->assign('data',$data['data']);
 		 $this->assign('pagehtml',$data['page']);
 		 $this->display();
 	}
+
+    public function delete()
+    {
+        $tid=I('get.tid');
+        $map['tid']=$tid;
+        M("tree_base")->where(array($map))->delete();
+
+    }
 	
 	
 	
