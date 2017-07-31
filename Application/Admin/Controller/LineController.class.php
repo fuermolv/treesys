@@ -77,7 +77,7 @@ class LineController extends TreeSysController{
             
            }else
            {
-               $lines=array();
+               $lines=array(-1);
         
              foreach($device_lines as $d)
             { 
@@ -85,6 +85,7 @@ class LineController extends TreeSysController{
               array_push($lines,$d['did']);      
             } 
 
+            
             $map['line_id']=array('in',$lines);
              
            }
