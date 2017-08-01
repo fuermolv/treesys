@@ -29,12 +29,7 @@
             <option value="35"  >35kV</option>
             </select>
 
-            <select style="width:8%" name="danger_degree" id="danger_degree" onchange="submitForm();">
-            <option value ="">威胁等级</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
+          
 
             </select>
             <select style="width:8%" name="county"  id="county" onchange="submitForm();">
@@ -75,7 +70,8 @@
             </select>
            
 
-            <input class="btn btn-sm btn-success" type="submit" value="查询"></form>
+            <input style="width:6%" type="submit" class="btn btn-sm btn-success"  value="数据筛选">
+            </form>
           </td>
         </tr>
       </table>
@@ -219,8 +215,7 @@
       sessionStorage.setItem("line_id",document.getElementById("line_id").value); 
       sessionStorage.setItem("county",document.getElementById("county").value); 
       sessionStorage.setItem("town",document.getElementById("town").value); 
-      sessionStorage.setItem("village",document.getElementById("village").value); 
-      sessionStorage.setItem("danger_degree",document.getElementById("danger_degree").value); 
+      sessionStorage.setItem("village",document.getElementById("village").value);  
       sessionStorage.setItem("orderBy",document.getElementById("orderBy").value); 
        sessionStorage.setItem("dead_line_time_begin",document.getElementById("dead_line_time_begin").value); 
         sessionStorage.setItem("dead_line_time_end",document.getElementById("dead_line_time_end").value); 
@@ -269,7 +264,7 @@
       $("#county").val(sessionStorage.getItem("county"))
       $("#town").val(sessionStorage.getItem("town"))
       $("#village").val(sessionStorage.getItem("village"))
-      $("#danger_degree").val(sessionStorage.getItem("danger_degree"))
+      
       $("#orderBy").val(sessionStorage.getItem("orderBy"))
       $("#dead_line_time_begin").val(sessionStorage.getItem("dead_line_time_begin"))
       $("#dead_line_time_end").val(sessionStorage.getItem("dead_line_time_end"))
