@@ -20,17 +20,13 @@ class LineController extends TreeSysController{
            $dead_line_time_begin=I('get.dead_line_time_begin');
            $dead_line_time_end=I('get.dead_line_time_end');
            $line_id=I('get.line_id');
-           $voltage_degree=I('get.voltage_degree');
            $county=I('get.county');
            $town=I('get.town');
            $danger_degree=I('get.danger_degree');
            $village=I('get.village');
-
-          
            $limit=20;
            $group_id=I('get.group_id');
 
-         
 
            //确定班组线路
            $map['id']=$group_id;
@@ -90,13 +86,6 @@ class LineController extends TreeSysController{
              
            }
           
-           
-           if(!empty($voltage_degree))
-           {
-            
-            $map['voltage_degree']=$voltage_degree;
-            
-           }
            if(!empty($town))
            {
             
@@ -156,23 +145,24 @@ class LineController extends TreeSysController{
             ->alias('base')
             ->join('__DEVICE_LINE__ dl ON base.line_id=dl.did','LEFT')
             ->count();
-
+       //  $map['uptodate']=1;
         $page=new_page($count,$limit);
         $list=$model
-                ->field($field)
+                ->field('detail.tid as tree_id,base.*,dl.*')
                 ->where($map)
                 ->alias('base')
                 ->join('__DEVICE_LINE__ dl ON base.line_id=dl.did','LEFT')
+                ->join('treesys_tree_detail detail ON base.tid=detail.tid','LEFT')
                 ->order($orderBy)
                 ->limit($page->firstRow.','.$page->listRows)
                 ->select();      
                  $data=array(
-                'data'=>$list,
-                'page'=>$page->show()
+                 'data'=>$list,
+                 'page'=>$page->show()
                  );
    
 
-         $this->assign('querydata',$querydata);
+     $this->assign('querydata',$querydata);
 		 $this->assign('data',$data['data']);
 		 $this->assign('pagehtml',$data['page']);
 		 $this->display();
