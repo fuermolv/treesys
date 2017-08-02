@@ -94,8 +94,8 @@
         <div class="table-responsive">
         <table class="table table-striped table-bordered table-hover table-condensed " id="data-table">
           <tr>
-            <th  id="t-tid">编号</th>
-            <th  id="t-device_name">线路名称</th>
+            <th id="t-tid">编号</th>
+            <th id="t-device_name">线路名称</th>
             <th id="t-star_tower" >起始杆塔</th>
             <th id="t-end_tower">结束杆塔</th>
             <th id="t-county">县</th>
@@ -117,20 +117,10 @@
             <th id="t-first_check_person">首次测量人</th>
             <th id="t-processed">是否处理</th>
             <th id="t-last_update_time">最近更新时间</th>
-            <th id="t.dead_line_time">截止时间</th>
-            
-           
-           
-
-
-         
-           
-
-             
-            
-
+            <th id="t-dead_line_time">截止时间</th>
             <th width="100px">操作</th>
-            
+
+                   
             </tr>
           <foreach name="data" item="v">
             <tr>
@@ -156,17 +146,13 @@
               <td>{$v['first_check_method']}</td>
               <td>{$v['first_check_person']}</td>
               <td>
-               <if condition="$v['processed'] eq 'true'">是
+              <if condition="$v['processed'] eq 'true'">是
               <else /> 否
               </if>
               </td>
               <td>{$v['last_update_time']|date='Y-m-d',###}</td> 
-             
               <td>{$v['dead_line_time']|date='Y-m-d',###}</td>  
-               
-              
-     
-             
+        
 
               <td>
               <a href="javascript:;">详情</a>||
@@ -183,7 +169,7 @@
     </div>
   
   </div>
-   <div class="modal fade" id="bjy-edit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
+   <div class="modal fade" id="data-filter" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
    data-backdrop="static">
     <div class="modal-dialog">
       <div class="modal-content" id="edit-tree-content" style="width:1200px;height:800px;">
@@ -193,72 +179,58 @@
         <div class="modal-body" >
           <form id="bjy-form" class="form-inline"  action="{:U('Admin/Nav/edit')}" method="post">
               <p> 
-              <input class="" type="checkbox" name="aa">全选
+              <input class="" type="checkbox" name="bb">全选
               </p>   
                 
-            <table class="table table-striped table-bordered table-hover table-condensed" style="width:800px;height:200px;">
-              <tr>
-              <th>菜单名：</th>
-              <th>菜单名：</th>
-              <th>菜单名：</th>
-              <th>菜单名：</th>
-              <th>菜单名：</th>
-              <th >菜单名：</th>
-              </tr>
-              <tr>
-              <td>
-              <input class="input-medium" type="checkbox" name="aa">
-              </td>
-               <td>
-              <input class="input-medium" type="checkbox" name="bb">
-              </td>
-               <td>
-              <input class="input-medium" type="checkbox" name="cc">
-              </td>
-               <td>
-              <input class="input-medium" type="checkbox" name="dd">
-              </td>
-               <td>
-              <input class="input-medium" type="checkbox" name="ee">
-              </td>
-               <td>
-              <input class="input-medium" type="checkbox" name="ff">
-              </td>
-              </tr>
-             &nbsp;
+          <ul class="list-group" id="basedata" >
+          <li class="list-group-item " >基础数据  
 
-              <tr>
-              <th>菜单名：</th>
-              <th>菜单名：</th>
-              <th>菜单名：</th>
-              <th>菜单名：</th>
-              <th>菜单名：</th>
-              <th>菜单名：</th>
-              </tr>
-              <tr>
-              <td>
-              <input class="input-medium" type="checkbox" name="aa">
-              </td>
-               <td>
-              <input class="input-medium" type="checkbox" name="bb">
-              </td>
-               <td>
-              <input class="input-medium" type="checkbox" name="cc">
-              </td>
-               <td>
-              <input class="input-medium" type="checkbox" name="dd">
-              </td>
-               <td>
-              <input class="input-medium" type="checkbox" name="ee">
-              </td>
-               <td>
-              <input class="input-medium" type="checkbox" name="ff">
-              </td>
-              </tr>
-             
-              
+          </li>
+          <li class="list-group-item">
+           编号<input class="" type="checkbox" value="t-tid" name="showdata">
+           线路名称<input class="" type="checkbox" value="t-device_name" name="showdata">
+           起始杆塔<input class="" type="checkbox" value="t-star_tower" name="showdata">
+           结束杆塔<input class="" type="checkbox" value="t-end_tower" name="showdata">
+           县<input class="" type="checkbox" value="t-county" name="showdata">
+           镇<input class="" type="checkbox" value="t-town" name="showdata">
+           村委会 <input class="" type="checkbox" value="t-village" name="showdata">
+           拥有者<input class="" type="checkbox" value="t-owner" name="showdata">
+           拥有者电话<input class="" type="checkbox" value="t-owner_phone" name="showdata">
+           责任部门 <input class="" type="checkbox" value="t-accountability_department" name="showdata">
+           责任班组<input class="" type="checkbox" value="t-accountability_group" name="showdata">
+           责任人<input class="" type="checkbox" value="t-accountability_person" name="showdata">
+           
+          </li>
+          <li class="list-group-item">
+           立地条件 <input class="" type="checkbox" value="t-site_condition" name="showdata">
+           树龄<input class="" type="checkbox" value="t-tree_age" name="showdata">
+           树木状态<input class="" type="checkbox" value="t-tree_status" name="showdata">
+           树种 <input class="" type="checkbox" value="t-tree_type" name="showdata">
+           平均胸径<input class="" type="checkbox" value="t-average_radius" name="showdata">
+           平均高度<input class="" type="checkbox" value="t-average_height" name="showdata">
+           首次测量时间<input class="" type="checkbox" value="t-first_check_time" name="showdata">
+           首次测量方式<input class="" type="checkbox" value="t-first_check_method" name="showdata">
+           首次测量人<input class="" type="checkbox" value="t-first_check_person" name="showdata">
+           是否处理 <input class="" type="checkbox" value="t-processed" name="showdata">
+           最近更新时间<input class="" type="checkbox" value="t-last_update_time" name="showdata">
+           截止时间<input class="" type="checkbox" value="t-dead_line_time" name="showdata">
           
-            </table>
+          </li>
+       
+          </ul>
+          <ul class="list-group">
+          <li class="list-group-item">最新数据  
+          <li class="list-group-item">
+          <input class="" type="checkbox" name="bb">
+          </li>
+          
+          </ul>
+            <div class="text-center">
+            <input style="width:6%" class="btn btn-sm btn-success " type="button" onclick="saveDataFilter(this)"  value="确定">
+            </div>
+            
+
+             
           </form>
         </div>
       </div>
@@ -277,11 +249,30 @@
 
     function dataFilter()
     {
-      var test='#tid';
-       $('#data-table tr').find(test).hide(); 
-       //var test=($('#data-table tr').find('#line_name').index());
-    //   alert(test);
-       $('#data-table tr').find('td:eq(0)').hide();
+
+
+        // var tid=$(obj).attr('tid');
+         document.getElementById("edit-tree-content").style.marginLeft="-50%";
+         $('#data-filter').modal('show');
+   
+    }
+     function saveDataFilter()
+    {
+
+
+       obj = document.getElementsByName("showdata");
+       showdata = [];
+       for(k in obj){
+        if(obj[k].checked)
+            showdata.push(obj[k].value);
+      }
+     $('#data-filter').modal('hide');
+
+      
+      sessionStorage.setItem("showdata",showdata)
+      submitForm()
+    
+   
     }
 
     function submitForm()
@@ -318,9 +309,8 @@
      function edit_tree(obj)
      {
 
-         var tid=$(obj).attr('tid');
-         document.getElementById("edit-tree-content").style.marginLeft="-50%";
-         $('#bjy-edit').modal('show');
+        
+     
      } 
 
      </script>
@@ -333,7 +323,27 @@
     <script type="text/javascript">
     $(document).ready(function()
     {
-      
+
+
+     // $("#basedata :checkbox,#all").prop("checked", true);  
+     var showdataString=sessionStorage.getItem("showdata")
+     var showdata=showdataString.split(',');
+      // alert(showdata[0]);
+       for(var i=0;i<showdata.length;i++)
+      {
+
+          var showitem=showdata[i];
+          var temp='#'+showitem;
+
+          $('#data-table tr').find(temp).hide(); 
+           alert(temp);
+          var iindex=($('#data-table tr').find(temp).index());
+          var needfind='td:eq('+iindex+')'
+          
+          $('#data-table tr').find(needfind).hide();
+      }
+
+
       $("#voltage_degree").val(sessionStorage.getItem("voltage_degree"))
       $("#line_id").val(sessionStorage.getItem("line_id"))
       $("#county").val(sessionStorage.getItem("county"))
