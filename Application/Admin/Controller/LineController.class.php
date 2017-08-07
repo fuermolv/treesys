@@ -22,7 +22,7 @@ class LineController extends TreeSysController{
            $line_id=I('get.line_id');
            $county=I('get.county');
            $town=I('get.town');
-           $danger_degree=I('get.danger_degree');
+           $voltage_degree=I('get.voltage_degree');
            $village=I('get.village');
            $limit=20;
            $group_id=I('get.group_id');
@@ -104,11 +104,11 @@ class LineController extends TreeSysController{
             $map['village']=$village;
             
            }
-           if(!empty($danger_degree))
+           if(!empty($voltage_degree))
            {
             
 
-            $map['danger_degree']=$danger_degree;
+            $map['voltage_degree']=$voltage_degree;
             
            }
            if(empty($orderBy))
@@ -145,14 +145,14 @@ class LineController extends TreeSysController{
             ->alias('base')
             ->join('__DEVICE_LINE__ dl ON base.line_id=dl.did','LEFT')
             ->count();
-       //  $map['uptodate']=1;
+        $map['datail_uptodate']=1;
         $page=new_page($count,$limit);
         $list=$model
-                ->field('detail.tid as tree_id,base.*,dl.*')
+                /*->field('detail.tid as tree_id,base.*,dl.*')*/
                 ->where($map)
                 ->alias('base')
                 ->join('__DEVICE_LINE__ dl ON base.line_id=dl.did','LEFT')
-                ->join('treesys_tree_detail detail ON base.tid=detail.tid','LEFT')
+                ->join('treesys_tree_detail detail ON base.tid=detail.detail_tid','LEFT')
                 ->order($orderBy)
                 ->limit($page->firstRow.','.$page->listRows)
                 ->select();      
@@ -161,6 +161,7 @@ class LineController extends TreeSysController{
                  'page'=>$page->show()
                  );
    
+  /* var_dump($data['data']);*/
 
      $this->assign('querydata',$querydata);
 		 $this->assign('data',$data['data']);

@@ -118,6 +118,27 @@
            <th style="display:none" id="t-processed">是否处理</th>
            <th style="display:none" id="t-last_update_time">最近更新时间</th>
            <th style="display:none" id="t-dead_line_time">截止时间</th>
+           <th style="display:none" id="t-datail_danger_degree">隐患等级</th>
+           <th style="display:none" id="t-datail_final_danger">最终危险</th>
+           <th style="display:none" id="t-datail_tree_type">危险树种</th>
+           <th style="display:none" id="t-datail_tree_height">危险高度</th>
+           <th style="display:none" id="t-datail_tree_num">危险数量</th>
+           <th style="display:none" id="t-datail_tree_num_unit">危险数量单位</th>
+           <th style="display:none" id="t-datail_tree_area">危险面积</th>
+           <th style="display:none" id="t-datail_tree_area_unit">危险面积单位</th>
+           <th style="display:none" id="t-datail_tree_horizontal">水平距离</th>
+           <th style="display:none" id="t-datail_tree_vertical">垂直距离</th>
+           <th style="display:none" id="t-datail_tree_grand_height">对地距离</th>
+           <th style="display:none" id="t-datail_tree_over">高出导线</th>        
+           <th style="display:none" id="t-datail_check_time">测量时间</th>
+           <th style="display:none" id="t-datail_check_conclusion">测量结论</th>
+           <th style="display:none" id="t-datail_check_person">测量人</th>
+           <th style="display:none" id="t-datail_update_person">更新人</th>
+           <th style="display:none" id="t-datail_update_group">更新班组</th>
+           <th style="display:none" id="t-datail_update_time">更新时间</th>
+        
+
+
             <th width="100px">操作</th>
 
                    
@@ -152,6 +173,32 @@
               </td>
               <td style="display:none" >{$v['last_update_time']|date='Y-m-d',###}</td> 
               <td style="display:none" >{$v['dead_line_time']|date='Y-m-d',###}</td>  
+              <td style="display:none" id="t-datail_danger_degree">{$v['datail_danger_degree']}</td>
+              <td style="display:none" id="t-datail_final_danger">
+               <if condition="$v['datail_final_danger'] eq 'true'">是
+              <else /> 否
+              </if></td>
+              <td style="display:none" id="t-datail_tree_type">{$v['datail_tree_type']}</td>
+              <td style="display:none" id="t-datail_tree_height">{$v['datail_tree_height']}</td>
+              <td style="display:none" id="t-datail_tree_num">{$v['datail_tree_num']}</td>
+              <td style="display:none" id="t-datail_tree_num_unit">{$v['datail_tree_num_unit']}</td>
+              <td style="display:none" id="t-datail_tree_area">{$v['datail_tree_area']}</td>
+              <td style="display:none" id="t-datail_tree_area_unit">{$v['datail_tree_area_unit']}</td>
+              <td style="display:none" id="t-datail_tree_horizontal">{$v['datail_tree_horizontal']}</td>
+              <td style="display:none" id="t-datail_tree_vertical">{$v['datail_tree_vertical']}</td>
+              <td style="display:none" id="t-datail_tree_grand_height">{$v['datail_tree_grand_height']}</td>
+
+              <td style="display:none" id="t-datail_tree_over">
+                <if condition="$v['datail_danger_degree'] eq 'true'">是
+              <else /> 否
+              </if></td>
+              </td>        
+              <td style="display:none" id="t-datail_check_time">{$v['datail_check_time']|date='Y-m-d',###}</td>
+              <td style="display:none" id="t-datail_check_conclusion">{$v['datail_check_conclusion']}</td>
+              <td style="display:none" id="t-datail_check_person">{$v['datail_check_person']}</td>
+              <td style="display:none" id="t-datail_update_person">{$v['datail_update_person']}</td>
+              <td style="display:none" id="t-datail_update_group">{$v['datail_update_group']}</td>
+              <td style="display:none" id="t-datail_update_time">{$v['datail_update_time']|date='Y-m-d',###}</td>
         
 
               <td>
@@ -179,7 +226,7 @@
         <div class="modal-body" >
           <form id="bjy-form" class="form-inline"  action="{:U('Admin/Nav/edit')}" method="post">
               <p> 
-              <input class="" type="checkbox" id="select-base-all" onchange="selectAll(this);">全选
+              <input class="" type="checkbox" id="select-base-all" onchange="selectBaseAll(this);">全选
            
               </p>   
                 
@@ -219,12 +266,37 @@
           </li>
        
           </ul>
-          <ul class="list-group">
+           <p> 
+          <input class="" type="checkbox" id="select-detail-all" onchange="selectDetailAll(this);">全选
+          </p>  
+          <ul class="list-group" id="detail_data">
           <li class="list-group-item">最新数据  
+          </li>
+
           <li class="list-group-item">
-          <input class="" type="checkbox" name="bb">
+           隐患等级<input class="" type="checkbox" value="t-datail_danger_degree" name="showdata">
+           最终危险<input class="" type="checkbox" value="t-datail_final_danger" name="showdata">
+           危险树种<input class="" type="checkbox" value="t-datail_tree_type" name="showdata">
+           危险高度<input class="" type="checkbox" value="t-datail_tree_height" name="showdata">
+           危险数量<input class="" type="checkbox" value="t-datail_tree_num" name="showdata">
+           危险数量单位<input class="" type="checkbox" value="t-datail_tree_num_unit" name="showdata">
+           危险面积 <input class="" type="checkbox" value="t-datail_tree_area" name="showdata">
+           危险面积单位<input class="" type="checkbox" value="t-datail_tree_area_unit" name="showdata">
+           水平距离<input class="" type="checkbox" value="t-datail_tree_horizontal" name="showdata">
+           垂直距离 <input class="" type="checkbox" value="t-datail_tree_vertical" name="showdata">
+           对地距离<input class="" type="checkbox" value="t-datail_tree_grand_height" name="showdata">
+           高出导线<input class="" type="checkbox" value="t-datail_tree_over" name="showdata">
           </li>
           
+            <li class="list-group-item">
+           测量时间<input class="" type="checkbox" value="t-datail_check_time" name="showdata">
+           测量结论<input class="" type="checkbox" value="t-datail_check_conclusion" name="showdata">
+           测量人<input class="" type="checkbox" value="t-datail_check_person" name="showdata">
+           更新人<input class="" type="checkbox" value="t-datail_update_person" name="showdata">
+           更新班组<input class="" type="checkbox" value="t-datail_update_group" name="showdata">
+           更新时间<input class="" type="checkbox" value="t-datail_update_time" name="showdata">
+           
+          </li>
           </ul>
             <div class="text-center">
             <input style="width:6%" class="btn btn-sm btn-success " type="button" onclick="saveDataFilter(this)"  value="确定">
@@ -244,7 +316,7 @@
 <block name="js">
     <script>
 
-     function selectAll()
+     function selectBaseAll()
      {
      	if(document.getElementById("select-base-all").checked)
      	{
@@ -252,8 +324,19 @@
      	}else
      	{
      	
-     		 $("#basedata :checkbox,#all").prop("checked", false);  
+     		$("#basedata :checkbox,#all").prop("checked", false);  
      	}
+     }
+      function selectDetailAll()
+     {
+      if(document.getElementById("select-detail-all").checked)
+      {
+         $("#detail_data :checkbox,#all").prop("checked", true);  
+      }else
+      {
+      
+        $("#detail_data :checkbox,#all").prop("checked", false);  
+      }
      }
     function dataFilter()
     {
