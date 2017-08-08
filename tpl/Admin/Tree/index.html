@@ -313,13 +313,14 @@ a<extend name="Public:base"/><block name="title">树木列表</block>
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
           <h4 class="modal-title" >巡查记录</h4></div>
-          <div class="modal-body" id="tree-deatil-record" >
+          <div class="modal-body" >
+          <div id="tree-deatil-record" >
           
         
-        
+         
 
-             
-       
+            
+        </div>  
         </div>
       </div>
     </div>
@@ -417,13 +418,13 @@ a<extend name="Public:base"/><block name="title">树木列表</block>
       var tid=$(obj).attr('tid');
       $.ajax({
       type:"GET",
-      url:"/treesys/index.php/Admin/Tree/detail",
+      url:"/treesys/index.php/Admin/TreeDetail/index",
       data:{
            tid:tid
           },
       success:function(msg){
-        alert(msg);
-        $(".tree-deatil-record").html(msg);
+     //   alert(msg);
+        $("#tree-deatil-record").html(msg);
       },
       error:function(XMLHttpRequest, textStatus, thrownError){}
       })

@@ -79,8 +79,10 @@ class TreeController extends AdminBaseController {
         $map['datail_uptodate'] = 1;
         $page = new_page($count, $limit);
         $list = $model
-        /*->field('detail.tid as tree_id,base.*,dl.*')*/->where($map)->alias('base')->join('__DEVICE_LINE__ dl ON base.line_id=dl.did', 'LEFT')->join('treesys_tree_detail detail ON base.tid=detail.detail_tid', 'LEFT')->order($orderBy)->limit($page->firstRow . ',' . $page->listRows)->select();
+        /*->field('detail.tid as tree_id,base.*,dl.*')*/->where($map)->alias('base')->join('__DEVICE_LINE__ dl ON base.line_id=dl.did', 'LEFT')->join('treesys_tree_detail detail ON base.tid=detail.detail_tid ', 'LEFT')->order($orderBy)->limit($page->firstRow . ',' . $page->listRows)->select();
         $data = array('data' => $list, 'page' => $page->show());
+       
+
         /* var_dump($data['data']);*/
         $this->assign('querydata', $querydata);
         $this->assign('data', $data['data']);
@@ -91,17 +93,10 @@ class TreeController extends AdminBaseController {
         $tid = I('get.tid');
         $map['tid'] = $tid;
         M("tree_base")->where(array($map))->delete();
-    }
-    public function detail()
-    {
 
-        $tree_id = I('get.tid');
-        $model = new TreeDetailModel();
-        $map['detail_tid'] = $tree_id;
-        $orderBy = 'detail_id desc';
-        $data=$model->where($map)->order($orderBy)->select();
-      //  var_dump($data);
-      //  $this->assign('data', $data['data']);
-        $this->fetch();
+
+
+
     }
+    
 }
