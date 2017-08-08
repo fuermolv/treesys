@@ -12,7 +12,8 @@ class AdminBaseController extends BaseController{
 		parent::_initialize();
 		$auth=new \Think\Auth();
 
-        if(CONTROLLER_NAME=='Nav'||CONTROLLER_NAME=='Rule'||CONTROLLER_NAME=='Index'||CONTROLLER_NAME=='ShowNav')
+        $rule_name=MODULE_NAME.'/'.CONTROLLER_NAME.'/'.ACTION_NAME;
+        /*if(CONTROLLER_NAME=='Nav'||CONTROLLER_NAME=='Rule'||CONTROLLER_NAME=='Index'||CONTROLLER_NAME=='ShowNav')
         {
             $rule_name=MODULE_NAME.'/'.CONTROLLER_NAME.'/'.ACTION_NAME;
         }
@@ -21,7 +22,7 @@ class AdminBaseController extends BaseController{
 		
 		 
 		   $rule_name=substr(($_SERVER["REQUEST_URI"]),19);
-	    }
+	    }*/
 		
 		
 		$result=$auth->check($rule_name,$_SESSION['user']['id']);

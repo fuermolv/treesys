@@ -1,9 +1,507 @@
-<extend name="Public:base"/><block name="title">树木管理</block>
+a<extend name="Public:base"/><block name="title">树木列表</block>
 <block name="content">
-<div class="page-header"><h1><i class="fa fa-home"></i> 首页 &gt;树木管理</h1>
-</div>
-<div>
-    未完成
-</div>
-</html>
+<div class="col-xs-12">
+    <div class="tabbable">
+    <table class="table table-striped table-bordered table-hover table-condensed">
+
+       <ul class="nav nav-tabs padding-12 tab-color-blue background-blue" id="myTab">
+        <li class="active">
+          <a href="javascript:;" data-toggle="tab">按钮1</a></li>
+        <li>
+          <a href="javascript:;" ">按钮2</a></li>
+      </ul>
+        <tr>
+          <td>
+            <form class="form-inline" action="" id="my_form" >
+            
+            <select style="width:8%" name="line_id" id="line_id" onchange="submitForm();">
+            <option value ="">全部线路</option>
+            <foreach name="querydata['device_lines']" item="v">
+             <option value ="{$v['did']}">{$v['voltage_degree']}kV{$v['device_name']}</option>
+            </foreach>
+            </select>
+
+            <select style="width:8%" name="voltage_degree" id="voltage_degree" onchange="submitForm();">
+            <option value ="" >电压等级</option>
+            <option value ="500">500kV</option>
+            <option value ="220" >220kV</option>
+            <option value="110" >110kV</option>
+            <option value="35"  >35kV</option>
+            </select>
+
+          
+
+            </select>
+            <select style="width:8%" name="county"  id="county" onchange="submitForm();">
+            <option value ="">县区</option>
+            <option value ="1">清城区</option>
+            <option value ="2">清新县</option>
+            <option value="3">佛冈县</option>
+            <option value="4">英德市</option>
+            <option value ="5">阳山县</option>
+            <option value ="6">连州市</option>
+            <option value ="7">连南县</option>
+            <option value="8">连山县</option>
+            
+            </select>
+
+            <select style="width:8%" name="town"   id="town" onchange="submitForm();">
+            <option value ="">镇</option>
+            <foreach name="querydata['towns']" item="v">
+             <option value ="{$v['id']}">{$v['name']}</option>
+            </foreach>
+            </select>
+
+            <select style="width:8%" name="village"  id="village" onchange="submitForm();">
+            <option value ="">村</option>
+            <foreach name="querydata['villages']" item="v">
+             <option value ="{$v['id']}">{$v['name']}</option>
+             </foreach>
+            </select>
+            
+            截止时间开始<input type="date" value="" name="dead_line_time_begin" id="dead_line_time_begin" onchange="submitForm();">
+            截止时间结束<input type="date" value=""  name="dead_line_time_end" id="dead_line_time_end" onchange="submitForm();">
+
+            <select style="width:8%" name="orderBy" id="orderBy" onchange="submitForm();">
+            <option value ="">排序方式</option>
+            <option value ="danger_degree desc">威胁等级降序</option>
+            <option value ="dead_line_time desc">截止时间降序</option>
+            <option value ="update_time desc">更新时间降序</option>         
+            </select>
+           
+
+            <input style="width:6%" class="btn btn-sm btn-success" type="button" onclick="dataFilter(this)" value="数据筛选">
+            </form>
+          </td>
+        </tr>
+      </table>
+      <!-- <ul class="nav nav-tabs padding-12 tab-color-blue background-blue" id="myTab">
+
+        <li class="active">
+        <a href="javascript:;">按钮1</a>
+        </li>
+        <li>
+         <a href="javascript:;">按钮2</a>
+        </li>
+        <li>
+          <a href="javascript:;">按钮3</a>
+         </li>
+      </ul> -->
+      
+      
+      <div class="tab-content">
+       
+        <div class="table-responsive">
+        <table class="table table-striped table-bordered table-hover table-condensed " id="data-table">
+          <tr>
+            <th style="display:none" id="t-tid">编号</th>
+           <th style="display:none" id="t-device_name">线路名称</th>
+           <th style="display:none" id="t-star_tower" >起始杆塔</th>
+           <th style="display:none" id="t-end_tower">结束杆塔</th>
+           <th style="display:none" id="t-county">县</th>
+           <th style="display:none" id="t-town">镇</th>
+           <th style="display:none" id="t-village">村委会</th>
+           <th style="display:none" id="t-owner">拥有者</th>
+           <th style="display:none" id="t-owner_phone">拥有者电话</th>
+           <th style="display:none" id="t-accountability_department">责任部门</th>
+           <th style="display:none" id="t-accountability_group">责任班组</th>                     
+           <th style="display:none" id="t-accountability_person">责任人</th>
+           <th style="display:none" id="t-site_condition">立地条件</th>
+           <th style="display:none" id="t-tree_age">树龄</th>
+           <th style="display:none" id="t-tree_status">树木状态</th>
+           <th style="display:none" id="t-tree_type">树种</th>
+           <th style="display:none" id="t-average_radius">平均胸径</th>
+           <th style="display:none" id="t-average_height">平均高度</th>
+           <th style="display:none" id="t-first_check_time">首次测量时间</th>
+           <th style="display:none" id="t-first_check_method">首次测量方式</th>
+           <th style="display:none" id="t-first_check_person">首次测量人</th>
+           <th style="display:none" id="t-processed">是否处理</th>
+           <th style="display:none" id="t-last_update_time">最近更新时间</th>
+           <th style="display:none" id="t-dead_line_time">截止时间</th>
+           <th style="display:none" id="t-datail_danger_degree">隐患等级</th>
+           <th style="display:none" id="t-datail_final_danger">最终危险</th>
+           <th style="display:none" id="t-datail_tree_type">危险树种</th>
+           <th style="display:none" id="t-datail_tree_height">危险高度</th>
+           <th style="display:none" id="t-datail_tree_num">危险数量</th>
+           <th style="display:none" id="t-datail_tree_num_unit">危险数量单位</th>
+           <th style="display:none" id="t-datail_tree_area">危险面积</th>
+           <th style="display:none" id="t-datail_tree_area_unit">危险面积单位</th>
+           <th style="display:none" id="t-datail_tree_horizontal">水平距离</th>
+           <th style="display:none" id="t-datail_tree_vertical">垂直距离</th>
+           <th style="display:none" id="t-datail_tree_grand_height">对地距离</th>
+           <th style="display:none" id="t-datail_tree_over">高出导线</th>        
+           <th style="display:none" id="t-datail_check_time">测量时间</th>
+           <th style="display:none" id="t-datail_check_conclusion">测量结论</th>
+           <th style="display:none" id="t-datail_check_person">测量人</th>
+           <th style="display:none" id="t-datail_update_person">更新人</th>
+           <th style="display:none" id="t-datail_update_group">更新班组</th>
+           <th style="display:none" id="t-datail_update_time">更新时间</th>
+        
+
+
+            <th width="100px">操作</th>
+
+                   
+            </tr>
+          <foreach name="data" item="v">
+            <tr>
+              <td style="display:none">{$v['tid']}</td>
+              <td style="display:none" >{$v['voltage_degree']}kV{$v['device_name']}</td>
+              <td style="display:none" >{$v['star_tower']}</td>
+              <td style="display:none" >{$v['end_tower']}</td>
+              <td style="display:none" >{$v['county']}</td>
+              <td style="display:none" >{$v['town']}</td>
+              <td style="display:none" >{$v['village']}</td>
+              <td style="display:none" >{$v['owner']}</td>
+              <td style="display:none" >{$v['owner_phone']}</td>
+              <td style="display:none" >{$v['accountability_department']}</td>
+              <td style="display:none" >{$v['accountability_group']}</td>
+              <td style="display:none" >{$v['accountability_person']}</td>
+              <td style="display:none" >{$v['site_condition']}</td>
+              <td style="display:none" >{$v['tree_age']}</td>
+              <td style="display:none" >{$v['tree_status']}</td>
+              <td style="display:none" >{$v['tree_type']}</td>
+              <td style="display:none" >{$v['average_radius']}</td>
+              <td style="display:none" >{$v['average_height']}</td>
+              <td style="display:none" >{$v['first_check_time']|date='Y-m-d',###}</td> 
+              <td style="display:none" >{$v['first_check_method']}</td>
+              <td style="display:none" >{$v['first_check_person']}</td>
+              <td style="display:none">
+              <if condition="$v['processed'] eq 'true'">是
+              <else /> 否
+              </if>
+              </td>
+              <td style="display:none" >{$v['last_update_time']|date='Y-m-d',###}</td> 
+              <td style="display:none" >{$v['dead_line_time']|date='Y-m-d',###}</td>  
+              <td style="display:none" id="t-datail_danger_degree">{$v['datail_danger_degree']}</td>
+              <td style="display:none" id="t-datail_final_danger">
+               <if condition="$v['datail_final_danger'] eq 'true'">是
+              <else /> 否
+              </if></td>
+              <td style="display:none" id="t-datail_tree_type">{$v['datail_tree_type']}</td>
+              <td style="display:none" id="t-datail_tree_height">{$v['datail_tree_height']}</td>
+              <td style="display:none" id="t-datail_tree_num">{$v['datail_tree_num']}</td>
+              <td style="display:none" id="t-datail_tree_num_unit">{$v['datail_tree_num_unit']}</td>
+              <td style="display:none" id="t-datail_tree_area">{$v['datail_tree_area']}</td>
+              <td style="display:none" id="t-datail_tree_area_unit">{$v['datail_tree_area_unit']}</td>
+              <td style="display:none" id="t-datail_tree_horizontal">{$v['datail_tree_horizontal']}</td>
+              <td style="display:none" id="t-datail_tree_vertical">{$v['datail_tree_vertical']}</td>
+              <td style="display:none" id="t-datail_tree_grand_height">{$v['datail_tree_grand_height']}</td>
+
+              <td style="display:none" id="t-datail_tree_over">
+                <if condition="$v['datail_danger_degree'] eq 'true'">是
+              <else /> 否
+              </if></td>
+              </td>        
+              <td style="display:none" id="t-datail_check_time">{$v['datail_check_time']|date='Y-m-d',###}</td>
+              <td style="display:none" id="t-datail_check_conclusion">{$v['datail_check_conclusion']}</td>
+              <td style="display:none" id="t-datail_check_person">{$v['datail_check_person']}</td>
+              <td style="display:none" id="t-datail_update_person">{$v['datail_update_person']}</td>
+              <td style="display:none" id="t-datail_update_group">{$v['datail_update_group']}</td>
+              <td style="display:none" id="t-datail_update_time">{$v['datail_update_time']|date='Y-m-d',###}</td>
+        
+
+              <td>
+              <a href="javascript:;"  tid="{$v['tid']}"  onclick="tree_deatil(this)" >巡查记录</a>||
+              <a href="javascript:;"  tid="{$v['tid']}" onclick="edit_tree(this)">修改</a>||
+              <a href="javascript:;"  tid="{$v['tid']}" onclick="delete_tree(this)">删除</a>
+              </td>
+            </tr>
+          </foreach>
+        </table>
+        <div align="center"> {$pagehtml}</div>
+      </div>
+       </div>
+     
+    </div>
+  
+  </div>
+   <div class="modal fade" id="data-filter" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
+   data-backdrop="static">
+    <div class="modal-dialog">
+      <div class="modal-content" id="data-filter-content" style="width:1200px;height:800px;">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title" id="myModalLabel">数据筛选</h4></div>
+        <div class="modal-body" >
+          <form id="bjy-form" class="form-inline"  action="{:U('Admin/Nav/edit')}" method="post">
+              <p> 
+              <input class="" type="checkbox" id="select-base-all" onchange="selectBaseAll(this);">全选
+           
+              </p>   
+                
+          <ul class="list-group" id="basedata" >
+          <li class="list-group-item " >基础数据  
+
+          </li>
+          <li class="list-group-item">
+           编号<input class="" type="checkbox" value="t-tid" name="showdata">
+           线路名称<input class="" type="checkbox" value="t-device_name" name="showdata">
+           起始杆塔<input class="" type="checkbox" value="t-star_tower" name="showdata">
+           结束杆塔<input class="" type="checkbox" value="t-end_tower" name="showdata">
+           县<input class="" type="checkbox" value="t-county" name="showdata">
+           镇<input class="" type="checkbox" value="t-town" name="showdata">
+           村委会 <input class="" type="checkbox" value="t-village" name="showdata">
+           拥有者<input class="" type="checkbox" value="t-owner" name="showdata">
+           拥有者电话<input class="" type="checkbox" value="t-owner_phone" name="showdata">
+           责任部门 <input class="" type="checkbox" value="t-accountability_department" name="showdata">
+           责任班组<input class="" type="checkbox" value="t-accountability_group" name="showdata">
+           责任人<input class="" type="checkbox" value="t-accountability_person" name="showdata">
+           
+          </li>
+          <li class="list-group-item">
+           立地条件 <input class="" type="checkbox" value="t-site_condition" name="showdata">
+           树龄<input class="" type="checkbox" value="t-tree_age" name="showdata">
+           树木状态<input class="" type="checkbox" value="t-tree_status" name="showdata">
+           树种 <input class="" type="checkbox" value="t-tree_type" name="showdata">
+           平均胸径<input class="" type="checkbox" value="t-average_radius" name="showdata">
+           平均高度<input class="" type="checkbox" value="t-average_height" name="showdata">
+           首次测量时间<input class="" type="checkbox" value="t-first_check_time" name="showdata">
+           首次测量方式<input class="" type="checkbox" value="t-first_check_method" name="showdata">
+           首次测量人<input class="" type="checkbox" value="t-first_check_person" name="showdata">
+           是否处理 <input class="" type="checkbox" value="t-processed" name="showdata">
+           最近更新时间<input class="" type="checkbox" value="t-last_update_time" name="showdata">
+           截止时间<input class="" type="checkbox" value="t-dead_line_time" name="showdata">
+          
+          </li>
+       
+          </ul>
+           <p> 
+          <input class="" type="checkbox" id="select-detail-all" onchange="selectDetailAll(this);">全选
+          </p>  
+          <ul class="list-group" id="detail_data">
+          <li class="list-group-item">最新数据  
+          </li>
+
+          <li class="list-group-item">
+           隐患等级<input class="" type="checkbox" value="t-datail_danger_degree" name="showdata">
+           最终危险<input class="" type="checkbox" value="t-datail_final_danger" name="showdata">
+           危险树种<input class="" type="checkbox" value="t-datail_tree_type" name="showdata">
+           危险高度<input class="" type="checkbox" value="t-datail_tree_height" name="showdata">
+           危险数量<input class="" type="checkbox" value="t-datail_tree_num" name="showdata">
+           危险数量单位<input class="" type="checkbox" value="t-datail_tree_num_unit" name="showdata">
+           危险面积 <input class="" type="checkbox" value="t-datail_tree_area" name="showdata">
+           危险面积单位<input class="" type="checkbox" value="t-datail_tree_area_unit" name="showdata">
+           水平距离<input class="" type="checkbox" value="t-datail_tree_horizontal" name="showdata">
+           垂直距离 <input class="" type="checkbox" value="t-datail_tree_vertical" name="showdata">
+           对地距离<input class="" type="checkbox" value="t-datail_tree_grand_height" name="showdata">
+           高出导线<input class="" type="checkbox" value="t-datail_tree_over" name="showdata">
+          </li>
+          
+            <li class="list-group-item">
+           测量时间<input class="" type="checkbox" value="t-datail_check_time" name="showdata">
+           测量结论<input class="" type="checkbox" value="t-datail_check_conclusion" name="showdata">
+           测量人<input class="" type="checkbox" value="t-datail_check_person" name="showdata">
+           更新人<input class="" type="checkbox" value="t-datail_update_person" name="showdata">
+           更新班组<input class="" type="checkbox" value="t-datail_update_group" name="showdata">
+           更新时间<input class="" type="checkbox" value="t-datail_update_time" name="showdata">
+           
+          </li>
+          </ul>
+            <div class="text-center">
+            <input style="width:6%" class="btn btn-sm btn-success " type="button" onclick="saveDataFilter(this)"  value="确定">
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div> 
+  <div class="modal fade" id="tree-deatil-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
+   data-backdrop="static">
+    <div class="modal-dialog">
+      <div class="modal-content" id="tree-deatil-content" style="width:1200px;height:800px;">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title" >巡查记录</h4></div>
+          <div class="modal-body" id="tree-deatil-record" >
+          
+        
+        
+
+             
+       
+        </div>
+      </div>
+    </div>
+  </div> 
+</block>
+
+
+
+<block name="js">
+    <script>
+
+     function selectBaseAll()
+     {
+     	if(document.getElementById("select-base-all").checked)
+     	{
+     		 $("#basedata :checkbox,#all").prop("checked", true);  
+     	}else
+     	{
+     	
+     		$("#basedata :checkbox,#all").prop("checked", false);  
+     	}
+     }
+      function selectDetailAll()
+     {
+      if(document.getElementById("select-detail-all").checked)
+      {
+         $("#detail_data :checkbox,#all").prop("checked", true);  
+      }else
+      {
+      
+        $("#detail_data :checkbox,#all").prop("checked", false);  
+      }
+     }
+    function dataFilter()
+    {
+        // var tid=$(obj).attr('tid');
+         document.getElementById("data-filter-content").style.marginLeft="-50%";
+         $('#data-filter').modal('show');
+   
+    }
+     function saveDataFilter()
+    {
+
+
+       obj = document.getElementsByName("showdata");
+       showdata = [];
+       for(k in obj){
+        if(obj[k].checked)
+            showdata.push(obj[k].value);
+      }
+     $('#data-filter').modal('hide');
+
+      
+      sessionStorage.setItem("showdata",showdata)
+      submitForm()
+    
+   
+    }
+
+    function submitForm()
+     {
+      sessionStorage.setItem("voltage_degree",document.getElementById("voltage_degree").value);
+      sessionStorage.setItem("line_id",document.getElementById("line_id").value); 
+      sessionStorage.setItem("county",document.getElementById("county").value); 
+      sessionStorage.setItem("town",document.getElementById("town").value); 
+      sessionStorage.setItem("village",document.getElementById("village").value);  
+      sessionStorage.setItem("orderBy",document.getElementById("orderBy").value); 
+      sessionStorage.setItem("dead_line_time_begin",document.getElementById("dead_line_time_begin").value); 
+      sessionStorage.setItem("dead_line_time_end",document.getElementById("dead_line_time_end").value); 
+
+      var form = document.getElementById("my_form");//获取form表单对象
+      form.submit();//form表单提交
+     }
+
+       function delete_tree(obj)
+     {
+       if(confirm('确定删除？'))
+       {
+           var tid=$(obj).attr('tid');
+          
+           $.ajax({
+           url:'/treesys/index.php/Admin/Tree/delete',
+           type:'GET', 
+           async:true,    
+           data:{
+              tid:tid
+           }})
+           submitForm()
+       }
+     }
+     function tree_deatil(obj)
+     {
+
+
+      var tid=$(obj).attr('tid');
+      $.ajax({
+      type:"GET",
+      url:"/treesys/index.php/Admin/Tree/detail",
+      data:{
+           tid:tid
+          },
+      success:function(msg){
+        alert(msg);
+        $(".tree-deatil-record").html(msg);
+      },
+      error:function(XMLHttpRequest, textStatus, thrownError){}
+      })
+      document.getElementById("tree-deatil-content").style.marginLeft="-50%";
+      $('#tree-deatil-modal').modal('show');
+
+
+     
+     } 
+
+     </script>
+
+    
+
+
+
+
+    <script type="text/javascript">
+    $(document).ready(function()
+    {
+
+
+    
+     var showdataString=sessionStorage.getItem("showdata")
+     
+     if(showdataString!=null)
+     {
+      var showdata=showdataString.split(',');
+      var showtable = document.getElementsByName("showdata");
+       for(i=0;i<showtable.length;i++)
+       {
+        for(j=0;j<showdata.length;j++)
+        {
+            if(showtable[i].value == showdata[j])
+            {
+                showtable[i].checked = true;
+                break
+            }
+        }
+        }
+   
+    }
+     else
+     {
+        $("#basedata :checkbox,#all").prop("checked", true);  
+       obj = document.getElementsByName("showdata");
+       showdata = [];
+       for(k in obj){
+        if(obj[k].checked)
+            showdata.push(obj[k].value);
+      }
+     }
+
+
+      // alert(showdata[0]);
+      // 
+       for(var i=0;i<showdata.length;i++)
+      {
+          var showitem=showdata[i];
+          var temp='#'+showitem;
+          $('#data-table tr').find(temp).show(); 
+          // alert(temp);
+          var iindex=($('#data-table tr').find(temp).index());
+          var needfind='td:eq('+iindex+')'
+          $('#data-table tr').find(needfind).show();
+      }
+
+
+      $("#voltage_degree").val(sessionStorage.getItem("voltage_degree"))
+      $("#line_id").val(sessionStorage.getItem("line_id"))
+      $("#county").val(sessionStorage.getItem("county"))
+      $("#town").val(sessionStorage.getItem("town"))
+      $("#village").val(sessionStorage.getItem("village"))
+      $("#orderBy").val(sessionStorage.getItem("orderBy"))
+      $("#dead_line_time_begin").val(sessionStorage.getItem("dead_line_time_begin"))
+      $("#dead_line_time_end").val(sessionStorage.getItem("dead_line_time_end"))
+      
+      
+    });   
+  </script>
 </block>
