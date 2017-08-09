@@ -58,6 +58,30 @@ class TreeDetailController extends AdminBaseController
 
         }
    }
+   public function add()
+   {
+
+      $tree_id = I('get.tid');
+  
+       if(IS_POST)
+      {
+        
+      }
+      else
+      {
+          $map['detail_tid']=$tree_id;
+          $map['datail_uptodate']=1;
+          $data=M("tree_detail")->where($map)->select();
+          $this->assign('data',$data[0]);
+
+      }
+
+
+      $this->assign('tree_id',$tree_id);
+      $content=$this->fetch();
+      $this->ajaxReturn($content);
+      
+   }
 
     
 }

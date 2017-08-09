@@ -1,0 +1,89 @@
+ <ul class="nav nav-tabs padding-12 tab-color-blue background-blue" id="myTab">
+        <li >
+         <a href="javascript:;"  tid="{$tree_id}" onclick="detail_list(this)" >列表</a></li>
+        <li class="active">
+        <a href="javascript:;"  data-toggle="tab">添加新记录</a>
+        </li>
+ </ul>
+
+<!-- <?php  var_dump($data); ?> -->
+
+ <div class="tab-content">
+        <div class="table-responsive">
+        <table class="table table-striped table-bordered table-hover table-condensed " id="data-table">
+           <tr>
+           <th  id="t-datail_danger_degree">隐患等级</th>
+           <th  id="t-datail_final_danger">最终危险</th>
+           <th  id="t-datail_tree_type">危险树种</th>
+           <th  id="t-datail_tree_height">危险高度</th>
+           <th  id="t-datail_tree_num">危险数量</th>
+           <th  id="t-datail_tree_num_unit">危险数量单位</th>
+           <th  id="t-datail_tree_area">危险面积</th>
+           <th  id="t-datail_tree_area_unit">危险面积单位</th>
+           <th  id="t-datail_tree_horizontal">水平距离</th>
+           <th  id="t-datail_tree_vertical">垂直距离</th>
+           <th  id="t-datail_tree_grand_height">对地距离</th>
+           <th  id="t-datail_tree_over">高出导线</th>        
+           <th  id="t-datail_check_time">测量时间</th>
+           <th  id="t-datail_check_conclusion">测量结论</th>
+           <th  id="t-datail_check_person">测量人</th>
+           
+         
+
+            
+          </tr>
+          <form class="form-inline" action="" id="add-form">
+          </tr>
+          <td><input style="width:48px;" type="text" value="{$data['datail_danger_degree']}" name="datail_danger_degree"></td>
+          <td><input style="width:48px;" type="text" value="{$data['datail_final_danger']}" name="datail_final_danger"></td>
+          <td><input style="width:48px;" type="text" value="{$data['datail_tree_type']}" name="datail_tree_type"></td>
+          <td><input style="width:48px;" type="text" value="{$data['datail_tree_height']}" name="datail_tree_height"></td>
+          <td><input style="width:48px;" type="text" value="{$data['datail_tree_num']}" name="datail_tree_num"></td>
+          <td><input style="width:48px;" type="text" value="{$data['datail_tree_num_unit']}" name="datail_tree_num_unit"></td>
+          <td><input style="width:48px;" type="text" value="{$data['datail_tree_area']}" name="datail_tree_area"></td>
+          <td><input style="width:48px;" type="text" value="{$data['datail_tree_area_unit']}" name="datail_tree_area_unit"></td>
+          <td><input style="width:48px;" type="text" value="{$data['datail_tree_horizontal']}" name="datail_tree_horizontal"></td>
+              <td><input style="width:48px;" type="text" value="{$data['datail_tree_vertical']}" name="datail_tree_vertical"></td>
+          <td><input style="width:48px;" type="text" value="{$data['datail_tree_grand_height']}" name="datail_tree_grand_height"></td>
+            <td>
+           <select style="width:48px"  value="{$data['datail_tree_over']}" name="datail_tree_over" ">
+            <option value ="1" >是</option>
+            <option value ="0">否</option>  
+           </select>
+           </td>
+          
+          <td><input style="width:150px;" type="date" value="{$data['datail_check_time']}" name="datail_check_time"></td>
+          <td><textarea style="height:100px;"value="{$data['datail_check_conclusion']}" name="datail_check_conclusion"></textarea> </td>
+          <td><input style="width:48px;" type="text" value="{$data['datail_check_person']}" name="datail_check_person"></td>
+          
+         
+              
+          </tr>
+         </form>
+</table>
+
+</div>
+</div>
+
+ <div class="text-center">
+ <input style="width:6%" class="btn btn-sm btn-success " type="button" onclick="add_detail(this)"  value="确定">
+ </div>
+ <script type="text/javascript">
+ function detail_list(obj)
+ {
+ 	 var tid=$(obj).attr('tid');
+ 	  $.ajax({
+          type:"GET",
+           url:"/treesys/index.php/Admin/TreeDetail/index",
+           data:{
+             tid:tid
+             },
+             success:function(msg){
+    
+          $("#tree-deatil-record").html(msg);
+            },
+           error:function(XMLHttpRequest, textStatus, thrownError){}
+          })
+ }
+
+ </script>

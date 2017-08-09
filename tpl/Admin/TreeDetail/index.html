@@ -4,7 +4,7 @@
         <li class="active">
           <a href="javascript:;" data-toggle="tab">列表</a></li>
         <li>
-          <a href="javascript:;" ">添加新记录</a></li>
+          <a href="javascript:;"  onclick="add_detail(this)" ">添加新记录</a></li>
        </ul>
 
   <div class="tab-content">
@@ -118,5 +118,21 @@
        }
 
      }
+    function add_detail(obj)
+    {
+       var tid=$(obj).attr('tid');
+        $.ajax({
+          type:"GET",
+           url:"/treesys/index.php/Admin/TreeDetail/add",
+           data:{
+              tid:tid
+             },
+             success:function(msg){
+    
+          $("#tree-deatil-record").html(msg);
+            },
+            error:function(XMLHttpRequest, textStatus, thrownError){}
+          })
+    }
 
 </script>
