@@ -12,6 +12,10 @@ class TreeDetailController extends AdminBaseController
     /**
      * 首页
      */
+    public function _initialize()
+    {
+      parent::_initialize();
+    }
     public function index() {
         $tree_id = I('get.tid');
         $model = new TreeDetailModel();
@@ -65,13 +69,28 @@ class TreeDetailController extends AdminBaseController
   
        if(IS_POST)
       {
-          $tree_id = I('post.tid');
+
           $ar=$_POST;
-        
-        
+          $detail_tid=$ar['detail_tid'];
+          $map['detail_tid']=$detail_tid;
+          $data['datail_uptodate']=0;
+
+          M("tree_detail")->where($map)->data($data)->save();
+
+            
+          $map=null;
+          $user_id=$_SESSION['user']['id'];
+
+          $map['id']=$user_id;
+          $user=M("users")->where($map)->select();
+          $ar['datail_check_time']=strtotime($ar['datail_check_time']);
+          $ar['datail_update_time']=NOW_TIME;
+          $ar['datail_update_person']=$user[0]['true_name'];
           $record=D('TreeDetail');
           $record->addData($ar);
-          $this->ajaxReturn($ar);
+          $this->ajaxReturn($detail_tid);
+          
+          
 
       }
       else
@@ -87,6 +106,8 @@ class TreeDetailController extends AdminBaseController
 
 
       }
+    
+     
 
 
 

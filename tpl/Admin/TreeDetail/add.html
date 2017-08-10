@@ -36,28 +36,28 @@
           </tr>
           
           </tr>
-          <td><input style="width:48px;" type="text" value="{$data['datail_danger_degree']}" name="datail_danger_degree"></td>
-          <td><input style="width:48px;" type="text" value="{$data['datail_final_danger']}" name="datail_final_danger"></td>
-          <td><input style="width:48px;" type="text" value="{$data['datail_tree_type']}" name="datail_tree_type"></td>
-          <td><input style="width:48px;" type="text" value="{$data['datail_tree_height']}" name="datail_tree_height"></td>
-          <td><input style="width:48px;" type="text" value="{$data['datail_tree_num']}" name="datail_tree_num"></td>
-          <td><input style="width:48px;" type="text" value="{$data['datail_tree_num_unit']}" name="datail_tree_num_unit"></td>
-          <td><input style="width:48px;" type="text" value="{$data['datail_tree_area']}" name="datail_tree_area"></td>
-          <td><input style="width:48px;" type="text" value="{$data['datail_tree_area_unit']}" name="datail_tree_area_unit"></td>
-          <td><input style="width:48px;" type="text" value="{$data['datail_tree_horizontal']}" name="datail_tree_horizontal"></td>
-              <td><input style="width:48px;" type="text" value="{$data['datail_tree_vertical']}" name="datail_tree_vertical"></td>
-          <td><input style="width:48px;" type="text" value="{$data['datail_tree_grand_height']}" name="datail_tree_grand_height"></td>
+          <td><input style="width:48px;" id="datail_danger_degree" type="text" value="{$data['datail_danger_degree']}" name="datail_danger_degree"></td>
+          <td><input style="width:48px;" id="datail_final_danger" type="text" value="{$data['datail_final_danger']}" name="datail_final_danger"></td>
+          <td><input style="width:48px;" id="datail_tree_type" type="text" value="{$data['datail_tree_type']}" name="datail_tree_type"></td>
+          <td><input style="width:48px;" id="datail_tree_height" type="text" value="{$data['datail_tree_height']}" name="datail_tree_height"></td>
+          <td><input style="width:48px;" id="datail_tree_num" type="text" value="{$data['datail_tree_num']}" name="datail_tree_num"></td>
+          <td><input style="width:48px;" id="datail_tree_num_unit" type="text" value="{$data['datail_tree_num_unit']}" name="datail_tree_num_unit"></td>
+          <td><input style="width:48px;" id="datail_tree_area" type="text" value="{$data['datail_tree_area']}" name="datail_tree_area"></td>
+          <td><input style="width:48px;" id="datail_tree_area_unit" type="text" value="{$data['datail_tree_area_unit']}" name="datail_tree_area_unit"></td>
+          <td><input style="width:48px;" id="datail_tree_horizontal" type="text" value="{$data['datail_tree_horizontal']}" name="datail_tree_horizontal"></td>
+              <td><input style="width:48px;" id="datail_tree_vertical" type="text" value="{$data['datail_tree_vertical']}" name="datail_tree_vertical"></td>
+          <td><input style="width:48px;" id="datail_tree_grand_height" type="text" value="{$data['datail_tree_grand_height']}" name="datail_tree_grand_height"></td>
             <td>
-           <select style="width:48px"  value="{$data['datail_tree_over']}" name="datail_tree_over" ">
+           <select style="width:48px"  id="datail_tree_over" value="{$data['datail_tree_over']}" name="datail_tree_over" ">
             <option value ="1" >是</option>
             <option value ="0">否</option>  
            </select>
            </td>
           
 
-          <td><input style="width:150px;" type="date" value="{$data['datail_check_time'|date='Y-m-d',###]}" name="datail_check_time"></td>
-          <td><textarea style="height:100px;" name="datail_check_conclusion">{$data['datail_check_conclusion']}</textarea> </td>
-          <td><input style="width:48px;" type="text" value="{$data['datail_check_person']}" name="datail_check_person"></td>
+          <td><input style="width:150px;"  id="datail_check_time" type="date" value="{$data['datail_check_time'|date='Y-m-d',###]}" name="datail_check_time"></td>
+          <td><textarea style="height:100px;" id="datail_check_conclusion" name="datail_check_conclusion">{$data['datail_check_conclusion']}</textarea> </td>
+          <td><input style="width:48px;" type="text"  id="datail_check_person" value="{$data['datail_check_person']}" name="datail_check_person"></td>
           
          
               
@@ -92,16 +92,47 @@
  }
   function detail_add_record(obj)
  {
-     var tid=$(obj).attr('tid');
+
+ 	  
+     var detail_tid=$(obj).attr('tid');
      $.ajax({
           type:"POST",
            url:"/treesys/index.php/Admin/TreeDetail/add",
            data:{
-             tid:tid,
-             data:$("#add-form").serialize()
+             detail_tid:detail_tid,
+             datail_danger_degree:$("#datail_danger_degree").val(),
+             datail_final_danger:$("#datail_final_danger").val(),
+             datail_tree_type:$("#datail_tree_type").val(),
+             datail_tree_height:$("#datail_tree_height").val(),
+             datail_tree_num:$("#datail_tree_num").val(),
+             datail_tree_num_unit:$("#datail_tree_num_unit").val(),
+             datail_tree_area:$("#datail_tree_area").val(),
+             datail_tree_area_unit:$("#datail_tree_area_unit").val(),
+             datail_tree_horizontal:$("#datail_tree_horizontal").val(),
+             datail_tree_vertical:$("#datail_tree_vertical").val(),
+             datail_tree_grand_height:$("#datail_tree_grand_height").val(),
+             datail_tree_over:$("#datail_tree_over").val(),
+             datail_check_time:$("#datail_check_time").val(),
+             datail_check_conclusion:$("#datail_check_conclusion").val(),
+             datail_check_person:$("#datail_check_person").val(),
+
+
+             
              },
              success:function(msg){
-             alert(msg);
+             var tid=msg;
+             $.ajax({
+          type:"GET",
+           url:"/treesys/index.php/Admin/TreeDetail/index",
+           data:{
+             tid:tid
+             },
+             success:function(msg){
+    
+          $("#tree-deatil-record").html(msg);
+            },
+           error:function(XMLHttpRequest, textStatus, thrownError){}
+          })
             },
            error:function(XMLHttpRequest, textStatus, thrownError){}
           })
