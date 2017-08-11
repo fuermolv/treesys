@@ -27,7 +27,9 @@
            <th  id="t-datail_tree_grand_height">对地距离</th>
            <th  id="t-datail_tree_over">高出导线</th>        
            <th  id="t-datail_check_time">测量时间</th>
-           <th  id="t-datail_check_conclusion">测量结论</th>
+           <th  id="t-datail_check_change_conclusion">测量结论(级别变化)</th>
+           <th  id="t-datail_check_process_conclusion">测量结论(处理)</th>
+           <th  id="t-datail_check_posistion_conclusion">测量结论(位置)</th>
            <th  id="t-datail_check_person">测量人</th>
            
          
@@ -36,19 +38,19 @@
           </tr>
           
           </tr>
-          <td><input style="width:48px;" id="datail_danger_degree" type="text" value="{$data['datail_danger_degree']}" name="datail_danger_degree"></td>
-          <td><input style="width:48px;" id="datail_final_danger" type="text" value="{$data['datail_final_danger']}" name="datail_final_danger"></td>
-          <td><input style="width:48px;" id="datail_tree_type" type="text" value="{$data['datail_tree_type']}" name="datail_tree_type"></td>
-          <td><input style="width:48px;" id="datail_tree_height" type="text" value="{$data['datail_tree_height']}" name="datail_tree_height"></td>
-          <td><input style="width:48px;" id="datail_tree_num" type="text" value="{$data['datail_tree_num']}" name="datail_tree_num"></td>
-          <td><input style="width:48px;" id="datail_tree_num_unit" type="text" value="{$data['datail_tree_num_unit']}" name="datail_tree_num_unit"></td>
-          <td><input style="width:48px;" id="datail_tree_area" type="text" value="{$data['datail_tree_area']}" name="datail_tree_area"></td>
-          <td><input style="width:48px;" id="datail_tree_area_unit" type="text" value="{$data['datail_tree_area_unit']}" name="datail_tree_area_unit"></td>
-          <td><input style="width:48px;" id="datail_tree_horizontal" type="text" value="{$data['datail_tree_horizontal']}" name="datail_tree_horizontal"></td>
-              <td><input style="width:48px;" id="datail_tree_vertical" type="text" value="{$data['datail_tree_vertical']}" name="datail_tree_vertical"></td>
-          <td><input style="width:48px;" id="datail_tree_grand_height" type="text" value="{$data['datail_tree_grand_height']}" name="datail_tree_grand_height"></td>
+          <td><input style="width:42px;" id="datail_danger_degree" type="text" value="{$data['datail_danger_degree']}" name="datail_danger_degree"></td>
+          <td><input style="width:42px;" id="datail_final_danger" type="text" value="{$data['datail_final_danger']}" name="datail_final_danger"></td>
+          <td><input style="width:42px;" id="datail_tree_type" type="text" value="{$data['datail_tree_type']}" name="datail_tree_type"></td>
+          <td><input style="width:42px;" id="datail_tree_height" type="text" value="{$data['datail_tree_height']}" name="datail_tree_height"></td>
+          <td><input style="width:42px;" id="datail_tree_num" type="text" value="{$data['datail_tree_num']}" name="datail_tree_num"></td>
+          <td><input style="width:42px;" id="datail_tree_num_unit" type="text" value="{$data['datail_tree_num_unit']}" name="datail_tree_num_unit"></td>
+          <td><input style="width:42px;" id="datail_tree_area" type="text" value="{$data['datail_tree_area']}" name="datail_tree_area"></td>
+          <td><input style="width:42px;" id="datail_tree_area_unit" type="text" value="{$data['datail_tree_area_unit']}" name="datail_tree_area_unit"></td>
+          <td><input style="width:42px;" id="datail_tree_horizontal" type="text" value="{$data['datail_tree_horizontal']}" name="datail_tree_horizontal"></td>
+              <td><input style="width:42px;" id="datail_tree_vertical" type="text" value="{$data['datail_tree_vertical']}" name="datail_tree_vertical"></td>
+          <td><input style="width:42px;" id="datail_tree_grand_height" type="text" value="{$data['datail_tree_grand_height']}" name="datail_tree_grand_height"></td>
             <td>
-           <select style="width:48px"  id="datail_tree_over" value="{$data['datail_tree_over']}" name="datail_tree_over" ">
+           <select style="width:42px"  id="datail_tree_over" value="{$data['datail_tree_over']}" name="datail_tree_over" ">
             <option value ="1" >是</option>
             <option value ="0">否</option>  
            </select>
@@ -56,8 +58,10 @@
           
 
           <td><input style="width:150px;"  id="datail_check_time" type="date" value="{$data['datail_check_time'|date='Y-m-d',###]}" name="datail_check_time"></td>
-          <td><textarea style="height:100px;" id="datail_check_conclusion" name="datail_check_conclusion">{$data['datail_check_conclusion']}</textarea> </td>
-          <td><input style="width:48px;" type="text"  id="datail_check_person" value="{$data['datail_check_person']}" name="datail_check_person"></td>
+          <td><input style="width:42px;" id="datail_check_change_conclusion" type="text" value="{$data['datail_check_change_conclusion']}" name="datail_check_change_conclusion"></td>
+          <td><input style="width:42px;" id="datail_check_process_conclusion" type="text" value="{$data['datail_check_process_conclusion']}" name="datail_check_process_conclusion"></td>
+          <td><textarea style="height:100px;" id="datail_check_posistion_conclusion" name="datail_check_posistion_conclusion">{$data['datail_check_posistion_conclusion']}</textarea> </td>
+          <td><input style="width:42px;" type="text"  id="datail_check_person" value="{$data['datail_check_person']}" name="datail_check_person"></td>
           
          
               
@@ -113,7 +117,9 @@
              datail_tree_grand_height:$("#datail_tree_grand_height").val(),
              datail_tree_over:$("#datail_tree_over").val(),
              datail_check_time:$("#datail_check_time").val(),
-             datail_check_conclusion:$("#datail_check_conclusion").val(),
+             datail_check_change_conclusion:$("#datail_check_change_conclusion").val(),
+             datail_check_process_conclusion:$("#datail_check_process_conclusion").val(),
+             datail_check_posistion_conclusion:$("#datail_check_posistion_conclusion").val(),
              datail_check_person:$("#datail_check_person").val(),
 
 

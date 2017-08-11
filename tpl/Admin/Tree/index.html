@@ -98,14 +98,18 @@ a<extend name="Public:base"/><block name="title">树木列表</block>
            <th style="display:none" id="t-device_name">线路名称</th>
            <th style="display:none" id="t-star_tower" >起始杆塔</th>
            <th style="display:none" id="t-end_tower">结束杆塔</th>
+           <th style="display:none" id="t-danger_num">隐患序号</th>
+
            <th style="display:none" id="t-county">县</th>
            <th style="display:none" id="t-town">镇</th>
            <th style="display:none" id="t-village">村委会</th>
            <th style="display:none" id="t-owner">拥有者</th>
            <th style="display:none" id="t-owner_phone">拥有者电话</th>
-           <th style="display:none" id="t-accountability_department">责任部门</th>
+           <th style="display:none" id="t-accountability_department">运行单位</th>
+           <th style="display:none" id="t-accountability_number">隐患单位序号</th>
            <th style="display:none" id="t-accountability_group">责任班组</th>                     
-           <th style="display:none" id="t-accountability_person">责任人</th>
+       
+            <th style="display:none" id="t-accountability_person">责任人</th>
            <th style="display:none" id="t-site_condition">立地条件</th>
            <th style="display:none" id="t-tree_age">树龄</th>
            <th style="display:none" id="t-tree_status">树木状态</th>
@@ -149,12 +153,15 @@ a<extend name="Public:base"/><block name="title">树木列表</block>
               <td style="display:none" >{$v['voltage_degree']}kV{$v['device_name']}</td>
               <td style="display:none" >{$v['star_tower']}</td>
               <td style="display:none" >{$v['end_tower']}</td>
+              <td style="display:none" >{$v['danger_num']}</td>
               <td style="display:none" >{$v['county']}</td>
               <td style="display:none" >{$v['town']}</td>
               <td style="display:none" >{$v['village']}</td>
               <td style="display:none" >{$v['owner']}</td>
               <td style="display:none" >{$v['owner_phone']}</td>
+
               <td style="display:none" >{$v['accountability_department']}</td>
+              <td style="display:none" >{$v['accountability_number']}</td>
               <td style="display:none" >{$v['accountability_group']}</td>
               <td style="display:none" >{$v['accountability_person']}</td>
               <td style="display:none" >{$v['site_condition']}</td>
@@ -239,12 +246,14 @@ a<extend name="Public:base"/><block name="title">树木列表</block>
            线路名称<input class="" type="checkbox" value="t-device_name" name="showdata">
            起始杆塔<input class="" type="checkbox" value="t-star_tower" name="showdata">
            结束杆塔<input class="" type="checkbox" value="t-end_tower" name="showdata">
+           隐患序号<input class="" type="checkbox" value="t-danger_num" name="showdata">
            县<input class="" type="checkbox" value="t-county" name="showdata">
            镇<input class="" type="checkbox" value="t-town" name="showdata">
            村委会 <input class="" type="checkbox" value="t-village" name="showdata">
            拥有者<input class="" type="checkbox" value="t-owner" name="showdata">
            拥有者电话<input class="" type="checkbox" value="t-owner_phone" name="showdata">
-           责任部门 <input class="" type="checkbox" value="t-accountability_department" name="showdata">
+           运行单位 <input class="" type="checkbox" value="t-accountability_department" name="showdata">
+           隐患单位序号 <input class="" type="checkbox" value="t-accountability_number" name="showdata">
            责任班组<input class="" type="checkbox" value="t-accountability_group" name="showdata">
            责任人<input class="" type="checkbox" value="t-accountability_person" name="showdata">
            
