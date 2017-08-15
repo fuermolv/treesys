@@ -96,7 +96,12 @@ class TreeController extends AdminBaseController {
         M("tree_base")->where(array($map))->delete();
         $map=null;
         $map['detail_tid'] = $tid;
-        M("TreeDetail")->where(array($map))->delete();
+        $result = M("TreeDetail")->where(array($map))->delete();
+        if($result){
+            $this->success("成功删除树片",U("Admin/Tree/index/group_id/{$group_id}"));
+            }
+            else{   
+                $this->error('删除树片失败');}
     }
     public function add() {
         $line_id = I('get.line_id');
@@ -180,10 +185,10 @@ class TreeController extends AdminBaseController {
             $detail_data['datail_update_group']=$ar['datail_update_group'];
             $result = D("TreeDetail")->addData($detail_data);
             if($result){
-            $this->success("成功添加{$result}",U("Admin/Tree/index/group_id/{$group_id}"));
+            $this->success("成功添加树片",U("Admin/Tree/index/group_id/{$group_id}"));
             }
             else{   
-                $this->error('新增数据失败');}
+                $this->error('新增树片失败');}
         }
         else
         {
