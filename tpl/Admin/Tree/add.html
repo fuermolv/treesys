@@ -1,0 +1,237 @@
+a<extend name="Public:base"/><block name="title">树木列表</block>
+<block name="content">
+<div class="col-xs-12">
+    <div class="tabbable">
+            <ul class="nav nav-tabs padding-12 tab-color-blue background-blue" id="myTab">
+                    <li >
+                     <a href="/treesys/index.php/Admin/Tree/index/group_id/{$group_id}" >树片列表</a></li>
+                     <li class="active"> <a href="javascript:;" data-toggle="tab" >增加树片</a></li>
+                    </ul> 
+<form action="" method="POST">                   
+    <table class="table table-striped table-bordered table-hover table-condensed" >
+
+       
+    
+        <tr>
+            <th colspan="2">树片基本信息</th>
+            <th colspan="2">树片巡检记录</th>
+          </tr>
+          <tr>
+          <td colspan="2">
+            <form class="form-inline" action="" id="my_form">           
+            <select style="width:15%" name="line_id" id="line_id" onchange="submitForm();">
+            <option value ="">全部线路</option>
+            <foreach name="querydata['device_lines']" item="v">
+             <option value ="{$v['did']}">{$v['voltage_degree']}kV{$v['device_name']}</option>
+            </foreach>
+            </select>
+
+            <select style="width:15%" name="voltage_degree" id="voltage_degree" onchange="submitForm();">
+            <option value ="" >电压等级</option>
+            <option value ="500">500kV</option>
+            <option value ="220" >220kV</option>
+            <option value="110" >110kV</option>
+            <option value="35"  >35kV</option>
+            </select>
+
+          
+
+            </select>
+            <select style="width:15%" name="county"  id="county" onchange="submitForm();">
+            <option value ="">县区</option>
+            <option value ="1">清城区</option>
+            <option value ="2">清新县</option>
+            <option value="3">佛冈县</option>
+            <option value="4">英德市</option>
+            <option value ="5">阳山县</option>
+            <option value ="6">连州市</option>
+            <option value ="7">连南县</option>
+            <option value="8">连山县</option>
+            
+            </select>
+
+            <select style="width:15%" name="town"   id="town" onchange="submitForm();">
+            <option value ="">镇</option>
+            <foreach name="querydata['towns']" item="v">
+             <option value ="{$v['id']}">{$v['name']}</option>
+            </foreach>
+            </select>
+
+            <select style="width:15%" name="village"  id="village" onchange="submitForm();">
+            <option value ="">村</option>
+            <foreach name="querydata['villages']" item="v">
+             <option value ="{$v['id']}">{$v['name']}</option>
+             </foreach>
+            </select>     
+                </form>
+              </td> 
+              <td>隐患等级</td> 
+            <td>
+                <input type="text" name="datail_danger_degree"></td>
+            </td>
+        </tr>
+        <tr>
+          <td>起始杆塔</td><td><input type="text" name="star_tower"></td>
+          <td>最终是否危险</td><td>
+            <select style="width:50%"  id="datail_final_danger" name="datail_final_danger" >
+                    <option value ="1" >是</option>
+                    <option value ="0">否</option>  
+                   </select></td>
+        </tr>
+        <tr>
+            <td>结束杆塔</td><td><input type="text" name="end_tower"></td>
+            <td>测量人</td><td><input type="text" name="datail_uptodate"></td>
+          </tr>
+        <tr>
+            <td>隐患编号</td><td><input type="text" name="danger_num"></td>
+            <td>种类</td><td><input type="text" name="datail_tree_type"></td>
+        </tr>
+        <tr>
+            <td>责任部门</td><td><input type="text" name="accountability_department"></td>
+            <td>高度</td><td><input type="text" name="datail_tree_height"></td>
+        </tr>
+        <tr>
+            <td>责任班组</td><td>
+                <select style="width:40%" name="county"  id="county" onchange="submitForm();">
+                <option value ="输电线路1班">输电线路1班</option>
+                <option value ="输电线路2班">输电线路2班</option>
+                <option value ="输电线路3班县">输电线路3班县</option>
+                <option value="输电线路4班">输电线路4班</option>
+                <option value="输电线路5班市4">输电线路5班市</option>
+                <option value ="输电线路6班">输电线路6班</option>
+                <option value ="输电线路7班">输电线路7班</option>
+                <option value ="输电线路8班县">输电线路8班县</option>
+                <option value="输电线路9班">输电线路9班</option>
+                <option value="输电电缆班">输电电缆班</option>
+                <option value="管理人员">管理人员</option>
+                <option value="连南组">连南组</option>
+                <option value="英德组输电一班">英德组输电一班</option>
+                <option value="英德组输电二班">英德组输电二班</option>
+                <option value="英德组输电三班">英德组输电三班</option>
+                </select></td>
+            <td>数量</td><td><input type="text" name="datail_tree_num"></td>
+        </tr>
+        <tr>
+            <td>隐患单位序号</td><td><input type="text" name="accountability_number"></td>
+            <td>数量单位</td><td><input type="text" name="datail_tree_num_unit"></td>
+        </tr>
+        <tr>
+            <td>所有者</td><td><input type="text" name="owner"></td>
+            <td>面积</td><td><input type="text" name="datail_tree_area"></td>
+        </tr>
+        <tr>
+            <td>所有者电话</td><td><input type="text" name="owner_phone"></td>
+            <td>面积单位</td><td><input type="text" name="datail_tree_area_unit"></td>
+        </tr>
+        <tr>
+            <td>立地条件</td><td><input type="text" name="site_condition"></td>
+            <td>水平距离</td><td><input type="text" name="datail_tree_horizontal"></td>
+        </tr>
+        <tr>
+            <td>树龄</td><td><input type="text" name="tree_age"></td>
+            <td>垂直距离</td><td><input type="text" name="datail_tree_vertical"></td>
+        </tr>
+        <tr>
+            <td>树木状态</td><td><input type="text" name="tree_status"></td>
+            <td>对地距离</td><td><input type="text" name="datail_tree_grand_height"></td>
+        </tr>
+        <tr>
+            <td>树种</td><td><input type="text" name="tree_type"></td>
+            <td>是否高出导线</td><td>
+                <select style="width:50%"  id="datail_tree_over" name="datail_tree_over" >
+                        <option value ="1" >是</option>
+                        <option value ="0">否</option>  
+                       </select></td>
+        </tr>
+        <tr>
+            <td>平均胸径</td><td><input type="text" name="average_radius"></td>
+            <td>测量时间</td><td><input style="width:150px;"  id="datail_check_time" type="date" value="{$data['datail_check_time'|date='Y-m-d',###]}" name="datail_check_time"></td>
+        </tr>
+        <tr>
+            <td>平均高度</td><td><input type="text" name="average_height"></td>
+            <td>测量结论位置</td><td><input type="text" name="datail_check_posistion_conclusion"></td>
+        </tr>
+        <tr>
+            <td>截止时间</td><td><input type="text" name="dead_line_time"></td>
+            <td>测量结论处理</td><td><input type="text" name="datail_check_process_conclusion"></td>
+        </tr>
+        <tr>
+            <td>第一次测量方式</td><td><input type="text" name="first_check_method"></td>
+            <td>测量变化</td><td><input type="text" name="datail_check_change_conclusion"></td>
+        </tr>
+        <tr>
+                <td>第一次测量人</td><td><input type="text" name="first_check_person"></td>
+                <td>更新班组</td><td><input type="text" name="datail_update_group"></td>
+            </tr>
+        <tr>
+            <td>是否处理</td><td>
+                <select style="width:30%"  id="processed" name="processed" >
+                        <option value ="1" >是</option>
+                        <option value ="0">否</option>  
+                       </select></td>
+        </tr>
+        <tr>
+            <td colspan="4" align="center">
+        <input  class="btn btn-sm btn-success "  type="submit"  value="确定">
+            </td></tr>
+    </table>
+    </form>
+      <!-- <ul class="nav nav-tabs padding-12 tab-color-blue background-blue" id="myTab">
+
+        <li class="active">
+        <a href="javascript:;">按钮1</a>
+        </li>
+        <li>
+         <a href="javascript:;">按钮2</a>
+        </li>
+        <li>
+          <a href="javascript:;">按钮3</a>
+         </li>
+      </ul> -->
+      
+      
+     
+      
+    </div>
+    
+</block>
+
+
+
+<block name="js">
+        <script>
+    function submitForm()
+     {
+      sessionStorage.setItem("voltage_degree",document.getElementById("voltage_degree").value);
+      sessionStorage.setItem("line_id",document.getElementById("line_id").value); 
+      sessionStorage.setItem("county",document.getElementById("county").value); 
+      sessionStorage.setItem("town",document.getElementById("town").value); 
+      sessionStorage.setItem("village",document.getElementById("village").value);  
+      var form = document.getElementById("my_form");//获取form表单对象
+      form.submit();//form表单提交
+     }
+     function add_tree_record(obj)
+ {
+    
+     $.ajax({
+          type:"POST",
+           url:"/treesys/index.php/Admin/Tree/add",
+           data:{
+             },
+          })
+  }
+</script>
+
+ <script type="text/javascript">
+    $(document).ready(function()
+    {      
+      console.log({$group_id})
+      $("#voltage_degree").val(sessionStorage.getItem("voltage_degree"))
+      $("#line_id").val(sessionStorage.getItem("line_id"))
+      $("#county").val(sessionStorage.getItem("county"))
+      $("#town").val(sessionStorage.getItem("town"))
+      $("#village").val(sessionStorage.getItem("village"))    
+      
+    });   
+  </script>
+</block>

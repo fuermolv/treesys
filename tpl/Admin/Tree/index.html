@@ -6,9 +6,9 @@ a<extend name="Public:base"/><block name="title">树木列表</block>
 
        <ul class="nav nav-tabs padding-12 tab-color-blue background-blue" id="myTab">
         <li class="active">
-          <a href="javascript:;" data-toggle="tab">按钮1</a></li>
+          <a href="javascript:;" data-toggle="tab">树片列表</a></li>
         <li>
-          <a href="javascript:;" ">按钮2</a></li>
+          <a href="/treesys/index.php/Admin/Tree/add/group_id/{$group_id}"  >增加树片</a></li>
       </ul>
         <tr>
           <td>
@@ -473,8 +473,7 @@ a<extend name="Public:base"/><block name="title">树木列表</block>
     $(document).ready(function()
     {
 
-
-    
+    console.log({$group_id})
      var showdataString=sessionStorage.getItem("showdata")
      
      if(showdataString!=null)
