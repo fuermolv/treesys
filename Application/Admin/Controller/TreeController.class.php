@@ -94,6 +94,9 @@ class TreeController extends AdminBaseController {
         $tid = I('get.tid');
         $map['tid'] = $tid;
         M("tree_base")->where(array($map))->delete();
+        $map=null;
+        $map['detail_tid'] = $tid;
+        M("TreeDetail")->where(array($map))->delete();
     }
     public function add() {
         $line_id = I('get.line_id');
@@ -121,13 +124,14 @@ class TreeController extends AdminBaseController {
             $map['sid'] = $town;
             $querydata['villages'] = M("areas")->where($map)->select();
         }
+        $map = null;
         if(IS_POST)
         {
             $user_id=$_SESSION['user']['id'];
             $map['id']=$user_id;
             $user=M("users")->where($map)->select();
             $ar=$_POST;
-            $base_data['line_id']=$ar['line_id'];
+            $base_data['line_id']=$line_id;
             $base_data['star_tower']=$ar['star_tower'];
             $base_data['end_tower']=$ar['end_tower'];
             $base_data['danger_num']=$ar['danger_num'];
@@ -135,9 +139,9 @@ class TreeController extends AdminBaseController {
             $base_data['accountability_group']=$group_id;
             $base_data['accountability_person']=$user[0]['true_name'];
             $base_data['accountability_number']=$ar['accountability_number'];
-            $base_data['county']=$ar['county'];
-            $base_data['town']=$ar['town'];
-            $base_data['village']=$ar['village'];
+            $base_data['county']=$county;
+            $base_data['town']=$town;
+            $base_data['village']=$village;
             $base_data['owner']=$ar['owner'];
             $base_data['owner_phone']=$ar['owner_phone'];
             $base_data['site_condition']=$ar['site_condition'];
