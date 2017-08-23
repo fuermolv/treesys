@@ -1,0 +1,214 @@
+<div class="table-responsive">
+    <form class="form-inline" action="" id="my_form"> 
+      <table>
+        <tr>
+          <td>线路名称： </td>
+          <td>          
+        <select  name="line_id" id="line_id" onchange="submitForm();">
+        <option value ="">全部线路</option>
+        <foreach name="querydata['device_lines']" item="v">
+         <option value ="{$v['did']}">{$v['voltage_degree']}kV{$v['device_name']}</option>
+        </foreach>
+        </select></td></tr>
+        <tr>
+          <td>电压等级： </td>
+          <td> 
+        <select  name="voltage_degree" id="voltage_degree" onchange="submitForm();">
+                <option value ="" >电压等级</option>
+                <option value ="500">500kV</option>
+                <option value ="220" >220kV</option>
+                <option value="110" >110kV</option>
+                <option value="35"  >35kV</option>
+                </select>
+              </td></tr>
+
+        <tr>
+            <td>县区： </td>
+          <td> 
+        <select  name="county"  id="county" onchange="submitForm();">
+        <option value ="">县区</option>
+        <option value ="1">清城区</option>
+        <option value ="2">清新县</option>
+        <option value="3">佛冈县</option>
+        <option value="4">英德市</option>
+        <option value ="5">阳山县</option>
+        <option value ="6">连州市</option>
+        <option value ="7">连南县</option>
+        <option value="8">连山县</option>
+        </select></td></tr>
+
+        <tr><td>镇： </td><td> 
+        <select  name="town"   id="town" onchange="submitForm();">
+        <option value ="">镇</option>
+        <foreach name="querydata['towns']" item="v">
+         <option value ="{$v['id']}">{$v['name']}</option>
+        </foreach>
+        </select></td></tr>
+
+        <tr><td>村： </td><td> 
+        <select  name="village"  id="village" onchange="submitForm();">
+        <option value ="">村</option>
+        <foreach name="querydata['villages']" item="v">
+         <option value ="{$v['id']}">{$v['name']}</option>
+         </foreach>
+        </select></td></tr>
+      </table>     
+</form>
+
+
+  <form id="tree_form" class="form-inline" action=""  method="post">
+    <input type="hidden" name="tid">
+    <table class="table table-striped table-bordered table-hover table-condensed">
+        <input type="hidden" name="data_county">
+        <input  type="hidden" name="data_town">
+        <input type="hidden" name="data_village">
+        <tr>
+            <td>起始杆塔</td><td><input type="text" name="star_tower"></td>
+          </tr>
+          <tr>
+              <td>结束杆塔</td><td><input type="text" name="end_tower"></td>
+            </tr>
+          <tr>
+              <td>隐患编号</td><td><input type="text" name="danger_num"></td>
+          </tr>
+          <tr>
+              <td>责任部门</td><td><input type="text" name="accountability_department"></td>
+          </tr>
+          <tr>
+              <td>责任班组</td><td>
+                  <select style="width:40%" name="accountability_group"  id="accountability_group" onchange="submitForm();">
+                  <option value ="输电线路1班">输电线路1班</option>
+                  <option value ="输电线路2班">输电线路2班</option>
+                  <option value ="输电线路3班县">输电线路3班县</option>
+                  <option value="输电线路4班">输电线路4班</option>
+                  <option value="输电线路5班市4">输电线路5班市</option>
+                  <option value ="输电线路6班">输电线路6班</option>
+                  <option value ="输电线路7班">输电线路7班</option>
+                  <option value ="输电线路8班县">输电线路8班县</option>
+                  <option value="输电线路9班">输电线路9班</option>
+                  <option value="输电电缆班">输电电缆班</option>
+                  <option value="管理人员">管理人员</option>
+                  <option value="连南组">连南组</option>
+                  <option value="英德组输电一班">英德组输电一班</option>
+                  <option value="英德组输电二班">英德组输电二班</option>
+                  <option value="英德组输电三班">英德组输电三班</option>
+                  </select></td>
+          </tr>
+          <tr>
+              <td>隐患单位序号</td><td><input type="text" name="accountability_number"></td>
+          </tr>
+          <tr>
+              <td>所有者</td><td><input type="text" name="owner"></td>
+          </tr>
+          <tr>
+              <td>所有者电话</td><td><input type="text" name="owner_phone"></td>
+          </tr>
+          <tr>
+              <td>立地条件</td><td><input type="text" name="site_condition"></td>
+          </tr>
+          <tr>
+              <td>树龄</td><td><input type="text" name="tree_age"></td>
+          </tr>
+          <tr>
+              <td>树木状态</td><td><input type="text" name="tree_status"></td>
+          </tr>
+          <tr>
+              <td>树种</td><td><input type="text" name="tree_type"></td>
+          </tr>
+          <tr>
+              <td>平均胸径</td><td><input type="text" name="average_radius"></td>
+          </tr>
+          <tr>
+              <td>平均高度</td><td><input type="text" name="average_height"></td>
+          </tr>
+          <tr>
+              <td>截止时间</td><td><input type="text" name="dead_line_time"></td>
+          </tr>
+          <tr>
+              <td>第一次测量方式</td><td><input type="text" name="first_check_method"></td>
+          </tr>
+          <tr>
+                  <td>第一次测量人</td><td><input type="text" name="first_check_person"></td>
+              </tr>
+          <tr>
+              <td>是否处理</td><td>
+                  <select style="width:30%"  id="processed" name="processed" >
+                          <option value ="1" >是</option>
+                          <option value ="0">否</option>  
+                         </select></td>       
+          </tr>
+          <tr>
+              <td colspan="4" align="center">
+          <input  class="btn btn-sm btn-success "  type="submit"  value="确定">
+        </td></tr>
+    </table>
+  </form>
+</div> 
+<script type="text/javascript">
+    // function detail_list(obj)
+    // {
+    //      var tid=$(obj).attr('tid');
+    //       $.ajax({
+    //          type:"GET",
+    //           url:"/treesys/index.php/Admin/TreeDetail/index",
+    //           data:{
+    //             tid:tid
+    //             },
+    //             success:function(msg){
+       
+    //          $("#tree-deatil-record").html(msg);
+    //            },
+    //           error:function(XMLHttpRequest, textStatus, thrownError){}
+    //          })
+    // }
+    //  function detail_add_record(obj)
+    // {
+   
+          
+    //     var detail_tid=$(obj).attr('tid');
+    //     $.ajax({
+    //          type:"POST",
+    //           url:"/treesys/index.php/Admin/TreeDetail/add",
+    //           data:{
+    //             detail_tid:detail_tid,
+    //             datail_danger_degree:$("#datail_danger_degree").val(),
+    //             datail_final_danger:$("#datail_final_danger").val(),
+    //             datail_tree_type:$("#datail_tree_type").val(),
+    //             datail_tree_height:$("#datail_tree_height").val(),
+    //             datail_tree_num:$("#datail_tree_num").val(),
+    //             datail_tree_num_unit:$("#datail_tree_num_unit").val(),
+    //             datail_tree_area:$("#datail_tree_area").val(),
+    //             datail_tree_area_unit:$("#datail_tree_area_unit").val(),
+    //             datail_tree_horizontal:$("#datail_tree_horizontal").val(),
+    //             datail_tree_vertical:$("#datail_tree_vertical").val(),
+    //             datail_tree_grand_height:$("#datail_tree_grand_height").val(),
+    //             datail_tree_over:$("#datail_tree_over").val(),
+    //             datail_check_time:$("#datail_check_time").val(),
+    //             datail_check_change_conclusion:$("#datail_check_change_conclusion").val(),
+    //             datail_check_process_conclusion:$("#datail_check_process_conclusion").val(),
+    //             datail_check_posistion_conclusion:$("#datail_check_posistion_conclusion").val(),
+    //             datail_check_person:$("#datail_check_person").val(),
+   
+   
+                
+    //             },
+    //             success:function(msg){
+    //             var tid=msg;
+    //             $.ajax({
+    //          type:"GET",
+    //           url:"/treesys/index.php/Admin/TreeDetail/index",
+    //           data:{
+    //             tid:tid
+    //             },
+    //             success:function(msg){
+       
+    //          $("#tree-deatil-record").html(msg);
+    //            },
+    //           error:function(XMLHttpRequest, textStatus, thrownError){}
+    //          })
+    //            },
+    //           error:function(XMLHttpRequest, textStatus, thrownError){}
+    //          })
+    //  }
+   
+    </script>

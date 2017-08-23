@@ -61,7 +61,10 @@ a<extend name="Public:base"/><block name="title">树木列表</block>
                          </foreach>
                         </select>     
 </form></td></tr>
-          <form action="" method="POST" id="data_form">  
+        <form action="" method="POST" id="data_form">  
+        <input type="hidden" name="data_county">
+        <input  type="hidden" name="data_town">
+        <input type="hidden" name="data_village">
         <tr>
           <td>起始杆塔</td><td><input type="text" name="star_tower"></td>
           <td>最终是否危险</td><td>
@@ -84,7 +87,7 @@ a<extend name="Public:base"/><block name="title">树木列表</block>
         </tr>
         <tr>
             <td>责任班组</td><td>
-                <select style="width:40%" name="county"  id="county" onchange="submitForm();">
+                <select style="width:40%" name="accountability_group"  id="accountability_group" onchange="submitForm();">
                 <option value ="输电线路1班">输电线路1班</option>
                 <option value ="输电线路2班">输电线路2班</option>
                 <option value ="输电线路3班县">输电线路3班县</option>
@@ -196,11 +199,15 @@ a<extend name="Public:base"/><block name="title">树木列表</block>
         <script>
     function submitForm()
      {
-        sessionStorage.setItem("voltage_degree",document.getElementById("voltage_degree").value);
+    sessionStorage.setItem("voltage_degree",document.getElementById("voltage_degree").value);
       sessionStorage.setItem("line_id",document.getElementById("line_id").value); 
       sessionStorage.setItem("county",document.getElementById("county").value); 
       sessionStorage.setItem("town",document.getElementById("town").value); 
-      sessionStorage.setItem("village",document.getElementById("village").value);  
+      sessionStorage.setItem("village",document.getElementById("village").value);
+      sessionStorage.setItem("data_county",document.getElementById("county").options[document.getElementById("county").selectedIndex].text); 
+      sessionStorage.setItem("data_town",document.getElementById("town").options[document.getElementById("town").selectedIndex].text); 
+      sessionStorage.setItem("data_village",document.getElementById("village").options[document.getElementById("village").selectedIndex].text); 
+ 
       var form = document.getElementById("select_form");//获取form表单对象
       form.submit();//form表单提交
      }
@@ -215,6 +222,9 @@ a<extend name="Public:base"/><block name="title">树木列表</block>
       $("#county").val(sessionStorage.getItem("county"))
       $("#town").val(sessionStorage.getItem("town"))
       $("#village").val(sessionStorage.getItem("village"))
+      $("input[name='data_county']").val(sessionStorage.getItem("data_county"))
+      $("input[name='data_town']").val(sessionStorage.getItem("data_town"))
+      $("input[name='data_village']").val(sessionStorage.getItem("data_village"))
     });   
   </script>
 </block>

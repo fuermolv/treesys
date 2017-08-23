@@ -89,9 +89,6 @@ class TreeDetailController extends AdminBaseController
           $record=D('TreeDetail');
           $record->addData($ar);
           $this->ajaxReturn($detail_tid);
-          
-          
-
       }
       else
       {
