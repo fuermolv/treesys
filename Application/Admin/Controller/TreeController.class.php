@@ -208,39 +208,53 @@ class TreeController extends AdminBaseController {
 
     }
     public function edit() {
-        $edit_line_id = I('get.edit_line_id');
-        $edit_county = I('get.edit_county');
-        $edit_town = I('get.edit_town');
-        $edit_voltage_degree = I('get.edit_voltage_degree');
-        $edit_village = I('get.edit_village');
-        $group_id = I('get.group_id');
-        dump($group_id);
-        //确定班组线路
-        $map=null;
-        $map['id'] = $group_id;
-        $edit_lienes = M("auth_rule")->where($map)->select();
-        
-        $map = null;
-        $map['did'] = array('in', $edit_lienes[0]['group_device']);
-        $edit_device_lines = M("device_line")->where($map)->select();
-        $querydata['device_lines'] = $edit_device_lines;
-        
-        $map = null;
-        //选出县镇乡
-        if (!empty($edit_county)) {
-            $map['fid'] = $edit_county;
-            $map['sid'] = 0;
-            $querydata['towns'] = M("areas")->where($map)->select();
-        }
-        $map = null;
-        if (!empty($edit_town)) {
-            $map['sid'] = $edit_town;
-            $querydata['villages'] = M("areas")->where($map)->select();
-        }
-        
+        if(IS_GET){
+                $edit_line_id = I('get.edit_line_id');
+                // var_dump($edit_line_id);
+                $edit_county = I('get.edit_county');
+                $edit_town = I('get.edit_town');
+                $edit_voltage_degree = I('get.edit_voltage_degree');
+                $edit_village = I('get.edit_village');
+                $edit_tid = I('get.edit_tid'); 
+                $group_id = I('get.group_id');
+                        //确定班组线路       
+                $map=null;
+                $map['id'] = $group_id;
+                $edit_lienes = M("auth_rule")->where($map)->select();
+                        
+                $map = null;
+                $map['did'] = array('in', $edit_lienes[0]['group_device']);
+                $edit_device_lines = M("device_line")->where($map)->select();
+                $querydata['device_lines'] = $edit_device_lines;
+                        
+                $map = null;
+                //选出县镇乡
+                if (!empty($edit_county)) {
+                    $map['fid'] = $edit_county;
+                     $map['sid'] = 0;
+                    $querydata['towns'] = M("areas")->where($map)->select();
+                }
+                $map = null;
+                if (!empty($edit_town)) {
+                    $map['sid'] = $edit_town;
+                    $querydata['villages'] = M("areas")->where($map)->select();
+                }
+                $this->assign('group_id', $group_id);
+                $this->assign('edit_line_id', $edit_line_id);
+                $this->assign('edit_county', $edit_county);
+                $this->assign('edit_town', $edit_town);
+                $this->assign('edit_village', $edit_village);
+                $this->assign('edit_voltage_degree', $edit_voltage_degree);
+                $this->assign('edit_tid', $edit_tid);
+                $this->assign('querydata', $querydata); 
+                $this->assign('tree_data', $tree_data);
+                $content=$this->fetch();
+                $this->ajaxReturn($content);
+            }
 
         if(IS_POST)
         {
+            $group_id = I('post.group_id');
             $user_id=$_SESSION['user']['id'];
             $map['id']=$user_id;
             $user=M("users")->where($map)->select();
@@ -248,42 +262,24 @@ class TreeController extends AdminBaseController {
             $map=array(
                 'tid'=>$ar['tid']
                 );
-            // $base_data['line_id']=$line_id;
-            $base_data['star_tower']=$ar['star_tower'];
-            $base_data['end_tower']=$ar['end_tower'];
-            $base_data['danger_num']=$ar['danger_num'];
-            $base_data['accountability_department']=$ar['accountability_department'];
-            $base_data['accountability_group']=$ar['accountability_group'];
-            $base_data['accountability_person']=$user[0]['true_name'];
-            $base_data['accountability_number']=$ar['accountability_number'];
-            $base_data['county']=$county;
-            $base_data['town']=$town;
-            $base_data['village']=$village;
-            $base_data['owner']=$ar['owner'];
-            $base_data['owner_phone']=$ar['owner_phone'];
-            $base_data['site_condition']=$ar['site_condition'];
-            $base_data['tree_age']=$ar['tree_age'];
-            $base_data['tree_status']=$ar['tree_status'];
-            $base_data['tree_type']=$ar['tree_type'];
-            $base_data['average_radius']=$ar['average_radius'];
-            $base_data['average_height']=$ar['average_height'];
-            $base_data['dead_line_time']=$ar['dead_line_time'];
-            $base_data['first_check_time']=$ar['first_check_time'];
-            $base_data['processed']=$ar['processed'];
-            $base_data['last_update_time']=NOW_TIME;  
-            $result = D("TreeBase")->editData($map,$base_data);
+            // $base_data['line_id']=$line_id;  
+            unset($ar['group_id']); 
+            unset($ar['tid']); 
+            var_dump($map);    
+            $ar['accountability_person']=$user[0]['true_name'];
+            $ar['last_update_time']=NOW_TIME;  
+            $result = D("TreeBase")->editData($map,$ar);
             if($result){
-            $this->success("成功修改树片",U("Admin/Tree/index/group_id/{$group_id}"));
-            }
-            else{   
-                $this->error('修改树片失败');}
-        
-            }
-        else{
-            $this->assign('group_id', $group_id);
-            $this->assign('querydata', $querydata); 
-            $content=$this->fetch();
-            $this->ajaxReturn($content);
+                $this->success("成功修改树片",U("Admin/Tree/index/group_id/{$group_id}"));
+                }
+                else{   
+                    $this->error('修改树片失败');}
+ 
+        // else{
+            // $this->assign('group_id', $group_id);
+            // $this->assign('querydata', $querydata); 
+            // $content=$this->fetch();
+            
         }
     }  
 }
