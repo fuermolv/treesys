@@ -210,6 +210,7 @@ a<extend name="Public:base"/><block name="title">树木列表</block>
 
               <td>
               <a href="javascript:;"  tid="{$v['tid']}"  onclick="tree_deatil(this)" >巡查记录</a>||
+              <a href="javascript:;"  tid="{$v['tid']}"  onclick="tree_process(this)" >处理记录</a>||
               <a href="javascript:;"   onclick="edit_tree(this)">修改</a>||
               <a href="javascript:;"  tid="{$v['tid']}" onclick="delete_tree(this)">删除</a>
               </td>
@@ -331,6 +332,23 @@ a<extend name="Public:base"/><block name="title">树木列表</block>
       </div>
     </div>
   </div> 
+
+    <div class="modal fade" id="tree-process-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
+   data-backdrop="static">
+    <div class="modal-dialog">
+      <div class="modal-content" id="tree-process-content" style="width:1200px;height:800px;">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title" >处理记录</h4></div>
+          <div class="modal-body" >
+          <div id="tree-process-record" >  
+             
+        </div>  
+        </div>
+      </div>
+    </div>
+  </div> 
+
   <div class="modal fade" id="tree-edit-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" 
   data-backdrop="static">
     <div class="modal-dialog">
@@ -350,6 +368,10 @@ a<extend name="Public:base"/><block name="title">树木列表</block>
         </div>
       </div>
     </div> 
+</block>
+
+
+
 </block>
 
 
@@ -442,6 +464,32 @@ a<extend name="Public:base"/><block name="title">树木列表</block>
       })
       document.getElementById("tree-deatil-content").style.marginLeft="-50%";
       $('#tree-deatil-modal').modal('show');
+     
+     }
+
+     function tree_process(obj)
+     {
+
+
+      var tid=$(obj).attr('tid');
+      $.ajax({
+      type:"GET",
+      url:"/treesys/index.php/Admin/TreeProcess/index",
+      data:{
+           tid:tid
+          },
+      success:function(msg){
+    
+        $("#tree-process-record").html(msg);
+      },
+      error:function(XMLHttpRequest, textStatus, thrownError)
+      {
+
+      }
+      })
+       
+      document.getElementById("tree-process-content").style.marginLeft="-50%";
+      $('#tree-process-modal').modal('show');
 
 
      

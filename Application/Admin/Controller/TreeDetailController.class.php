@@ -88,6 +88,19 @@ class TreeDetailController extends AdminBaseController
           $ar['datail_update_person']=$user[0]['true_name'];
           $record=D('TreeDetail');
           $record->addData($ar);
+
+
+          $basemap['tid']=$detail_tid;
+          $basedata['last_update_person']=$user[0]['true_name'];
+          
+          $basedata['last_update_time']=NOW_TIME;
+
+        
+
+          M("tree_base")->where($basemap)->save($basedata);
+
+
+
           $this->ajaxReturn($detail_tid);
       }
       else

@@ -1,0 +1,71 @@
+ <ul class="nav nav-tabs padding-12 tab-color-blue background-blue" id="myTab">
+        <li >
+         <a href="javascript:;"  tid="{$tree_id}" onclick="process_list(this)" >列表</a></li>
+        <li class="active">
+        <a href="javascript:;"   onclick="add(this) data-toggle="tab">添加新记录</a>
+        </li>
+        <li >
+        <a href="javascript:;"   tid="{$tree_id}" onclick="file(this)" data-toggle="tab">处理文件</a>
+        </li>
+ </ul>
+
+ 
+
+ add
+
+
+ <script type="text/javascript">
+
+   function process_list(obj)
+    {
+       var tid=$(obj).attr('tid');
+        $.ajax({
+          type:"GET",
+           url:"/treesys/index.php/Admin/TreeProcess/index",
+           data:{
+              tid:tid
+             },
+             success:function(msg){
+    
+          $("#tree-process-record").html(msg);
+            },
+            error:function(XMLHttpRequest, textStatus, thrownError){}
+          })
+    }
+     function file(obj)
+    {
+       var tid=$(obj).attr('tid');
+        $.ajax({
+          type:"GET",
+           url:"/treesys/index.php/Admin/TreeProcess/file",
+           data:{
+              tid:tid
+             },
+             success:function(msg){
+    
+          $("#tree-process-record").html(msg);
+            },
+            error:function(XMLHttpRequest, textStatus, thrownError){}
+          })
+    }
+     function add(obj)
+    {
+       var tid=$(obj).attr('tid');
+        $.ajax({
+          type:"GET",
+           url:"/treesys/index.php/Admin/TreeProcess/add",
+           data:{
+              tid:tid
+             },
+             success:function(msg){
+    
+          $("#tree-process-record").html(msg);
+            },
+            error:function(XMLHttpRequest, textStatus, thrownError){}
+          })
+    }
+
+
+
+
+ </script>
