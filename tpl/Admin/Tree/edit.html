@@ -1,19 +1,19 @@
 <div class="table-responsive">
-    <form class="form-inline" action="" id="my_form"> 
+    <form class="form-inline" action="" id="my_edit_form"> 
       <table>
         <tr>
           <td>线路名称： </td>
           <td>          
-        <select  name="line_id" id="line_id" onchange="submitForm();">
-        <option value ="">全部线路</option>
+        <select  width=400px name="edit_line_id" id="edit_line_id" onchange="editSubmitForm();">
+        <option value =""> 全部线路</option>
         <foreach name="querydata['device_lines']" item="v">
          <option value ="{$v['did']}">{$v['voltage_degree']}kV{$v['device_name']}</option>
         </foreach>
-        </select></td></tr>
+        </select width=400px ></td></tr>
         <tr>
-          <td>电压等级： </td>
+          <td>      电压等级:       </td>
           <td> 
-        <select  name="voltage_degree" id="voltage_degree" onchange="submitForm();">
+        <select  name="edit_voltage_degree" id="edit_voltage_degree" onchange="editSubmitForm();">
                 <option value ="" >电压等级</option>
                 <option value ="500">500kV</option>
                 <option value ="220" >220kV</option>
@@ -25,7 +25,7 @@
         <tr>
             <td>县区： </td>
           <td> 
-        <select  name="county"  id="county" onchange="submitForm();">
+        <select  name="edit_county"  id="edit_county" onchange="editSubmitForm();">
         <option value ="">县区</option>
         <option value ="1">清城区</option>
         <option value ="2">清新县</option>
@@ -38,7 +38,7 @@
         </select></td></tr>
 
         <tr><td>镇： </td><td> 
-        <select  name="town"   id="town" onchange="submitForm();">
+        <select  name="edit_town"   id="edit_town" onchange="editSubmitForm();">
         <option value ="">镇</option>
         <foreach name="querydata['towns']" item="v">
          <option value ="{$v['id']}">{$v['name']}</option>
@@ -46,7 +46,7 @@
         </select></td></tr>
 
         <tr><td>村： </td><td> 
-        <select  name="village"  id="village" onchange="submitForm();">
+        <select  name="edit_village"  id="edit_village" onchange="editSubmitForm();">
         <option value ="">村</option>
         <foreach name="querydata['villages']" item="v">
          <option value ="{$v['id']}">{$v['name']}</option>
@@ -55,7 +55,6 @@
       </table>     
 </form>
 
-
   <form id="tree_form" class="form-inline" action=""  method="post">
     <input type="hidden" name="tid">
     <table class="table table-striped table-bordered table-hover table-condensed">
@@ -63,20 +62,20 @@
         <input  type="hidden" name="data_town">
         <input type="hidden" name="data_village">
         <tr>
-            <td>起始杆塔</td><td><input type="text" name="star_tower"></td>
+            <td>起始杆塔</td><td><input type="text" name="edit_star_tower" id="edit_star_tower"></td>
           </tr>
           <tr>
-              <td>结束杆塔</td><td><input type="text" name="end_tower"></td>
+              <td>结束杆塔</td><td><input type="text" name="edit_end_tower" id="edit_end_tower"></td>
             </tr>
           <tr>
-              <td>隐患编号</td><td><input type="text" name="danger_num"></td>
+              <td>隐患编号</td><td><input type="text" name="edit_danger_num" id="edit_danger_num"></td>
           </tr>
           <tr>
-              <td>责任部门</td><td><input type="text" name="accountability_department"></td>
+              <td>责任部门</td><td><input type="text" name="edit_accountability_department" id="edit_accountability_department"></td>
           </tr>
           <tr>
               <td>责任班组</td><td>
-                  <select style="width:40%" name="accountability_group"  id="accountability_group" onchange="submitForm();">
+                  <select style="width:40%" name="edit_accountability_group"  id="edit_accountability_group">
                   <option value ="输电线路1班">输电线路1班</option>
                   <option value ="输电线路2班">输电线路2班</option>
                   <option value ="输电线路3班县">输电线路3班县</option>
@@ -95,120 +94,137 @@
                   </select></td>
           </tr>
           <tr>
-              <td>隐患单位序号</td><td><input type="text" name="accountability_number"></td>
+              <td>隐患单位序号</td><td><input type="text" name="edit_accountability_number" id="edit_accountability_number"></td>
           </tr>
           <tr>
-              <td>所有者</td><td><input type="text" name="owner"></td>
+              <td>所有者</td><td><input type="text" name="edit_owner" id="edit_owner"></td>
           </tr>
           <tr>
-              <td>所有者电话</td><td><input type="text" name="owner_phone"></td>
+              <td>所有者电话</td><td><input type="text" name="edit_owner_phone" id="edit_owner_phone"></td>
           </tr>
           <tr>
-              <td>立地条件</td><td><input type="text" name="site_condition"></td>
+              <td>立地条件</td><td><input type="text" name="edit_site_condition" id="edit_site_condition"></td>
           </tr>
           <tr>
-              <td>树龄</td><td><input type="text" name="tree_age"></td>
+              <td>树龄</td><td><input type="text" name="edit_tree_age" id="edit_tree_age"></td>
           </tr>
           <tr>
-              <td>树木状态</td><td><input type="text" name="tree_status"></td>
+              <td>树木状态</td><td><input type="text" name="edit_tree_status" id="edit_tree_status"></td>
           </tr>
           <tr>
-              <td>树种</td><td><input type="text" name="tree_type"></td>
+              <td>树种</td><td><input type="text" name="edit_tree_type" id="edit_tree_type"></td>
           </tr>
           <tr>
-              <td>平均胸径</td><td><input type="text" name="average_radius"></td>
+              <td>平均胸径</td><td><input type="text" name="edit_average_radius" id="edit_average_radius"></td>
           </tr>
           <tr>
-              <td>平均高度</td><td><input type="text" name="average_height"></td>
+              <td>平均高度</td><td><input type="text" name="edit_average_height" id="edit_average_height"></td>
           </tr>
           <tr>
-              <td>截止时间</td><td><input type="text" name="dead_line_time"></td>
+              <td>截止时间</td><td><input type="text" name="edit_dead_line_time" id="edit_dead_line_time"></td>
           </tr>
           <tr>
-              <td>第一次测量方式</td><td><input type="text" name="first_check_method"></td>
+              <td>第一次测量方式</td><td><input type="text" name="edit_first_check_method" id="edit_first_check_method"></td>
           </tr>
           <tr>
-                  <td>第一次测量人</td><td><input type="text" name="first_check_person"></td>
+                  <td>第一次测量人</td><td><input type="text" name="edit_first_check_person" id="edit_first_check_person"></td>
               </tr>
           <tr>
               <td>是否处理</td><td>
-                  <select style="width:30%"  id="processed" name="processed" >
+                  <select style="width:30%"   name="edit_processed" id="edit_processed">
                           <option value ="1" >是</option>
                           <option value ="0">否</option>  
                          </select></td>       
           </tr>
           <tr>
               <td colspan="4" align="center">
-          <input  class="btn btn-sm btn-success "  type="submit"  value="确定">
+          <!-- <input  class="btn btn-sm btn-success "  type="submit"  value="确定"> -->
+          <input  class="btn btn-sm btn-success "   type="button" onclick="edit_tree_submit()"  value="确定">
+          
         </td></tr>
     </table>
   </form>
 </div> 
 <script type="text/javascript">
-    // function detail_list(obj)
-    // {
-    //      var tid=$(obj).attr('tid');
-    //       $.ajax({
-    //          type:"GET",
-    //           url:"/treesys/index.php/Admin/TreeDetail/index",
-    //           data:{
-    //             tid:tid
-    //             },
-    //             success:function(msg){
-       
-    //          $("#tree-deatil-record").html(msg);
-    //            },
-    //           error:function(XMLHttpRequest, textStatus, thrownError){}
-    //          })
-    // }
-    //  function detail_add_record(obj)
-    // {
-   
-          
-    //     var detail_tid=$(obj).attr('tid');
-    //     $.ajax({
-    //          type:"POST",
-    //           url:"/treesys/index.php/Admin/TreeDetail/add",
-    //           data:{
-    //             detail_tid:detail_tid,
-    //             datail_danger_degree:$("#datail_danger_degree").val(),
-    //             datail_final_danger:$("#datail_final_danger").val(),
-    //             datail_tree_type:$("#datail_tree_type").val(),
-    //             datail_tree_height:$("#datail_tree_height").val(),
-    //             datail_tree_num:$("#datail_tree_num").val(),
-    //             datail_tree_num_unit:$("#datail_tree_num_unit").val(),
-    //             datail_tree_area:$("#datail_tree_area").val(),
-    //             datail_tree_area_unit:$("#datail_tree_area_unit").val(),
-    //             datail_tree_horizontal:$("#datail_tree_horizontal").val(),
-    //             datail_tree_vertical:$("#datail_tree_vertical").val(),
-    //             datail_tree_grand_height:$("#datail_tree_grand_height").val(),
-    //             datail_tree_over:$("#datail_tree_over").val(),
-    //             datail_check_time:$("#datail_check_time").val(),
-    //             datail_check_change_conclusion:$("#datail_check_change_conclusion").val(),
-    //             datail_check_process_conclusion:$("#datail_check_process_conclusion").val(),
-    //             datail_check_posistion_conclusion:$("#datail_check_posistion_conclusion").val(),
-    //             datail_check_person:$("#datail_check_person").val(),
-   
-   
-                
-    //             },
-    //             success:function(msg){
-    //             var tid=msg;
-    //             $.ajax({
-    //          type:"GET",
-    //           url:"/treesys/index.php/Admin/TreeDetail/index",
-    //           data:{
-    //             tid:tid
-    //             },
-    //             success:function(msg){
-       
-    //          $("#tree-deatil-record").html(msg);
-    //            },
-    //           error:function(XMLHttpRequest, textStatus, thrownError){}
-    //          })
-    //            },
-    //           error:function(XMLHttpRequest, textStatus, thrownError){}
-    //          })
-    //  }
+    function edit_tree_submit(obj)
+    {
+         
+          $.ajax({
+             type:"POST",
+              url:"/treesys/index.php/Admin/Tree/edit",
+              data:{
+                group_id:{$group_id},
+                tid:{$edit_tid},
+                line_id:document.getElementById("edit_line_id").value,
+                voltage_degree:document.getElementById("edit_voltage_degree").options[document.getElementById("edit_voltage_degree").selectedIndex].text,
+                county:document.getElementById("edit_county").options[document.getElementById("edit_county").selectedIndex].text,
+                town:document.getElementById("edit_town").options[document.getElementById("edit_town").selectedIndex].text,
+                village:document.getElementById("edit_village").options[document.getElementById("edit_village").selectedIndex].text,
+                star_tower:document.getElementById("edit_star_tower").value,
+                end_tower:document.getElementById("edit_end_tower").value,
+                danger_num:document.getElementById("edit_danger_num").value,
+                accountability_department:document.getElementById("edit_accountability_department").value,
+                accountability_group:document.getElementById("edit_accountability_group").value,
+                accountability_number:document.getElementById("edit_accountability_number").value,
+                owner:document.getElementById("edit_owner").value,
+                owner_phone:document.getElementById("edit_owner_phone").value,
+                site_condition:document.getElementById("edit_site_condition").value,
+                tree_age:document.getElementById("edit_tree_age").value,
+                tree_status:document.getElementById("edit_tree_status").value,
+                tree_type:document.getElementById("edit_tree_type").value,
+                average_radius:document.getElementById("edit_average_radius").value,
+                average_height:document.getElementById("edit_average_height").value,
+                dead_line_time:document.getElementById("edit_dead_line_time").value,
+                first_check_method:document.getElementById("edit_first_check_method").value,
+                first_check_person:document.getElementById("edit_first_check_person").value,
+                processed:document.getElementById("edit_processed").value
+                },
+                success:function(msg){
+                    $('#tree-edit-modal').modal('hide')
+                },
+                error:function(XMLHttpRequest, textStatus, thrownError){}
+             })
+    }
+    function editSubmitForm()
+     { 
+      $.ajax({
+      type:"GET",
+      url:"/treesys/index.php/Admin/Tree/edit",
+      data:{
+        edit_voltage_degree:document.getElementById("edit_voltage_degree").value,
+        edit_town:document.getElementById("edit_town").value,
+        edit_county:document.getElementById("edit_county").value,
+        edit_village:document.getElementById("edit_village").value,
+        edit_line_id:document.getElementById("edit_line_id").value,
+        group_id:{$group_id},
+        edit_tid:{$edit_tid}
+          },
+      success:function(msg){
+        $("#tree-edit-record").html(msg);
+      },
+      error:function(XMLHttpRequest, textStatus, thrownError)
+      {
+
+      }
+      });
+      document.getElementById("tree-edit-content").style.marginLeft="-50%";
+      $('#tree-edit-modal').modal('show');
+     }
    
     </script>
+    <script type="text/javascript">
+        $(document).ready(function()
+        {
+        // $("#edit_voltage_degree").val({$edit_voltage_degree})
+        $("#edit_line_id").val({$edit_line_id})
+        $("#edit_county").val({$edit_county})
+        $("#edit_town").val({$edit_town})
+        $("#edit_village").val({$edit_village})
+        $("#edit_voltage_degree").val({$edit_voltage_degree})
+
+        // $("input[name='edit_data_county']").val(sessionStorage.getItem("data_county"))
+        // $("input[name='edit_data_town']").val(sessionStorage.getItem("data_town"))
+        // $("input[name='edit_data_village']").val(sessionStorage.getItem("data_village"))
+          
+        });   
+      </script>
