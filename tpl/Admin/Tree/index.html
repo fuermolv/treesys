@@ -174,7 +174,7 @@ a<extend name="Public:base"/><block name="title">树木列表</block>
               <td style="display:none" >{$v['first_check_method']}</td>
               <td style="display:none" >{$v['first_check_person']}</td>
               <td style="display:none">
-              <if condition="$v['processed'] eq 'true'">是
+              <if condition="$v['processed'] eq '1'">是
               <else /> 否
               </if>
               </td>
@@ -182,7 +182,7 @@ a<extend name="Public:base"/><block name="title">树木列表</block>
               <td style="display:none" >{$v['dead_line_time']|date='Y-m-d',###}</td>  
               <td style="display:none" id="t-datail_danger_degree">{$v['datail_danger_degree']}</td>
               <td style="display:none" id="t-datail_final_danger">
-               <if condition="$v['datail_final_danger'] eq 'true'">是
+               <if condition="$v['datail_final_danger'] eq '1'">是
               <else /> 否
               </if></td>
               <td style="display:none" id="t-datail_tree_type">{$v['datail_tree_type']}</td>
@@ -196,7 +196,7 @@ a<extend name="Public:base"/><block name="title">树木列表</block>
               <td style="display:none" id="t-datail_tree_grand_height">{$v['datail_tree_grand_height']}</td>
 
               <td style="display:none" id="t-datail_tree_over">
-                <if condition="$v['datail_danger_degree'] eq 'true'">是
+                <if condition="$v['datail_danger_degree'] eq '1'">是
               <else /> 否
               </if></td>
               </td>        
@@ -212,7 +212,7 @@ a<extend name="Public:base"/><block name="title">树木列表</block>
               <a href="javascript:;"  tid="{$v['tid']}"  onclick="tree_deatil(this)" >巡查记录</a>||
 
               <a href="javascript:;"  tid="{$v['tid']}"  onclick="tree_process(this)" >处理记录</a>||
-              <a href="javascript:;"   onclick="edit_tree(this)">修改</a>||
+              <a href="javascript:;"   tid="{$v['tid']}" onclick="edit_tree(this)">修改</a>||
 
               <a href="javascript:;"  tid="{$v['tid']}" onclick="delete_tree(this)">删除</a>
               </td>
@@ -339,7 +339,7 @@ a<extend name="Public:base"/><block name="title">树木列表</block>
     <div class="modal fade" id="tree-process-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
    data-backdrop="static">
     <div class="modal-dialog">
-      <div class="modal-content" id="tree-process-content" style="width:1200px;height:800px;">
+      <div class="modal-content" id="tree-process-content" style="width:1400px;height:960px;">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
           <h4 class="modal-title" >处理记录</h4></div>

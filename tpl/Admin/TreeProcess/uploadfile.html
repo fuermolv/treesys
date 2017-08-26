@@ -2,24 +2,23 @@
         <li >
          <a href="javascript:;"  tid="{$tree_id}" onclick="process_list(this)" >列表</a>
          </li>
-         <li class="active" >
-       
+        <li >
         <a href="javascript:;"  tid="{$tree_id}" onclick="add(this)" >添加新记录</a>
         </li>
         
          <li >
         <a href="javascript:;"   tid="{$tree_id}" onclick="file(this)">处理文件</a>
         </li>
-        <li >
+         <li class="active" >
         <a href="javascript:;"   tid="{$tree_id}" onclick="uploadfile(this)">上传处理文件</a>
         </li>
+
  </ul>
  
-
- add
-
+uploadfile
 
  <script type="text/javascript">
+
  function uploadfile(obj)
     {
        var tid=$(obj).attr('tid');
@@ -31,9 +30,13 @@
              },
              success:function(msg){
     
-          $("#tree-process-record").html(msg);
+           
+            $("#tree-process-record").html(msg);
             },
-            error:function(XMLHttpRequest, textStatus, thrownError){}
+            error:function(XMLHttpRequest, textStatus, thrownError)
+            {
+               
+            }
           })
     }
 

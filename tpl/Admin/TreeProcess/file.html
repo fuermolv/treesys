@@ -8,11 +8,32 @@
         <li class="active" >
         <a href="javascript:;"   tid="{$tree_id}" onclick="file(this)">处理文件</a>
         </li>
+        <li >
+
+        <a href="javascript:;"   tid="{$tree_id}" onclick="uploadfile(this)">上传处理文件</a>
+        </li>
  </ul>
  
 file
 
  <script type="text/javascript">
+ 
+ function uploadfile(obj)
+    {
+       var tid=$(obj).attr('tid');
+        $.ajax({
+          type:"GET",
+           url:"/treesys/index.php/Admin/TreeProcess/uploadfile",
+           data:{
+              tid:tid
+             },
+             success:function(msg){
+    
+          $("#tree-process-record").html(msg);
+            },
+            error:function(XMLHttpRequest, textStatus, thrownError){}
+          })
+    }
 
    function process_list(obj)
     {

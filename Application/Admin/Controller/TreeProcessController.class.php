@@ -18,7 +18,14 @@ class TreeProcessController extends AdminBaseController
     }
     public function index() 
     {
-        
+        $tree_id = I('get.tid');
+        $model = new TreeDetailModel();
+        $map['record_tid'] = $tree_id;
+        $orderBy = 'record_id desc';
+        $data=M("tree_process_record")->where($map)->order($orderBy)->select();
+
+       $this->assign('data', $data);
+       $this->assign('tree_id',$tree_id);
 
        $content=$this->fetch();
        $this->ajaxReturn($content);
@@ -37,6 +44,15 @@ class TreeProcessController extends AdminBaseController
       
    }
    public function file()
+   {
+
+ 
+        $content=$this->fetch();
+        $this->ajaxReturn($content);
+     
+      
+   }
+   public function uploadfile()
    {
 
  
