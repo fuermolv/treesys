@@ -20,8 +20,7 @@ class IndexController extends HomeBaseController{
                 $_SESSION['user']=array(
                     'id'=>$data['id'],
                     'username'=>$data['username'],
-                    'avatar'=>$data['avatar'],
-                    'true_name'=>$data['true_name']
+                    'avatar'=>$data['avatar']
                     );
                 $this->success('登录成功、前往管理后台',U('Admin/Index/index'));
             }
