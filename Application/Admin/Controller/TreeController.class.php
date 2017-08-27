@@ -209,6 +209,41 @@ class TreeController extends AdminBaseController {
     }
     public function edit() {
         if(IS_GET){
+            if(I('get.edit_index')==1){
+                
+                $edit_tid = I('get.edit_tid'); 
+                $map=null;
+                $map['tid']=$edit_tid;
+                $edit_tid_data=D("TreeBase")->where($map)->select() ;
+
+                // 查询线路名称
+                $map=null;
+                $map['did']=$edit_tid_data[0]["line_id"];
+                $line_name=M("device_line")->field('voltage_degree,device_name')->where($map)->select() ;
+                // var_dump($line_name);
+                $editTidData=$edit_tid_data[0];
+                $editTidData['voltage_degree']=$line_name[0]["voltage_degree"];
+                
+                $editTidData['line_name']=$line_name[0]["voltage_degree"].'kV'.$line_name[0]["device_name"];
+                //查询可以选择的线路
+                $group_id = I('get.group_id');
+                $map=null;
+                $map['id'] = $group_id;
+                $edit_lienes = M("auth_rule")->where($map)->select();
+                $map = null;
+                $map['did'] = array('in', $edit_lienes[0]['group_device']);
+                $edit_device_lines = M("device_line")->where($map)->select();
+                $querydata['device_lines'] = $edit_device_lines;
+
+                $this->assign('querydata', $querydata); 
+                $this->assign('edit_tid', $edit_tid);
+                $this->assign('group_id', $group_id);
+                $this->assign('editTidData', $editTidData);
+                
+                $content=$this->fetch();
+                $this->ajaxReturn($content); 
+            }
+            else{
                 $edit_line_id = I('get.edit_line_id');
                 // var_dump($edit_line_id);
                 $edit_county = I('get.edit_county');
@@ -250,6 +285,8 @@ class TreeController extends AdminBaseController {
                 $this->assign('tree_data', $tree_data);
                 $content=$this->fetch();
                 $this->ajaxReturn($content);
+            }
+                
             }
 
         if(IS_POST)
