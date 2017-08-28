@@ -974,6 +974,13 @@ function crop_image($image_path,$width=170,$height=170){
     return $min_path;
 }
 
+function treesys_name($name)
+{
+    $str= explode(".", $name );
+    $result = $str[0] . "-" . NOW_TIME;
+    return $result;
+}
+
 /**
  * 上传文件类型控制 此方法仅限ajax上传使用
  * @param  string   $path    字符串 保存文件路径示例： /Upload/image/
@@ -986,7 +993,7 @@ function ajax_upload($path='file',$format='empty',$maxSize='52428800'){
     // 去除两边的/
     $path=trim($path,'/');
     // 添加Upload根目录
-    $path=strtolower(substr($path, 0,6))==='upload' ? ucfirst($path) : 'Upload/'.$path;
+   // $path=strtolower(substr($path, 0,6))==='upload' ? ucfirst($path) : ''.$path;
     // 上传文件类型控制
     $ext_arr= array(
             'image' => array('gif', 'jpg', 'jpeg', 'png', 'bmp'),
@@ -1001,7 +1008,7 @@ function ajax_upload($path='file',$format='empty',$maxSize='52428800'){
                 'maxSize'   =>  $maxSize,               // 上传文件最大为50M
                 'rootPath'  =>  './',                   // 文件上传保存的根路径
                 'savePath'  =>  './'.$path.'/',         // 文件上传的保存路径（相对于根路径）
-                'saveName'  =>  array('uniqid',''),     // 上传文件的保存规则，支持数组和字符串方式定义
+               'saveName'  =>  array('treesys_name','__FILE__'),     // 上传文件的保存规则，支持数组和字符串方式定义
                 'autoSub'   =>  true,                   // 自动使用子目录保存上传文件 默认为true
                 'exts'      =>    isset($ext_arr[$format])?$ext_arr[$format]:'',
             );
@@ -1010,6 +1017,8 @@ function ajax_upload($path='file',$format='empty',$maxSize='52428800'){
         $upload=new \Think\Upload($config);
         // 调用上传方法
         $info=$upload->upload();
+        $upload->uploadReplace = true;
+       
         // p($info);
         $data=array();
         if(!$info){
@@ -1027,6 +1036,7 @@ function ajax_upload($path='file',$format='empty',$maxSize='52428800'){
         }
     }
 }
+
 
 /**
  * 检测webuploader上传是否成功

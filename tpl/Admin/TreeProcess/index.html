@@ -31,6 +31,7 @@
            <th>输电所安排的隐患核实工作人员姓名</th>
            <th  >输电所安排的隐患核实工作人员联系电话</th>
            <th  >属地单位计划与户主商谈前的隐患核实时间</th>
+            <th  >属地单位与户主商谈前的隐患核实时间</th>
            <th  >属地供单位计划协商的时间段</th>
            <th  >协商过程情况</th>        
            <th  >截止统计日按任务单，现场“隐患核实”情况</th>
@@ -71,6 +72,9 @@
 
 
               <td id="t-record_consult_detail">{$v['record_consult_detail']}</td>
+
+              <td id="t-record_verify_situ">{$v['record_verify_situ']}</td>
+
               <td id="t-record_verify_consult_situ">{$v['record_verify_consult_situ']}</td>
               <td id="t-record_verify_consult_matter">{$v['record_verify_consult_matter']}</td>
 
@@ -83,49 +87,18 @@
                <td id="t-record_accept_time">{$v['record_accept_time']|date='Y-m-d',###}</td>
                  <td id="t-record_accept_conclusion1">{$v['record_accept_conclusion1']}</td>
               <td id="t-record_accept_conclusion2">{$v['record_accept_conclusion2']}</td>
+
                <td id="t-record_confirm_time">{$v['record_confirm_time']|date='Y-m-d',###}</td>
                <td id="t-record_confirm_tag">{$v['record_confirm_tag']}</td>
+
                <td id="t-record_remark">{$v['record_remark']}</td>
                
               <td id="t-record_update_person">{$v['record_update_person']}</td>
               <td id="t-record_update_time">{$v['record_update_time']|date='Y-m-d',###}</td>
-             <!--  <td id="t-datail_danger_degree">{$v['datail_danger_degree']}</td>
-              <td id="t-datail_final_danger">
-               <if condition="$v['datail_final_danger'] eq 'true'">是
-              <else /> 否
-              </if></td>
-              <td id="t-datail_tree_type">{$v['datail_tree_type']}</td>
-              <td id="t-datail_tree_height">{$v['datail_tree_height']}</td>
-              <td id="t-datail_tree_num">{$v['datail_tree_num']}</td>
-              <td id="t-datail_tree_num_unit">{$v['datail_tree_num_unit']}</td>
-              <td id="t-datail_tree_area">{$v['datail_tree_area']}</td>
-              <td id="t-datail_tree_area_unit">{$v['datail_tree_area_unit']}</td>
-              <td id="t-datail_tree_horizontal">{$v['datail_tree_horizontal']}</td>
-              <td id="t-datail_tree_vertical">{$v['datail_tree_vertical']}</td>
-              <td id="t-datail_tree_grand_height">{$v['datail_tree_grand_height']}</td>
-              <td id="t-datail_tree_over">
-                <if condition="$v['datail_danger_degree'] eq 'true'">是
-              <else /> 否
-              </if></td>
-              </td>        
-              <td id="t-datail_check_time">{$v['datail_check_time']|date='Y-m-d',###}</td>
-               <td id="t-datail_check_change_conclusion">{$v['datail_check_change_conclusion']}</td>
-               <td id="t-datail_check_process_conclusion">{$v['datail_check_process_conclusion']}</td>
-              <td id="t-datail_check_posistion_conclusion">{$v['datail_check_posistion_conclusion']}</td>
-              <td id="t-datail_check_person">{$v['datail_check_person']}</td>
-              <td id="t-datail_update_person">{$v['datail_update_person']}</td>
-              <td id="t-datail_update_group">{$v['datail_update_group']}</td>
-
-              <td id="t-datail_uptodate">
-                <if condition="$v['datail_uptodate'] eq '1'">是
-              <else /> 否
-              </if></td>
-              </td>       
-              <td id="t-datail_update_time">{$v['datail_update_time']|date='Y-m-d',###}</td> -->
-        
+         
           
               <td>
-              <a href="javascript:;" tid="{$tree_id}" detail_id="{$v['detail_id']}" onclick="delete_detail(this);">删除</a>
+              <a href="javascript:;"  tid="{$tree_id}" record_id="{$v['record_id']}" onclick="delete_process(this);">删除</a>
               </td>
             </tr>
           </foreach>
@@ -140,6 +113,48 @@
 
  <script type="text/javascript">
 
+
+     function delete_process(obj)
+     {
+      	 if(confirm('确定删除？'))
+       {
+           
+           var record_id=$(obj).attr('record_id');
+           
+           var tid=$(obj).attr('tid');
+          
+           $.ajax({
+           url:'/treesys/index.php/Admin/TreeProcess/delete',
+           type:'GET', 
+           async:true,    
+           data:{
+               record_id:record_id
+              
+           },
+            success:function(msg)
+           {
+
+           $.ajax({
+          type:"GET",
+           url:"/treesys/index.php/Admin/TreeProcess/index",
+           data:{
+             tid:tid
+             },
+             success:function(msg)
+             {
+    
+              $("#tree-process-record").html(msg);
+            },
+           error:function(XMLHttpRequest, textStatus, thrownError){}
+          })
+                     
+            }
+         })
+
+
+       }
+
+     }
 
     function uploadfile(obj)
     {
