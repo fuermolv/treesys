@@ -4,7 +4,7 @@
         <tr>
           <td>线路名称： </td>
           <td>          
-        <select  width=400px name="edit_line_id" id="edit_line_id" onchange="editSubmitForm();">
+        <select  width=400px name="edit_line_id" id="edit_line_id" onchange="editSubmitForm(this);">
         <option value ={$editTidData['line_id']}  checked> {$editTidData['line_name']}</option>
         <foreach name="querydata['device_lines']" item="v">
          <option value ="{$v['did']}">{$v['voltage_degree']}kV{$v['device_name']}</option>
@@ -13,7 +13,7 @@
         <tr>
           <td>电压等级: </td>
           <td> 
-        <select  name="edit_voltage_degree" id="edit_voltage_degree" onchange="editSubmitForm();">
+        <select  name="edit_voltage_degree" id="edit_voltage_degree" onchange="editSubmitForm(this);">
                 <option value ={$editTidData['voltage_degree']}  checked>{$editTidData['voltage_degree']}kV</option>
                 <option value ="500">500kV</option>
                 <option value ="220" >220kV</option>
@@ -25,7 +25,7 @@
         <tr>
             <td>县区： </td>
           <td> 
-        <select  name="edit_county"  id="edit_county" onchange="editSubmitForm();">
+        <select  name="edit_county"  id="edit_county" onchange="editSubmitForm(this);">
         <option value ={$editTidData['county']} checked>{$editTidData['county']}</option>
         <option value ="1">清城区</option>
         <option value ="2">清新县</option>
@@ -38,7 +38,7 @@
         </select></td></tr>
 
         <tr><td>镇： </td><td> 
-        <select  name="edit_town"   id="edit_town" onchange="editSubmitForm();">
+        <select  name="edit_town"   id="edit_town" onchange="editSubmitForm(this);">
         <option value ={$editTidData['town']} checked>{$editTidData['town']}</option>
         <foreach name="querydata['towns']" item="v">
          <option value ="{$v['id']}">{$v['name']}</option>
@@ -46,7 +46,7 @@
         </select></td></tr>
 
         <tr><td>村： </td><td> 
-        <select  name="edit_village"  id="edit_village" onchange="editSubmitForm();">
+        <select  name="edit_village"  id="edit_village" onchange="editSubmitForm(this);">
         <option value ={$editTidData['village']} checked>{$editTidData['village']}</option>
         <foreach name="querydata['villages']" item="v">
          <option value ="{$v['id']}">{$v['name']}</option>
@@ -199,9 +199,14 @@
     }
     function editSubmitForm()
      { 
+        sessionStorage.setItem("edit_voltage_degree",document.getElementById("edit_voltage_degree").value);
+        sessionStorage.setItem("edit_line_id",document.getElementById("edit_line_id").value); 
+        sessionStorage.setItem("edit_county",document.getElementById("edit_county").value); 
+        sessionStorage.setItem("edit_town",document.getElementById("edit_town").value); 
+        sessionStorage.setItem("edit_village",document.getElementById("edit_village").value); 
       $.ajax({
       type:"GET",
-      url:"/treesys/index.php/Admin/Tree/edit",
+      url:"/treesys/index.php/Admin/Tree/freshForm",
       data:{
         edit_voltage_degree:document.getElementById("edit_voltage_degree").value,
         edit_town:document.getElementById("edit_town").value,
@@ -211,33 +216,21 @@
         group_id:{$group_id},
         edit_tid:{$edit_tid}
           },
-      success:function(msg){
-        $("#tree-edit-record").html(msg);
-      },
-      error:function(XMLHttpRequest, textStatus, thrownError)
-      {
+        success:function(msg){
+        $("#my_edit_form").html(msg);
+        },
+        error:function(XMLHttpRequest, textStatus, thrownError)
+        {
 
-      }
-      });
-      document.getElementById("tree-edit-content").style.marginLeft="-50%";
-      $('#tree-edit-modal').modal('show');
-     }
+        }
+         });
+
+        }
    
     </script>
     <script type="text/javascript">
         $(document).ready(function()
         {
-        // $("#edit_voltage_degree").val({$edit_voltage_degree})
-        //  var edit_tid_data=$edit_tid_data
-        // $("#edit_line_id").val($edit_tid_data["line_id"])
-        // $("#edit_county").val($edit_tid_data['county'])
-        // $("#edit_town").val($edit_tid_data['town'])
-        // $("#edit_village").val($edit_tid_data['village}'])
-        // $("#edit_voltage_degree").val($edit_tid_data['voltage_degree'])
-
-        // $("input[name='edit_data_county']").val(sessionStorage.getItem("data_county"))
-        // $("input[name='edit_data_town']").val(sessionStorage.getItem("data_town"))
-        // $("input[name='edit_data_village']").val(sessionStorage.getItem("data_village"))
           
         });   
       </script>
