@@ -212,7 +212,7 @@ a<extend name="Public:base"/><block name="title">树木列表</block>
               <a href="javascript:;"  tid="{$v['tid']}"  onclick="tree_deatil(this)" >巡查记录</a>||
 
               <a href="javascript:;"  tid="{$v['tid']}"  onclick="tree_process(this)" >处理记录</a>||
-              <a href="javascript:;"   tid="{$v['tid']}" onclick="edit_tree(this)">修改</a>||
+              <a href="javascript:;"   tid="{$v['tid']}" line_id="{$v['line_id']}" onclick="edit_tree(this)">修改</a>||
 
               <a href="javascript:;"  tid="{$v['tid']}" onclick="delete_tree(this)">删除</a>
               </td>
@@ -538,18 +538,19 @@ a<extend name="Public:base"/><block name="title">树木列表</block>
       type:"GET",
       url:"/treesys/index.php/Admin/Tree/edit",
       data:{
-        edit_voltage_degree:document.getElementById("voltage_degree").value,
-        //document.getElementById("voltage_degree").value,
-        edit_town:document.getElementById("town").value,
-        edit_county:document.getElementById("county").value,
-        edit_village:document.getElementById("village").value,
-        edit_line_id:document.getElementById("line_id").value,
+        // edit_voltage_degree:document.getElementById("voltage_degree").value,
+        // //document.getElementById("voltage_degree").value,
+        // edit_town:document.getElementById("town").value,
+        // edit_county:document.getElementById("county").value,
+        // edit_village:document.getElementById("village").value,
+        edit_line_id:$(obj).attr('line_id'),
         group_id:{$group_id},
-        edit_tid:$(obj).attr('tid')
+        edit_tid:$(obj).attr('tid'),
+        edit_index:1
           },
       success:function(msg){
-        $("#tree-edit-record").html(msg);
-      },
+          $("#tree-edit-record").html(msg);
+        },
       error:function(XMLHttpRequest, textStatus, thrownError)
       {
 
