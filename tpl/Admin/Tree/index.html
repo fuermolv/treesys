@@ -117,7 +117,7 @@ a<extend name="Public:base"/><block name="title">树木列表</block>
            <th style="display:none" id="t-average_radius">平均胸径</th>
            <th style="display:none" id="t-average_height">平均高度</th>
            <th style="display:none" id="t-first_check_time">首次测量时间</th>
-           <th style="display:none" id="t-first_check_method">首次测量方式</th>
+           <!-- <th style="display:none" id="t-first_check_method">首次测量方式</th> -->
            <th style="display:none" id="t-first_check_person">首次测量人</th>
            <th style="display:none" id="t-processed">是否处理</th>
            <th style="display:none" id="t-last_update_time">最近更新时间</th>
@@ -171,7 +171,7 @@ a<extend name="Public:base"/><block name="title">树木列表</block>
               <td style="display:none" >{$v['average_radius']}</td>
               <td style="display:none" >{$v['average_height']}</td>
               <td style="display:none" >{$v['first_check_time']|date='Y-m-d',###}</td> 
-              <td style="display:none" >{$v['first_check_method']}</td>
+              <!-- <td style="display:none" >{$v['first_check_method']}</td> -->
               <td style="display:none" >{$v['first_check_person']}</td>
               <td style="display:none">
               <if condition="$v['processed'] eq '1'">是
