@@ -164,8 +164,10 @@ class TreeController extends AdminBaseController {
             $base_data['tree_type']=$ar['tree_type'];
             $base_data['average_radius']=$ar['average_radius'];
             $base_data['average_height']=$ar['average_height'];
-            $base_data['dead_line_time']=$ar['dead_line_time'];
-            $base_data['first_check_time']=$ar['first_check_time'];
+            $base_data['dead_line_time']=strtotime($ar['dead_line_time']);
+            $base_data['first_check_time']=strtotime($ar['datail_check_time']);
+            $base_data['first_upload_time']=strtotime($ar['first_upload_time']);
+            var_dump($base_data['first_upload_time']);
             $base_data['processed']=$ar['processed'];
             $base_data['last_update_time']=NOW_TIME;  
             $result = D("TreeBase")->addData($base_data);
@@ -185,7 +187,7 @@ class TreeController extends AdminBaseController {
             $detail_data['datail_tree_grand_height']=$ar['datail_tree_grand_height'];
             $detail_data['datail_tree_over']=$ar['datail_tree_over'];
             $detail_data['datail_update_time']=NOW_TIME;
-            $detail_data['datail_check_time']=$ar['datail_check_time'];
+            $detail_data['datail_check_time']=strtotime($ar['datail_check_time']);
             $detail_data['datail_check_posistion_conclusion']=$ar['datail_check_posistion_conclusion'];
             $detail_data['datail_check_process_conclusion']=$ar['datail_check_process_conclusion'];
             $detail_data['datail_check_change_conclusion']=$ar['datail_check_change_conclusion'];
