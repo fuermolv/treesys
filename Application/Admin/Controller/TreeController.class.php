@@ -162,14 +162,20 @@ class TreeController extends AdminBaseController {
             $base_data['tree_age']=$ar['tree_age'];
             $base_data['tree_status']=$ar['tree_status'];
             $base_data['tree_type']=$ar['tree_type'];
+            $base_data['tree_danger']=$ar['tree_danger'];
+            $base_data['tree_danger_num']=$ar['tree_danger_num'];
+            $base_data['tree_danger_num_unit']=$ar['tree_danger_num_unit'];
+            $base_data['tree_danger_area']=$ar['tree_danger_area'];
+            $base_data['tree_danger_area_unit']=$ar['tree_danger_area_unit'];
+            $base_data['tree_danger_height']=$ar['tree_danger_height'];
             $base_data['average_radius']=$ar['average_radius'];
             $base_data['average_height']=$ar['average_height'];
             $base_data['dead_line_time']=strtotime($ar['dead_line_time']);
+            $base_data['first_upload_time']=strtotime($ar['first_upload_time']);            
+            $base_data['last_update_time']=NOW_TIME;              
             $base_data['first_check_time']=strtotime($ar['datail_check_time']);
-            $base_data['first_upload_time']=strtotime($ar['first_upload_time']);
             var_dump($base_data['first_upload_time']);
             $base_data['processed']=$ar['processed'];
-            $base_data['last_update_time']=NOW_TIME;  
             $result = D("TreeBase")->addData($base_data);
 
             $detail_data['detail_tid']=$result;

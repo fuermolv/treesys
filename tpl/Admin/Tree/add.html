@@ -123,7 +123,7 @@ a<extend name="Public:base"/><block name="title">树木列表</block>
             <td>水平距离</td><td><input type="text" name="datail_tree_horizontal"></td>
         </tr>
         <tr>
-            <td>树龄</td><td><input type="text" name="tree_age"></td>
+            <td>高杆植物种植时间</td><td><input type="text" name="tree_age"></td>
             <td>垂直距离</td><td><input type="text" name="datail_tree_vertical"></td>
         </tr>
         <tr>
@@ -166,6 +166,27 @@ a<extend name="Public:base"/><block name="title">树木列表</block>
                        </select></td>
             <td>隐患等级</td> 
             <td><input type="text" name="datail_danger_degree"></td>        
+        </tr>
+        <tr>
+            <td>是否有需要处理的树障</td><td><select style="width:30%"  id="tree_danger" name="tree_danger" value ="0">
+                <option value ="0">否</option>     
+                <option value ="1" >是</option>     
+                   </select></td>
+        </tr>
+        <tr>
+            <td>隐患树障数量（棵、墩数）</td><td><input type="text" name="tree_danger_num" id="tree_danger_num"></td>
+        </tr>
+        <tr>
+            <td>隐患树障数量单位（棵、墩）</td><td><input type="text" name="tree_danger_num_unit" id="tree_danger_num_unit"></td>
+        </tr>
+        <tr>
+            <td>隐患树障数量(亩数)</td><td><input type="text" name="tree_danger_area"  id="tree_danger_area"></td>
+        </tr>
+        <tr>
+            <td>隐患树障数量单位（亩）</td><td><input type="text" name="tree_danger_area_unit"  id="tree_danger_area_unit"></td>
+        </tr>
+        <tr>
+            <td>隐患树障树高（m）</td><td><input type="text" name="tree_danger_height" id="tree_danger_height"></td>
         </tr>
         <tr>
             <td colspan="4" align="center">
