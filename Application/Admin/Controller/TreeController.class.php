@@ -174,10 +174,10 @@ class TreeController extends AdminBaseController {
             $base_data['first_upload_time']=strtotime($ar['first_upload_time']);            
             $base_data['last_update_time']=NOW_TIME;              
             $base_data['first_check_time']=strtotime($ar['datail_check_time']);
-            var_dump($base_data['first_upload_time']);
             $base_data['processed']=$ar['processed'];
-            $result = D("TreeBase")->addData($base_data);
-
+            $TreeBase=D("TreeBase");
+            $result = $TreeBase->add($base_data);
+            
             $detail_data['detail_tid']=$result;
             $detail_data['datail_danger_degree']=$ar['datail_danger_degreee'];
             $detail_data['datail_final_danger']=$ar['datail_final_danger'];
@@ -202,6 +202,7 @@ class TreeController extends AdminBaseController {
             $detail_data['datail_update_group']=$ar['datail_update_group'];
             $result = D("TreeDetail")->addData($detail_data);
             if($result){
+                // var_dump($base_data,$TreeBase->_sql());                
             $this->success("成功添加树片",U("Admin/Tree/index/group_id/{$group_id}"));
             }
             else{   
