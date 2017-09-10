@@ -116,6 +116,32 @@
               <td>树种</td><td><input type="text" name="edit_tree_type" id="edit_tree_type" value={$editTidData['tree_type']}></td>
           </tr>
           <tr>
+            <td>是否有需要处理的树障</td><td><select style="width:30%"  id="edit_tree_danger" name="edit_tree_danger" >
+                <option value ={$editTidData['tree_danger']} checked>
+                    <if condition="$editTidData['tree_danger'] eq '1'">是
+                    <else /> 否
+                    </if></option>                    
+                <option value ="0">否</option>     
+                <option value ="1" >是</option>     
+                   </select></td>
+        </tr>
+        <tr>
+            <td>隐患树障数量（棵、墩数）</td><td><input type="text" name="edit_tree_type" id="edit_tree_danger_num" value={$editTidData['tree_danger_num']}></td>
+        </tr>
+        <tr>
+            <td>隐患树障数量单位（棵、墩）</td><td><input type="text" name="edit_tree_type" id="edit_tree_danger_num_unit" value={$editTidData['tree_danger_num_unit']}></td>
+        </tr>
+        <tr>
+            <td>隐患树障数量(亩数)</td><td><input type="text" name="edit_tree_type" id="edit_tree_danger_area" value={$editTidData['tree_danger_area']}></td>
+        </tr>
+        <tr>
+            <td>隐患树障数量单位（亩）</td><td><input type="text" name="edit_tree_type" id="edit_tree_danger_area_unit" value={$editTidData['tree_danger_area_unit']}></td>
+        </tr>
+        <tr>
+            <td>隐患树障树高（m）</td><td><input type="text" name="edit_tree_type" id="edit_tree_danger_height" value={$editTidData['tree_danger_height']}></td>
+        </tr>
+
+          <tr>
               <td>平均胸径</td><td><input type="text" name="edit_average_radius" id="edit_average_radius" value={$editTidData['average_radius']}></td>
           </tr>
           <tr>
@@ -124,9 +150,9 @@
           <tr>
               <td>截止时间</td><td><input type="date" name="edit_dead_line_time" id="edit_dead_line_time" value={$editTidData['dead_line_time']|date='Y-m-d',###}></td>
           </tr>
-          <tr>
+          <!-- <tr>
               <td>第一次测量方式</td><td><input type="text" name="edit_first_check_method" id="edit_first_check_method" value={$editTidData['first_check_method']}></td>
-          </tr>
+          </tr> -->
           <tr>
                   <td>第一次测量人</td><td><input type="text" name="edit_first_check_person" id="edit_first_check_person" value={$editTidData['first_check_person']}></td>
               </tr>
@@ -177,10 +203,16 @@
                 tree_age:document.getElementById("edit_tree_age").value,
                 tree_status:document.getElementById("edit_tree_status").value,
                 tree_type:document.getElementById("edit_tree_type").value,
+                tree_danger:document.getElementById("edit_tree_danger").value,
+                tree_danger_num:document.getElementById("edit_tree_danger_num").value,
+                tree_danger_num_unit:document.getElementById("edit_tree_danger_num_unit").value,
+                tree_danger_area:document.getElementById("edit_tree_danger_area").value,
+                tree_danger_area_unit:document.getElementById("edit_tree_danger_area_unit").value,
+                tree_danger_height:document.getElementById("edit_tree_danger_height").value,
                 average_radius:document.getElementById("edit_average_radius").value,
                 average_height:document.getElementById("edit_average_height").value,
                 dead_line_time:document.getElementById("edit_dead_line_time").value,
-                first_check_method:document.getElementById("edit_first_check_method").value,
+                // first_check_method:document.getElementById("edit_first_check_method").value,
                 first_check_person:document.getElementById("edit_first_check_person").value,
                 processed:document.getElementById("edit_processed").value
                 },
