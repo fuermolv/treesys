@@ -96,40 +96,40 @@ a<extend name="Public:base"/><block name="title">树木列表</block>
           <tr>
             <th style="display:none" id="t-tid">编号</th>
            <th style="display:none" id="t-device_name">线路名称</th>
-           <th style="display:none" id="t-star_tower" >起始杆塔</th>
-           <th style="display:none" id="t-end_tower">结束杆塔</th>
+           <th style="display:none" id="t-star_tower" >小号杆（塔周围时大小号杆相同）</th>
+           <th style="display:none" id="t-end_tower">大号杆（塔周围时大小号杆相同）</th>
            <th style="display:none" id="t-danger_num">隐患序号</th>
 
            <th style="display:none" id="t-county">县</th>
            <th style="display:none" id="t-town">镇</th>
            <th style="display:none" id="t-village">村委会</th>
-           <th style="display:none" id="t-owner">拥有者</th>
-           <th style="display:none" id="t-owner_phone">拥有者电话</th>
+           <th style="display:none" id="t-owner">土地持有人－联系人姓名</th>
+           <th style="display:none" id="t-owner_phone">土地持有人－联系人电话</th>
            <th style="display:none" id="t-accountability_department">运行单位</th>
            <th style="display:none" id="t-accountability_number">隐患单位序号</th>
            <th style="display:none" id="t-accountability_group">责任班组</th>                     
        
-            <th style="display:none" id="t-accountability_person">责任人</th>
+            <th style="display:none" id="t-accountability_person">巡视段责任人</th>
            <th style="display:none" id="t-site_condition">立地条件</th>
            <th style="display:none" id="t-tree_age">高杆植物种植时间</th>
-           <th style="display:none" id="t-tree_status">树木状态</th>
-           <th style="display:none" id="t-tree_type">树种</th>
-           <th style="display:none" id="t-tree_danger">是否有需要处理的树障</th>
-           <th style="display:none" id="t-tree_danger_num">树障的数量（棵/墩）</th>
-           <th style="display:none" id="t-tree_danger_num_unit">树障的单位（棵/墩）</th>
-           <th style="display:none" id="t-tree_danger_area">树障的数量（亩）</th>
-           <th style="display:none" id="t-tree_danger_area_unit">树障的单位（亩）</th>
-           <th style="display:none" id="t-tree_danger_height">树障的高度</th>
+           <th style="display:none" id="t-tree_status">树障存在的状态</th>
+           <th style="display:none" id="t-tree_type">树障种类</th>
+           <th style="display:none" id="t-tree_danger">保护区范围外(如超高树木、上山侧等)是否有需要处理的树障</th>
+           <th style="display:none" id="t-tree_danger_num">结合地形砍够保护区及保护区附近需处理的隐患树障数量（棵、墩数）</th>
+           <th style="display:none" id="t-tree_danger_num_unit">结合地形砍够保护区及保护区附近需处理的隐患树障数量单位（棵、墩）</th>
+           <th style="display:none" id="t-tree_danger_area">结合地形砍够保护区及保护区附近需处理的隐患树障数量(亩数)</th>
+           <th style="display:none" id="t-tree_danger_area_unit">结合地形砍够保护区及保护区附近需处理的隐患树障数量单位（亩）</th>
+           <th style="display:none" id="t-tree_danger_height">结合地形砍够保护区及保护区附近需处理的隐患树障树高（m）</th>
            
-           <th style="display:none" id="t-average_radius">平均胸径</th>
-           <th style="display:none" id="t-average_height">平均高度</th>
-           <th style="display:none" id="t-first_check_time">首次测量时间</th>
+           <th style="display:none" id="t-average_radius">结合地形砍够保护区及保护区附近需处理的隐患树木胸径范围(cm)</th>
+           <th style="display:none" id="t-average_height">树木平均高度(m)</th>
+           <th style="display:none" id="t-first_check_time">首次隐患调查、测量日期</th>
            <th style="display:none" id="t-first_upload_time">首次上报时间</th>           
            <!-- <th style="display:none" id="t-first_check_method">首次测量方式</th> -->
-           <th style="display:none" id="t-first_check_person">首次测量人</th>
+           <th style="display:none" id="t-first_check_person">首次调查人</th>
            <th style="display:none" id="t-processed">是否处理</th>
-           <th style="display:none" id="t-last_update_time">最近更新时间</th>
-           <th style="display:none" id="t-dead_line_time">截止时间</th>
+           <th style="display:none" id="t-last_update_time">更新时间（最新隐患调查、测量日期）</th>
+           <th style="display:none" id="t-dead_line_time">清障验收时间(先属地选填，报上来后输电所分片联系人确认)</th>
            <th style="display:none" id="t-datail_danger_degree">隐患等级</th>
            <th style="display:none" id="t-datail_final_danger">最终危险</th>
            <th style="display:none" id="t-datail_tree_type">危险树种</th>
@@ -264,41 +264,41 @@ a<extend name="Public:base"/><block name="title">树木列表</block>
           <li class="list-group-item">
            编号<input class="" type="checkbox" value="t-tid" name="showdata">
            线路名称<input class="" type="checkbox" value="t-device_name" name="showdata">
-           起始杆塔<input class="" type="checkbox" value="t-star_tower" name="showdata">
-           结束杆塔<input class="" type="checkbox" value="t-end_tower" name="showdata">
+           小号杆（塔周围时大小号杆相同）<input class="" type="checkbox" value="t-star_tower" name="showdata">
+           大号杆（塔周围时大小号杆相同）<input class="" type="checkbox" value="t-end_tower" name="showdata">
            隐患序号<input class="" type="checkbox" value="t-danger_num" name="showdata">
            县<input class="" type="checkbox" value="t-county" name="showdata">
            镇<input class="" type="checkbox" value="t-town" name="showdata">
            村委会 <input class="" type="checkbox" value="t-village" name="showdata">
-           拥有者<input class="" type="checkbox" value="t-owner" name="showdata">
-           拥有者电话<input class="" type="checkbox" value="t-owner_phone" name="showdata">
+           土地持有人－联系人姓名<input class="" type="checkbox" value="t-owner" name="showdata">
+           土地持有人－联系人电话<input class="" type="checkbox" value="t-owner_phone" name="showdata">
            运行单位 <input class="" type="checkbox" value="t-accountability_department" name="showdata">
            隐患单位序号 <input class="" type="checkbox" value="t-accountability_number" name="showdata">
            责任班组<input class="" type="checkbox" value="t-accountability_group" name="showdata">
-           责任人<input class="" type="checkbox" value="t-accountability_person" name="showdata">
+           巡视段责任人<input class="" type="checkbox" value="t-accountability_person" name="showdata">
            
           </li>
           <li class="list-group-item">
            立地条件 <input class="" type="checkbox" value="t-site_condition" name="showdata">
            高杆植物种植时间<input class="" type="checkbox" value="t-tree_age" name="showdata">
-           树木状态<input class="" type="checkbox" value="t-tree_status" name="showdata">
-           树种 <input class="" type="checkbox" value="t-tree_type" name="showdata">
-           是否有需要处理的树障 <input class="" type="checkbox" value="t-tree_danger" name="showdata">
-           树障的数量（棵/墩） <input class="" type="checkbox" value="t-tree_danger_num" name="showdata">
-           树障的单位（棵/墩） <input class="" type="checkbox" value="t-tree_danger_num_unit" name="showdata">
-           树障的数量（亩） <input class="" type="checkbox" value="t-tree_danger_area" name="showdata">
-           树障的单位（亩） <input class="" type="checkbox" value="t-tree_danger_area_unit" name="showdata">
-           树障的高度 <input class="" type="checkbox" value="t-tree_danger_height" name="showdata">           
-           平均胸径<input class="" type="checkbox" value="t-average_radius" name="showdata">
-           平均高度<input class="" type="checkbox" value="t-average_height" name="showdata">
-           首次测量时间<input class="" type="checkbox" value="t-first_check_time" name="showdata">
+           树障存在的状态<input class="" type="checkbox" value="t-tree_status" name="showdata">
+           树障种类 <input class="" type="checkbox" value="t-tree_type" name="showdata">
+           保护区范围外(如超高树木、上山侧等)是否有需要处理的树障 <input class="" type="checkbox" value="t-tree_danger" name="showdata">
+           结合地形砍够保护区及保护区附近需处理的隐患树障数量（棵、墩数） <input class="" type="checkbox" value="t-tree_danger_num" name="showdata">
+           结合地形砍够保护区及保护区附近需处理的隐患树障数量单位（棵、墩） <input class="" type="checkbox" value="t-tree_danger_num_unit" name="showdata">
+           结合地形砍够保护区及保护区附近需处理的隐患树障数量(亩数) <input class="" type="checkbox" value="t-tree_danger_area" name="showdata">
+           结合地形砍够保护区及保护区附近需处理的隐患树障数量单位（亩） <input class="" type="checkbox" value="t-tree_danger_area_unit" name="showdata">
+           结合地形砍够保护区及保护区附近需处理的隐患树障树高（m） <input class="" type="checkbox" value="t-tree_danger_height" name="showdata">           
+           结合地形砍够保护区及保护区附近需处理的隐患树木胸径范围(cm)<input class="" type="checkbox" value="t-average_radius" name="showdata">
+           树木平均高度(m)<input class="" type="checkbox" value="t-average_height" name="showdata">
+           首次隐患调查、测量日期<input class="" type="checkbox" value="t-first_check_time" name="showdata">
            首次上报时间<input class="" type="checkbox" value="t-first_upload_time" name="showdata">
            
            <!-- 首次测量方式<input class="" type="checkbox" value="t-first_check_method" name="showdata"> -->
-           首次测量人<input class="" type="checkbox" value="t-first_check_person" name="showdata">
+           首次调查人<input class="" type="checkbox" value="t-first_check_person" name="showdata">
            是否处理 <input class="" type="checkbox" value="t-processed" name="showdata">
-           最近更新时间<input class="" type="checkbox" value="t-last_update_time" name="showdata">
-           截止时间<input class="" type="checkbox" value="t-dead_line_time" name="showdata">
+           更新时间（最新隐患调查、测量日期）<input class="" type="checkbox" value="t-last_update_time" name="showdata">
+           清障验收时间(先属地选填，报上来后输电所分片联系人确认)<input class="" type="checkbox" value="t-dead_line_time" name="showdata">
           
           </li>
        
