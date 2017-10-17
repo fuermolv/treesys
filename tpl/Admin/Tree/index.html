@@ -103,12 +103,11 @@ a<extend name="Public:base"/><block name="title">树木列表</block>
            <th style="display:none" id="t-county">县</th>
            <th style="display:none" id="t-town">镇</th>
            <th style="display:none" id="t-village">村委会</th>
-           <th style="display:none" id="t-owner">土地持有人－联系人姓名</th>
-           <th style="display:none" id="t-owner_phone">土地持有人－联系人电话</th>
+           <th style="display:none" id="t-owner">种植物权属方－联系人姓名</th>
+           <th style="display:none" id="t-owner_phone">种植物权属方－联系人电话</th>
            <th style="display:none" id="t-accountability_department">运行单位</th>
            <th style="display:none" id="t-accountability_number">隐患单位序号</th>
            <th style="display:none" id="t-accountability_group">责任班组</th>                     
-       
             <th style="display:none" id="t-accountability_person">巡视段责任人</th>
            <th style="display:none" id="t-site_condition">立地条件</th>
            <th style="display:none" id="t-tree_age">高杆植物种植时间</th>
@@ -129,7 +128,7 @@ a<extend name="Public:base"/><block name="title">树木列表</block>
            <th style="display:none" id="t-first_check_person">首次调查人</th>
            <th style="display:none" id="t-processed">是否处理</th>
            <th style="display:none" id="t-last_update_time">更新时间（最新隐患调查、测量日期）</th>
-           <th style="display:none" id="t-dead_line_time">清障验收时间(先属地选填，报上来后输电所分片联系人确认)</th>
+           <th style="display:none" id="t-dead_line_time">截止时间</th>
            <th style="display:none" id="t-datail_danger_degree">隐患等级</th>
            <th style="display:none" id="t-datail_final_danger">最终危险</th>
            <th style="display:none" id="t-datail_tree_type">危险树种</th>
@@ -270,11 +269,12 @@ a<extend name="Public:base"/><block name="title">树木列表</block>
            县<input class="" type="checkbox" value="t-county" name="showdata">
            镇<input class="" type="checkbox" value="t-town" name="showdata">
            村委会 <input class="" type="checkbox" value="t-village" name="showdata">
-           土地持有人－联系人姓名<input class="" type="checkbox" value="t-owner" name="showdata">
-           土地持有人－联系人电话<input class="" type="checkbox" value="t-owner_phone" name="showdata">
+           种植物权属方－联系人姓名<input class="" type="checkbox" value="t-owner" name="showdata">
+           种植物权属方－联系人电话<input class="" type="checkbox" value="t-owner_phone" name="showdata">
            运行单位 <input class="" type="checkbox" value="t-accountability_department" name="showdata">
            隐患单位序号 <input class="" type="checkbox" value="t-accountability_number" name="showdata">
            责任班组<input class="" type="checkbox" value="t-accountability_group" name="showdata">
+           
            巡视段责任人<input class="" type="checkbox" value="t-accountability_person" name="showdata">
            
           </li>
@@ -298,7 +298,7 @@ a<extend name="Public:base"/><block name="title">树木列表</block>
            首次调查人<input class="" type="checkbox" value="t-first_check_person" name="showdata">
            是否处理 <input class="" type="checkbox" value="t-processed" name="showdata">
            更新时间（最新隐患调查、测量日期）<input class="" type="checkbox" value="t-last_update_time" name="showdata">
-           清障验收时间(先属地选填，报上来后输电所分片联系人确认)<input class="" type="checkbox" value="t-dead_line_time" name="showdata">
+           截止时间<input class="" type="checkbox" value="t-dead_line_time" name="showdata">
           
           </li>
        

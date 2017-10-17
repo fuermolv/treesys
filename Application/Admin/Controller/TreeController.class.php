@@ -158,7 +158,7 @@ class TreeController extends AdminBaseController {
             $base_data['village']=$ar['data_village'];
             $base_data['owner']=$ar['owner'];
             $base_data['owner_phone']=$ar['owner_phone'];
-            $base_data['site_condition']=$ar['site_condition'];
+            $base_data['accountability_person']=$ar['accountability_person'];
             $base_data['tree_age']=$ar['tree_age'];
             $base_data['tree_status']=$ar['tree_status'];
             $base_data['tree_type']=$ar['tree_type'];
