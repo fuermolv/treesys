@@ -62,16 +62,16 @@
         <input  type="hidden" name="data_town">
         <input type="hidden" name="data_village">
         <tr>
-            <td>起始杆塔</td><td><input type="text" name="edit_star_tower" id="edit_star_tower" value={$editTidData['star_tower']}></td>
+            <td>小号杆（塔周围时大小号杆相同）</td><td><input type="text" name="edit_star_tower" id="edit_star_tower" value={$editTidData['star_tower']}></td>
           </tr>
           <tr>
-              <td>结束杆塔</td><td><input type="text" name="edit_end_tower" id="edit_end_tower" value={$editTidData['end_tower']}></td>
+              <td>大号杆（塔周围时大小号杆相同）</td><td><input type="text" name="edit_end_tower" id="edit_end_tower" value={$editTidData['end_tower']}></td>
             </tr>
           <tr>
               <td>隐患编号</td><td><input type="text" name="edit_danger_num" id="edit_danger_num" value={$editTidData['danger_num']}></td>
           </tr>
           <tr>
-              <td>责任部门</td><td><input type="text" name="edit_accountability_department" id="edit_accountability_department" value={$editTidData['accountability_department']}></td>
+              <td>运行单位</td><td><input type="text" name="edit_accountability_department" id="edit_accountability_department" value={$editTidData['accountability_department']}></td>
           </tr>
           <tr>
               <td>责任班组</td><td>
@@ -98,37 +98,63 @@
               <td>隐患单位序号</td><td><input type="text" name="edit_accountability_number" id="edit_accountability_number" value={$editTidData['accountability_number']}></td>
           </tr>
           <tr>
-              <td>所有者</td><td><input type="text" name="edit_owner" id="edit_owner" value={$editTidData['owner']}></td>
+              <td>种植物权属方－联系人姓名</td><td><input type="text" name="edit_owner" id="edit_owner" value={$editTidData['owner']}></td>
           </tr>
           <tr>
-              <td>所有者电话</td><td><input type="text" name="edit_owner_phone" id="edit_owner_phone" value={$editTidData['owner_phone']}></td>
+              <td>种植物权属方－联系人电话</td><td><input type="text" name="edit_owner_phone" id="edit_owner_phone" value={$editTidData['owner_phone']}></td>
           </tr>
           <tr>
               <td>立地条件</td><td><input type="text" name="edit_site_condition" id="edit_site_condition" value={$editTidData['site_condition']}></td>
           </tr>
           <tr>
-              <td>树龄</td><td><input type="text" name="edit_tree_age" id="edit_tree_age" value={$editTidData['tree_age']}></td>
+              <td>高杆植物种植时间</td><td><input type="text" name="edit_tree_age" id="edit_tree_age" value={$editTidData['tree_age']}></td>
           </tr>
           <tr>
-              <td>树木状态</td><td><input type="text" name="edit_tree_status" id="edit_tree_status" value={$editTidData['tree_status']}></td>
+              <td>树障存在的状态</td><td><input type="text" name="edit_tree_status" id="edit_tree_status" value={$editTidData['tree_status']}></td>
           </tr>
           <tr>
-              <td>树种</td><td><input type="text" name="edit_tree_type" id="edit_tree_type" value={$editTidData['tree_type']}></td>
+              <td>树障种类</td><td><input type="text" name="edit_tree_type" id="edit_tree_type" value={$editTidData['tree_type']}></td>
           </tr>
           <tr>
-              <td>平均胸径</td><td><input type="text" name="edit_average_radius" id="edit_average_radius" value={$editTidData['average_radius']}></td>
+            <td>保护区范围外(如超高树木、上山侧等)是否有需要处理的树障</td><td><select style="width:30%"  id="edit_tree_danger" name="edit_tree_danger" >
+                <option value ={$editTidData['tree_danger']} checked>
+                    <if condition="$editTidData['tree_danger'] eq '1'">是
+                    <else /> 否
+                    </if></option>                    
+                <option value ="0">否</option>     
+                <option value ="1" >是</option>     
+                   </select></td>
+        </tr>
+        <tr>
+            <td>结合地形砍够保护区及保护区附近需处理的隐患树障数量（棵、墩数）</td><td><input type="text" name="edit_tree_type" id="edit_tree_danger_num" value={$editTidData['tree_danger_num']}></td>
+        </tr>
+        <tr>
+            <td>结合地形砍够保护区及保护区附近需处理的隐患树障数量单位（棵、墩）</td><td><input type="text" name="edit_tree_type" id="edit_tree_danger_num_unit" value={$editTidData['tree_danger_num_unit']}></td>
+        </tr>
+        <tr>
+            <td>结合地形砍够保护区及保护区附近需处理的隐患树障数量(亩数)</td><td><input type="text" name="edit_tree_type" id="edit_tree_danger_area" value={$editTidData['tree_danger_area']}></td>
+        </tr>
+        <tr>
+            <td>结合地形砍够保护区及保护区附近需处理的隐患树障数量单位（亩）</td><td><input type="text" name="edit_tree_type" id="edit_tree_danger_area_unit" value={$editTidData['tree_danger_area_unit']}></td>
+        </tr>
+        <tr>
+            <td>结合地形砍够保护区及保护区附近需处理的隐患树障树高（m）</td><td><input type="text" name="edit_tree_type" id="edit_tree_danger_height" value={$editTidData['tree_danger_height']}></td>
+        </tr>
+
+          <tr>
+              <td>结合地形砍够保护区及保护区附近需处理的隐患树木胸径范围(cm)</td><td><input type="text" name="edit_average_radius" id="edit_average_radius" value={$editTidData['average_radius']}></td>
           </tr>
           <tr>
-              <td>平均高度</td><td><input type="text" name="edit_average_height" id="edit_average_height" value={$editTidData['average_heightr']}></td>
+              <td>树木平均高度(m)</td><td><input type="text" name="edit_average_height" id="edit_average_height" value={$editTidData['average_heightr']}></td>
           </tr>
           <tr>
-              <td>截止时间</td><td><input type="text" name="edit_dead_line_time" id="edit_dead_line_time" value={$editTidData['dead_line_time']}></td>
+              <td>截止时间</td><td><input type="date" name="edit_dead_line_time" id="edit_dead_line_time" value={$editTidData['dead_line_time']|date='Y-m-d',###}></td>
           </tr>
-          <tr>
+          <!-- <tr>
               <td>第一次测量方式</td><td><input type="text" name="edit_first_check_method" id="edit_first_check_method" value={$editTidData['first_check_method']}></td>
-          </tr>
+          </tr> -->
           <tr>
-                  <td>第一次测量人</td><td><input type="text" name="edit_first_check_person" id="edit_first_check_person" value={$editTidData['first_check_person']}></td>
+                  <td>首次调查人</td><td><input type="text" name="edit_first_check_person" id="edit_first_check_person" value={$editTidData['first_check_person']}></td>
               </tr>
           <tr>
               <td>是否处理</td><td>
@@ -177,10 +203,16 @@
                 tree_age:document.getElementById("edit_tree_age").value,
                 tree_status:document.getElementById("edit_tree_status").value,
                 tree_type:document.getElementById("edit_tree_type").value,
+                tree_danger:document.getElementById("edit_tree_danger").value,
+                tree_danger_num:document.getElementById("edit_tree_danger_num").value,
+                tree_danger_num_unit:document.getElementById("edit_tree_danger_num_unit").value,
+                tree_danger_area:document.getElementById("edit_tree_danger_area").value,
+                tree_danger_area_unit:document.getElementById("edit_tree_danger_area_unit").value,
+                tree_danger_height:document.getElementById("edit_tree_danger_height").value,
                 average_radius:document.getElementById("edit_average_radius").value,
                 average_height:document.getElementById("edit_average_height").value,
                 dead_line_time:document.getElementById("edit_dead_line_time").value,
-                first_check_method:document.getElementById("edit_first_check_method").value,
+                // first_check_method:document.getElementById("edit_first_check_method").value,
                 first_check_person:document.getElementById("edit_first_check_person").value,
                 processed:document.getElementById("edit_processed").value
                 },
