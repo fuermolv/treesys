@@ -1,4 +1,4 @@
-a<extend name="Public:base"/><block name="title">树木列表</block>
+<extend name="Public:base"/><block name="title">树木列表</block>
 <block name="content">
 <div class="col-xs-12">
     <div class="tabbable">
@@ -7,8 +7,12 @@ a<extend name="Public:base"/><block name="title">树木列表</block>
        <ul class="nav nav-tabs padding-12 tab-color-blue background-blue" id="myTab">
         <li class="active">
           <a href="javascript:;" data-toggle="tab">树片列表</a></li>
-        <li>
-          <a href="/treesys/index.php/Admin/Tree/add/group_id/{$group_id}"  >增加树片</a></li>
+
+        <li>  <a href="javascript:;"   class="btn disabled" data-toggle="tab">树片详情</a></li>
+        <li>  <a href="javascript:;"   class="btn disabled" data-toggle="tab">巡检记录</a></li>
+        <li>  <a href="javascript:;"   class="btn disabled"     data-toggle="tab">处理记录</a></li>
+          <!--   <li>
+          <a href="/treesys/index.php/Admin/Tree/add/group_id/{$group_id}"  >增加树片</a></li>  -->
       </ul>
         <tr>
           <td>
@@ -71,6 +75,9 @@ a<extend name="Public:base"/><block name="title">树木列表</block>
            
 
             <input style="width:6%" class="btn btn-sm btn-success" type="button" onclick="dataFilter(this)" value="数据筛选">
+             <a  style="width:6%" class="btn btn-sm btn-success" href="/treesys/index.php/Admin/Tree/add/group_id/{$group_id}"  >增加树片</a>
+
+
             </form>
           </td>
         </tr>
@@ -225,12 +232,15 @@ a<extend name="Public:base"/><block name="title">树木列表</block>
         
 
               <td>
-              <a href="javascript:;"  tid="{$v['tid']}"  onclick="tree_deatil(this)" >巡查记录</a>||
+               
+              <a href="/treesys/index.php/Admin/Tree/base/group_id/{$group_id}/tid/{$v['tid']}/line_id/{$v['line_id']}"  class="btn btn-info btn-sm" >查看详情</a>
 
-              <a href="javascript:;"  tid="{$v['tid']}"  onclick="tree_process(this)" >处理记录</a>||
-              <a href="javascript:;"   tid="{$v['tid']}" line_id="{$v['line_id']}" onclick="edit_tree(this)">修改</a>||
+               <!-- <a href="javascript:;"  tid="{$v['tid']}"  onclick="tree_deatil(this)" >巡查记录</a>||
 
-              <a href="javascript:;"  tid="{$v['tid']}" onclick="delete_tree(this)">删除</a>
+              <a href="javascript:;"  tid="{$v['tid']}"  onclick="tree_process(this)" >处理记录</a>|| -->
+             <!--  <a href="javascript:;"   tid="{$v['tid']}" line_id="{$v['line_id']}" onclick="edit_tree(this)">修改</a>|| -->
+
+            <!--   <a href="javascript:;"  tid="{$v['tid']}" onclick="delete_tree(this)">删除</a>   -->
               </td>
             </tr>
           </foreach>

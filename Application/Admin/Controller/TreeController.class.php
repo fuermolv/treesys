@@ -99,7 +99,36 @@ class TreeController extends AdminBaseController {
         $this->assign('pagehtml', $data['page']);
         $this->display();
     }
-    public function delete() {
+    
+    public function base() 
+    {
+
+        $tree_id = I('get.tid');
+        $group_id = I('get.group_id');
+        //确定班组线路
+     
+     
+       
+        $model = new TreeBaseModel();
+      
+        $map['datail_uptodate'] = 1;
+        $map['tid']= $tree_id;
+        $data=$model->where($map)->alias('base')->join('__DEVICE_LINE__ dl ON base.line_id=dl.did', 'LEFT')->join('treesys_tree_detail detail ON base.tid=detail.detail_tid ', 'LEFT')->select();
+        
+       
+        
+   
+        $this->assign('group_id', $group_id);
+        $this->assign('tid', $tree_id);
+       
+       
+        $this->assign('data', $data);
+       
+        $this->display();
+    }
+
+    public function delete() 
+    {
         $tid = I('get.tid');
         $map['tid'] = $tid;
         M("tree_base")->where(array($map))->delete();

@@ -19,6 +19,7 @@ class TreeProcessController extends AdminBaseController
     public function index() 
     {
         $tree_id = I('get.tid');
+        $group_id = I('get.group_id');
        
         $map['record_tid'] = $tree_id;
         $orderBy = 'record_id desc';
@@ -26,9 +27,9 @@ class TreeProcessController extends AdminBaseController
 
        $this->assign('data', $data);
        $this->assign('tree_id',$tree_id);
+       $this->assign('group_id',$group_id);
 
-       $content=$this->fetch();
-       $this->ajaxReturn($content);
+       $this->display();
    }
    public function delete() 
    {

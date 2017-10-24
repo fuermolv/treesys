@@ -17,17 +17,22 @@ class TreeDetailController extends AdminBaseController
       parent::_initialize();
     }
     public function index() {
+
         $tree_id = I('get.tid');
+        $group_id = I('get.group_id');
         $model = new TreeDetailModel();
         $map['detail_tid'] = $tree_id;
         $orderBy = 'detail_id desc';
+    
         $data=$model->where($map)->order($orderBy)->select();
         
        $this->assign('data', $data);
+       $this->assign('group_id',$group_id);
        $this->assign('tree_id',$tree_id);
+       $this->display();
 
-       $content=$this->fetch();
-       $this->ajaxReturn($content);
+      /* $content=$this->fetch();
+       $this->ajaxReturn($content);*/
    }
    public function delete() 
    {
