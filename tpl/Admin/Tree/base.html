@@ -20,10 +20,10 @@
             
            
 
-               <a href=""   tid="{$tid}" class="btn btn-sm disabled"  >树片信息</a>
-               <input style="width:6%" class="btn btn-sm btn-success" type="button"   tid="{$tid}" line_id="{line_id}" onclick="edit_tree(this)" value="修改基本信息">  
-               <input style="width:6%" class="btn btn-sm btn-success" type="button" onclick="" value="树片归档">
-               <input style="width:6%" class="btn btn-sm btn-danger" type="button" onclick="" value="删除树片">
+               <a href=""  id="list_button" tid="{$tid}" class="btn btn-sm disabled"  >树片信息</a>
+               <input style="width:6%" id="edit_button" class="btn btn-sm btn-success" type="button"   tid="{$tid}" line_id="{line_id}" onclick="edit_tree(this)" value="修改基本信息">  
+              <!--  <input style="width:6%" class="btn btn-sm btn-success" type="button" onclick="" value="树片归档"> -->
+               <input style="width:6%" class="btn btn-sm btn-danger" type="button" tid="{$tid}"  onclick="delete_tree(this)" onclick="" value="删除树片">
            
 
 
@@ -187,6 +187,9 @@
  
  -->
 
+<div id="tree-base-content">
+	
+
 
 
  <table class="table table-striped table-bordered table-hover table-condensed" >
@@ -326,6 +329,7 @@
                     </tr>
                 </foreach>        
     </table>
+    </div>
 
       
     </div>
@@ -338,10 +342,66 @@
 
 
 <block name="js">
-    <script>
+   <script>
+   function delete_tree(obj)
+     {
+       if(confirm('确定删除？'))
+       {
+           var tid=$(obj).attr('tid');
+          
+           $.ajax({
+           url:'/treesys/index.php/Admin/Tree/delete',
+           type:'GET', 
+           async:true,    
+           data:{
+              tid:tid
+           },
+            success:function(msg)
+            {
+             
+            if(msg.status==0)
+            {
+               alert(msg.info);
+            }else
+            {
+               alert('删除成功');
+               location.reload();
+            }
+          
+           },
+          
 
+       })
+          
+       }
+     }
+      function edit_tree(obj) {
    
+      $.ajax({
+      type:"GET",
+      url:"/treesys/index.php/Admin/Tree/edit",
+      data:{
+      
+        edit_line_id:$(obj).attr('line_id'),
+        group_id:{$group_id},
+        edit_tid:$(obj).attr('tid'),
+        edit_index:1
+          },
+      success:function(msg){
+          $("#tree-base-content").html(msg);
+          $("#list_button").removeClass("disabled");
+          $("#list_button").addClass("btn-success");
+          $("#edit_button").removeClass("btn-success");
+          $("#edit_button").addClass("disabled");
 
+        },
+      error:function(XMLHttpRequest, textStatus, thrownError)
+      {
+
+      }
+      });
+  
+    }
   </script>
    <script type="text/javascript">
     $(document).ready(function()

@@ -18,12 +18,26 @@
           <td>
             <form class="form-inline" action="" id="my_form">
             
-            <select style="width:8%" name="line_id" id="line_id" onchange="submitForm();">
+           <!--   <select style="width:8%" name="line_id" id="line_id" onblur="submitForm();">
             <option value ="">全部线路</option>
             <foreach name="querydata['device_lines']" item="v">
              <option value ="{$v['did']}">{$v['voltage_degree']}kV{$v['device_name']}</option>
             </foreach>
-            </select>
+            </select>   -->
+
+              <input  list="datalist" type="text" style="width: 8%;" name="line_id" id="line_id" onkeyup="searchLine()" onblur="submitForm()"/> 
+             <datalist id="datalist">
+             <foreach name="querydata['device_lines']" item="v">
+             <option value ="{$v['device_name']}"></option>
+             </foreach>
+           
+             </datalist> 
+
+            
+ 
+
+      
+
 
             <select style="width:8%" name="voltage_degree" id="voltage_degree" onchange="submitForm();">
             <option value ="" >电压等级</option>
@@ -376,60 +390,12 @@
       </div>
     </div>
   </div> 
-  <div class="modal fade" id="tree-deatil-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
-   data-backdrop="static">
-    <div class="modal-dialog">
-      <div class="modal-content" id="tree-deatil-content" style="width:1800px;height:800px;">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 class="modal-title" >巡查记录</h4></div>
-          <div class="modal-body" >
-          <div id="tree-deatil-record" >
-        
-            
-        </div>  
-        </div>
-      </div>
-    </div>
-  </div> 
 
 
-    <div class="modal fade" id="tree-process-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
-   data-backdrop="static">
-    <div class="modal-dialog">
-      <div class="modal-content" id="tree-process-content" style="width:1600px;height:900px;">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 class="modal-title" >处理记录</h4></div>
-          <div class="modal-body" >
-          <div id="tree-process-record" >  
-             
-        </div>  
-        </div>
-      </div>
-    </div>
-  </div> 
 
 
-  <div class="modal fade" id="tree-edit-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
 
-    <div class="modal-dialog">
-      <div class="modal-content" id="tree-edit-content" style="width:1200px;height:1400px;">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 class="modal-title" id="myModalLabel">修改树片</h4></div>
-          <div class="modal-body">
-            <div id="tree-edit-record" >
-              
-            
-             
-    
-                
-            </div>  
-          </div>
-        </div>
-      </div>
-    </div> 
+
 </block>
 
 
@@ -503,120 +469,11 @@
       var form = document.getElementById("my_form");//获取form表单对象
       form.submit();//form表单提交
      }
-     function delete_tree(obj)
-     {
-       if(confirm('确定删除？'))
-       {
-           var tid=$(obj).attr('tid');
-          
-           $.ajax({
-           url:'/treesys/index.php/Admin/Tree/delete',
-           type:'GET', 
-           async:true,    
-           data:{
-              tid:tid
-           },
-            success:function(msg)
-            {
-             
-            if(msg.status==0)
-            {
-               alert(msg.info);
-            }else
-            {
-                  submitForm();
-            }
-          
-           },
-          
-
-       })
-          
-       }
-     }
-     function tree_deatil(obj)
-     {
-
-
-      var tid=$(obj).attr('tid');
-      $.ajax({
-      type:"GET",
-      url:"/treesys/index.php/Admin/TreeDetail/index",
-      data:{
-           tid:tid
-          },
-      success:function(msg){
-     //   alert(msg);
-        $("#tree-deatil-record").html(msg);
-      },
-      error:function(XMLHttpRequest, textStatus, thrownError)
-      {
-
-      }
-      })
-      document.getElementById("tree-deatil-content").style.marginLeft="-50%";
-      $('#tree-deatil-modal').modal('show');
-     
-     }
-
-     function tree_process(obj)
-     {
-
-
-      var tid=$(obj).attr('tid');
-      $.ajax({
-      type:"GET",
-      url:"/treesys/index.php/Admin/TreeProcess/index",
-      data:{
-           tid:tid
-          },
-      success:function(msg){
     
-        $("#tree-process-record").html(msg);
-      },
-      error:function(XMLHttpRequest, textStatus, thrownError)
-      {
+    
 
-      }
-      })
-       
-      document.getElementById("tree-process-content").style.marginLeft="-80%";
-      $('#tree-process-modal').modal('show');
-
-
-     
-     } 
-     
-     function edit_tree(obj) {
-    //   var edit_voltage_degree=sessionStorage.getItem("edit_voltage_degree");
-    //   var edit_town=sessionStorage.getItem("edit_town");
-    //   var edit_county=sessionStorage.getItem("edit_county");
-    //   var edit_voltage=sessionStorage.getItem("edit_voltage");
-      $.ajax({
-      type:"GET",
-      url:"/treesys/index.php/Admin/Tree/edit",
-      data:{
-        // edit_voltage_degree:document.getElementById("voltage_degree").value,
-        // //document.getElementById("voltage_degree").value,
-        // edit_town:document.getElementById("town").value,
-        // edit_county:document.getElementById("county").value,
-        // edit_village:document.getElementById("village").value,
-        edit_line_id:$(obj).attr('line_id'),
-        group_id:{$group_id},
-        edit_tid:$(obj).attr('tid'),
-        edit_index:1
-          },
-      success:function(msg){
-          $("#tree-edit-record").html(msg);
-        },
-      error:function(XMLHttpRequest, textStatus, thrownError)
-      {
-
-      }
-      });
-      document.getElementById("tree-edit-content").style.marginLeft="-50%";
-      $('#tree-edit-modal').modal('show');
-    }
+    
+    
      </script>
 
     

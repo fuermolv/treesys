@@ -43,8 +43,10 @@ class TreeController extends AdminBaseController {
             $querydata['villages'] = M("areas")->where($map)->select();
         }
         $map = null;
-        if (!empty($line_id)) {
-            $map['line_id'] = $line_id;
+        if (!empty($line_id)) 
+        {
+            $map['device_name'] = $line_id;
+
         } else {
             $lines = array(-1);
             foreach ($device_lines as $d) {
@@ -92,7 +94,7 @@ class TreeController extends AdminBaseController {
         $data = array('data' => $list, 'page' => $page->show());
        
         
-        /* var_dump($data['data']);*/
+     /*    var_dump( $model->getLastSql());*/
         $this->assign('group_id', $group_id);
         $this->assign('querydata', $querydata);
         $this->assign('data', $data['data']);
