@@ -25,7 +25,7 @@
             </foreach>
             </select>   -->
 
-              <input  list="datalist" type="text" style="width: 8%;" name="line_id" id="line_id" onkeyup="searchLine()" onblur="submitForm()"/> 
+              <input  list="datalist" placeholder="线路名称" type="text" style="width: 8%;" name="line_id" id="line_id" onkeyup="searchLine()" onblur="submitForm()"/> 
              <datalist id="datalist">
              <foreach name="querydata['device_lines']" item="v">
              <option value ="{$v['device_name']}"></option>
