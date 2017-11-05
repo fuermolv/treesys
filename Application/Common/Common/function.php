@@ -1318,17 +1318,26 @@ function import_excel($file){
     $highestRow = $sheet->getHighestRow();     
     // 取得总列数      
     $highestColumn = $sheet->getHighestColumn(); 
+    $highestColumn ='Z';
+
     //循环读取excel文件,读取一条,插入一条
     $data=array();
     //从第一行开始读取数据
     for($j=1;$j<=$highestRow;$j++){
         //从A列读取数据
+
         for($k='A';$k<=$highestColumn;$k++){
             // 读取单元格
-            $data[$j][]=$objPHPExcel->getActiveSheet()->getCell("$k$j")->getValue();
+            $cell=$objPHPExcel->getActiveSheet()->getCell("$k$j")->getValue();
+            if($cell instanceof PHPExcel_RichText)
+            {
+            	 $cell = $cell->__toString();
+            }
+            $data[$j][]=$cell;
         } 
     }  
     return $data;
+    
 }
 
 /**
