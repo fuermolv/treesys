@@ -1,0 +1,85 @@
+<!-- 
+
+
+ <ul class="nav nav-tabs padding-12 tab-color-blue background-blue" id="myTab">
+        <li >
+         <a href="javascript:;"  tid="{$tree_id}" onclick="process_list(this)" >列表</a>
+         </li>
+        <li >
+        <a href="javascript:;"  tid="{$tree_id}" onclick="add(this)" >添加新记录</a>
+        </li>
+        
+         <li >
+        <a href="javascript:;"   tid="{$tree_id}" onclick="file(this)">处理文件</a>
+        </li>
+         <li class="active" >
+        <a href="javascript:;"   tid="{$tree_id}" onclick="uploadfile(this)">上传处理文件</a>
+        </li>
+
+ </ul> -->
+ 
+<div>
+
+<div class="box">
+     
+      <form id="upload-file-form" action="" method="post">
+        <webuploader  url="/treesys/index.php/Admin/TreeProcess/ajax_upload" id="upload-file" name="file" />
+        本次上传描述：
+        <!-- <input   style="width:300px" type="text" name="extend" value=""> -->
+        <textarea style="width:300px ;height:100px;"  id="upload-extend" name="extend"></textarea> 
+         <input  type="hidden" name="tree_id" id="upload-tree-id"  value="{$tree_id}">
+        <div class="text-center">
+        <input style="width:6%" class="btn btn-sm btn-success"   tid="{$tree_id}" type="button"  onclick="upload_submit(this)" value="保存">
+        </div>
+        </form>
+    
+</div>
+ <div class="text-center" style="color:red ">
+提示：先点击上传文件，再点击保存，否则会找不到文件
+</div>
+
+
+
+</div>
+
+ <script type="text/javascript">
+
+
+
+
+function upload_submit(obj)
+{        
+
+ //   var temp=$("#upload-extend").val();
+  //  alert(temp);
+	$.ajax({
+          type:"POST",
+          url:"/treesys/index.php/Admin/TreeDetail/uploadfile",
+          data:$('#upload-file-form').serialize(),
+          	  
+             
+
+            success:function(msg)
+            {
+                
+            },
+           error:function(XMLHttpRequest, textStatus, thrownError)
+           {
+
+           }
+         
+
+       })
+
+
+
+
+    file(obj);
+
+}
+
+
+
+
+
+ </script>

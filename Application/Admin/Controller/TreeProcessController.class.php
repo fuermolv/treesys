@@ -102,6 +102,7 @@ class TreeProcessController extends AdminBaseController
        $tree_id = I('get.tid');
        
         $map['file_tid'] = $tree_id;
+        $map['file_type']='process';
         $orderBy = 'file_id desc';
         $data=M("tree_file")->where($map)->order($orderBy)->select();
 
@@ -121,6 +122,7 @@ class TreeProcessController extends AdminBaseController
 
         $user_id=$_SESSION['user']['id'];
         $map['id']=$user_id;
+       
         $user=M("users")->where($map)->select();
 
 
@@ -141,6 +143,7 @@ class TreeProcessController extends AdminBaseController
           $data['file_update_time']=NOW_TIME;
           $data['file_path']=$file;
           $data['file_name']=$name;
+          $data['file_type']='process';
           M("tree_file")->data($data)->add();
 
 
@@ -164,7 +167,7 @@ class TreeProcessController extends AdminBaseController
     public function ajax_upload(){
         
         // 根据自己的业务调整上传路径、允许的格式、文件大小
-        ajax_upload('/Public/Upload/file/');
+        ajax_upload('/Public/Upload/file/process');
     }
     /**
      * webuploader 上传demo

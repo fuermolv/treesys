@@ -129,6 +129,90 @@ class TreeDetailController extends AdminBaseController
      
       
    }
+      public function delete_file()
+   {
+        $file_id = I('get.file_id');
+        $map['file_id']=$file_id;
+        M("tree_file")->where(array($map))->delete();
+   }
+
+   public function file()
+   {
+
+ 
+       $tree_id = I('get.tid');
+       
+        $map['file_tid'] = $tree_id;
+        $map['file_type']='check';
+        $orderBy = 'file_id desc';
+        $data=M("tree_file")->where($map)->order($orderBy)->select();
+
+       $this->assign('data', $data);
+       $this->assign('tree_id',$tree_id);
+
+       $content=$this->fetch();
+       $this->ajaxReturn($content);
+     
+      
+   }
+   public function uploadfile()
+   {
+
+        if(IS_POST)
+      {
+
+        $user_id=$_SESSION['user']['id'];
+        $map['id']=$user_id;
+      
+        $user=M("users")->where($map)->select();
+
+
+      $tree_id = I('post.tree_id');
+      $filelist = I('post.file');
+      $extend = I('post.extend');
+      foreach ($filelist as $file) 
+      {
+          $data=null;
+
+          $path=$file;
+          $temp=explode("/",$path);
+          $name=$temp[count($temp)-1];
+
+          $data['file_tid']=$tree_id;
+          $data['fiel_extend']=$extend;
+          $data['file_update_person']=$user[0]['true_name'];
+          $data['file_update_time']=NOW_TIME;
+          $data['file_path']=$file;
+          $data['file_name']=$name;
+          $data['file_type']='check';
+          M("tree_file")->data($data)->add();
+
+
+
+
+      }
+
+      }
+      else
+      {
+        $tree_id = I('get.tid');
+        $this->assign('tree_id',$tree_id);
+        $content=$this->fetch();
+        $this->ajaxReturn($content);
+      }
+     
+      
+   }
+   
+
+    public function ajax_upload(){
+        
+        // 根据自己的业务调整上传路径、允许的格式、文件大小
+        ajax_upload('/Public/Upload/file/check');
+    }
+    /**
+     * webuploader 上传demo
+     */
 
     
 }
