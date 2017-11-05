@@ -98,17 +98,61 @@ class ReadDataController extends HomeBaseController
          {
               $path=$dir . "/" . $file;
               $datalist=import_excel($path);
-             
+              
               foreach ($datalist as $data)
               {
 
                    //有部分数据需要处理 如时间
                    //剩下字段你自己添加
                    $basedata['accountability_department']=$data[0];
-                   $tid=M("tree_base")->data($basedata)->add();
-
-                   //以下是detail表
-                   $detaildata['detail_tid']=$tid;
+                   $base_data['accountability_group']=$data[2];
+                   $base_data['accountability_person']=$data[3];
+                   $base_data['county']=$data[4];
+                   $base_data['town']=$data[5];
+                   $base_data['voltage_degree']=$data[8];
+                  //  line_name excel里面是中文，存储在base表中的是数字
+                  $base_data['star_tower']=$data[10];
+                  $base_data['end_tower']=$data[11];
+                  $base_data['danger_num']=$data[12];
+                  $base_data['first_check_person']=$data[13];
+                  // $base_data['first_check_time']=strtotime($data[14]);
+                  // $base_data['first_upload_time']=strtotime($data[15]);            
+                  $base_data['tree_status']=$data[16];
+                  $base_data['tree_type']=$data[17];
+                  // $base_data['tree_danger']=$data[18];
+                  $base_data['tree_danger_num']=(int)$data[19];
+                  $base_data['tree_danger_num_unit']=$data[20];
+                  $base_data['tree_danger_area']=(double)$data[21];
+                  $base_data['tree_danger_area_unit']=$data[22];
+                  $base_data['tree_danger_height']=(double)$data[23];
+                  $base_data['average_radius']=(double)$data[24];
+                  $base_data['average_height']=(double)$data[25];
+                  $base_data['last_update_time']=strtotime($data[26]);
+                  $base_data['last_update_person']=$data[27];
+                  var_dump($data);
+                  $tid=M("tree_base")->data($basedata)->add();
+                  //以下是detail表
+                  $detaildata['detail_tid']=$tid;
+                  $detaildata['datail_check_time']=strtotime($data[28]);
+                  $detail_data['datail_danger_degree']=(int)$data[29];
+                  $detail_data['datail_check_change_conclusion']=$data[30];
+                  $detail_data['datail_check_process_conclusion']=$data[31];
+                  $detail_data['datail_check_posistion_conclusion']=$data[33];
+                  $detail_data['datail_tree_type']=$data[34];
+                  $detail_data['datail_tree_height']=(double)$data[35];
+                  $detail_data['datail_tree_num']=(int)$data[36];
+                  $detail_data['datail_tree_num_unit']=$data[37];
+                  $detail_data['datail_tree_area']=(double)$data[38];
+                  $detail_data['datail_tree_area_unit']=$data[39];
+                  $detail_data['datail_tree_horizontal']=$data[40];
+                  $detail_data['datail_tree_vertical']=$data[41];
+                  $detail_data['datail_tree_grand_height']=(double)$data[42];
+                  // $detail_data['datail_tree_over']=$data[43];
+                  // $detail_data['datail_final_danger']=$data[44];
+                  $detail_data['detail_check_method']=$data[45];                  
+                  $detail_data['detail_temperature']=(int)$data[46];
+                  $detail_data['detail_load']=(int)$data[47];
+                  // $detail_data['detail_retain']=$data[48];
                    M("tree_detail")->data($detaildata)->add();
                    
                    
@@ -129,8 +173,10 @@ class ReadDataController extends HomeBaseController
 
         
       $name=iconv("utf-8","GBK",'./TreeRecord/test/test.xlsx'); 
-      $data=import_excel($name);
-      var_dump($data);
+      $datalist=import_excel($name);
+      foreach ($datalist as $data)
+      {var_dump($data);}
+      
    }
 
 

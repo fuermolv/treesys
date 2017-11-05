@@ -180,6 +180,8 @@ class TreeController extends AdminBaseController {
             $base_data['star_tower']=$ar['star_tower'];
             $base_data['end_tower']=$ar['end_tower'];
             $base_data['danger_num']=$ar['danger_num'];
+            $base_data['first_check_person']=$ar['first_check_person'];
+            
             $base_data['accountability_department']=$ar['accountability_department'];
             $base_data['accountability_group']=$ar['accountability_group'];
             $base_data['accountability_person']=$user[0]['true_name'];
