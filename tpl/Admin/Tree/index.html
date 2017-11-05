@@ -269,7 +269,7 @@
    <div class="modal fade" id="data-filter" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
    data-backdrop="static">
     <div class="modal-dialog">
-      <div class="modal-content" id="data-filter-content" style="width:1200px;height:800px;">
+      <div class="modal-content" id="data-filter-content" style="width:1200px;height:1200px;">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
           <h4 class="modal-title" id="myModalLabel">数据筛选</h4></div>
@@ -281,7 +281,7 @@
               </p>   
                 
           <ul class="list-group" id="basedata" >
-          <li class="list-group-item " >隐患单位  
+          <li class="list-group-item " style="font-weight:bold;">隐患单位  
 
           </li>
           <li class="list-group-item">
@@ -290,14 +290,14 @@
            责任班组<input class="" type="checkbox" value="t-accountability_group" name="showdata"> 
            巡视段责任人<input class="" type="checkbox" value="t-accountability_person" name="showdata">
           </li>
-          <li class="list-group-item " >隐患所属地点  
+          <li class="list-group-item " style="font-weight:bold;">隐患所属地点  
           </li>
           <li class="list-group-item">
               县<input class="" type="checkbox" value="t-county" name="showdata">
               镇<input class="" type="checkbox" value="t-town" name="showdata">
               村委会 <input class="" type="checkbox" value="t-village" name="showdata"> 
             </li>
-            <li class="list-group-item " >隐患所处位置  
+            <li class="list-group-item " style="font-weight:bold;">隐患所处位置  
             </li>
             <li class="list-group-item"> 
            线路名称<input class="" type="checkbox" value="t-device_name" name="showdata">
@@ -305,7 +305,7 @@
            大号杆（塔周围时大小号杆相同）<input class="" type="checkbox" value="t-end_tower" name="showdata">
            隐患序号<input class="" type="checkbox" value="t-danger_num" name="showdata">
           </li>
-          <li class="list-group-item " >隐患总体量 
+          <li class="list-group-item " style="font-weight:bold;">隐患总体量 
           </li>
           <li class="list-group-item"> 
               首次调查人<input class="" type="checkbox" value="t-first_check_person" name="showdata">
@@ -327,21 +327,21 @@
          <input class="" type="checkbox" id="select-detail-all" onchange="selectDetailAll(this);">全选
          </p> 
          <ul class="list-group" id="detail_data">
-            <li class="list-group-item " >隐患最新情况
+            <li class="list-group-item " style="font-weight:bold;">隐患最新情况
             </li>
             <li class="list-group-item"> 
                 更新时间（最新隐患调查、测量日期）<input class="" type="checkbox" value="t-last_update_time" name="showdata">
                 更新人（最新隐患调查人）<input class="" type="checkbox" value="t-datail_update_person" name="showdata">
                 测量时刻(更新时间。到时、分)<input class="" type="checkbox" value="t-datail_check_time" name="showdata">
               </li>
-              <li class="list-group-item " >隐患最新情况（程度）
+              <li class="list-group-item " style="font-weight:bold;">隐患最新情况（程度）
               </li>
               <li class="list-group-item">     
                   隐患级别（最新隐患）<input class="" type="checkbox" value="t-datail_danger_degree" name="showdata">
                   测量结论<input class="" type="checkbox" value="t-datail_check_conclusion" name="showdata">
                   
                 </li>
-                <li class="list-group-item " >隐患最新情况（表象）
+                <li class="list-group-item " style="font-weight:bold;">隐患最新情况（表象）
                 </li>
                 <li class="list-group-item">       
                     最危急树障种类<input class="" type="checkbox" value="t-datail_tree_type" name="showdata">
@@ -356,7 +356,7 @@
                     是否高出导线<input class="" type="checkbox" value="t-datail_tree_over" name="showdata">
                     最终自然生长高度是否构成紧急级别隐患<input class="" type="checkbox" value="t-datail_final_danger" name="showdata">
                   </li>
-                  <li class="list-group-item " >隐患权属人信息
+                  <li class="list-group-item " style="font-weight:bold;">隐患权属人信息
                   </li>
                   <li class="list-group-item">                     
            种植物权属方－联系人姓名<input class="" type="checkbox" value="t-owner" name="showdata">
@@ -364,7 +364,7 @@
            高杆植物种植时间<input class="" type="checkbox" value="t-tree_age" name="showdata">
            
           </li>
-          <li class="list-group-item">系统新增数据 
+          <li class="list-group-item" style="font-weight:bold;">系统新增数据 
             </li>
             <li class="list-group-item">
            隐患单位序号 <input class="" type="checkbox" value="t-accountability_number" name="showdata">              
@@ -374,7 +374,7 @@
            截止时间<input class="" type="checkbox" value="t-dead_line_time" name="showdata">
           
           </li>
-          <li class="list-group-item">未分类
+          <li class="list-group-item" style="font-weight:bold;">未分类
             </li>
             <li class="list-group-item">
            测量人<input class="" type="checkbox" value="t-datail_check_person" name="showdata">
