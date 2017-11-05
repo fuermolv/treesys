@@ -13,288 +13,323 @@ a<extend name="Public:base"/><block name="title">树木列表</block>
                  
     <table class="table table-striped table-bordered table-hover table-condensed" >
 
-        
         <tr>
-            <th colspan="3">隐患单位</th>
-            <th colspan="3">隐患所属点</th>
-            <th colspan="5">隐患所处位置</th>
-            <th colspan="12">隐患总体量</th>
-            <th colspan="1">隐患最新情况</th>
-            <th colspan="3">隐患最新情况（程度）</th>
-            <th colspan="1">隐患最新情况（位置）</th>
-            <th colspan="11">隐患最新情况（表象）</th>
-            <th colspan="3">隐患权属人信息</th>
-            <th colspan="4">系统新增</th>
-            
-            
-            
-            
+                <th rowspan="3">隐患单位</th>      
+                <th colspan="1">运行单位</th>
+                <td><input style="width:80%" type="text" name="data_accountability_department" id="data_accountability_department" onkeyup="javascript:textChanged3()"></td>                
         </tr>
-        <tr>
-            <th colspan="1">运行单位</th>
-            <!-- <th colspan="1">序号</th> -->
-            <th colspan="1">责任班组</th>
-            <th colspan="1">巡视段责任人</th>
-            <th colspan="1">县</th>
-            <th colspan="1">镇</th>
-            <th colspan="1">村委会</th>
-            <th colspan="1">电压等级（KV）</th>
-            <th colspan="1">线路名称</th>
-            <th colspan="1">小号杆（塔周围时大小号杆相同）</th>
-            <th colspan="1">大号杆（塔周围时大小号杆相同）</th>
-            <th colspan="1">隐患序号</th>
-            <th colspan="1">首次调查人</th>
-            <!-- <th colspan="1">首次隐患调查、测量日期</th> -->
-            <th colspan="1">首次上报日期</th>
-            <th colspan="1">树障存在的状态</th>
-            <th colspan="1">树障种类</th>
-            <th colspan="1">保护区范围外(如超高树木、上山侧等)是否有需要处理的树障</th>
-            <th colspan="1">结合地形砍够保护区及保护区附近需处理的隐患树障数量（棵、墩数）</th>
-            <th colspan="1">结合地形砍够保护区及保护区附近需处理的隐患树障数量单位（棵、墩）</th>
-            <th colspan="1">结合地形砍够保护区及保护区附近需处理的隐患树障数量(亩数)</th>
-            <th colspan="1">结合地形砍够保护区及保护区附近需处理的隐患树障数量单位（亩）</th>
-            <th colspan="1">结合地形砍够保护区及保护区附近需处理的隐患树障树高（m）</th>
-            <th colspan="1">结合地形砍够保护区及保护区附近需处理的隐患树木胸径范围(cm)</th>
-            <th colspan="1">树木平均高度(m)</th>
-            <!-- <th colspan="1">更新时间（最新隐患调查、测量日期）</th> -->
-            <!-- <th colspan="1">更新人（最新隐患调查人）</th> -->
-            <th colspan="1">测量时刻(更新时间。到时、分)</th>
-            <th colspan="1">隐患级别（最新隐患）</th>
-            <th colspan="1">测量结论(级别变化)</th>
-            <th colspan="1">测量结论(处理)</th>
-            <th colspan="1">测量结论(位置)</th>
-            
-            <!-- <th colspan="1">最危急树障相对杆塔、线路位置，距离弧垂点或导线近地点位置等描述。如距离#x杆塔x米处、弧垂点。。。</th>（也就是测量结论(位置)） -->
-            <th colspan="1">最危急树障种类</th>
-            <th colspan="1">最危急树障数量(棵数、墩数)</th>
-            <th colspan="1">最危急树障数量单位（棵、墩）</th>
-            <th colspan="1">最危急树障数量(亩数)</th>
-            <th colspan="1">最危急树障数量单位（亩）</th>
-            <th colspan="1">最危急树障树高（米）</th>
-            <th colspan="1">最危急树障导线对树木水平距离（米）</th>
-            <th colspan="1">最危急树障导线对树木垂直距离（米）</th>
-            <th colspan="1">最危急树障导线对地（米）</th>
-            <th colspan="1">是否高出导线</th>
-            <th colspan="1">最终自然生长高度是否构成紧急级别隐患</th> 
-            <th colspan="1">种植物权属方－联系人姓名</th> 
-            <th colspan="1">种植物权属方－联系人电话</th> 
-            <th colspan="1">高杆植物种植时间</th> 
-            <th colspan="1">更新班组</th> 
-            <th colspan="1">隐患单位序号</th> 
-            <th colspan="1">截止时间</th> 
-            <th colspan="1">是否处理</th> 
-            
-            
-        </tr>
-          <tr>
-               <!-- <td>运行单位</td> -->
-            <td><input type="text" name="data_accountability_department" id="data_accountability_department" onkeyup="javascript:textChanged3()"></td>
-                <!-- <td>序号</td> -->
-            <!-- <td></td> -->
-            <!-- <td>责任班组</td> -->
-            <td>
-                    <select style="width:100px" name="data_accountability_group"  id="data_accountability_group" onkeyup="javascript:textChanged1()" >
-                    <option value ="">责任班组</option>
-                    <option value ="输电线路1班">输电线路1班</option>
-                    <option value ="输电线路2班">输电线路2班</option>
-                    <option value ="输电线路3班县">输电线路3班</option>
-                    <option value="输电线路4班">输电线路4班</option>
-                    <option value="输电线路5班市4">输电线路5班</option>
-                    <option value ="输电线路6班">输电线路6班</option>
-                    <option value ="输电线路7班">输电线路7班</option>
-                    <option value ="输电线路8班县">输电线路8班</option>
-                    <option value="输电线路9班">输电线路9班</option>
-                    <option value="输电电缆班">输电电缆班</option>
-                    <option value="管理人员">管理人员</option>
-                    <option value="连南组">连南组</option>
-                    <option value="英德组输电一班">英德组输电一班</option>
-                    <option value="英德组输电二班">英德组输电二班</option>
-                    <option value="英德组输电三班">英德组输电三班</option>
-                    </select></td>
-            <!-- <td>巡视段责任人</td> -->
-            <td><input type="text" name="data_accountability_person" id="data_accountability_person" onkeyup="javascript:textChanged2()"></td>
-            <form class="form-inline" action="" id="select_form">                                           
-            <td colspan="1">
-            <select style="width:100px" name="county"  id="county" onchange="submitForm();">
-                            <option value ="">县区</option>
-                            <option value ="1">清城区</option>
-                            <option value ="2">清新县</option>
-                            <option value="3">佛冈县</option>
-                            <option value="4">英德市</option>
-                            <option value ="5">阳山县</option>
-                            <option value ="6">连州市</option>
-                            <option value ="7">连南县</option>
-                            <option value="8">连山县</option>
-                            
-            </select></td>
-            <td>
-                    <select style="width:100px" name="town"   id="town" onchange="submitForm();">
-                            <option value ="">镇</option>
-                            <foreach name="querydata['towns']" item="v">
-                             <option value ="{$v['id']}">{$v['name']}</option>
-                            </foreach>
-                    </select>
-            </td>
-            <td>
-                    <select style="width:100px" name="village"  id="village" onchange="submitForm();">
-                            <option value ="">村</option>
-                            <foreach name="querydata['villages']" item="v">
-                             <option value ="{$v['id']}">{$v['name']}</option>
-                             </foreach>
-                    </select>
-            </td>
-            <td> 
-                        <select style="width:100px" name="voltage_degree" id="voltage_degree" onchange="submitForm();">
-                                <option value ="" >电压等级</option>
-                                <option value ="500">500kV</option>
-                                <option value ="220" >220kV</option>
-                                <option value="110" >110kV</option>
-                                <option value="35"  >35kV</option>
-                        </select>
-            </td>
-            <td>
-                        <select style="width:100px" name="line_id" id="line_id" onchange="submitForm();">
-                        <option value ="">全部线路</option>
-                        <foreach name="querydata['device_lines']" item="v">
-                         <option value ="{$v['did']}">{$v['voltage_degree']}kV{$v['device_name']}</option>
-                        </foreach>
-                        </select>
-            </td>
-            </form>
-        <form action="" method="POST" id="data_form">  
-            <input type="hidden" name="data_county">
-            <input  type="hidden" name="data_town">
-            <input type="hidden" name="data_village">
-            <input type="hidden" name="accountability_group">
-            <input  type="hidden" name="accountability_person">
-            <input type="hidden" name="accountability_department">
-            <!-- <td>小号杆（塔周围时大小号杆相同）</td> -->
-            <td><input type="text" name="star_tower"></td>
-            <!-- <td>大号杆（塔周围时大小号杆相同）</td> -->
-            <td><input type="text" name="end_tower"></td>
-            <!-- <td>隐患编号</td> -->
-            <td><input type="text" name="danger_num"></td>
-            <!-- <td>首次调查人</td> -->
-            <td><input type="text" name="first_check_person"></td>
-            <!-- <td>首次隐患调查、测量日期</td> -->
-            <!-- <td></td> -->
-            <!-- <td>首次上报时间</td> -->
-            <td><input type="date" name="first_upload_time" id="first_upload_time" value=${date='Y-m-d',###}></td>
-            <!-- <td>树障存在的状态</td> -->
-            <td><input type="text" name="tree_status"></td>
-            <!-- <td>树障种类</td> -->
-            <td><input type="text" name="tree_type"></td>
-            <!-- <td>保护区范围外(如超高树木、上山侧等)是否有需要处理的树障</td> -->
-            <td><select style="width:50px"  id="tree_danger" name="tree_danger" value ="0">
-                    <option value ="0">否</option>     
-                    <option value ="1" >是</option>     
-                       </select>
-            </td>
-            <!-- <td>结合地形砍够保护区及保护区附近需处理的隐患树障数量（棵、墩数）</td> -->
-            <td><input type="text" name="tree_danger_num" id="tree_danger_num"></td>
-            <!-- <td>结合地形砍够保护区及保护区附近需处理的隐患树障数量单位（棵、墩）</td> -->
-            <td><input type="text" name="tree_danger_num_unit" id="tree_danger_num_unit"></td>
-            <!-- <td>结合地形砍够保护区及保护区附近需处理的隐患树障数量(亩数)</td> -->
-            <td><input type="text" name="tree_danger_area"  id="tree_danger_area"></td>
-            <!-- <td>结合地形砍够保护区及保护区附近需处理的隐患树障数量单位（亩）</td> -->
-            <td><input type="text" name="tree_danger_area_unit"  id="tree_danger_area_unit"></td>
-            <!-- <td>结合地形砍够保护区及保护区附近需处理的隐患树障树高（m）</td> -->
-            <td><input type="text" name="tree_danger_height" id="tree_danger_height"></td>
-            <!-- <td>结合地形砍够保护区及保护区附近需处理的隐患树木胸径范围(cm)</td> -->
-            <td><input type="text" name="average_radius"></td>
-            <!-- <td>树木平均高度(m)</td> -->
-            <td><input type="text" name="average_height"></td>
-            <!-- <td>更新时间（最新隐患调查、测量日期）</td> -->
-            <!-- <td>更新时间（最新隐患调查、测量日期）</td> -->
-            <!-- <td>更新人（最新隐患调查人）</td> -->
-            <!-- <td>更新人（最新隐患调查人）</td> -->
-            <!-- <td>测量时刻(更新时间。到时、分)</td> -->
-            <td><input style="width:150px;"  type="date"  name="datail_check_time" id="datail_check_time" value=${date='Y-m-d',###}></td>
-            <!-- <td>隐患级别（最新隐患）</td>  -->
-            <td><input type="text" name="datail_danger_degree"></td>
-            <!-- <td>测量结论(级别变化)</td> -->
-            <td><input type="text" name="datail_check_change_conclusion"></td>
-            <!-- <td>测量结论(处理)</td> -->
-            <td><input type="text" name="datail_check_process_conclusion"></td>
-            <!-- <td>测量结论(位置)</td> -->
-            <td><input type="text" name="datail_check_posistion_conclusion"></td>
-            <!-- <td>测量人</td> -->
-            <!-- <td><input type="text" name="datail_uptodate"></td> -->
-            <!-- <td>最危急树障种类</td> -->
-            <td><input type="text" name="datail_tree_type"></td>
-            <!-- <td>最危急树障数量(棵数、墩数)</td> -->
-            <td><input type="text" name="datail_tree_num"></td>
-            <!-- <td>最危急树障数量单位（棵、墩）</td> -->
-            <td><input type="text" name="datail_tree_num_unit"></td>
-            <!-- <td>最危急树障数量(亩数)</td> -->
-            <td><input type="text" name="datail_tree_area"></td>
-            <!-- <td>最危急树障数量单位（亩）</td> -->
-            <td><input type="text" name="datail_tree_area_unit"></td>
-            <!-- <td>最危急树障树高（米）</td> -->
-            <td><input type="text" name="datail_tree_height"></td>
-            <!-- <td>最危急树障导线对树木水平距离（米）</td> -->
-            <td><input type="text" name="datail_tree_horizontal"></td>
-            <!-- <td>最危急树障导线对树木垂直距离（米）</td> -->
-            <td><input type="text" name="datail_tree_vertical"></td>
-            <!-- <td>最危急树障导线对地（米）</td> -->
-            <td><input type="text" name="datail_tree_grand_height"></td>
-            <!-- <td>是否高出导线</td> -->
-            <td>
-                    <select style="width:50px"  id="datail_tree_over" name="datail_tree_over" >
-                             <option value ="1" >是</option>
-                             <option value ="0">否</option>  
-                             </select></td>
-            <!-- <td>最终自然生长高度是否构成紧急级别隐患</td> -->
-            <td>
-                    <select style="width:50px"  id="datail_final_danger" name="datail_final_danger" >
-                             <option value ="1" >是</option>
-                             <option value ="0">否</option>  
-                             </select></td>
-            <!-- <td>种植物权属方－联系人姓名</td> -->
-            <td><input type="text" name="owner"></td>
-            <!-- <td>种植物权属方－联系人电话</td> -->
-            <td><input type="text" name="owner_phone"></td>
-            <!-- <td>高杆植物种植时间</td> -->
-            <td><input type="text" name="tree_age"></td>
-            <!-- <td>更新班组</td> -->
-            <td><input type="text" name="datail_update_group"></td>
-            <!-- <td>隐患单位序号</td> -->
-            <td><input type="text" name="datail_danger_degree"></td>
-            <!-- <td>截止时间</td> -->
-            <td><input type="date" name="dead_line_time" id="dead_line_time" value=${date='Y-m-d',###}></td>
-            <!-- <td>是否处理</td> -->
-            <td>
-                    <select style="width:50px"  id="processed" name="processed" value ="0">
-                        <option value ="0">否</option>     
-                        <option value ="1" >是</option>     
-                           </select></td>
-        
+<tr>
+                <th colspan="1">责任班组</th>
+                <td>
+                                <select style="width:80%" name="data_accountability_group"  id="data_accountability_group" onkeyup="javascript:textChanged1()" >
+                                <option value ="">责任班组</option>
+                                <option value ="输电线路1班">输电线路1班</option>
+                                <option value ="输电线路2班">输电线路2班</option>
+                                <option value ="输电线路3班县">输电线路3班</option>
+                                <option value="输电线路4班">输电线路4班</option>
+                                <option value="输电线路5班市4">输电线路5班</option>
+                                <option value ="输电线路6班">输电线路6班</option>
+                                <option value ="输电线路7班">输电线路7班</option>
+                                <option value ="输电线路8班县">输电线路8班</option>
+                                <option value="输电线路9班">输电线路9班</option>
+                                <option value="输电电缆班">输电电缆班</option>
+                                <option value="管理人员">管理人员</option>
+                                <option value="连南组">连南组</option>
+                                <option value="英德组输电一班">英德组输电一班</option>
+                                <option value="英德组输电二班">英德组输电二班</option>
+                                <option value="英德组输电三班">英德组输电三班</option>
+                                </select></td>
 </tr>
 <tr>
-            <td colspan="46" align="center">
-        <input  class="btn btn-sm btn-success "  type="submit"  value="确定">
-            </td></tr>
+                <th colspan="1">巡视段责任人</th>
+                <td><input  style="width:80%" type="text" name="data_accountability_person" id="data_accountability_person" onkeyup="javascript:textChanged2()"></td>                
+</tr>        
+<form class="form-inline" action="" id="select_form">                                           
+<tr>
+                <th rowspan="3">隐患所属点</th>
+                <th colspan="1">县</th>
+                <td colspan="1">
+                                <select  style="width:80%"  name="county"  id="county" onchange="submitForm();">
+                                                <option value ="">县区</option>
+                                                <option value ="1">清城区</option>
+                                                <option value ="2">清新县</option>
+                                                <option value="3">佛冈县</option>
+                                                <option value="4">英德市</option>
+                                                <option value ="5">阳山县</option>
+                                                <option value ="6">连州市</option>
+                                                <option value ="7">连南县</option>
+                                                <option value="8">连山县</option>
+                                                
+                                </select></td>
+</tr>
+<tr>
+                <th colspan="1">镇</th>
+                <td>
+                                <select  style="width:80%"  name="town"   id="town" onchange="submitForm();">
+                                        <option value ="">镇</option>
+                                        <foreach name="querydata['towns']" item="v">
+                                         <option value ="{$v['id']}">{$v['name']}</option>
+                                        </foreach>
+                                </select>
+                        </td>
+</tr>
+<tr>
+                <th colspan="1">村委会</th>
+                <td>
+                                <select  style="width:80%"  name="village"  id="village" onchange="submitForm();">
+                                        <option value ="">村</option>
+                                        <foreach name="querydata['villages']" item="v">
+                                         <option value ="{$v['id']}">{$v['name']}</option>
+                                         </foreach>
+                                </select>
+                        </td>
+
+</tr>
+<tr>
+                <th rowspan="5">隐患所处位置</th>
+                <th colspan="1">电压等级（KV）</th>
+                <td> 
+                                <select  style="width:80%"  name="voltage_degree" id="voltage_degree" onchange="submitForm();">
+                                        <option value ="" >电压等级</option>
+                                        <option value ="500">500kV</option>
+                                        <option value ="220" >220kV</option>
+                                        <option value="110" >110kV</option>
+                                        <option value="35"  >35kV</option>
+                                </select>
+                    </td>
+</tr>
+<tr>
+                <th colspan="1">线路名称</th>
+                <td>
+                                <select  style="width:80%"  name="line_id" id="line_id" onchange="submitForm();">
+                                <option value ="">全部线路</option>
+                                <foreach name="querydata['device_lines']" item="v">
+                                 <option value ="{$v['did']}">{$v['voltage_degree']}kV{$v['device_name']}</option>
+                                </foreach>
+                                </select>
+                    </td>
+</tr>
+</form>
+<form action="" method="POST" id="data_form">  
+                <input type="hidden" name="data_county">
+                <input  type="hidden" name="data_town">
+                <input type="hidden" name="data_village">
+                <input type="hidden" name="accountability_group">
+                <input  type="hidden" name="accountability_person">
+                <input type="hidden" name="accountability_department">
+
+<tr>
+                <th colspan="1">小号杆（塔周围时大小号杆相同）</th>
+                <td><input  style="width:80%" type="text" name="star_tower"></td>
+                
+</tr>
+<tr>
+                <th colspan="1">大号杆（塔周围时大小号杆相同）</th>
+                <td><input  style="width:80%" type="text" name="end_tower"></td>
+</tr>
+<tr>
+                <th colspan="1">隐患序号</th>
+                <td><input  style="width:80%" type="text" name="danger_num"></td>                
+</tr>
+<tr>
+                <th rowspan="12">隐患总体量</th>
+                <th colspan="1">首次调查人</th>
+                <td><input  style="width:80%" type="text" name="first_check_person"></td>                
+</tr>
+<tr>
+                <th colspan="1">首次上报日期</th>
+                <td><input  style="width:80%" type="date" name="first_upload_time" id="first_upload_time" value=${date='Y-m-d',###}></td>                
+</tr>
+<tr>
+                <th colspan="1">树障存在的状态</th>
+                <td><input  style="width:80%" type="text" name="tree_status"></td>                
+</tr>
+<tr>
+                <th colspan="1">树障种类</th>
+                <td><input  style="width:80%" type="text" name="tree_type"></td>
+                
+</tr>
+<tr>
+                <th colspan="1">保护区范围外(如超高树木、上山侧等)是否有需要处理的树障</th>
+                <td><select  style="width:80%"   id="tree_danger" name="tree_danger" value ="0">
+                                <option value ="0">否</option>     
+                                <option value ="1" >是</option>     
+                                   </select>
+                        </td>
+</tr>
+<tr>
+                <th colspan="1">结合地形砍够保护区及保护区附近需处理的隐患树障数量（棵、墩数）</th>
+                <td><input  style="width:80%" type="text" name="tree_danger_num" id="tree_danger_num"></td>
+                
+</tr>
+<tr>
+                <th colspan="1">结合地形砍够保护区及保护区附近需处理的隐患树障数量单位（棵、墩）</th>
+                <td><input  style="width:80%" type="text" name="tree_danger_num_unit" id="tree_danger_num_unit"></td>
+                
+</tr>
+<tr>
+                <th colspan="1">结合地形砍够保护区及保护区附近需处理的隐患树障数量(亩数)</th>
+                <td><input  style="width:80%" type="text" name="tree_danger_area"  id="tree_danger_area"></td>
+                
+</tr>
+<tr>
+                <th colspan="1">结合地形砍够保护区及保护区附近需处理的隐患树障数量单位（亩）</th>
+                <td><input  style="width:80%" type="text" name="tree_danger_area_unit"  id="tree_danger_area_unit"></td>
+                
+</tr>
+<tr>
+                <th colspan="1">结合地形砍够保护区及保护区附近需处理的隐患树障树高（m）</th>
+                <td><input  style="width:80%" type="text" name="tree_danger_height" id="tree_danger_height"></td>
+                
+</tr>
+<tr>
+                <th colspan="1">结合地形砍够保护区及保护区附近需处理的隐患树木胸径范围(cm)</th>
+                <td><input  style="width:80%" type="text" name="average_radius"></td>
+                
+</tr>
+<tr>
+                <th colspan="1">树木平均高度(m)</th>
+                <td><input  style="width:80%" type="text" name="average_height"></td>
+                
+</tr>
+<tr>
+                <th rowspan="1">隐患最新情况</th>
+                <th colspan="1">测量时刻(更新时间。到时、分)</th>
+                <td><input  style="width:80%" style="width:150px;"  type="date"  name="datail_check_time" id="datail_check_time" value=${date='Y-m-d',###}></td>
+                
+</tr>
+<tr>
+                <th rowspan="3">隐患最新情况（程度）</th>
+                <th colspan="1">隐患级别（最新隐患）</th>
+                <td><input  style="width:80%" type="text" name="datail_danger_degree"></td>
+                
+</tr>
+<tr>
+                <th colspan="1">测量结论(级别变化)</th>
+                <td><input  style="width:80%" type="text" name="datail_check_change_conclusion"></td>
+                
+</tr>
+<tr>
+                <th colspan="1">测量结论(处理)</th>
+                <td><input  style="width:80%" type="text" name="datail_check_process_conclusion"></td>
+                
+</tr>
+<tr>
+                <th rowspan="1">隐患最新情况（位置）</th>                
+                <th colspan="1">测量结论(位置)</th>
+                <td><input  style="width:80%" type="text" name="datail_check_posistion_conclusion"></td>
+                
+</tr>
+<tr>
+                <th rowspan="11">隐患最新情况（表象）</th>
+                <th colspan="1">最危急树障种类</th>
+                <td><input  style="width:80%" type="text" name="datail_tree_type"></td>
+                
+</tr>
+<tr>
+                <th colspan="1">最危急树障数量(棵数、墩数)</th>
+                <td><input  style="width:80%" type="text" name="datail_tree_num"></td>
+                
+</tr>
+<tr>
+                <th colspan="1">最危急树障数量单位（棵、墩）</th>
+                <td><input  style="width:80%" type="text" name="datail_tree_num_unit"></td>
+                
+</tr>
+<tr>
+                <th colspan="1">最危急树障数量(亩数)</th>
+                <td><input  style="width:80%" type="text" name="datail_tree_area"></td>
+                
+</tr>
+<tr>
+                <th colspan="1">最危急树障数量单位（亩）</th>
+                <td><input  style="width:80%" type="text" name="datail_tree_area_unit"></td>
+                
+</tr>
+<tr>
+                <th colspan="1">最危急树障树高（米）</th>
+                <td><input  style="width:80%" type="text" name="datail_tree_height"></td>
+                
+</tr>
+<tr>
+                <th colspan="1">最危急树障导线对树木水平距离（米）</th>
+                <td><input  style="width:80%" type="text" name="datail_tree_horizontal"></td>
+                
+</tr>
+<tr>
+                <th colspan="1">最危急树障导线对树木垂直距离（米）</th>
+                <td><input  style="width:80%" type="text" name="datail_tree_vertical"></td>
+                
+</tr>
+<tr>
+                <th colspan="1">最危急树障导线对地（米）</th>
+                <td><input  style="width:80%" type="text" name="datail_tree_grand_height"></td>
+                
+</tr>
+<tr>
+                <th colspan="1">是否高出导线</th>
+                <td>
+                                <select  style="width:80%"   id="datail_tree_over" name="datail_tree_over" >
+                                         <option value ="1" >是</option>
+                                         <option value ="0">否</option>  
+                                         </select></td>
+</tr>
+<tr>
+                <th colspan="1">最终自然生长高度是否构成紧急级别隐患</th> 
+                <td>
+                                <select  style="width:80%"   id="datail_final_danger" name="datail_final_danger" >
+                                         <option value ="1" >是</option>
+                                         <option value ="0">否</option>  
+                                         </select></td>
+</tr>
+<tr>
+                <th rowspan="3">隐患权属人信息</th>
+                <th colspan="1">种植物权属方－联系人姓名</th> 
+                <td><input  style="width:80%" type="text" name="owner"></td>
+                
+</tr>
+<tr>
+                <th colspan="1">种植物权属方－联系人电话</th> 
+                <td><input  style="width:80%" type="text" name="owner_phone"></td>
+                
+</tr>
+<tr>
+                <th colspan="1">高杆植物种植时间</th> 
+                <td><input  style="width:80%" type="text" name="tree_age"></td>
+                
+</tr>
+<tr>
+                <th rowspan="4">系统新增</th>
+                <th colspan="1">更新班组</th> 
+                <td><input  style="width:80%" type="text" name="datail_update_group"></td>
+                
+</tr>
+<tr>
+                <th colspan="1">隐患单位序号</th> 
+                <td><input  style="width:80%" type="text" name="datail_danger_degree"></td>
+                
+</tr>
+<tr>
+                <th colspan="1">截止时间</th> 
+                <td><input  style="width:80%" type="date" name="dead_line_time" id="dead_line_time" value=${date='Y-m-d',###}></td>
+                
+</tr>
+<tr>
+                <th colspan="1">是否处理</th> 
+                <td>
+                                <select  style="width:80%"   id="processed" name="processed" value ="0">
+                                    <option value ="0">否</option>     
+                                    <option value ="1" >是</option>     
+                                       </select></td>
+</tr>
+<tr>
+                <td colspan="3" align="center">
+            <input  class="btn btn-sm btn-success "  type="submit"  value="确定">
+                </td>
+</tr>
 </form>
 </table>
-
-      <!-- <ul class="nav nav-tabs padding-12 tab-color-blue background-blue" id="myTab">
-
-        <li class="active">
-        <a href="javascript:;">按钮1</a>
-        </li>
-        <li>
-         <a href="javascript:;">按钮2</a>
-        </li>
-        <li>
-          <a href="javascript:;">按钮3</a>
-         </li>
-      </ul> -->
-      
-      
-     
-      
-    </div>
-    
+</div>   
 </block>
 
 
