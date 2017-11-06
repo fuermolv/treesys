@@ -198,12 +198,15 @@
                 <th colspan="4">隐患单位</th>
                 <th colspan="3">隐患所属点</th>
                 <th colspan="4">隐患所处位置</th>
-                <th colspan="12">隐患总体量</th>
-                <th colspan="1">隐患最新情况</th>
-                <th colspan="4">隐患最新情况（程度）</th>
+                <th colspan="13">隐患总体量</th>
+                <th colspan="3">隐患最新情况</th>
+                <th colspan="3">隐患最新情况（程度）</th>
                 <th colspan="1">隐患最新情况（位置）</th>
                 <th colspan="11">隐患最新情况（表象）</th>
-                <th colspan="3">隐患权属人信息</th>
+                <th colspan="3">隐患最新情况（监测）</th> 
+                <th colspan="1">隐患来源</th>                
+                <th colspan="4">隐患权属人信息</th>
+                <th colspan="4">隐患处理与管控</th>                
                 <th colspan="4">系统新增</th>
                 
                 
@@ -224,7 +227,7 @@
                 <th colspan="1">大号杆（塔周围时大小号杆相同）</th>
                 <th colspan="1">隐患序号</th>
                 <th colspan="1">首次调查人</th>
-                <!-- <th colspan="1">首次隐患调查、测量日期</th> -->
+                <th colspan="1">首次隐患调查、测量日期</th>
                 <th colspan="1">首次上报日期</th>
                 <th colspan="1">树障存在的状态</th>
                 <th colspan="1">树障种类</th>
@@ -236,8 +239,8 @@
                 <th colspan="1">结合地形砍够保护区及保护区附近需处理的隐患树障树高（m）</th>
                 <th colspan="1">结合地形砍够保护区及保护区附近需处理的隐患树木胸径范围(cm)</th>
                 <th colspan="1">树木平均高度(m)</th>
-                <!-- <th colspan="1">更新时间（最新隐患调查、测量日期）</th> -->
-                <!-- <th colspan="1">更新人（最新隐患调查人）</th> -->
+                <th colspan="1">更新时间（最新隐患调查、测量日期）</th>
+                <th colspan="1">更新人（最新隐患调查人）</th>
                 <th colspan="1">测量时刻(更新时间。到时、分)</th>
                 <th colspan="1">隐患级别（最新隐患）</th>
                 <th colspan="1">测量结论(级别变化)</th>
@@ -255,9 +258,18 @@
                 <th colspan="1">最危急树障导线对地（米）</th>
                 <th colspan="1">是否高出导线</th>
                 <th colspan="1">最终自然生长高度是否构成紧急级别隐患</th> 
+                <th colspan="1">测量方法</th> 
+                <th colspan="1">气温（℃）</th> 
+                <th colspan="1">负荷（A）</th> 
+                <th colspan="1">是否建设遗留</th> 
+                <th colspan="1">种植物权属方－联系人地址</th>  
                 <th colspan="1">种植物权属方－联系人姓名</th> 
                 <th colspan="1">种植物权属方－联系人电话</th> 
-                <th colspan="1">高杆植物种植时间</th> 
+                <th colspan="1">高杆植物种植时间</th>
+                <th colspan="1">青赔情况</th>  
+                <th colspan="1">线路建设时协议签定情况</th> 
+                <th colspan="1">运行过程中协议情况</th> 
+                <th colspan="1">隐患通知书编号、情况</th>
                 <th colspan="1">更新班组</th> 
                 <th colspan="1">隐患单位序号</th> 
                 <th colspan="1">截止时间</th> 
@@ -277,6 +289,7 @@
                       <td  >{$v['end_tower']}</td>
                       <td  >{$v['danger_num']}</td>
                       <td  >{$v['first_check_person']}</td>
+                      <td  >{$v['first_check_time']|date='Y-m-d',###}</td>              
                       <td  >{$v['first_upload_time']|date='Y-m-d',###}</td>              
                       <td  >{$v['tree_status']}</td>
                       <td  >{$v['tree_type']}</td>    
@@ -289,15 +302,17 @@
                         <td  >{$v['tree_danger_area_unit']}</td> 
                         <td  >{$v['tree_danger_height']}</td> 
                         <td  >{$v['average_radius']}</td>
-                        <td  >{$v['average_height']}</td>  
+                        <td  >{$v['average_height']}</td> 
+                        <td  >{$v['datail_update_time']}</td> 
+                        <td  >{$v['datail_update_person']}</td> 
                         <td  id="t-datail_check_time">{$v['datail_check_time']|date='Y-m-d',###}</td>
                         <td  id="t-datail_tree_over">
                                 <if condition="$v['datail_danger_degree'] eq '1'">是
                               <else /> 否
                               </if></td>
-                        <td  id="t-datail_check_change_conclusion">{$v['datail_check_conclusion']}</td>
-                        <td  id="t-datail_check_process_conclusion">{$v['datail_check_conclusion']}</td>                        
-                        <td  id="t-datail_check_posistion_conclusion">{$v['datail_check_conclusion']}</td>
+                        <td  id="t-datail_check_change_conclusion">{$v['datail_check_change_conclusion']}</td>
+                        <td  id="t-datail_check_process_conclusion">{$v['datail_check_process_conclusion']}</td>                        
+                        <td  id="t-datail_check_posistion_conclusion">{$v['datail_check_posistion_conclusion']}</td>
                         <td  id="t-datail_tree_type">{$v['datail_tree_type']}</td>
                         <td  id="t-datail_tree_num">{$v['datail_tree_num']}</td>
                         <td  id="t-datail_tree_num_unit">{$v['datail_tree_num_unit']}</td>
@@ -314,10 +329,29 @@
                         <td  id="t-datail_final_danger">
                             <if condition="$v['datail_final_danger'] eq '1'">是
                             <else /> 否
-                                </if></td>      
-                      <td  >{$v['owner']}</td>
-                      <td  >{$v['owner_phone']}</td>
+                                </if>
+                        </td> 
+                         
+                        <td  >{$v['detail_check_method']}</td>
+                        <td  >{$v['detail_temperature']}</td>
+                        <td  >{$v['detail_load']}</td>
+
+                        <td  ><if condition="$v['detail_retain'] eq '1'">是
+                          <else /> 否
+                          </if></td>  
+
+                      <td  >{$v['detail_address']}</td>
+                      <td  >{$v['detail_owner']}</td>
+                      <td  >{$v['detail_phone']}</td>
                       <td  >{$v['tree_age']}</td>
+
+                      <td  ><if condition="$v['detail_compensation_condition'] eq '1'">是
+                        <else /> 否
+                        </if></td>   
+                      <td  >{$v['detail_build_deal']}</td>
+                    <td  >{$v['detail_run_deal']}</td>
+                    <td  >{$v['detail_notice_number']}</td>
+
                       <td  id="t-datail_update_group">{$v['datail_update_group']}</td>  
                       <td  id="t-datail_danger_degree">{$v['datail_danger_degree']}</td>
                       <td  >{$v['dead_line_time']|date='Y-m-d',###}</td>                        

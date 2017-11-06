@@ -206,6 +206,23 @@ class ReadDataController extends HomeBaseController
                   	$detaildata['detail_retain']=0;
                   }
                   // $detaildata['detail_retain']=$data[48];
+                  $detaildata['detail_address']=$data[49];  
+                  $detaildata['detail_owner']=$data[50];
+                  $detaildata['detail_phone']=(int)$data[51]; 
+                  $detaildata['detail_plant_time']=(int)$data[52]; 
+                  $detaildata['detail_compensation_condition']=(int)$data[53]; 
+                  $detaildata['detail_build_deal']=$data[54];
+                  $detaildata['detail_run_deal']=$data[55];
+                  $detaildata['detail_notice_number']=(int)$data[56]; 
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+
                    M("tree_detail")->data($detaildata)->add();
                    
                    
