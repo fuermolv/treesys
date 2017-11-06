@@ -98,28 +98,58 @@ class ReadDataController extends HomeBaseController
          {
               $path=$dir . "/" . $file;
               $datalist=import_excel($path);
+
               
               foreach ($datalist as $data)
               {
 
                    //有部分数据需要处理 如时间
                    //剩下字段你自己添加
+              	   var_dump($data);
                    $basedata['accountability_department']=$data[0];
+                   $basedata['accountability_number']=$data[1];
+                   
                    $basedata['accountability_group']=$data[2];
                    $basedata['accountability_person']=$data[3];
                    $basedata['county']=$data[4];
                    $basedata['town']=$data[5];
+                   if(!empty($data[6]))
+                   {
+                         $basedata['village']=$data[6];
+                   }else
+                   {
+                   	$basedata['village']=$data[7];
+                   }
                    $basedata['voltage_degree']=$data[8];
+
+                  
+
+                   $basedata['line_id']=$data[9];
+
+
+                   
+                   
                   //  line_name excel里面是中文，存储在base表中的是数字
+
+
                   $basedata['star_tower']=$data[10];
                   $basedata['end_tower']=$data[11];
                   $basedata['danger_num']=$data[12];
                   $basedata['first_check_person']=$data[13];
-                  // $basedata['first_check_time']=strtotime($data[14]);
-                  // $basedata['first_upload_time']=strtotime($data[15]);            
+                  $basedata['first_check_time']=strtotime($data[14]);
+                  $basedata['first_upload_time']=strtotime($data[15]);            
                   $basedata['tree_status']=$data[16];
                   $basedata['tree_type']=$data[17];
-                  // $basedata['tree_danger']=$data[18];
+                  if($data[18]=='是')
+                  {
+                  $basedata['tree_danger']=1;
+                  }
+                  else
+                  {
+                    $basedata['tree_danger']=0;
+                  }
+
+
                   $basedata['tree_danger_num']=(int)$data[19];
                   $basedata['tree_danger_num_unit']=$data[20];
                   $basedata['tree_danger_area']=(double)$data[21];
@@ -129,7 +159,7 @@ class ReadDataController extends HomeBaseController
                   $basedata['average_height']=(double)$data[25];
                   $basedata['last_update_time']=strtotime($data[26]);
                   $basedata['last_update_person']=$data[27];
-                  var_dump($data);
+               
                   $tid=M("tree_base")->data($basedata)->add();
                   //以下是detail表
                   $detaildata['detail_tid']=$tid;
@@ -147,11 +177,34 @@ class ReadDataController extends HomeBaseController
                   $detaildata['datail_tree_horizontal']=$data[40];
                   $detaildata['datail_tree_vertical']=$data[41];
                   $detaildata['datail_tree_grand_height']=(double)$data[42];
+                  if($data[43]=='是')
+                  {
+                  	$detaildata['datail_tree_over']=1;
+                  }else
+                  {
+                  	$detaildata['datail_tree_over']=0;
+                  }
+                  if($data[44]=='是')
+                  {
+                  	$detaildata['datail_final_danger']=1;
+                  }else
+                  {
+                  	$detaildata['datail_final_danger']=0;
+                  }
+
+
                   // $detaildata['datail_tree_over']=$data[43];
                   // $detaildata['datail_final_danger']=$data[44];
                   $detaildata['detail_check_method']=$data[45];                  
                   $detaildata['detail_temperature']=(int)$data[46];
                   $detaildata['detail_load']=(int)$data[47];
+                   if($data[48]=='是')
+                  {
+                  	$detaildata['detail_retain']=1;
+                  }else
+                  {
+                  	$detaildata['detail_retain']=0;
+                  }
                   // $detaildata['detail_retain']=$data[48];
                    M("tree_detail")->data($detaildata)->add();
                    
