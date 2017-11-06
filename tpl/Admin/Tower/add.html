@@ -113,8 +113,34 @@
            <td ><input style="width:100px;" id="tower_serial2" type="text"  name="tower_serial2"></td>
            <td ><input style="width:100px;" id="tower_number_old2" type="text" name="tower_number_old2"></td>
            </tr>
-          
-           
+           <tr id="tower_line_tr3" style="display: none">
+            <td ><font size="3" color="red">线路三</td>
+            <td >
+             <input  list="datalist" name="tower_line_name3" id="tower_line_name3" placeholder="线路名称" type="text" /> 
+              <datalist id="datalist">
+              <foreach name="querydata['device_lines']" item="v">
+              <option value ="{$v['device_name']}"></option>
+              </foreach>
+              </datalist>
+              </td>
+            <td ><input style="width:100px;" id="tower_line_degree3" type="text"  name="tower_line_degree3"></td>
+            <td ><input style="width:100px;" id="tower_serial3" type="text"  name="tower_serial3"></td>
+            <td ><input style="width:100px;" id="tower_number_old3" type="text" name="tower_number_old3"></td>
+            </tr>
+            <tr id="tower_line_tr4" style="display: none">
+              <td ><font size="3" color="red">线路四</td>
+              <td >
+               <input  list="datalist" name="tower_line_name4" id="tower_line_name4" placeholder="线路名称" type="text" /> 
+                <datalist id="datalist">
+                <foreach name="querydata['device_lines']" item="v">
+                <option value ="{$v['device_name']}"></option>
+                </foreach>
+                </datalist>
+                </td>
+              <td ><input style="width:100px;" id="tower_line_degree4" type="text"  name="tower_line_degree4"></td>
+              <td ><input style="width:100px;" id="tower_serial4" type="text"  name="tower_serial4"></td>
+              <td ><input style="width:100px;" id="tower_number_old4" type="text" name="tower_number_old4"></td>
+              </tr>          
 
                   
         </table>
@@ -154,6 +180,17 @@ function select_tower_type(obj)
    if($("#tower_type").val()==2)
    {
      $("#tower_line_tr2").show();
+   }
+   if($("#tower_type").val()==3)
+   {
+    $("#tower_line_tr2").show();
+    $("#tower_line_tr3").show();
+   }
+   if($("#tower_type").val()==4)
+   {
+     $("#tower_line_tr2").show();
+     $("#tower_line_tr3").show();
+     $("#tower_line_tr4").show();
    }
 }
 
