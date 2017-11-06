@@ -105,6 +105,14 @@ class ReadDataController extends HomeBaseController
 
                    //有部分数据需要处理 如时间
                    //剩下字段你自己添加
+              	   
+              	   for ($x=0; $x<=70; $x++)
+              	   {
+                     if(!empty($data[$x]))
+                     {
+                     $data[$x]=str_replace("#","",$data[$x]);
+                     } 
+              	   }
               	   var_dump($data);
                    $basedata['accountability_department']=$data[0];
                    $basedata['accountability_number']=$data[1];
@@ -228,7 +236,19 @@ class ReadDataController extends HomeBaseController
       $name=iconv("utf-8","GBK",'./TreeRecord/test/test.xlsx'); 
       $datalist=import_excel($name);
       foreach ($datalist as $data)
-      {var_dump($data);}
+      {
+      	 
+          
+            for ($x=0; $x<=70; $x++)
+            {
+                     if(!empty($data[$x]))
+                     {
+                     $data[$x]=str_replace("#","",$data[$x]);
+                     } 
+            }
+             	  
+      	var_dump($data);
+      }
       
    }
 
