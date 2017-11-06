@@ -184,9 +184,8 @@
              tid:tid
              },
              success:function(msg){
-    
-
              $("#tree-deatil-record").html(msg);
+
             },
            error:function(XMLHttpRequest, textStatus, thrownError){}
           })
@@ -210,6 +209,10 @@
           $("#list_button").addClass("btn-success");
           $("#add_button").removeClass("btn-success");
           $("#add_button").addClass("disabled");
+          $("#list_file_button").removeClass("disabled");
+          $("#list_file_button").addClass("btn-success");
+          $("#add_file_button").removeClass("disabled");
+          $("#add_file_button").addClass("btn-success");
           
             },
             error:function(XMLHttpRequest, textStatus, thrownError){}
@@ -230,7 +233,18 @@
     
      
           $("#tree-deatil-record").html(msg);
-       
+              
+          $("#list_button").removeClass("disabled");
+          $("#list_button").addClass("btn-success");
+
+          $("#add_button").removeClass("disabled");
+          $("#add_button").addClass("btn-success");
+
+          $("#list_file_button").removeClass("disabled");
+          $("#list_file_button").addClass("btn-success");
+
+          $("#add_file_button").removeClass("btn-success");
+          $("#add_file_button").addClass("disabled");
        
             },
             error:function(XMLHttpRequest, textStatus, thrownError){}
@@ -251,7 +265,17 @@
          
          
           $("#tree-deatil-record").html(msg);
+          $("#list_button").removeClass("disabled");
+          $("#list_button").addClass("btn-success");
 
+          $("#add_button").removeClass("disabled");
+          $("#add_button").addClass("btn-success");
+
+          $("#list_file_button").removeClass("btn-success");
+          $("#list_file_button").addClass("disabled");
+
+          $("#add_file_button").removeClass("disabled");
+          $("#add_file_button").addClass("btn-success");
             },
             error:function(XMLHttpRequest, textStatus, thrownError){
               
