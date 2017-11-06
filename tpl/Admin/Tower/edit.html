@@ -1,0 +1,151 @@
+<extend name="Public:base"/><block name="title">杆塔修改</block>
+<block name="content">
+
+<div class="col-xs-12">
+    <div class="tabbable">
+    <table class="table table-striped table-bordered table-hover table-condensed">
+
+       <ul class="nav nav-tabs padding-12 tab-color-blue background-blue" id="myTab">
+        <li >
+        <a href="/treesys/index.php/Admin/Tower/index/line_name/{$line_name}" >杆塔列表</a></li>
+
+        <li>  <a href="javascript:;"  >增加杆塔</a></li>
+        <li class="active">  <a href="javascript:;" class="btn disabled" >修改杆塔</a></li>
+        
+      
+        
+      </ul>
+      <!--   <tr>
+          <td>
+            <form class="form-inline" action="" id="my_form">
+            
+
+              <input  list="datalist" placeholder="线路名称" type="text" style="width: 8%;" name="line_name" id="line_name"/> 
+             <datalist id="datalist">
+             <foreach name="querydata['device_lines']" item="v">
+             <option value ="{$v['device_name']}"></option>
+             </foreach>
+             </datalist> 
+
+      
+
+
+            
+
+            <input style="width:6%" class="btn btn-sm btn-success" type="submit"  value="查找线路">
+
+             
+
+
+
+            </form>
+          </td>
+        </tr> -->
+      </table>
+
+      <div class="tab-content" id="tower-edit-record">
+      <form class="form-inline" action="" id="edti-tower-form">
+        <div class="table-responsive">
+        <table class="table table-striped table-bordered table-hover table-condensed " id="data-table">
+
+          <tr>
+           <th  >序号 </th>
+           <th  >所属线路名称</th>
+           <th  >电压值</th>
+           <th  >杆塔号</th>
+           <th  >经度(度）</th>
+           <th  >经度(分）</th>
+           <th  >经度(秒）</th>
+           <th  >纬度(度）</th>
+           <th  >纬度(分）</th>
+           <th  >纬度(秒）</th>
+           <th  >备注</th>
+           
+          
+           
+           
+           
+          
+
+          </tr>
+         
+            <tr>
+              <td>{$data['tower_serial']}</td>
+              <td >{$data['tower_line_name']}</td>
+              <td >{$data['tower_line_degree']}</td>
+              <td >{$data['tower_number_old']}</td>
+              <td ><input style="width:100px;" id="tower_longitude_d" type="text" value="{$data['tower_longitude_d']}" name="tower_longitude_d"></td>
+              <td ><input style="width:100px;" id="tower_longitude_m" type="text" value="{$data['tower_longitude_m']}" name="tower_longitude_m"></td>
+              <td ><input style="width:100px;" id="tower_longitude_s" type="text" value="{$data['tower_longitude_s']}" name="tower_longitude_s"></td>
+              <td ><input style="width:100px;" id="tower_latitude_d" type="text" value="{$data['tower_latitude_d']}" name="tower_latitude_d"></td>
+              <td ><input style="width:100px;" id="tower_latitude_m" type="text" value="{$data['tower_latitude_m']}" name="tower_latitude_m"></td>
+              <td ><input style="width:100px;" id="tower_latitude_s" type="text" value="{$data['tower_latitude_s']}" name="tower_latitude_s"></td>
+              <td ><input style="width:100px;" id="tower_remark" type="text" value="{$data['tower_remark']}" name="tower_remark"></td>
+        
+             
+        
+
+            </tr>
+
+           
+     
+      
+        </table>
+        </form>
+       <div class="text-center">
+       <input style="width:6%" class="btn btn-sm btn-success "  tower_id="{$data['tower_id']}" type="button" onclick="edit_tower(this)"  value="确定">
+       </div>
+      </div>
+
+       </div>
+    </div>
+  </div>
+
+
+
+</block>
+
+
+
+</block>
+
+
+
+<block name="js">
+<script>
+function edit_tower(obj)
+{
+   var tower_id=$(obj).attr('tower_id');
+     $.ajax({
+          type:"POST",
+           url:"/treesys/index.php/Admin/Tower/edit",
+           data:{
+             tower_id:tower_id,
+             tower_longitude_d:$("#tower_longitude_d").val(),
+             tower_longitude_m:$("#tower_longitude_m").val(),
+             tower_longitude_s:$("#tower_longitude_s").val(),
+             tower_latitude_d:$("#tower_latitude_d").val(),
+             tower_latitude_m:$("#tower_latitude_m").val(),
+             tower_latitude_s:$("#tower_latitude_s").val(),
+             tower_remark:$("#tower_remark").val(),
+
+
+             },
+             success:function(msg)
+            {
+    
+             window.location="/treesys/index.php/Admin/Tower/index/line_name/{$line_name}";
+            //alert(msg);
+            },
+            error:function(XMLHttpRequest, textStatus, thrownError){}
+          })
+}
+    
+    
+</script>
+
+    
+
+
+   
+</block>

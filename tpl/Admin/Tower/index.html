@@ -7,9 +7,10 @@
 
        <ul class="nav nav-tabs padding-12 tab-color-blue background-blue" id="myTab">
         <li class="active">
-          <a href="javascript:;" data-toggle="tab">树片列表</a></li>
+          <a href="javascript:;" data-toggle="tab">杆塔列表</a></li>
 
-        <li>  <a href="javascript:;"   class="btn disabled" data-toggle="tab">增加杆塔</a></li>
+        <li>  <a href="/treesys/index.php/Admin/Tower/add"  >增加杆塔</a></li>
+        <li>  <a href="javascript:;" class="btn disabled" >修改杆塔</a></li>
         
       
         
@@ -57,7 +58,7 @@
            <th  >纬度(度）</th>
            <th  >纬度(分）</th>
            <th  >纬度(秒）</th>
-           
+          <th  >备注</th>
            <th  >更新时间</th>
            <th  >更新人</th>
            
@@ -79,14 +80,17 @@
               <td >{$v['tower_latitude_d']}</td>
               <td >{$v['tower_latitude_m']}</td>
               <td >{$v['tower_latitude_s']}</td>
+              <td >{$v['tower_remark']}</td>
               <td >{$v['tower_update_time']|date='Y-m-d',###}</td>
               <td >{$v['tower_update_person']}</td>
               
         
 
               <td>
-              <a href="javascript:;" tid="{$tree_id}" detail_id="{$v['detail_id']}" onclick="delete_detail(this);">删除</a>
-            
+              <a href="/treesys/index.php/Admin/Tower/edit/tower_id/{$v['tower_id']}/line_name/{$line_name}">修改</a>
+              ||<a href="javascript:;" tower_id="{$v['tower_id']}" tower_serial="{$v['tower_serial']}" onclick="delete_tower(this);">删除</a>
+
+          
               </td>
             </tr>
           </foreach>
@@ -108,7 +112,33 @@
 
 <block name="js">
 <script>
+function delete_tower(obj)
+{
+  var tower_id=$(obj).attr('tower_id');
+  var tower_serial=$(obj).attr('tower_serial');
+  if(confirm('确定删除？'))
+  {
+  $.ajax({
+          type:"POST",
+           url:"/treesys/index.php/Admin/Tower/delete",
+           data:{
+             tower_id:tower_id,
+             tower_serial:tower_serial,
+             
 
+
+             },
+             success:function(msg)
+            {
+    
+             location.reload();
+            
+            },
+            error:function(XMLHttpRequest, textStatus, thrownError){}
+          })
+
+}
+}
     
     
 </script>

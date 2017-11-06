@@ -317,7 +317,7 @@ class TreeController extends AdminBaseController {
             // $base_data['line_id']=$line_id;  
             unset($ar['group_id']); 
             unset($ar['tid']); 
-            var_dump($map);    
+           // var_dump($map);    
             $ar['accountability_person']=$user[0]['true_name'];
             $ar['last_update_time']=NOW_TIME;  
             $result = D("TreeBase")->editData($map,$ar);
