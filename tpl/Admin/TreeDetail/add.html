@@ -57,7 +57,7 @@
               <td><input style="width:42px;" id="datail_tree_vertical" type="text" value="{$data['datail_tree_vertical']}" name="datail_tree_vertical"></td>
           <td><input style="width:42px;" id="datail_tree_grand_height" type="text" value="{$data['datail_tree_grand_height']}" name="datail_tree_grand_height"></td>
             <td>
-           <select style="width:42px"  id="datail_tree_over" value="{$data['datail_tree_over']}" name="datail_tree_over" ">
+           <select style="width:42px"  id="datail_tree_over" value="{$data['datail_tree_over']}" name="datail_tree_over">
             <option value ="1" >是</option>
             <option value ="0">否</option>  
            </select>
@@ -114,22 +114,22 @@
  <input style="width:6%" class="btn btn-sm btn-success "  tid="{$tree_id}" type="button" onclick="detail_add_record(this)"  value="确定">
  </div>
  <script type="text/javascript">
- function detail_list(obj)
- {
- 	 var tid=$(obj).attr('tid');
- 	  $.ajax({
-          type:"GET",
-           url:"/treesys/index.php/Admin/TreeDetail/index",
-           data:{
-             tid:tid
-             },
-             success:function(msg){
+//  function detail_list(obj)
+//  {
+//  	 var tid=$(obj).attr('tid');
+//  	  $.ajax({
+//           type:"GET",
+//            url:"/treesys/index.php/Admin/TreeDetail/index",
+//            data:{
+//              tid:tid
+//              },
+//              success:function(msg){
     
-          $("#tree-deatil-record").html(msg);
-            },
-           error:function(XMLHttpRequest, textStatus, thrownError){}
-          })
- }
+//           $("#tree-deatil-record").html(msg);
+//             },
+//            error:function(XMLHttpRequest, textStatus, thrownError){}
+//           })
+//  }
   function detail_add_record(obj)
  {
 
