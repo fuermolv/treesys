@@ -124,14 +124,14 @@
            <th style="display:none" id="t-county">县</th>
            <th style="display:none" id="t-town">镇</th>
            <th style="display:none" id="t-village">村委会</th>
-           <th style="display:none" id="t-owner">种植物权属方－联系人姓名</th>
-           <th style="display:none" id="t-owner_phone">种植物权属方－联系人电话</th>
+           <th style="display:none" id="t-detail_owner">种植物权属方－联系人姓名</th>
+           <th style="display:none" id="t-detail_phone">种植物权属方－联系人电话</th>
            <th style="display:none" id="t-accountability_department">运行单位</th>
            <th style="display:none" id="t-accountability_number">隐患单位序号</th>
            <th style="display:none" id="t-accountability_group">责任班组</th>                     
             <th style="display:none" id="t-accountability_person">巡视段责任人</th>
            <th style="display:none" id="t-site_condition">立地条件</th>
-           <th style="display:none" id="t-tree_age">高杆植物种植时间</th>
+           <th style="display:none" id="t-detail_plant_time">高杆植物种植时间</th>
            <th style="display:none" id="t-tree_status">树障存在的状态</th>
            <th style="display:none" id="t-tree_type">树障种类</th>
            <th style="display:none" id="t-tree_danger">保护区范围外(如超高树木、上山侧等)是否有需要处理的树障</th>
@@ -148,7 +148,7 @@
            <!-- <th style="display:none" id="t-first_check_method">首次测量方式</th> -->
            <th style="display:none" id="t-first_check_person">首次调查人</th>
            <th style="display:none" id="t-processed">是否处理</th>
-           <th style="display:none" id="t-last_update_time">更新时间（最新隐患调查、测量日期）</th>
+           <th style="display:none" id="t-datail_update_time">更新时间（最新隐患调查、测量日期）</th>
            <th style="display:none" id="t-dead_line_time">截止时间</th>
            <th style="display:none" id="t-datail_danger_degree">隐患等级</th>
            <th style="display:none" id="t-datail_final_danger">最终危险</th>
@@ -185,15 +185,15 @@
               <td style="display:none" >{$v['county']}</td>
               <td style="display:none" >{$v['town']}</td>
               <td style="display:none" >{$v['village']}</td>
-              <td style="display:none" >{$v['owner']}</td>
-              <td style="display:none" >{$v['owner_phone']}</td>
+              <td style="display:none" >{$v['detail_owner']}</td>
+              <td style="display:none" >{$v['detail_phone']}</td>
 
               <td style="display:none" >{$v['accountability_department']}</td>
               <td style="display:none" >{$v['accountability_number']}</td>
               <td style="display:none" >{$v['accountability_group']}</td>
               <td style="display:none" >{$v['accountability_person']}</td>
               <td style="display:none" >{$v['site_condition']}</td>
-              <td style="display:none" >{$v['tree_age']}</td>
+              <td style="display:none" >{$v['detail_plant_time']}</td>
               <td style="display:none" >{$v['tree_status']}</td>
               <td style="display:none" >{$v['tree_type']}</td>    
               <td style="display:none" ><if condition="$v['tree_danger'] eq '1'">是
@@ -215,7 +215,7 @@
               <else /> 否
               </if>
               </td>
-              <td style="display:none" >{$v['last_update_time']|date='Y-m-d',###}</td> 
+              <td style="display:none" >{$v['datail_update_time']|date='Y-m-d',###}</td> 
               <td style="display:none" >{$v['dead_line_time']|date='Y-m-d',###}</td>  
               <td style="display:none" id="t-datail_danger_degree">{$v['datail_danger_degree']}</td>
               <td style="display:none" id="t-datail_final_danger">
@@ -331,7 +331,7 @@
             <li class="list-group-item " style="font-weight:bold;">隐患最新情况
             </li>
             <li class="list-group-item"> 
-                更新时间（最新隐患调查、测量日期）<input class="" type="checkbox" value="t-last_update_time" name="showdata">
+                更新时间（最新隐患调查、测量日期）<input class="" type="checkbox" value="t-datail_update_time" name="showdata">
                 更新人（最新隐患调查人）<input class="" type="checkbox" value="t-datail_update_person" name="showdata">
                 测量时刻(更新时间。到时、分)<input class="" type="checkbox" value="t-datail_check_time" name="showdata">
               </li>
@@ -360,9 +360,9 @@
                   <li class="list-group-item " style="font-weight:bold;">隐患权属人信息
                   </li>
                   <li class="list-group-item">                     
-           种植物权属方－联系人姓名<input class="" type="checkbox" value="t-owner" name="showdata">
-           种植物权属方－联系人电话<input class="" type="checkbox" value="t-owner_phone" name="showdata">
-           高杆植物种植时间<input class="" type="checkbox" value="t-tree_age" name="showdata">
+           种植物权属方－联系人姓名<input class="" type="checkbox" value="t-detail_owner" name="showdata">
+           种植物权属方－联系人电话<input class="" type="checkbox" value="t-detail_phone" name="showdata">
+           高杆植物种植时间<input class="" type="checkbox" value="t-detail_plant_time" name="showdata">
            
           </li>
           <li class="list-group-item" style="font-weight:bold;">系统新增数据 
