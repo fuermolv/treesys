@@ -23,7 +23,7 @@ class AuthGroupAccessModel extends BaseModel{
 	 */
 	public function getAllData(){
 		$data=$this
-			->field('u.id,u.username,u.email,aga.group_id,ag.title')
+			->field('u.id,u.username,u.true_name,u.remark,u.phone,u.email,aga.group_id,ag.title')
 			->alias('aga')
 			->join('__USERS__ u ON aga.uid=u.id','RIGHT')
 			->join('__AUTH_GROUP__ ag ON aga.group_id=ag.id','LEFT')

@@ -60,7 +60,21 @@
             <option value ="6">连州市</option>
             <option value ="7">连南县</option>
             <option value="8">连山县</option>
-            
+            </select>
+
+            <select style="width:8%" name="tree_status"  id="tree_status" onchange="submitForm();">
+            <option value ="">树木状态</option>
+            <option value ="未砍">未砍</option>
+            <option value ="翻抽">翻抽</option>
+            <option value="新种">新种</option>
+       
+            </select>
+
+            <select style="width:8%" name="datail_danger_degree"  id="datail_danger_degree" onchange="submitForm();">
+            <option value ="">隐患级别</option>
+            <option value ="一般">一般</option>
+            <option value ="重大">重大</option>
+           
             </select>
 
             <select style="width:8%" name="town"   id="town" onchange="submitForm();">
@@ -79,7 +93,7 @@
          
             <select style="width:8%" name="orderBy" id="orderBy" onchange="submitForm();">
             <option value ="">排序方式</option>
-            <option value ="danger_degree desc">威胁等级降序</option>
+            <option value ="first_upload_time desc">首次上报时间降序</option>
          
             <option value ="datail_update_time desc">更新时间降序</option>         
             </select>
@@ -308,7 +322,7 @@
    <div class="modal fade" id="data-filter" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
    data-backdrop="static">
     <div class="modal-dialog">
-      <div class="modal-content" id="data-filter-content" style="width:1200px;height:1200px;">
+      <div class="modal-content" id="data-filter-content" style="width:1200px;height:1300px;">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
           <h4 class="modal-title" id="myModalLabel">数据筛选</h4></div>
@@ -522,7 +536,12 @@
       sessionStorage.setItem("county",document.getElementById("county").value); 
       sessionStorage.setItem("town",document.getElementById("town").value); 
       sessionStorage.setItem("village",document.getElementById("village").value);  
+      sessionStorage.setItem("datail_danger_degree",document.getElementById("datail_danger_degree").value);  
+      sessionStorage.setItem("tree_status",document.getElementById("tree_status").value);  
       sessionStorage.setItem("orderBy",document.getElementById("orderBy").value); 
+
+
+
     
 
       var form = document.getElementById("my_form");//获取form表单对象
@@ -595,6 +614,8 @@
       $("#county").val(sessionStorage.getItem("county"))
       $("#town").val(sessionStorage.getItem("town"))
       $("#village").val(sessionStorage.getItem("village"))
+      $("#tree_status").val(sessionStorage.getItem("tree_status"))
+       $("#datail_danger_degree").val(sessionStorage.getItem("datail_danger_degree"))
       $("#orderBy").val(sessionStorage.getItem("orderBy"))
    
       

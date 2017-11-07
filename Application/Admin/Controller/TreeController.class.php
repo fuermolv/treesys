@@ -20,14 +20,20 @@ class TreeController extends AdminBaseController {
         $county = I('get.county');
         $town = I('get.town');
         $voltage_degree = I('get.voltage_degree');
+         $datail_danger_degree=I('get.datail_danger_degree');
+         $tree_status=I('get.tree_status');
         $village = I('get.village');
-        $limit = 20;
+        $limit = 10;
         $group_id = I('get.group_id');
         //确定班组线路
         $map['id'] = $group_id;
         $lienes = M("auth_rule")->where($map)->select();
         $map = null;
         $map['did'] = array('in', $lienes[0]['group_device']);
+        if($lienes[0]['group_device'][0]=-1)
+        {
+        	$map=null;
+        }
         $device_lines = M("device_line")->where($map)->select();
         $querydata['device_lines'] = $device_lines;
         $map = null;
@@ -75,13 +81,23 @@ class TreeController extends AdminBaseController {
         if (!empty($voltage_degree)) {
             $map['voltage_degree'] = $voltage_degree;
         }
+        if (!empty($datail_danger_degree)) 
+        {
+
+            $map['datail_danger_degree'] = $datail_danger_degree;
+        }
+        if (!empty($tree_status)) 
+        {
+            $map['tree_status'] = $tree_status;
+        }
         if (empty($orderBy)) {
             $orderBy = 'tid desc';
         }
         
         // $data=D('TreeBase')->getPage(new TreeBaseModel(),$map,$order,$limit);
         $model = new TreeBaseModel();
-        $count = $model->where($map)->alias('base')->join('__DEVICE_LINE__ dl ON base.line_id=dl.did', 'LEFT')->count();
+        $count = $model->where($map)->alias('base')->join('__DEVICE_LINE__ dl ON base.line_id=dl.did', 'LEFT')->join('treesys_tree_detail detail ON base.tid=detail.detail_tid ', 'LEFT')
+        ->count();
         $map['datail_uptodate'] = 1;
         $page = new_page($count, $limit);
         $list = $model
