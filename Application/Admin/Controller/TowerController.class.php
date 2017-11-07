@@ -134,8 +134,6 @@ class TowerController extends AdminBaseController {
              	$map=null;
              	$map['tower_serial']  = array('gt',$serial1);
              	$map['tower_line_name']  =$ar['tower_line_name1'];
-            
-
              	M("device_tower")->where($map)->setInc('tower_serial','1');
              	$model=M("device_tower");
              	$model->data($data)->add();
@@ -145,16 +143,64 @@ class TowerController extends AdminBaseController {
 
             if($tower_type>1)
             {
-            	//第二个
+                //第二个
+                $data['tower_number_old']=$ar['tower_number_old2'];
+                $data['tower_line_name']=$ar['tower_line_name2'];
+                $data['tower_line_degree']=$ar['tower_line_degree2'];
+                $serial2=$ar['tower_serial2'];
+                $data['tower_serial']=$serial2+1;
+                $str=$data['tower_longitude_d'].$data['tower_longitude_m'].$data['tower_longitude_s'].$data['tower_longitude_s'].$data['tower_latitude_d'].$data['tower_latitude_m'].$data['tower_latitude_s'];
+                
+                $data['tower_key']=md5($str);
+               
+                $map=null;
+                $map['tower_serial']  = array('gt',$serial2);
+                $map['tower_line_name']  =$ar['tower_line_name2'];
+                M("device_tower")->where($map)->setInc('tower_serial','1');
+                $model=M("device_tower");
+                $model->data($data)->add();
+                if($tower_type>2)
+                {
+                    //第三个
+                    $data['tower_number_old']=$ar['tower_number_old3'];
+                    $data['tower_line_name']=$ar['tower_line_name3'];
+                    $data['tower_line_degree']=$ar['tower_line_degree3'];
+                    $serial3=$ar['tower_serial3'];
+                    $data['tower_serial']=$serial3+1;
+                    $str=$data['tower_longitude_d'].$data['tower_longitude_m'].$data['tower_longitude_s'].$data['tower_longitude_s'].$data['tower_latitude_d'].$data['tower_latitude_m'].$data['tower_latitude_s'];
+                    
+                    $data['tower_key']=md5($str);
+                   
+                    $map=null;
+                    $map['tower_serial']  = array('gt',$serial3);
+                    $map['tower_line_name']  =$ar['tower_line_name3'];
+                    M("device_tower")->where($map)->setInc('tower_serial','1');
+                    $model=M("device_tower");
+                    $model->data($data)->add();
+                    if($tower_type>3)
+                    {
+                        //第四个
+                        $data['tower_number_old']=$ar['tower_number_old4'];
+                        $data['tower_line_name']=$ar['tower_line_name4'];
+                        $data['tower_line_degree']=$ar['tower_line_degree4'];
+                        $serial4=$ar['tower_serial4'];
+                        $data['tower_serial']=$serial4+1;
+                        $str=$data['tower_longitude_d'].$data['tower_longitude_m'].$data['tower_longitude_s'].$data['tower_longitude_s'].$data['tower_latitude_d'].$data['tower_latitude_m'].$data['tower_latitude_s'];
+                        
+                        $data['tower_key']=md5($str);
+                       
+                        $map=null;
+                        $map['tower_serial']  = array('gt',$serial4);
+                        $map['tower_line_name']  =$ar['tower_line_name4'];
+                        M("device_tower")->where($map)->setInc('tower_serial','1');
+                        $model=M("device_tower");
+                        $model->data($data)->add();
+                    }
+
+                }
             }
-            if($tower_type>2)
-            {
-            	//第三个
-            }
-            if($tower_type>3)
-            {
-            	//第四个
-            }
+           
+
 
 
              
