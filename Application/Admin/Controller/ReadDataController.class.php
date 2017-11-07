@@ -238,6 +238,11 @@ class ReadDataController extends HomeBaseController
       
    }
   }
+
+
+
+
+
    public function readTreeRecordTest()
    {
 
@@ -261,17 +266,62 @@ class ReadDataController extends HomeBaseController
       
    }
 
+   public function readProcessRecord()
+   {
 
-     /* public function excel()
+         $dir = "./TreeRecord/process";
+         if (is_dir($dir)) 
+        {
+        if ($dh = opendir($dir)) 
       {
 
-      	$name=iconv("utf-8","GBK",'./gps/清远_本部_500_库从乙线.xls'); 
+          $count=0;
+      while (($file = readdir($dh)) !== false)
+      {  
+         if($file != "." && $file != ".." )
+         {
+              $path=$dir . "/" . $file;
+              $datalist=import_excel($path);
 
-        $data=import_excel($name);
+              
+              foreach ($datalist as $data)
+              {
+
+                
+                   
+              	   for ($x=0; $x<=70; $x++)
+              	   {
+                     if(!empty($data[$x]))
+                     {
+                     $data[$x]=str_replace("#","",$data[$x]);
+                     } 
+              	   }
+              	      var_dump($data);
+             
+                   
+                   
+                  //  line_name excel里面是中文，存储在base表中的是数字
+               
+                  
+               
+                //  M("tree_process_record")->data($data)->add();
+                
+                   
 
 
-        p($data);
-    }*/
+              }
+         }
+       
+      }
+
+       closedir($dh);
+         }
+      
+   }
+  }
+
+
+    
        function  convTime($data)
       {
 
@@ -282,12 +332,12 @@ class ReadDataController extends HomeBaseController
           
           $data=str_replace(".","-",$data);
           $time=strtotime($data);
-          retrun $time;
+          return $time;
           
         }
         else
         {
-          retrun $time;
+          return $time;
         }
        
        }
