@@ -129,7 +129,8 @@ class ReadDataController extends HomeBaseController
               	   {
                      if(!empty($data[$x]))
                      {
-                     $data[$x]=str_replace("#","",$data[$x]);
+                      $data[$x]=str_replace("#","",$data[$x]);
+                      $data[$x]=str_replace(array("\r\n", "\r", "\n"), "", $data[$x]);   
                      } 
               	   }
               	   $basedata['tree_remark']=iconv("GBK","utf-8",$file);
@@ -170,7 +171,7 @@ class ReadDataController extends HomeBaseController
                     $basedata['tree_danger']=0;
                   }
 
-
+              
                   $basedata['tree_danger_num']=$data[19];
                   $basedata['tree_danger_num_unit']=$data[20];
                   $basedata['tree_danger_area']=$data[21];
@@ -183,6 +184,7 @@ class ReadDataController extends HomeBaseController
                   $tid=M("tree_base")->data($basedata)->add();
                   //以下是detail表
                   $detaildata['detail_tid']=$tid;
+
                   $detaildata['detail_last_time']=convTime($data[26]);
                   $detaildata['datail_check_person']=$data[27];
                   $detaildata['datail_check_time']=convTime($data[28]);
@@ -237,7 +239,7 @@ class ReadDataController extends HomeBaseController
                   $detaildata['detail_run_deal']=$data[55];
                   $detaildata['detail_notice_number']=$data[56]; 
                    M("tree_detail")->data($detaildata)->add();
-                   var_dump(M("tree_detail")->getLastSql());
+                   //var_dump(M("tree_detail")->getLastSql());
                    
 
 
@@ -333,7 +335,7 @@ class ReadDataController extends HomeBaseController
    }
   }
 
-
+   
     
      
  }
