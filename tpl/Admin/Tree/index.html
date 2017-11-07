@@ -16,7 +16,7 @@
       </ul>
         <tr>
           <td>
-            <form class="form-inline"  method="post" action="" id="my_form">
+            <form class="form-inline"   action="" id="my_form">
             
            <!--   <select style="width:8%" name="line_id" id="line_id" onblur="submitForm();">
             <option value ="">全部线路</option>
@@ -25,7 +25,7 @@
             </foreach>
             </select>   -->
 
-              <input  list="datalist" placeholder="线路名称" type="text" style="width: 8%;" name="line_id" id="line_id" onkeyup="searchLine()" onblur="submitForm()"/> 
+              <input  list="datalist" placeholder="线路名称" type="text" style="width: 8%;" name="line_id" id="line_id"  onblur="submitForm()"/> 
              <datalist id="datalist">
              <foreach name="querydata['device_lines']" item="v">
              <option value ="{$v['device_name']}"></option>
@@ -76,15 +76,12 @@
              <option value ="{$v['id']}">{$v['name']}</option>
              </foreach>
             </select>
-            
-            截止时间开始<input type="date" value="" name="dead_line_time_begin" id="dead_line_time_begin" onchange="submitForm();">
-            截止时间结束<input type="date" value=""  name="dead_line_time_end" id="dead_line_time_end" onchange="submitForm();">
-
+         
             <select style="width:8%" name="orderBy" id="orderBy" onchange="submitForm();">
             <option value ="">排序方式</option>
             <option value ="danger_degree desc">威胁等级降序</option>
-            <option value ="dead_line_time desc">截止时间降序</option>
-            <option value ="update_time desc">更新时间降序</option>         
+         
+            <option value ="datail_update_time desc">更新时间降序</option>         
             </select>
            
 
@@ -470,8 +467,7 @@
       sessionStorage.setItem("town",document.getElementById("town").value); 
       sessionStorage.setItem("village",document.getElementById("village").value);  
       sessionStorage.setItem("orderBy",document.getElementById("orderBy").value); 
-      sessionStorage.setItem("dead_line_time_begin",document.getElementById("dead_line_time_begin").value); 
-      sessionStorage.setItem("dead_line_time_end",document.getElementById("dead_line_time_end").value); 
+    
 
       var form = document.getElementById("my_form");//获取form表单对象
       form.submit();//form表单提交
@@ -544,16 +540,7 @@
       $("#town").val(sessionStorage.getItem("town"))
       $("#village").val(sessionStorage.getItem("village"))
       $("#orderBy").val(sessionStorage.getItem("orderBy"))
-      $("#dead_line_time_begin").val(sessionStorage.getItem("dead_line_time_begin"))
-      $("#dead_line_time_end").val(sessionStorage.getItem("dead_line_time_end"))
-
-      // $("#edit_line_id").val(sessionStorage.getItem("edit_line_id"))
-      // $("#edit_county").val(sessionStorage.getItem("edit_county"))
-      // $("#edit_town").val(sessionStorage.getItem("edit_town"))
-      // $("#edit_village").val(sessionStorage.getItem("edit_village"))
-      // $("input[name='edit_data_county']").val(sessionStorage.getItem("data_county"))
-      // $("input[name='edit_data_town']").val(sessionStorage.getItem("data_town"))
-      // $("input[name='edit_data_village']").val(sessionStorage.getItem("data_village"))
+   
       
     });   
   </script>
