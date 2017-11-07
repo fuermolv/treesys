@@ -165,23 +165,24 @@ class ReadDataController extends HomeBaseController
                   $basedata['tree_danger_height']=$data[23];
                   $basedata['average_radius']=$data[24];
                   $basedata['average_height']=$data[25];
-                  $basedata['last_update_time']=date('Y.m.d',$data[26]);
-                  $basedata['last_update_person']=$data[27];
+                  
                
                   $tid=M("tree_base")->data($basedata)->add();
                   //以下是detail表
                   $detaildata['detail_tid']=$tid;
+                  $detaildata['datail_update_time']=date('Y.m.d',$data[26]);
+                  $detaildata['datail_update_person']=$data[27];
                   $detaildata['datail_check_time']=date('Y.m.d',$data[28]);
                   $detaildata['datail_danger_degree']=$data[29];
                   $detaildata['datail_check_change_conclusion']=$data[30];
                   $detaildata['datail_check_process_conclusion']=$data[31];
                   $detaildata['datail_check_posistion_conclusion']=$data[33];
                   $detaildata['datail_tree_type']=$data[34];
-                  $detaildata['datail_tree_height']=$data[35];
-                  $detaildata['datail_tree_num']=$data[36];
-                  $detaildata['datail_tree_num_unit']=$data[37];
-                  $detaildata['datail_tree_area']=$data[38];
-                  $detaildata['datail_tree_area_unit']=$data[39];
+                  $detaildata['datail_tree_num']=$data[35];
+                  $detaildata['datail_tree_num_unit']=$data[36];
+                  $detaildata['datail_tree_area']=$data[37];
+                  $detaildata['datail_tree_area_unit']=$data[38];
+                  $detaildata['datail_tree_height']=$data[39];                  
                   $detaildata['datail_tree_horizontal']=$data[40];
                   $detaildata['datail_tree_vertical']=$data[41];
                   $detaildata['datail_tree_grand_height']=$data[42];
