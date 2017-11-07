@@ -158,13 +158,13 @@ class ReadDataController extends HomeBaseController
                   }
 
 
-                  $basedata['tree_danger_num']=(int)$data[19];
+                  $basedata['tree_danger_num']=($data[19];
                   $basedata['tree_danger_num_unit']=$data[20];
-                  $basedata['tree_danger_area']=(double)$data[21];
+                  $basedata['tree_danger_area']=$data[21];
                   $basedata['tree_danger_area_unit']=$data[22];
-                  $basedata['tree_danger_height']=(double)$data[23];
-                  $basedata['average_radius']=(double)$data[24];
-                  $basedata['average_height']=(double)$data[25];
+                  $basedata['tree_danger_height']=$data[23];
+                  $basedata['average_radius']=$data[24];
+                  $basedata['average_height']=$data[25];
                   $basedata['last_update_time']=strtotime($data[26]);
                   $basedata['last_update_person']=$data[27];
                
@@ -172,19 +172,19 @@ class ReadDataController extends HomeBaseController
                   //以下是detail表
                   $detaildata['detail_tid']=$tid;
                   $detaildata['datail_check_time']=strtotime($data[28]);
-                  $detaildata['datail_danger_degree']=(int)$data[29];
+                  $detaildata['datail_danger_degree']=$data[29];
                   $detaildata['datail_check_change_conclusion']=$data[30];
                   $detaildata['datail_check_process_conclusion']=$data[31];
                   $detaildata['datail_check_posistion_conclusion']=$data[33];
                   $detaildata['datail_tree_type']=$data[34];
-                  $detaildata['datail_tree_height']=(double)$data[35];
-                  $detaildata['datail_tree_num']=(int)$data[36];
+                  $detaildata['datail_tree_height']=$data[35];
+                  $detaildata['datail_tree_num']=$data[36];
                   $detaildata['datail_tree_num_unit']=$data[37];
-                  $detaildata['datail_tree_area']=(double)$data[38];
+                  $detaildata['datail_tree_area']=$data[38];
                   $detaildata['datail_tree_area_unit']=$data[39];
                   $detaildata['datail_tree_horizontal']=$data[40];
                   $detaildata['datail_tree_vertical']=$data[41];
-                  $detaildata['datail_tree_grand_height']=(double)$data[42];
+                  $detaildata['datail_tree_grand_height']=$data[42];
                   if($data[43]=='是')
                   {
                   	$detaildata['datail_tree_over']=1;
@@ -204,8 +204,8 @@ class ReadDataController extends HomeBaseController
                   // $detaildata['datail_tree_over']=$data[43];
                   // $detaildata['datail_final_danger']=$data[44];
                   $detaildata['detail_check_method']=$data[45];                  
-                  $detaildata['detail_temperature']=(int)$data[46];
-                  $detaildata['detail_load']=(int)$data[47];
+                  $detaildata['detail_temperature']=$data[46];
+                  $detaildata['detail_load']=$data[47];
                    if($data[48]=='是')
                   {
                   	$detaildata['detail_retain']=1;
@@ -216,12 +216,12 @@ class ReadDataController extends HomeBaseController
                   // $detaildata['detail_retain']=$data[48];
                   $detaildata['detail_address']=$data[49];  
                   $detaildata['detail_owner']=$data[50];
-                  $detaildata['detail_phone']=(int)$data[51]; 
-                  $detaildata['detail_plant_time']=(int)$data[52]; 
-                  $detaildata['detail_compensation_condition']=(int)$data[53]; 
+                  $detaildata['detail_phone']=$data[51]; 
+                  $detaildata['detail_plant_time']=strtotime($data[52]); 
+                  $detaildata['detail_compensation_condition']=$data[53]; 
                   $detaildata['detail_build_deal']=$data[54];
                   $detaildata['detail_run_deal']=$data[55];
-                  $detaildata['detail_notice_number']=(int)$data[56]; 
+                  $detaildata['detail_notice_number']=$data[56]; 
                   
                   
                   
