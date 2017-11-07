@@ -158,7 +158,7 @@ class ReadDataController extends HomeBaseController
                   }
 
 
-                  $basedata['tree_danger_num']=($data[19];
+                  $basedata['tree_danger_num']=$data[19];
                   $basedata['tree_danger_num_unit']=$data[20];
                   $basedata['tree_danger_area']=$data[21];
                   $basedata['tree_danger_area_unit']=$data[22];
