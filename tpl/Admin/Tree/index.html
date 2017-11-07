@@ -115,7 +115,7 @@
         <div class="table-responsive">
         <table class="table table-striped table-bordered table-hover table-condensed " id="data-table">
           <tr>
-            <th style="display:none" id="t-tid">编号</th>
+            <th style="display:none" id="t-tid">编号（系统编号）</th>
             <th style="display:none" id="t-accountability_department">运行单位</th>
             <th style="display:none" id="t-accountability_number">序号</th>
             <th style="display:none" id="t-accountability_group">责任班组</th>                     
@@ -144,7 +144,12 @@
            <th style="display:none" id="t-datail_check_person">更新人（最新隐患调查人）</th>
            <th style="display:none" id="t-datail_check_time">测量时刻(更新时间。到时、分)</th>
            <th style="display:none" id="t-datail_danger_degree">隐患级别（最新隐患）</th>
-           <!-- 调查结论级别变化清册AD-AH 没有展示-->
+           <!-- 调查结论级别变化清册AD-AH 没有展示（已处理）-->
+           <th style="display:none" id="t-datail_check_change_conclusion">测量结论(级别变化)</th>
+           <th style="display:none" id="t-datail_check_process_conclusion">测量结论(处理)</th>                
+           <th style="display:none" id="t-datail_check_posistion_conclusion">测量结论(位置)</th>
+
+
            <th style="display:none" id="t-datail_tree_type">最危急树障种类</th>
            <th style="display:none" id="t-datail_tree_num">最危急树障数量(棵数、墩数)</th>
            <th style="display:none" id="t-datail_tree_num_unit">最危急树障数量单位（棵、墩）</th>
@@ -156,16 +161,25 @@
            <th style="display:none" id="t-datail_tree_grand_height">最危急树障导线对地（米）</th>
            <th style="display:none" id="t-datail_tree_over">是否高出导线</th>  
            <th style="display:none" id="t-datail_final_danger">最终自然生长高度是否构成紧急级别隐患</th>
-           <!-- AT-AX没有展示 -->
+           <!-- AT-AX没有展示（已处理） -->
+           <th style="display:none" id="t-detail_check_method">测量方法</th> 
+           <th style="display:none" id="t-detail_temperature">气温（℃）</th> 
+           <th style="display:none" id="t-detail_load">负荷（A）</th> 
+           <th style="display:none" id="t-detail_retain">是否建设遗留</th> 
+           <th style="display:none" id="t-detail_address">种植物权属方－联系人地址</th>             
            <th style="display:none" id="t-detail_owner">种植物权属方－联系人姓名</th>
            <th style="display:none" id="t-detail_phone">种植物权属方－联系人电话</th>
            <th style="display:none" id="t-detail_plant_time">高杆植物种植时间</th>
-           <!--BA-BE没有展示  -->
+           <!--BA-BE没有展示（已处理）  -->
+           <th style="display:none" id="t-detail_compensation_condition">青赔情况</th>  
+           <th style="display:none" id="t-detail_build_deal">线路建设时协议签定情况</th> 
+           <th style="display:none" id="t-detail_run_deal">运行过程中协议情况</th> 
+           <th style="display:none" id="t-detail_notice_number">隐患通知书编号、情况</th>
            <th style="display:none" id="t-site_condition">立地条件</th>
            <th style="display:none" id="t-processed">是否处理</th>
            <th style="display:none" id="t-dead_line_time">截止时间</th>
-            <!--找不到对应的 datail_check_conclusion -->
-           <th style="display:none" id="t-datail_check_conclusion">测量结论</th>
+            <!--找不到对应的 datail_check_conclusion （已删除）-->
+           <!-- <th style="display:none" id="t-datail_check_conclusion">测量结论</th> -->
            <th style="display:none" id="t-datail_update_person">更新人</th>
            <th style="display:none" id="t-datail_update_group">更新班组</th>
            <th style="display:none" id="t-datail_update_time">更新时间</th>
@@ -211,7 +225,10 @@
                 <td style="display:none" id="t-datail_check_person">{$v['datail_check_person']}</td>
                 <td style="display:none" id="t-datail_check_time">{$v['datail_check_time']|date='Y-m-d',###}</td>
                 <td style="display:none" id="t-datail_danger_degree">{$v['datail_danger_degree']}</td>
-                          <!-- 调查结论级别变化清册AD-AH 没有展示-->
+                          <!-- 调查结论级别变化清册AD-AH 没有展示（已处理）-->
+                <td  style="display:none" id="t-datail_check_change_conclusion">{$v['datail_check_change_conclusion']}</td>
+                <td  style="display:none" id="t-datail_check_process_conclusion">{$v['datail_check_process_conclusion']}</td>                        
+                <td  style="display:none" id="t-datail_check_posistion_conclusion">{$v['datail_check_posistion_conclusion']}</td>          
                 <td style="display:none" id="t-datail_tree_type">{$v['datail_tree_type']}</td>
                 <td style="display:none" id="t-datail_tree_num">{$v['datail_tree_num']}</td>
                 <td style="display:none" id="t-datail_tree_num_unit">{$v['datail_tree_num_unit']}</td>
@@ -232,20 +249,38 @@
                    <else /> 否
                    </if>
                 </td>
-                <!-- AT-AX没有展示 -->
-                <td style="display:none" >{$v['detail_owner']}</td>
-                <td style="display:none" >{$v['detail_phone']}</td>
-                <td style="display:none" >{$v['detail_plant_time']}</td>
-                <!--BA-BE没有展示  -->
+                <!-- AT-AX没有展示（已处理） -->
+                <td  style="display:none">{$v['detail_check_method']}</td>
+                <td  style="display:none">{$v['detail_temperature']}</td>
+                <td  style="display:none">{$v['detail_load']}</td>
+
+                <td  style="display:none"><if condition="$v['detail_retain'] eq '1'">是
+                  <else /> 否
+                  </if></td>  
+
+                <td  style="display:none">{$v['detail_address']}</td>
+                <td  style="display:none" >{$v['detail_owner']}</td>
+                <td  style="display:none" >{$v['detail_phone']}</td>
+                <td  style="display:none" >{$v['detail_plant_time']}</td>
+
+
+                <!--BA-BE没有展示  （已处理）-->
+                <td  style="display:none"><if condition="$v['detail_compensation_condition'] eq '1'">是
+                    <else /> 否
+                    </if></td>   
+                <td  style="display:none">{$v['detail_build_deal']}</td>
+                <td  style="display:none">{$v['detail_run_deal']}</td>
+                <td  style="display:none">{$v['detail_notice_number']}</td>
+
                 <td style="display:none" >{$v['site_condition']}</td>
                 <td style="display:none">
                 <if condition="$v['processed'] eq '1'">是
                 <else /> 否
                 </if>
                 </td>
-                <td style="display:none" >{$v['dead_line_time']|date='Y-m-d',###}</td>  
-                <td style="display:none" id="t-datail_check_conclusion">{$v['datail_check_conclusion']}</td>
-                <!--找不到对应的 datail_check_conclusion -->
+                <td style="display:none" >{$v['dead_line_time']|date='Y-m-d',###}</td> 
+                <!--找不到对应的 datail_check_conclusion （已删除）-->
+                <!-- <td style="display:none" id="t-datail_check_conclusion">{$v['datail_check_conclusion']}</td> -->
               <td style="display:none" id="t-datail_update_person">{$v['datail_update_person']}</td>
               <td style="display:none" id="t-datail_update_group">{$v['datail_update_group']}</td>
               <td style="display:none" id="t-datail_update_time">{$v['datail_update_time']|date='Y-m-d',###}</td>
@@ -303,7 +338,7 @@
           <li class="list-group-item">
               县<input class="" type="checkbox" value="t-county" name="showdata">
               镇<input class="" type="checkbox" value="t-town" name="showdata">
-              村委会 <input class="" type="checkbox" value="t-village" name="showdata"> 
+              村 <input class="" type="checkbox" value="t-village" name="showdata"> 
             </li>
             <li class="list-group-item " style="font-weight:bold;">隐患所处位置  
             </li>
@@ -346,7 +381,11 @@
               </li>
               <li class="list-group-item">     
                   隐患级别（最新隐患）<input class="" type="checkbox" value="t-datail_danger_degree" name="showdata">
-                  测量结论<input class="" type="checkbox" value="t-datail_check_conclusion" name="showdata">
+                  <!-- 之前系统不存在的测量结论删除 -->
+                  <!-- 测量结论<input class="" type="checkbox" value="t-datail_check_conclusion" name="showdata"> -->
+                  测量变化<input class="" type="checkbox" value="t-datail_check_change_conclusion" name="showdata">
+                  测量结论处理<input class="" type="checkbox" value="t-datail_check_process_conclusion" name="showdata">
+                  测量结论位置<input class="" type="checkbox" value="t-datail_check_posistion_conclusion" name="showdata">
                   
                 </li>
                 <li class="list-group-item " style="font-weight:bold;">隐患最新情况（表象）
@@ -364,14 +403,34 @@
                     是否高出导线<input class="" type="checkbox" value="t-datail_tree_over" name="showdata">
                     最终自然生长高度是否构成紧急级别隐患<input class="" type="checkbox" value="t-datail_final_danger" name="showdata">
                   </li>
+
+                  <li class="list-group-item " style="font-weight:bold;">隐患最新情况（监测）</li>
+                    <li class="list-group-item">                     
+                        测量方法<input class="" type="checkbox" value="t-detail_check_method" name="showdata">
+                        气温（℃）<input class="" type="checkbox" value="t-detail_temperature" name="showdata">
+                        负荷（A）<input class="" type="checkbox" value="t-detail_load" name="showdata">
+             
+                    </li>
+                  <li class="list-group-item " style="font-weight:bold;">隐患来源</li>
+                    <li class="list-group-item">                     
+                        是否建设遗留<input class="" type="checkbox" value="t-detail_retain" name="showdata">            
+                    </li>
                   <li class="list-group-item " style="font-weight:bold;">隐患权属人信息
                   </li>
-                  <li class="list-group-item">                     
-           种植物权属方－联系人姓名<input class="" type="checkbox" value="t-detail_owner" name="showdata">
-           种植物权属方－联系人电话<input class="" type="checkbox" value="t-detail_phone" name="showdata">
-           高杆植物种植时间<input class="" type="checkbox" value="t-detail_plant_time" name="showdata">
-           
-          </li>
+                  <li class="list-group-item">     
+                      种植物权属方－联系人地址<input class="" type="checkbox" value="t-detail_address" name="showdata">                      
+                      种植物权属方－联系人姓名<input class="" type="checkbox" value="t-detail_owner" name="showdata">
+                      种植物权属方－联系人电话<input class="" type="checkbox" value="t-detail_phone" name="showdata">
+                      高杆植物种植时间<input class="" type="checkbox" value="t-detail_plant_time" name="showdata">
+                   </li>
+                   <li class="list-group-item " style="font-weight:bold;">隐患处理与管控
+                    </li>
+                    <li class="list-group-item">     
+                        青赔情况<input class="" type="checkbox" value="t-detail_compensation_condition" name="showdata">                      
+                        线路建设时协议签定情况<input class="" type="checkbox" value="t-detail_build_deal" name="showdata">
+                        运行过程中协议情况<input class="" type="checkbox" value="t-detail_run_deal" name="showdata">
+                        隐患通知书编号、情况<input class="" type="checkbox" value="t-detail_notice_number" name="showdata">
+                     </li>
           <li class="list-group-item" style="font-weight:bold;">系统新增数据 
             </li>
             <li class="list-group-item">
@@ -379,12 +438,9 @@
            <!-- 首次测量方式<input class="" type="checkbox" value="t-first_check_method" name="showdata"> -->
            是否处理 <input class="" type="checkbox" value="t-processed" name="showdata">
            截止时间<input class="" type="checkbox" value="t-dead_line_time" name="showdata">
-          
-          </li>
-          <li class="list-group-item" style="font-weight:bold;">未分类
-            </li>
-            <li class="list-group-item">
-           测量人<input class="" type="checkbox" value="t-datail_check_person" name="showdata">
+
+              <!-- 测量人是清册中的更新人所以删除 -->
+           <!-- 测量人<input class="" type="checkbox" value="t-datail_check_person" name="showdata"> -->
            更新班组<input class="" type="checkbox" value="t-datail_update_group" name="showdata">
            更新时间<input class="" type="checkbox" value="t-datail_update_time" name="showdata">   
           </li>
