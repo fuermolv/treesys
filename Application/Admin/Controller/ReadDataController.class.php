@@ -311,8 +311,45 @@ class ReadDataController extends HomeBaseController
                      $data[$x]=str_replace("#","",$data[$x]);
                      } 
               	   }
-              	      var_dump($data);
-             
+                      var_dump($data);
+                // 测试数据中没有计划清理时间
+                // $recorddata['record_plan_clean_time']=convTime($data[9]);
+                $recorddata['record_task_time']=convTime($data[9]);
+                if($data[10]=='是')
+                {
+                  $recorddata['record_is_additional']=1;
+                }else
+                {
+                  $recorddata['record_is_additional']=0;
+                }
+                $recorddata['record_department']=$data[11];
+                $recorddata['record_person']=$data[12];
+                $recorddata['record_person_phone']=$data[13];
+                $recorddata['record_accountability_person']=$data[14];
+                $recorddata['record_verify_person']=$data[15];
+                $recorddata['record_verify_person_phone']=$data[16];
+                $recorddata['record_plan_verify_time']=convTime($data[17]);
+                $recorddata['record_verify_time']=convTime($data[18]);
+                $recorddata['record_plan_consult_time']=convTime($data[19]);
+                $recorddata['record_consult_detail']=$data[20];
+                $recorddata['record_verify_situ']=$data[21];
+                $recorddata['record_verify_consult_situ']=$data[22];
+                $recorddata['record_verify_consult_matter']=$data[23];
+                if($data[24]=='是')
+                {
+                  $recorddata['record_need_apper']=1;
+                }else
+                {
+                  $recorddata['record_need_apper']=0;
+                }
+                $recorddata['record_apper_level']=$data[25];
+                $recorddata['record_accept_time']=convTime($data[26]);
+                $recorddata['record_accept_conclusion1']=$data[27];
+                $recorddata['record_accept_conclusion2']=$data[28];
+                $recorddata['record_confirm_time']=$data[29];
+                $recorddata['record_confirm_tag']=$data[30];
+                $recorddata['record_remark']=$data[31]; 
+                $tid=M("tree_process_record")->data($recorddata)->add();
                    
                    
                   //  line_name excel里面是中文，存储在base表中的是数字
