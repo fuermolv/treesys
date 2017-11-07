@@ -207,15 +207,15 @@
                 <th colspan="1">隐患来源</th>                
                 <th colspan="4">隐患权属人信息</th>
                 <th colspan="4">隐患处理与管控</th>                
-                <th colspan="4">系统新增</th>
+                <th colspan="3">系统新增</th>
                 
                 
                 
                 
             </tr>
             <tr>
-                <th colspan="1">序号</th>
                 <th colspan="1">运行单位</th>
+                <th colspan="1">序号</th>
                 <th colspan="1">责任班组</th>
                 <th colspan="1">巡视段责任人</th>
                 <th colspan="1">县</th>
@@ -271,14 +271,13 @@
                 <th colspan="1">运行过程中协议情况</th> 
                 <th colspan="1">隐患通知书编号、情况</th>
                 <th colspan="1">更新班组</th> 
-                <th colspan="1">隐患单位序号</th> 
                 <th colspan="1">截止时间</th> 
                 <th colspan="1">是否处理</th>     
             </tr>
             <foreach name="data" item="v">
                     <tr>
-                      <td >{$v['tid']}</td>
                       <td  >{$v['accountability_department']}</td>
+                      <td  >{$v['accountability_number']}</td> 
                       <td  >{$v['accountability_group']}</td>
                       <td  >{$v['accountability_person']}</td>
                       <td  >{$v['county']}</td>
@@ -304,8 +303,8 @@
                         <td  >{$v['tree_danger_height']}</td> 
                         <td  >{$v['average_radius']}</td>
                         <td  >{$v['average_height']}</td> 
-                        <td  >{$v['datail_update_time']}</td>                                                 
-                        <td  >{$v['datail_update_person']}</td> 
+                        <td  >{$v['detail_last_time']}</td>                                                 
+                        <td  >{$v['datail_check_person']}</td> 
                         <td  id="t-datail_check_time">{$v['datail_check_time']|date='Y-m-d',###}</td>
                         <td  id="t-datail_danger_degree">{$v['datail_danger_degree']}</td>                        
                         <td  id="t-datail_check_change_conclusion">{$v['datail_check_change_conclusion']}</td>
@@ -351,7 +350,6 @@
                     <td  >{$v['detail_notice_number']}</td>
 
                       <td  id="t-datail_update_group">{$v['datail_update_group']}</td> 
-                      <td  id="t-accountability_number">{$v['accountability_number']}</td>                      
                       <td  >{$v['dead_line_time']|date='Y-m-d',###}</td>                        
                       <td >
                             <if condition="$v['processed'] eq '1'">是
