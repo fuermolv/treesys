@@ -307,10 +307,7 @@
                         <td  >{$v['datail_update_time']}</td>                                                 
                         <td  >{$v['datail_update_person']}</td> 
                         <td  id="t-datail_check_time">{$v['datail_check_time']|date='Y-m-d',###}</td>
-                        <td  id="t-datail_tree_over">
-                                <if condition="$v['datail_danger_degree'] eq '1'">是
-                              <else /> 否
-                              </if></td>
+                        <td  id="t-datail_danger_degree">{$v['datail_danger_degree']}</td>                        
                         <td  id="t-datail_check_change_conclusion">{$v['datail_check_change_conclusion']}</td>
                         <td  id="t-datail_check_process_conclusion">{$v['datail_check_process_conclusion']}</td>                        
                         <td  id="t-datail_check_posistion_conclusion">{$v['datail_check_posistion_conclusion']}</td>
@@ -353,8 +350,8 @@
                     <td  >{$v['detail_run_deal']}</td>
                     <td  >{$v['detail_notice_number']}</td>
 
-                      <td  id="t-datail_update_group">{$v['datail_update_group']}</td>  
-                      <td  id="t-datail_danger_degree">{$v['datail_danger_degree']}</td>
+                      <td  id="t-datail_update_group">{$v['datail_update_group']}</td> 
+                      <td  id="t-accountability_number">{$v['accountability_number']}</td>                      
                       <td  >{$v['dead_line_time']|date='Y-m-d',###}</td>                        
                       <td >
                             <if condition="$v['processed'] eq '1'">是
