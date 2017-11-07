@@ -272,5 +272,23 @@ class ReadDataController extends HomeBaseController
 
         p($data);
     }*/
-   
+       function  convTime($data)
+      {
+
+
+        $time=strtotime($data);
+        if($time==false)
+        {
+          
+          $data=str_replace(".","-",$data);
+          $time=strtotime($data);
+          retrun $time;
+          
+        }
+        else
+        {
+          retrun $time;
+        }
+       
+       }
  }
