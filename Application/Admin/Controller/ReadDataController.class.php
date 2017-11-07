@@ -144,8 +144,8 @@ class ReadDataController extends HomeBaseController
                   $basedata['end_tower']=$data[11];
                   $basedata['danger_num']=$data[12];
                   $basedata['first_check_person']=$data[13];
-                  $basedata['first_check_time']=date('Y.m.d',$data[14]);
-                  $basedata['first_upload_time']=date('Y.m.d',$data[15]);            
+                  $basedata['first_check_time']=convTime($data[14]);
+                  $basedata['first_upload_time']=convTime($data[15]);            
                   $basedata['tree_status']=$data[16];
                   $basedata['tree_type']=$data[17];
                   if($data[18]=='是')
@@ -170,9 +170,9 @@ class ReadDataController extends HomeBaseController
                   $tid=M("tree_base")->data($basedata)->add();
                   //以下是detail表
                   $detaildata['detail_tid']=$tid;
-                  $detaildata['datail_update_time']=date('Y.m.d',$data[26]);
+                  $detaildata['datail_update_time']=convTime($data[26]);
                   $detaildata['datail_update_person']=$data[27];
-                  $detaildata['datail_check_time']=date('Y.m.d',$data[28]);
+                  $detaildata['datail_check_time']=convTime($data[28]);
                   $detaildata['datail_danger_degree']=$data[29];
                   $detaildata['datail_check_change_conclusion']=$data[30];
                   $detaildata['datail_check_process_conclusion']=$data[31];
