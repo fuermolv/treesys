@@ -78,12 +78,7 @@ class TreeController extends AdminBaseController {
         if (empty($orderBy)) {
             $orderBy = 'tid desc';
         }
-        if (!empty($dead_line_time_begin)) {
-            $map['dead_line_time'] = array('egt', strtotime($dead_line_time_begin));
-        }
-        if (!empty($dead_line_time_end)) {
-            $map['dead_line_time'] = array('elt', strtotime($dead_line_time_end));
-        }
+        
         // $data=D('TreeBase')->getPage(new TreeBaseModel(),$map,$order,$limit);
         $model = new TreeBaseModel();
         $count = $model->where($map)->alias('base')->join('__DEVICE_LINE__ dl ON base.line_id=dl.did', 'LEFT')->count();
