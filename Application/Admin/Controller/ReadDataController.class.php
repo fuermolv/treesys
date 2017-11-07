@@ -149,14 +149,7 @@ class ReadDataController extends HomeBaseController
                    	$basedata['village']=$data[7];
                    }
                    $basedata['voltage_degree']=$data[8];
-
-                  
-
                    $basedata['line_id']=$data[9];
-
-
-                   
-                   
                   //  line_name excel里面是中文，存储在base表中的是数字
 
 
@@ -190,8 +183,8 @@ class ReadDataController extends HomeBaseController
                   $tid=M("tree_base")->data($basedata)->add();
                   //以下是detail表
                   $detaildata['detail_tid']=$tid;
-                  $detaildata['datail_update_time']=convTime($data[26]);
-                  $detaildata['datail_update_person']=$data[27];
+                  $detaildata['detail_last_time']=convTime($data[26]);
+                  $detaildata['datail_check_person']=$data[27];
                   $detaildata['datail_check_time']=convTime($data[28]);
                   $detaildata['datail_danger_degree']=$data[29];
                   $detaildata['datail_check_change_conclusion']=$data[30];
