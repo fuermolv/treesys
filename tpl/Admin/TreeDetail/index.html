@@ -53,7 +53,7 @@
     <th colspan="4">隐患处理与管控</th>
     <th colspan="3">隐患最新情况</th>
     <th colspan="1">隐患最新情况（位置）</th>                
-    <th colspan="4">系统新增</th>                
+    <th colspan="5">系统新增</th>                
     
 </tr>
           <tr>     
@@ -87,11 +87,12 @@
            <th  id="t-datail_update_person">更新人（最新隐患调查人）</th> 
            <th  id="t-datail_update_time">更新时间（最新隐患调查、测量日期）</th>            
            <th  id="t-datail_check_posistion_conclusion">最危急树障相对杆塔、线路位置，距离弧垂点或导线近地点位置等描述。如距离#x杆塔x米处、弧垂点。。。</th>
-           <th  id="t-datail_check_person">测量人</th>
+           <th id="t-datail_update_time">更新时间</th>
+           <th id="t-datail_update_person">更新人</th> 
            <th  id="t-datail_update_group">更新班组</th>
            <th  id="t-datail_uptodate">是否最新</th>
            
-           <th  id="t-datail_update_time">操作</th>  
+           <th>操作</th>  
           </tr>
           <foreach name="data" item="v">
             <tr>
@@ -133,7 +134,8 @@
               <td id="t-datail_update_person">{$v['datail_update_person']}</td>              
               <td id="t-datail_update_time">{$v['datail_update_time']|date='Y-m-d',###}</td>              
               <td id="t-datail_check_posistion_conclusion">{$v['datail_check_posistion_conclusion']}</td>
-              <td id="t-datail_check_person">{$v['datail_check_person']}</td>
+              <td  id="t-datail_update_time">{$v['datail_update_time']|date='Y-m-d',###}</td>
+              <td  id="t-datail_update_person">{$v['datail_update_person']}</td> 
               <td id="t-datail_update_group">{$v['datail_update_group']}</td>
 
               <td id="t-datail_uptodate">

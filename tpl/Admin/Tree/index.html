@@ -186,15 +186,15 @@
            <th style="display:none" id="t-detail_build_deal">线路建设时协议签定情况</th> 
            <th style="display:none" id="t-detail_run_deal">运行过程中协议情况</th> 
            <th style="display:none" id="t-detail_notice_number">隐患通知书编号、情况</th>
+
+            <!--找不到对应的 datail_check_conclusion （已删除）-->
+           <!-- <th style="display:none" id="t-datail_check_conclusion">测量结论</th> -->
+           <th style="display:none" id="t-datail_update_time">更新时间</th>           
+           <th style="display:none" id="t-datail_update_person">更新人</th>
+           <th style="display:none" id="t-datail_update_group">更新班组</th>
            <th style="display:none" id="t-site_condition">立地条件</th>
            <th style="display:none" id="t-processed">是否处理</th>
            <th style="display:none" id="t-dead_line_time">截止时间</th>
-            <!--找不到对应的 datail_check_conclusion （已删除）-->
-           <!-- <th style="display:none" id="t-datail_check_conclusion">测量结论</th> -->
-           <th style="display:none" id="t-datail_update_person">更新人</th>
-           <th style="display:none" id="t-datail_update_group">更新班组</th>
-           <th style="display:none" id="t-datail_update_time">更新时间</th>
-        
 
 
             <th width="100px">操作</th>
@@ -282,20 +282,18 @@
                 <td  style="display:none">{$v['detail_build_deal']}</td>
                 <td  style="display:none">{$v['detail_run_deal']}</td>
                 <td  style="display:none">{$v['detail_notice_number']}</td>
-
-                <td style="display:none" >{$v['site_condition']}</td>
-                <td style="display:none">
-                <if condition="$v['processed'] eq '1'">是
-                <else /> 否
-                </if>
-                </td>
-                <td style="display:none" >{$v['dead_line_time']|date='Y-m-d',###}</td> 
                 <!--找不到对应的 datail_check_conclusion （已删除）-->
                 <!-- <td style="display:none" id="t-datail_check_conclusion">{$v['datail_check_conclusion']}</td> -->
+                <td style="display:none" id="t-datail_update_time">{$v['datail_update_time']|date='Y-m-d',###}</td>                
               <td style="display:none" id="t-datail_update_person">{$v['datail_update_person']}</td>
               <td style="display:none" id="t-datail_update_group">{$v['datail_update_group']}</td>
-              <td style="display:none" id="t-datail_update_time">{$v['datail_update_time']|date='Y-m-d',###}</td>
-        
+              <td style="display:none" >{$v['site_condition']}</td>
+              <td style="display:none">
+              <if condition="$v['processed'] eq '1'">是
+              <else /> 否
+              </if>
+              </td>
+              <td style="display:none" >{$v['dead_line_time']|date='Y-m-d',###}</td> 
 
               <td>
                
@@ -445,15 +443,15 @@
           <li class="list-group-item" style="font-weight:bold;">系统新增数据 
             </li>
             <li class="list-group-item">
+              <!-- 测量人是清册中的更新人所以删除 -->
+           <!-- 测量人<input class="" type="checkbox" value="t-datail_check_person" name="showdata"> -->
+           更新时间<input class="" type="checkbox" value="t-datail_update_time" name="showdata">   
+           更新人<input class="" type="checkbox" value="t-datail_update_person" name="showdata">              
+           更新班组<input class="" type="checkbox" value="t-datail_update_group" name="showdata">
            立地条件 <input class="" type="checkbox" value="t-site_condition" name="showdata">
            <!-- 首次测量方式<input class="" type="checkbox" value="t-first_check_method" name="showdata"> -->
            是否处理 <input class="" type="checkbox" value="t-processed" name="showdata">
            截止时间<input class="" type="checkbox" value="t-dead_line_time" name="showdata">
-
-              <!-- 测量人是清册中的更新人所以删除 -->
-           <!-- 测量人<input class="" type="checkbox" value="t-datail_check_person" name="showdata"> -->
-           更新班组<input class="" type="checkbox" value="t-datail_update_group" name="showdata">
-           更新时间<input class="" type="checkbox" value="t-datail_update_time" name="showdata">   
           </li>
           </ul>
             <div class="text-center">
