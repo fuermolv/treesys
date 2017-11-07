@@ -144,8 +144,8 @@ class ReadDataController extends HomeBaseController
                   $basedata['end_tower']=$data[11];
                   $basedata['danger_num']=$data[12];
                   $basedata['first_check_person']=$data[13];
-                  $basedata['first_check_time']=strtotime($data[14]);
-                  $basedata['first_upload_time']=strtotime($data[15]);            
+                  $basedata['first_check_time']=date('Y.m.d',$data[14]);
+                  $basedata['first_upload_time']=date('Y.m.d',$data[15]);            
                   $basedata['tree_status']=$data[16];
                   $basedata['tree_type']=$data[17];
                   if($data[18]=='是')
@@ -165,13 +165,13 @@ class ReadDataController extends HomeBaseController
                   $basedata['tree_danger_height']=$data[23];
                   $basedata['average_radius']=$data[24];
                   $basedata['average_height']=$data[25];
-                  $basedata['last_update_time']=strtotime($data[26]);
+                  $basedata['last_update_time']=date('Y.m.d',$data[26]);
                   $basedata['last_update_person']=$data[27];
                
                   $tid=M("tree_base")->data($basedata)->add();
                   //以下是detail表
                   $detaildata['detail_tid']=$tid;
-                  $detaildata['datail_check_time']=strtotime($data[28]);
+                  $detaildata['datail_check_time']=date('Y.m.d',$data[28]);
                   $detaildata['datail_danger_degree']=$data[29];
                   $detaildata['datail_check_change_conclusion']=$data[30];
                   $detaildata['datail_check_process_conclusion']=$data[31];
@@ -217,22 +217,13 @@ class ReadDataController extends HomeBaseController
                   $detaildata['detail_address']=$data[49];  
                   $detaildata['detail_owner']=$data[50];
                   $detaildata['detail_phone']=$data[51]; 
-                  $detaildata['detail_plant_time']=strtotime($data[52]); 
+                  $detaildata['detail_plant_time']=$data[52]; 
                   $detaildata['detail_compensation_condition']=$data[53]; 
                   $detaildata['detail_build_deal']=$data[54];
                   $detaildata['detail_run_deal']=$data[55];
                   $detaildata['detail_notice_number']=$data[56]; 
-                  
-                  
-                  
-                  
-                  
-                  
-                  
-                  
-
                    M("tree_detail")->data($detaildata)->add();
-                   
+                   var_dump(M("tree_detail")->getLastSql());
                    
 
 
