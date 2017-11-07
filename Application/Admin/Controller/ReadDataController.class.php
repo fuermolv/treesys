@@ -81,6 +81,25 @@ class ReadDataController extends HomeBaseController
      }
      }
    }
+    public function convTime($data)
+      {
+
+
+        $time=strtotime($data);
+        if($time==false)
+        {
+          
+          $data=str_replace(".","-",$data);
+          $time=strtotime($data);
+          return $time;
+          
+        }
+        else
+        {
+          return $time;
+        }
+       
+       }
 
    public function readTreeRecord()
    {
@@ -113,7 +132,8 @@ class ReadDataController extends HomeBaseController
                      $data[$x]=str_replace("#","",$data[$x]);
                      } 
               	   }
-              	   var_dump($data);
+              	   $basedata['tree_remark']=iconv("GBK","utf-8",$file);
+              	   
                    $basedata['accountability_department']=$data[0];
                    $basedata['accountability_number']=$data[1];
                    
@@ -322,23 +342,5 @@ class ReadDataController extends HomeBaseController
 
 
     
-       function  convTime($data)
-      {
-
-
-        $time=strtotime($data);
-        if($time==false)
-        {
-          
-          $data=str_replace(".","-",$data);
-          $time=strtotime($data);
-          return $time;
-          
-        }
-        else
-        {
-          return $time;
-        }
-       
-       }
+     
  }

@@ -8,7 +8,25 @@ header("Content-type:text/html;charset=utf-8");
 
 
 
+ function convTime($data)
+      {
 
+
+        $time=strtotime($data);
+        if($time==false)
+        {
+          
+          $data=str_replace(".","-",$data);
+          $time=strtotime($data);
+          return $time;
+          
+        }
+        else
+        {
+          return $time;
+        }
+       
+       }
 
 function p($data){
     // 定义样式
