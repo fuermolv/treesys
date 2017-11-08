@@ -262,7 +262,7 @@ class ReadDataController extends HomeBaseController
    {
 
         
-      $name=iconv("utf-8","GBK",'./TreeRecord/test/test.xlsx'); 
+      $name=iconv("utf-8","GBK",'./TreeRecord/process/test.xlsx'); 
       $datalist=import_excel($name);
       foreach ($datalist as $data)
       {
@@ -272,9 +272,12 @@ class ReadDataController extends HomeBaseController
             {
                      if(!empty($data[$x]))
                      {
-                     $data[$x]=str_replace("#","",$data[$x]);
+                      $data[$x]=str_replace("#","",$data[$x]);
+                      $data[$x]=str_replace(array("\r\n", "\r", "\n"), "", $data[$x]);   
                      } 
             }
+
+            //$hello = explode('-',$data[3]); 
              	  
       	var_dump($data);
       }
@@ -309,11 +312,21 @@ class ReadDataController extends HomeBaseController
                      if(!empty($data[$x]))
                      {
                      $data[$x]=str_replace("#","",$data[$x]);
+                     $data[$x]=str_replace(array("\r\n", "\r", "\n"), "", $data[$x]);   
                      } 
               	   }
-                      var_dump($data);
+                     
                 // 测试数据中没有计划清理时间
                 // $recorddata['record_plan_clean_time']=convTime($data[9]);
+
+              	 $recorddata['record_remark_temp']=iconv("GBK","utf-8",$file);
+
+              	$recorddata['record_line_name_temp']=$data[2];
+
+              	 $tower = explode('-',$data[3]); 
+              	 $recorddata['record_start_tower_temp']=$tower[0];
+              	 $recorddata['record_end_tower_temp']=$tower[1];
+              	
                 $recorddata['record_task_time']=convTime($data[9]);
                 if($data[10]=='是')
                 {
@@ -328,27 +341,30 @@ class ReadDataController extends HomeBaseController
                 $recorddata['record_accountability_person']=$data[14];
                 $recorddata['record_verify_person']=$data[15];
                 $recorddata['record_verify_person_phone']=$data[16];
+
                 $recorddata['record_plan_verify_time']=convTime($data[17]);
                 $recorddata['record_verify_time']=convTime($data[18]);
-                $recorddata['record_plan_consult_time']=convTime($data[19]);
+                $recorddata['record_plan_consult_time']=$data[19];
                 $recorddata['record_consult_detail']=$data[20];
                 $recorddata['record_verify_situ']=$data[21];
                 $recorddata['record_verify_consult_situ']=$data[22];
                 $recorddata['record_verify_consult_matter']=$data[23];
-                if($data[24]=='是')
+                $recorddata['record_process_situ']=$data[24];
+                
+                if($data[25]=='是')
                 {
                   $recorddata['record_need_apper']=1;
                 }else
                 {
                   $recorddata['record_need_apper']=0;
                 }
-                $recorddata['record_apper_level']=$data[25];
-                $recorddata['record_accept_time']=convTime($data[26]);
-                $recorddata['record_accept_conclusion1']=$data[27];
-                $recorddata['record_accept_conclusion2']=$data[28];
-                $recorddata['record_confirm_time']=$data[29];
-                $recorddata['record_confirm_tag']=$data[30];
-                $recorddata['record_remark']=$data[31]; 
+                $recorddata['record_apper_level']=$data[26];
+                $recorddata['record_accept_time']=convTime($data[27]);
+                $recorddata['record_accept_conclusion1']=$data[28];
+                $recorddata['record_accept_conclusion2']=$data[29];
+                $recorddata['record_confirm_time']=$data[30];
+                $recorddata['record_confirm_tag']=$data[31];
+                $recorddata['record_remark']=$data[32]; 
                 $tid=M("tree_process_record")->data($recorddata)->add();
                    
                    

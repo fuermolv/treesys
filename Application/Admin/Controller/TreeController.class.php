@@ -12,6 +12,7 @@ class TreeController extends AdminBaseController {
      * 首页
      */
     public function index() {
+       
         //$device_lines = session('device_li
         $orderBy = I('get.orderBy');
         $dead_line_time_begin = I('get.dead_line_time_begin');
@@ -20,10 +21,12 @@ class TreeController extends AdminBaseController {
         $county = I('get.county');
         $town = I('get.town');
         $voltage_degree = I('get.voltage_degree');
-         $datail_danger_degree=I('get.datail_danger_degree');
-         $tree_status=I('get.tree_status');
+        $datail_danger_degree=I('get.datail_danger_degree');
+        $tree_status=I('get.tree_status');
+        $star_tower=I('get.star_tower');
+        $end_tower=I('get.end_tower');
         $village = I('get.village');
-        $limit = 10;
+        $limit = 15;
         $group_id = I('get.group_id');
         //确定班组线路
         $map['id'] = $group_id;
@@ -90,9 +93,18 @@ class TreeController extends AdminBaseController {
         {
             $map['tree_status'] = $tree_status;
         }
+        if (!empty($star_tower)) 
+        {
+            $map['star_tower'] = array('EGT',$star_tower);
+        }
+        if (!empty($end_tower)) 
+        {
+            $map['end_tower'] = array('ELT',$end_tower);
+        }
         if (empty($orderBy)) {
             $orderBy = 'tid desc';
         }
+
         
         // $data=D('TreeBase')->getPage(new TreeBaseModel(),$map,$order,$limit);
         $model = new TreeBaseModel();
@@ -105,7 +117,7 @@ class TreeController extends AdminBaseController {
         $data = array('data' => $list, 'page' => $page->show());
        
         
-     /*    var_dump( $model->getLastSql());*/
+         //var_dump( $model->getLastSql());
         $this->assign('group_id', $group_id);
         $this->assign('querydata', $querydata);
         $this->assign('data', $data['data']);
