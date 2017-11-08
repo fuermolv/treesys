@@ -188,7 +188,8 @@
              tid:tid
              },
              success:function(msg){
-             $("#tree-deatil-record").html(msg);
+            // $("#tree-deatil-record").html(msg);
+             window.location.reload();
 
             },
            error:function(XMLHttpRequest, textStatus, thrownError){}
