@@ -281,10 +281,9 @@
                 <td  style="display:none" >{$v['detail_plant_time']}</td>
 
 
-                <!--BA-BE没有展示  （已处理）-->
-                <td  style="display:none"><if condition="$v['detail_compensation_condition'] eq '1'">是
-                    <else /> 否
-                    </if></td>   
+                <!--BA-BE没有展示  （已处理）--> 
+                <td  style="display:none" >{$v['detail_compensation_condition']}</td>
+                    
                 <td  style="display:none">{$v['detail_build_deal']}</td>
                 <td  style="display:none">{$v['detail_run_deal']}</td>
                 <td  style="display:none">{$v['detail_notice_number']}</td>

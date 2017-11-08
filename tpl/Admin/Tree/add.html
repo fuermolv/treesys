@@ -153,9 +153,10 @@ a<extend name="Public:base"/><block name="title">树木列表</block>
 </tr>
 <tr>
                 <th colspan="1">保护区范围外(如超高树木、上山侧等)是否有需要处理的树障</th>
-                <td><select  style="width:80%"  name="tree_danger"  id="tree_danger" value ="0">
-                                <option value ="0">否</option>     
-                                <option value ="1" >是</option>     
+                <td><select  style="width:80%"  name="tree_danger"  id="tree_danger" value =1>
+                                <option value =1 >是</option>
+                                <option value =0>否</option>     
+                                
                                    </select>
                         </td>
 </tr>
@@ -282,17 +283,17 @@ a<extend name="Public:base"/><block name="title">树木列表</block>
 <tr>
                 <th colspan="1">是否高出导线</th>
                 <td>
-                                <select  style="width:80%"   id="datail_tree_over" name="datail_tree_over" id="datail_tree_over">
-                                         <option value ="1" >是</option>
-                                         <option value ="0">否</option>  
+                                <select  style="width:80%"   id="datail_tree_over" name="datail_tree_over" id="datail_tree_over" value =1>
+                                         <option value =1 >是</option>
+                                         <option value =0>否</option>  
                                          </select></td>
 </tr>
 <tr>
                 <th colspan="1">最终自然生长高度是否构成紧急级别隐患</th> 
                 <td>
-                                <select  style="width:80%"    name="datail_final_danger" id="datail_final_danger">
-                                         <option value ="1" >是</option>
-                                         <option value ="0">否</option>  
+                                <select  style="width:80%"    name="datail_final_danger" id="datail_final_danger" value =1>
+                                         <option value =1 >是</option>
+                                         <option value =0>否</option>  
                                          </select></td>
 </tr>
 <tr>
@@ -314,8 +315,11 @@ a<extend name="Public:base"/><block name="title">树木列表</block>
 <tr>
         <th rowspan="1">隐患来源</th>
         <th colspan="1">是否建设遗留</th> 
-        <td><input  style="width:80%" type="text" name="detail_retain" id="detail_retain"></td>
-        
+        <td>
+                        <select  style="width:80%"    name="detail_retain" id="detail_retain" value =0>
+                            <option value =0>否</option>     
+                            <option value =1 >是</option>     
+                               </select></td>        
 </tr>
 <tr>
                 <th rowspan="4">隐患权属人信息</th>
@@ -369,9 +373,9 @@ a<extend name="Public:base"/><block name="title">树木列表</block>
 <tr>
                 <th colspan="1">是否处理</th> 
                 <td>
-                                <select  style="width:80%"    name="processed" id="processed" value ="0">
-                                    <option value ="0">否</option>     
-                                    <option value ="1" >是</option>     
+                                <select  style="width:80%"    name="processed" id="processed" value =0>
+                                    <option value =0>否</option>     
+                                    <option value =1 >是</option>     
                                        </select></td>
 </tr>
 </form>
