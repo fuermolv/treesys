@@ -210,7 +210,7 @@
                     <th colspan="1">巡视段责任人</th>
                     <th colspan="1">县</th>
                     <th colspan="1">镇</th>
-                    <th colspan="1">村委会</th>
+                    <th colspan="1">村</th>
                     <th colspan="1">电压等级（KV）</th>
                     <th colspan="1">线路名称</th>
                     <th colspan="1">小号杆（塔周围时大小号杆相同）</th>
@@ -269,9 +269,7 @@
                         <th colspan="11">隐患最新情况（表象）</th>
                         <th colspan="3">隐患最新情况（监测）</th> 
                         <th colspan="1">隐患来源</th>                
-                        <th colspan="4">隐患权属人信息</th>
-                        <th colspan="4">隐患处理与管控</th>                
-                        <th colspan="5">系统新增</th>  
+ 
                     </tr>
                     <tr>
                     <th colspan="1">更新时间（最新隐患调查、测量日期）</th>
@@ -297,19 +295,6 @@
                     <th colspan="1">气温（℃）</th> 
                     <th colspan="1">负荷（A）</th> 
                     <th colspan="1">是否建设遗留</th> 
-                    <th colspan="1">种植物权属方－联系人地址</th>  
-                    <th colspan="1">种植物权属方－联系人姓名</th> 
-                    <th colspan="1">种植物权属方－联系人电话</th> 
-                    <th colspan="1">高杆植物种植时间</th>
-                    <th colspan="1">青赔情况</th>  
-                    <th colspan="1">线路建设时协议签定情况</th> 
-                    <th colspan="1">运行过程中协议情况</th> 
-                    <th colspan="1">隐患通知书编号、情况</th>
-                    <th colspan="1">更新时间</th>
-                    <th colspan="1">更新人</th>                                 
-                    <th colspan="1">更新班组</th>                 
-                    <th colspan="1">截止时间</th> 
-                    <th colspan="1">是否处理</th>     
                 </tr>
                         <td  >{$v['detail_last_time']|date='Y-m-d',###}</td>                                                 
                         <td  >{$v['datail_check_person']}</td> 
@@ -345,26 +330,49 @@
                           <else /> 否
                           </if></td>  
 
-                      <td  >{$v['detail_address']}</td>
-                      <td  >{$v['detail_owner']}</td>
-                      <td  >{$v['detail_phone']}</td>
-                      <td  >{$v['detail_plant_time']}</td>
-
-                      <td  ><if condition="$v['detail_compensation_condition'] eq '1'">是
-                        <else /> 否
-                        </if></td>   
-                      <td  >{$v['detail_build_deal']}</td>
-                    <td  >{$v['detail_run_deal']}</td>
-                    <td  >{$v['detail_notice_number']}</td>
-                    <td  >{$v['datail_update_time']|date='Y-m-d',###}</td>
-                    <td  id="t-datail_update_person">{$v['datail_update_person']}</td>                     
-                    <td  id="t-datail_update_group">{$v['datail_update_group']}</td> 
-                    <td  >{$v['dead_line_time']|date='Y-m-d',###}</td>                        
-                    <td >
-                            <if condition="$v['processed'] eq '1'">是
-                            <else /> 否
-                            </if>
-                            </td>
+                     
+                    </tr>
+                    <tr>
+                        <th colspan="4">隐患权属人信息</th>
+                        <th colspan="4">隐患处理与管控</th>                
+                        <th colspan="5">系统新增</th> 
+                    </tr>
+                    <tr>
+                        <th colspan="1">种植物权属方－联系人地址</th>  
+                        <th colspan="1">种植物权属方－联系人姓名</th> 
+                        <th colspan="1">种植物权属方－联系人电话</th> 
+                        <th colspan="1">高杆植物种植时间</th>
+                        <th colspan="1">青赔情况</th>  
+                        <th colspan="1">线路建设时协议签定情况</th> 
+                        <th colspan="1">运行过程中协议情况</th> 
+                        <th colspan="1">隐患通知书编号、情况</th>
+                        <th colspan="1">更新时间</th>
+                        <th colspan="1">更新人</th>                                 
+                        <th colspan="1">更新班组</th>                 
+                        <th colspan="1">截止时间</th> 
+                        <th colspan="1">是否处理</th>     
+                    </tr>
+                    <tr>
+                        <td  >{$v['detail_address']}</td>
+                        <td  >{$v['detail_owner']}</td>
+                        <td  >{$v['detail_phone']}</td>
+                        <td  >{$v['detail_plant_time']}</td>
+  
+                        <td  ><if condition="$v['detail_compensation_condition'] eq '1'">是
+                          <else /> 否
+                          </if></td>   
+                        <td  >{$v['detail_build_deal']}</td>
+                      <td  >{$v['detail_run_deal']}</td>
+                      <td  >{$v['detail_notice_number']}</td>
+                      <td  >{$v['datail_update_time']|date='Y-m-d',###}</td>
+                      <td  id="t-datail_update_person">{$v['datail_update_person']}</td>                     
+                      <td  id="t-datail_update_group">{$v['datail_update_group']}</td> 
+                      <td  >{$v['dead_line_time']|date='Y-m-d',###}</td>                        
+                      <td >
+                              <if condition="$v['processed'] eq '1'">是
+                              <else /> 否
+                              </if>
+                              </td>
                     </tr>
                 </foreach>        
     </table>

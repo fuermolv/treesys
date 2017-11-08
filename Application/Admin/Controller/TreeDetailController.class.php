@@ -88,6 +88,7 @@ class TreeDetailController extends AdminBaseController
 
           $map['id']=$user_id;
           $user=M("users")->where($map)->select();
+          $ar['detail_last_time']=strtotime($ar['detail_last_time']);
           $ar['datail_check_time']=strtotime($ar['datail_check_time']);
           $ar['datail_update_time']=NOW_TIME;
           $ar['datail_update_person']=$user[0]['true_name'];

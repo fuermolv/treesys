@@ -167,55 +167,26 @@ class TreeController extends AdminBaseController {
                 $this->error('删除树片失败');}
     }
     public function add() {
-        $line_id = I('get.line_id');
-        $county = I('get.county');
-        $town = I('get.town');
-        $voltage_degree = I('get.voltage_degree');
-        $village = I('get.village');
-        $group_id = I('get.group_id');
-        //确定班组线路
-        $map['id'] = $group_id;
-        $lienes = M("auth_rule")->where($map)->select();
-        $map = null;
-        $map['did'] = array('in', $lienes[0]['group_device']);
-        $device_lines = M("device_line")->where($map)->select();
-        $querydata['device_lines'] = $device_lines;
-        $map = null;
-        //选出县镇乡
-        if (!empty($county)) {
-            $map['fid'] = $county;
-            $map['sid'] = 0;
-            $querydata['towns'] = M("areas")->where($map)->select();
-        }
-        $map = null;
-        if (!empty($town)) {
-            $map['sid'] = $town;
-            $querydata['villages'] = M("areas")->where($map)->select();
-        }
-        $map = null;
         if(IS_POST)
         {
             $user_id=$_SESSION['user']['id'];
             $map['id']=$user_id;
             $user=M("users")->where($map)->select();
             $ar=$_POST;
+            $base_data['accountability_department']=$ar['accountability_department'];
+            $base_data['accountability_number']=$ar['accountability_number'];
+            $base_data['accountability_group']=$ar['accountability_group'];
+            $base_data['accountability_person']=$ar['accountability_person'];
+            $base_data['county']=$ar['county'];
+            $base_data['town']=$ar['town'];
+            $base_data['village']=$ar['village'];
             $base_data['line_id']=$line_id;
             $base_data['star_tower']=$ar['star_tower'];
             $base_data['end_tower']=$ar['end_tower'];
             $base_data['danger_num']=$ar['danger_num'];
             $base_data['first_check_person']=$ar['first_check_person'];
-            
-            $base_data['accountability_department']=$ar['accountability_department'];
-            $base_data['accountability_group']=$ar['accountability_group'];
-            $base_data['accountability_person']=$user[0]['true_name'];
-            $base_data['accountability_number']=$ar['accountability_number'];
-            $base_data['county']=$ar['data_county'];
-            $base_data['town']=$ar['data_town'];
-            $base_data['village']=$ar['data_village'];
-            $base_data['owner']=$ar['owner'];
-            $base_data['owner_phone']=$ar['owner_phone'];
-            $base_data['accountability_person']=$ar['accountability_person'];
-            $base_data['tree_age']=$ar['tree_age'];
+            $base_data['first_check_time']=strtotime($ar['first_check_time']);
+            $base_data['first_upload_time']=strtotime($ar['first_upload_time']);            
             $base_data['tree_status']=$ar['tree_status'];
             $base_data['tree_type']=$ar['tree_type'];
             $base_data['tree_danger']=$ar['tree_danger'];
@@ -225,47 +196,87 @@ class TreeController extends AdminBaseController {
             $base_data['tree_danger_area_unit']=$ar['tree_danger_area_unit'];
             $base_data['tree_danger_height']=$ar['tree_danger_height'];
             $base_data['average_radius']=$ar['average_radius'];
-            $base_data['average_height']=$ar['average_height'];
+            $base_data['average_height']=$ar['average_height']; 
             $base_data['dead_line_time']=strtotime($ar['dead_line_time']);
-            $base_data['first_upload_time']=strtotime($ar['first_upload_time']);            
-            $base_data['last_update_time']=NOW_TIME;              
-            $base_data['first_check_time']=strtotime($ar['datail_check_time']);
             $base_data['processed']=$ar['processed'];
+            
             $TreeBase=D("TreeBase");
             $result = $TreeBase->add($base_data);
             
             $detail_data['detail_tid']=$result;
-            $detail_data['datail_danger_degree']=$ar['datail_danger_degreee'];
-            $detail_data['datail_final_danger']=$ar['datail_final_danger'];
+            $detail_data['detail_last_time']=strtotime($ar['detail_last_time']);
             $detail_data['datail_check_person']=$ar['datail_check_person'];
+            $detail_data['datail_check_time']=strtotime($ar['datail_check_time']);
+            $detail_data['datail_danger_degree']=$ar['datail_danger_degree'];
+            $detail_data['datail_check_change_conclusion']=$ar['datail_check_change_conclusion'];
+            $detail_data['datail_check_process_conclusion']=$ar['datail_check_process_conclusion'];
+            $detail_data['datail_check_posistion_conclusion']=$ar['datail_check_posistion_conclusion'];
             $detail_data['datail_tree_type']=$ar['datail_tree_type'];
-            $detail_data['datail_tree_height']=$ar['datail_tree_height'];
             $detail_data['datail_tree_num']=$ar['datail_tree_num'];
             $detail_data['datail_tree_num_unit']=$ar['datail_tree_num_unit'];
             $detail_data['datail_tree_area']=$ar['datail_tree_area'];
             $detail_data['datail_tree_area_unit']=$ar['datail_tree_area_unit'];
+            $detail_data['datail_tree_height']=$ar['datail_tree_height'];
             $detail_data['datail_tree_horizontal']=$ar['datail_tree_horizontal'];
             $detail_data['datail_tree_vertical']=$ar['datail_tree_vertical'];
             $detail_data['datail_tree_grand_height']=$ar['datail_tree_grand_height'];
             $detail_data['datail_tree_over']=$ar['datail_tree_over'];
-            $detail_data['datail_update_time']=NOW_TIME;
-            $detail_data['datail_check_time']=strtotime($ar['datail_check_time']);
-            $detail_data['datail_check_posistion_conclusion']=$ar['datail_check_posistion_conclusion'];
-            $detail_data['datail_check_process_conclusion']=$ar['datail_check_process_conclusion'];
-            $detail_data['datail_check_change_conclusion']=$ar['datail_check_change_conclusion'];
+            $detail_data['datail_final_danger']=$ar['datail_final_danger'];
             $detail_data['datail_check_person']=$ar['datail_check_person'];
+            $detail_data['detail_check_method']=$ar['detail_check_method'];
+            $detail_data['detail_temperature']=$ar['detail_temperature'];
+            $detail_data['detail_load']=$ar['detail_load'];
+            $detail_data['detail_retain']=$ar['detail_retain'];
+            $detail_data['detail_address']=$ar['detail_address'];
+            $detail_data['detail_owner']=$ar['detail_owner'];
+            $detail_data['detail_phone']=$ar['detail_phone'];
+            $detail_data['detail_plant_time']=$ar['detail_plant_time'];
+            $detail_data['detail_compensation_condition']=$ar['detail_compensation_condition'];
+            $detail_data['detail_build_deal']=$ar['detail_build_deal'];
+            $detail_data['detail_run_deal']=$ar['detail_run_deal'];
+            $detail_data['detail_notice_number']=$ar['detail_notice_number'];
+            $detail_data['datail_update_time']=NOW_TIME;
             $detail_data['datail_update_person']=$user[0]['true_name'];
-            $detail_data['datail_update_group']=$ar['datail_update_group'];
             $result = D("TreeDetail")->addData($detail_data);
+            var_dump($base_data,$TreeBase->_sql());  
             if($result){
                 // var_dump($base_data,$TreeBase->_sql());                
             $this->success("成功添加树片",U("Admin/Tree/index/group_id/{$group_id}"));
             }
             else{   
-                $this->error('新增树片失败');}
+                $this->error('新增树片失败');}                       
+            // $this->ajaxReturn($result);
+
         }
+        
         else
         {
+            $line_id = I('get.line_id');
+            $county = I('get.county');
+            $town = I('get.town');
+            $voltage_degree = I('get.voltage_degree');
+            $village = I('get.village');
+            $group_id = I('get.group_id');
+            //确定班组线路
+            $map['id'] = $group_id;
+            $lienes = M("auth_rule")->where($map)->select();
+            $map = null;
+            $map['did'] = array('in', $lienes[0]['group_device']);
+            $device_lines = M("device_line")->where($map)->select();
+            $querydata['device_lines'] = $device_lines;
+            $map = null;
+            //选出县镇乡
+            if (!empty($county)) {
+                $map['fid'] = $county;
+                $map['sid'] = 0;
+                $querydata['towns'] = M("areas")->where($map)->select();
+            }
+            $map = null;
+            if (!empty($town)) {
+                $map['sid'] = $town;
+                $querydata['villages'] = M("areas")->where($map)->select();
+            }
+            $map = null;    
             $this->assign('group_id', $group_id);
             $this->assign('querydata', $querydata);
             $this->display();
@@ -341,8 +352,12 @@ class TreeController extends AdminBaseController {
             unset($ar['group_id']); 
             unset($ar['tid']); 
            // var_dump($map);    
-            $ar['accountability_person']=$user[0]['true_name'];
-            $ar['last_update_time']=NOW_TIME;  
+            // $ar['accountability_person']=$user[0]['true_name'];
+            // $ar['last_update_time']=NOW_TIME;  
+            $ar['first_check_time']=strtotime($ar['first_check_time']);
+            $ar['first_upload_time']=strtotime($ar['first_upload_time']);
+            $ar['dead_line_time']=strtotime($ar['dead_line_time']);
+            
             $result = D("TreeBase")->editData($map,$ar);
             if($result){
                 $this->success("成功修改树片",U("Admin/Tree/index/group_id/{$group_id}"));

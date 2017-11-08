@@ -101,7 +101,7 @@
           
           
           <td>
-           <select style="width:45px"  id="record_need_apper" value="{$data['record_need_apper']}" name="record_need_apper" ">
+           <select style="width:45px"  id="record_need_apper" value="{$data['record_need_apper']}" name="record_need_apper" >
             <option value ="1" >是</option>
             <option value ="0">否</option>  
            </select>
@@ -163,6 +163,8 @@ function process_add_record(obj)
              record_verify_situ:$("#record_verify_situ").val(),
              record_verify_consult_situ:$("#record_verify_consult_situ").val(),
              record_verify_consult_matter:$("#record_verify_consult_matter").val(),
+             record_process_situ:$("#record_process_situ").val(),
+
              record_need_apper:$("#record_need_apper").val(),
              record_apper_level:$("#record_apper_level").val(),
              record_accept_time:$("#record_accept_time").val(),
@@ -184,7 +186,7 @@ function process_add_record(obj)
              },
              success:function(msg){
 
-              window.location.reload();
+              aaa.location.reload();
     
            // $("#tree-process-record").html(msg);
             },

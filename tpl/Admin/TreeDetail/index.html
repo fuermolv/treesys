@@ -57,8 +57,8 @@
     
 </tr>
           <tr> 
-           <th  id="t-datail_update_person">更新人（最新隐患调查人）</th> 
-           <th  id="t-datail_update_time">更新时间（最新隐患调查、测量日期）</th> 
+          <th  id="t-detail_last_time">更新时间（最新隐患调查、测量日期）</th>    
+           <th  id="t-datail_check_person">更新人（最新隐患调查人）</th> 
            <th  id="t-datail_check_time">测量时刻(更新时间。到时、分)</th>      
            <th  id="t-datail_danger_degree">隐患级别（最新隐患）</th>
            <th  id="t-datail_check_change_conclusion">测量变化</th>
@@ -97,8 +97,8 @@
           </tr>
           <foreach name="data" item="v">
             <tr>
-              <td id="t-datail_update_person">{$v['datail_update_person']}</td>              
-              <td id="t-datail_update_time">{$v['datail_update_time']|date='Y-m-d',###}</td> 
+              <td id="t-detail_last_time">{$v['detail_last_time']|date='Y-m-d',###}</td>                 
+              <td id="t-datail_check_person">{$v['datail_check_person']}</td>              
               <td id="t-datail_check_time">{$v['datail_check_time']|date='Y-m-d',###}</td>
               <td id="t-datail_danger_degree">{$v['datail_danger_degree']}</td>
               <td id="t-datail_check_change_conclusion">{$v['datail_check_change_conclusion']}</td>
@@ -114,18 +114,22 @@
               <td id="t-datail_tree_vertical">{$v['datail_tree_vertical']}</td>
               <td id="t-datail_tree_grand_height">{$v['datail_tree_grand_height']}</td>
               <td id="t-datail_tree_over">
-                <if condition="$v['datail_danger_degree'] eq 'true'">是
+                <if condition="$v['datail_tree_over'] eq 1">是
               <else /> 否
               </if></td>
               </td> 
               <td id="t-datail_final_danger">
-                <if condition="$v['datail_final_danger'] eq 'true'">是
+                <if condition="$v['datail_final_danger'] eq 1">是
                <else /> 否
                </if></td>
               <td id="t-detail_check_method">{$v['detail_check_method']}</td>              
               <td id="t-detail_temperature">{$v['detail_temperature']}</td>
               <td id="t-detail_load">{$v['detail_load']}</td>
-              <td id="t-detail_retain">{$v['detail_retain']}</td>
+              <td id="t-detail_retain">
+                  <if condition="$v['detail_retain'] eq 1">是
+                <else /> 否
+                </if></td>
+                </td> 
               <td id="t-detail_address">{$v['detail_address']}</td>
               <td id="t-detail_owner">{$v['detail_owner']}</td>
               <td id="t-detail_phone">{$v['detail_phone']}</td>
