@@ -43,7 +43,7 @@
            <td><input style="width:150px;" id="record_plan_clean_time" type="date" value="{$data['record_plan_clean_time'|date='Y-m-d',###]}" name="record_plan_clean_time"></td>
           <td><input style="width:150px;" id="record_task_time" type="date" value="{$data['record_task_time'|date='Y-m-d',###]}" name="record_task_time"></td>
            <td>
-            <select style="width:45px"  id="record_is_additional" value="{$data['record_is_additional']}" name="record_is_additional" ">
+            <select style="width:45px"  id="record_is_additional" value="{$data['record_is_additional']}" name="record_is_additional">
             <option value ="1" >是</option>
             <option value ="0">否</option>  
            </select>
@@ -73,6 +73,8 @@
            <th id="t-record_verify_situ" >截止统计日按任务单，现场“隐患核实”情况</th>
            <th  id="t-record_verify_consult_situ" >截止统计日青苗商谈、补偿情况</th>
            <th  id="t-record_verify_consult_matter">截止统计日存在的协商问题</th>
+           <th  id="t-record_process_situ">截止统计日砍伐情况</th>
+           
            <th  id="t-record_need_apper">是否需逐级上报处理</th>
            <th  id="t-record_apper_level" >上报级别</th>
            <th  id="t-record_accept_time">清障验收时间</th>
@@ -95,7 +97,10 @@
           <td><input style="width:180px;" id="record_verify_consult_situ" type="text" value="{$data['record_verify_consult_situ']}" name="record_verify_consult_situ"></td>
 
           <td><input style="width:180px;" id="record_verify_consult_matter" type="text" value="{$data['record_verify_consult_matter']}" name="record_verify_consult_matter"></td>
-            <td>
+          <td><input style="width:180px;" id="record_process_situ" type="text" value="{$data['record_process_situ']}" name="record_process_situ"></td>
+          
+          
+          <td>
            <select style="width:45px"  id="record_need_apper" value="{$data['record_need_apper']}" name="record_need_apper" ">
             <option value ="1" >是</option>
             <option value ="0">否</option>  
