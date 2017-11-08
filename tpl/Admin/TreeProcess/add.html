@@ -178,8 +178,10 @@ function process_add_record(obj)
              tid:record_tid
              },
              success:function(msg){
+
+              window.location.reload();
     
-          $("#tree-process-record").html(msg);
+           // $("#tree-process-record").html(msg);
             },
            error:function(XMLHttpRequest, textStatus, thrownError){}
           })
