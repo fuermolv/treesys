@@ -120,7 +120,7 @@
               <td style="display:none" >{$v['tree_age']}</td>
               <td style="display:none" >{$v['tree_status']}</td>
               <td style="display:none" >{$v['tree_type']}</td>    
-              <td style="display:none" ><if condition="$v['tree_danger'] eq 1">是
+              <td style="display:none" ><if condition="$v['tree_danger'] eq '1'">是
                 <else /> 否
                 </if></td>
               <td style="display:none" >{$v['tree_danger_num']}</td>
@@ -135,7 +135,7 @@
               
               <td style="display:none" >{$v['first_check_person']}</td>
               <td style="display:none">
-              <if condition="$v['processed'] eq 1">是
+              <if condition="$v['processed'] eq '1'">是
               <else /> 否
               </if>
               </td>
@@ -143,7 +143,7 @@
               <td style="display:none" >{$v['dead_line_time']|date='Y-m-d',###}</td>  
               <td style="display:none" id="t-datail_danger_degree">{$v['datail_danger_degree']}</td>
               <td style="display:none" id="t-datail_final_danger">
-               <if condition="$v['datail_final_danger'] eq 1">是
+               <if condition="$v['datail_final_danger'] eq '1'">是
               <else /> 否
               </if></td>
               <td style="display:none" id="t-datail_tree_type">{$v['datail_tree_type']}</td>
@@ -157,7 +157,7 @@
               <td style="display:none" id="t-datail_tree_grand_height">{$v['datail_tree_grand_height']}</td>
 
               <td style="display:none" id="t-datail_tree_over">
-                <if condition="$v['datail_danger_degree'] eq 1">是
+                <if condition="$v['datail_danger_degree'] eq '1'">是
               <else /> 否
               </if></td>
               </td>        
@@ -248,7 +248,7 @@
                       <td  >{$v['first_upload_time']|date='Y-m-d',###}</td>              
                       <td  >{$v['tree_status']}</td>
                       <td  >{$v['tree_type']}</td>    
-                      <td  ><if condition="$v['tree_danger'] eq 1">是
+                      <td  ><if condition="$v['tree_danger'] eq '1'">是
                             <else /> 否
                             </if></td>                     
                         <td  >{$v['tree_danger_num']}</td>
@@ -313,12 +313,12 @@
                         <td  id="t-datail_tree_vertical">{$v['datail_tree_vertical']}</td>
                         <td  id="t-datail_tree_grand_height">{$v['datail_tree_grand_height']}</td>
                         <td  id="t-datail_tree_over">
-                            <if condition="$v['datail_tree_over'] eq 1">是
+                            <if condition="$v['datail_tree_over'] eq '1'">是
                                 <else /> 否
                                     </if>
                         </td>
                         <td  id="t-datail_final_danger">
-                            <if condition="$v['datail_final_danger'] eq 1">是
+                            <if condition="$v['datail_final_danger'] eq '1'">是
                             <else /> 否
                                 </if>
                         </td> 
@@ -327,7 +327,7 @@
                         <td  >{$v['detail_temperature']}</td>
                         <td  >{$v['detail_load']}</td>
 
-                        <td  ><if condition="$v['detail_retain'] eq 1">是
+                        <td  ><if condition="$v['detail_retain'] eq '1'">是
                           <else /> 否
                           </if></td>  
 
@@ -367,7 +367,7 @@
                       <td  id="t-datail_update_group">{$v['datail_update_group']}</td> 
                       <td  >{$v['dead_line_time']|date='Y-m-d',###}</td>                        
                       <td >
-                              <if condition="$v['processed'] eq 1">是
+                              <if condition="$v['processed'] eq '1'">是
                               <else /> 否
                               </if>
                               </td>
