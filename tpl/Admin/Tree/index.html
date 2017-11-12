@@ -68,20 +68,7 @@
             <option value="8">连山县</option>
             </select>
 
-            <select style="width:8%" name="tree_status"  id="tree_status" onchange="submitForm();">
-            <option value ="">树木状态</option>
-            <option value ="未砍">未砍</option>
-            <option value ="翻抽">翻抽</option>
-            <option value="新种">新种</option>
-       
-            </select>
-
-            <select style="width:8%" name="datail_danger_degree"  id="datail_danger_degree" onchange="submitForm();">
-            <option value ="">隐患级别</option>
-            <option value ="一般">一般</option>
-            <option value ="重大">重大</option>
-           
-            </select>
+            
 
             <select style="width:8%" name="town"   id="town" onchange="submitForm();">
             <option value ="">镇</option>
@@ -95,6 +82,21 @@
             <foreach name="querydata['villages']" item="v">
              <option value ="{$v['id']}">{$v['name']}</option>
              </foreach>
+            </select>
+
+            <select style="width:8%" name="tree_status"  id="tree_status" onchange="submitForm();">
+            <option value ="">树木状态</option>
+            <option value ="未砍">未砍</option>
+            <option value ="翻抽">翻抽</option>
+            <option value="新种">新种</option>
+       
+            </select>
+
+            <select style="width:8%" name="datail_danger_degree"  id="datail_danger_degree" onchange="submitForm();">
+            <option value ="">隐患级别</option>
+            <option value ="一般">一般</option>
+            <option value ="重大">重大</option>
+           
             </select>
          
             <select style="width:8%" name="orderBy" id="orderBy" onchange="submitForm();">

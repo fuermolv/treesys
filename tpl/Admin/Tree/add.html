@@ -106,12 +106,18 @@ a<extend name="Public:base"/><block name="title">树木列表</block>
 <tr>
                 <th colspan="1">线路名称</th>
                 <td>
-                                <select  style="width:80%"  name="line_id" id="line_id" onchange="submitForm();">
+                                <!-- <select  style="width:80%"  name="line_id" id="line_id" onchange="submitForm();">
                                 <option value ="">全部线路</option>
                                 <foreach name="querydata['device_lines']" item="v">
                                  <option value ="{$v['did']}">{$v['voltage_degree']}kV{$v['device_name']}</option>
                                 </foreach>
-                                </select>
+                                </select> -->
+                      <input  list="datalist" placeholder="线路名称" type="text" style="width: 80%;" name="line_id" id="line_id" /> 
+                      <datalist id="datalist">
+                      <foreach name="querydata['device_lines']" item="v">
+                      <option value ="{$v['device_name']}"></option>
+                    </foreach>
+
                     </td>
 </tr>
 </form>
@@ -422,6 +428,7 @@ a<extend name="Public:base"/><block name="title">树木列表</block>
            town:$("#town").val(),
            village:$("#village").val(),
            line_id:$("#line_id").val(),
+           voltage_degree:$("#voltage_degree").val(),
            star_tower:$("#star_tower").val(),
            end_tower:$("#end_tower").val(),
            danger_num:$("#danger_num").val(),
@@ -478,7 +485,7 @@ a<extend name="Public:base"/><block name="title">树木列表</block>
                  alert(msg.info);
                 }else
                 {
-                 alert("修改成功"); }
+                 alert("增加成功"); }
                 // alert(msg);
                 // if(msg==1)parent.location.reload();
                 // window.location.href="Admin/Tree/index/group_id/{$group_id}";

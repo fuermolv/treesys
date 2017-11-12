@@ -173,6 +173,59 @@ class TreeController extends AdminBaseController {
             $map['id']=$user_id;
             $user=M("users")->where($map)->select();
             $ar=$_POST;
+
+
+
+            $device_name=$ar['line_id'];
+            
+            $line_map['device_name']=$device_name;
+           
+            $line_data=M("device_line")->where($line_map)->select();
+
+
+            
+           
+
+             if(empty($line_data[0]))
+            {
+              $new_line_data['device_name']=$device_name;
+
+
+              $new_line_data['voltage_degree']=$ar['voltage_degree'];
+              $new_line_id=M("device_line")->data($new_line_data)->where($new_line_data)->add();
+              $base_data['line_id']=$new_line_id;
+            } 
+            else
+            {
+              $base_data['line_id']=$line_data[0]['did'];
+            }
+
+
+            if (!empty($ar['county'])) 
+            {
+            $tamp_map=null;
+            $tamp_map['id']=$ar['county'];
+            $temp=M("areas")->where($tamp_map)->field('name')->select();
+            $ar['county'] = $temp[0]['name'] ;
+            
+            }
+        if (!empty($ar['town'])) {
+            $tamp_map=null;
+            $tamp_map['id']=$ar['town'];
+            $temp=M("areas")->where($tamp_map)->field('name')->select();
+            $ar['town']=$temp[0]['name']  ;
+            
+        }
+        if (!empty($ar['village'])) {
+            $tamp_map=null;
+            $tamp_map['id']=$ar['village'];
+            $temp=M("areas")->where($tamp_map)->field('name')->select();
+            $ar['village'] = $temp[0]['name'] ;
+        }
+          
+
+
+
             $base_data['accountability_department']=$ar['accountability_department'];
             $base_data['accountability_number']=$ar['accountability_number'];
             $base_data['accountability_group']=$ar['accountability_group'];
@@ -180,7 +233,7 @@ class TreeController extends AdminBaseController {
             $base_data['county']=$ar['county'];
             $base_data['town']=$ar['town'];
             $base_data['village']=$ar['village'];
-            $base_data['line_id']=$line_id;
+            //$base_data['line_id']=$line_id;
             $base_data['star_tower']=$ar['star_tower'];
             $base_data['end_tower']=$ar['end_tower'];
             $base_data['danger_num']=$ar['danger_num'];
@@ -238,14 +291,15 @@ class TreeController extends AdminBaseController {
             $detail_data['datail_update_time']=NOW_TIME;
             $detail_data['datail_update_person']=$user[0]['true_name'];
             $result = D("TreeDetail")->addData($detail_data);
-            var_dump($base_data,$TreeBase->_sql());  
-            if($result){
-                // var_dump($base_data,$TreeBase->_sql());                
+        
+           if($result){
+                   
             $this->success("成功添加树片",U("Admin/Tree/index/group_id/{$group_id}"));
             }
             else{   
-                $this->error('新增树片失败');}                       
-            // $this->ajaxReturn($result);
+                $this->error('新增树片失败');
+            }                       
+             $this->ajaxReturn($result);
 
         }
         
@@ -260,8 +314,14 @@ class TreeController extends AdminBaseController {
             //确定班组线路
             $map['id'] = $group_id;
             $lienes = M("auth_rule")->where($map)->select();
+            
             $map = null;
+            
             $map['did'] = array('in', $lienes[0]['group_device']);
+            if($lienes[0]['group_device'][0]=-1)
+            {
+             $map=null;
+            }
             $device_lines = M("device_line")->where($map)->select();
             $querydata['device_lines'] = $device_lines;
             $map = null;
