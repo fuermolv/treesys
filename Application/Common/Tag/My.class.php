@@ -313,7 +313,7 @@ php;
 <script>
     var BASE_URL = '__PUBLIC__/statics/webuploader-0.1.5';
 </script>
-<script src="//cdn.staticfile.org/webuploader/0.1.5/webuploader.min.js"></script>
+<script src="__PUBLIC__/statics/js/webuploader.min.js"></script>
 php;
         return $str;
     }
