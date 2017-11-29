@@ -8,19 +8,19 @@
 
         <ul class="nav nav-tabs padding-12 tab-color-blue background-blue" id="myTab">
          <li>
-         <a href="/treesys/index.php/Admin/Tree/index/group_id/{$group_id}" >树片列表</a></li>
+         <a href="/ts/index.php/Admin/Tree/index/group_id/{$group_id}" >树片列表</a></li>
 
-        <li>  <a href="/treesys/index.php/Admin/Tree/base/group_id/{$group_id}/tid/{$tree_id}" >树片详情</a></li>
-        <li>  <a href="/treesys/index.php/Admin/TreeDetail/index/group_id/{$group_id}/tid/{$tree_id}">巡检记录</a></li>
+        <li>  <a href="/ts/index.php/Admin/Tree/base/group_id/{$group_id}/tid/{$tree_id}" >树片详情</a></li>
+        <li>  <a href="/ts/index.php/Admin/TreeDetail/index/group_id/{$group_id}/tid/{$tree_id}">巡检记录</a></li>
         <li class="active">  <a href="avascript:;" >处理记录</a></li>
            <!-- <li>
-          <a href="/treesys/index.php/Admin/Tree/add/group_id/{$group_id}"  >增加树片</a></li> -->
+          <a href="/ts/index.php/Admin/Tree/add/group_id/{$group_id}"  >增加树片</a></li> -->
       </ul>
         <tr>
           <td>
             
 
-         <a href="/treesys/index.php/Admin/TreeProcess/index/group_id/{$group_id}/tid/{$tree_id}" style="width:10%" id="list_button" class="btn btn-sm disabled" type="button" tid="{$tree_id}" >处理记录列表</a>
+         <a href="/ts/index.php/Admin/TreeProcess/index/group_id/{$group_id}/tid/{$tree_id}" style="width:10%" id="list_button" class="btn btn-sm disabled" type="button" tid="{$tree_id}" >处理记录列表</a>
        
          <a href="javascript:;" style="width:10%" id="add_button" class="btn btn-sm btn-success"  type="button" tid="{$tree_id}" onclick="add(this)" >添加新记录</a>
         
@@ -182,7 +182,7 @@
            var tid=$(obj).attr('tid');
           
            $.ajax({
-           url:'/treesys/index.php/Admin/TreeProcess/delete',
+           url:'/ts/index.php/Admin/TreeProcess/delete',
            type:'GET', 
            async:true,    
            data:{
@@ -194,7 +194,7 @@
 
            $.ajax({
           type:"GET",
-           url:"/treesys/index.php/Admin/TreeProcess/index",
+           url:"/ts/index.php/Admin/TreeProcess/index",
            data:{
              tid:tid
              },
@@ -220,7 +220,7 @@
        var tid=$(obj).attr('tid');
         $.ajax({
           type:"GET",
-           url:"/treesys/index.php/Admin/TreeProcess/uploadfile",
+           url:"/ts/index.php/Admin/TreeProcess/uploadfile",
            data:{
               tid:tid
              },
@@ -249,7 +249,7 @@
        var tid=$(obj).attr('tid');
         $.ajax({
           type:"GET",
-           url:"/treesys/index.php/Admin/TreeProcess/index",
+           url:"/ts/index.php/Admin/TreeProcess/index",
            data:{
               tid:tid
              },
@@ -268,7 +268,7 @@
        var tid=$(obj).attr('tid');
         $.ajax({
           type:"GET",
-           url:"/treesys/index.php/Admin/TreeProcess/file",
+           url:"/ts/index.php/Admin/TreeProcess/file",
            data:{
               tid:tid
              },
@@ -296,7 +296,7 @@
        var tid=$(obj).attr('tid');
         $.ajax({
           type:"GET",
-           url:"/treesys/index.php/Admin/TreeProcess/add",
+           url:"/ts/index.php/Admin/TreeProcess/add",
            data:{
               tid:tid
              },

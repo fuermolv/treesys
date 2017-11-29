@@ -1,4 +1,4 @@
-
+<?php if (!defined('THINK_PATH')) exit();?>
  
 <<div class="tab-content">
         <div class="table-responsive">
@@ -14,23 +14,21 @@
            <th >操作</th>
           
           </tr>
-          <foreach name="data" item="v">
-            <tr>
-            <td id="t-file_id">{$v['file_id']}</td>  
-            <td id="t-file_name">{$v['file_name']}</td>
-            <td id="t-fiel_extend">{$v['fiel_extend']}</td>
-            <td id="t-file_update_person">{$v['file_update_person']}</td>  
-            <td id="t-file_update_time">{$v['file_update_time']|date='Y-m-d',###}</td>
+          <?php if(is_array($data)): foreach($data as $key=>$v): ?><tr>
+            <td id="t-file_id"><?php echo ($v['file_id']); ?></td>  
+            <td id="t-file_name"><?php echo ($v['file_name']); ?></td>
+            <td id="t-fiel_extend"><?php echo ($v['fiel_extend']); ?></td>
+            <td id="t-file_update_person"><?php echo ($v['file_update_person']); ?></td>  
+            <td id="t-file_update_time"><?php echo (date('Y-m-d',$v['file_update_time'])); ?></td>
             <td>
-            <a href="/ts/{$v['file_path']}" >下载</a>
+            <a href="/treesys/<?php echo ($v['file_path']); ?>" >下载</a>
             </td>
             <td>
-            <a href="javascript:;"  tid="{$tree_id}" file_id="{$v['file_id']}" onclick="delete_file(this);">删除</a>
+            <a href="javascript:;"  tid="<?php echo ($tree_id); ?>" file_id="<?php echo ($v['file_id']); ?>" onclick="delete_file(this);">删除</a>
             </td>
-            </tr>
-          </foreach>
+            </tr><?php endforeach; endif; ?>
         </table>
-        <div align="center"> {$pagehtml}</div>
+        <div align="center"> <?php echo ($pagehtml); ?></div>
       </div>
        </div>
     </div>
@@ -52,7 +50,7 @@
            var tid=$(obj).attr('tid');
           
            $.ajax({
-           url:'/ts/index.php/Admin/TreeDetail/delete_file',
+           url:'/treesys/index.php/Admin/TreeDetail/delete_file',
            type:'GET',    
            data:{
                file_id:file_id
@@ -63,7 +61,7 @@
 
            $.ajax({
           type:"GET",
-           url:"/ts/index.php/Admin/TreeDetail/file",
+           url:"/treesys/index.php/Admin/TreeDetail/file",
            data:{
              tid:tid
              },

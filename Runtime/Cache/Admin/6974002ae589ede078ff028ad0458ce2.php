@@ -1,5 +1,112 @@
-<extend name="Public:base"/><block name="title">树木列表</block>
-<block name="content">
+<?php if (!defined('THINK_PATH')) exit();?><!DOCTYPE html>
+<html lang="en">
+ <head>
+  <link rel="stylesheet" href="/ts/Public/statics/webuploader-0.1.5/xb-webuploader.css">
+<script src="/ts/Public/statics/js/jquery-1.10.2.min.js"></script>
+  <meta charset="utf-8" />
+  <title>首页</title>
+  
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="/ts/Public/statics/aceadmin/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="/ts/Public/statics/aceadmin/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="/ts/Public/statics/font-awesome-4.4.0/css/font-awesome.min.css" />
+  <!--[if IE 7]><link rel="stylesheet" href="/ts/Public/statics/aceadmin/css/font-awesome-ie7.min.css"/><![endif]-->
+  <link rel="stylesheet" href="/ts/Public/statics/aceadmin/css/ace.min.css" />
+  <!--[if lte IE 8]><link rel="stylesheet" href="/ts/Public/statics/aceadmin/css/ace-ie.min.css"/><![endif]-->
+  <!--[if lt IE 9]><script src="/ts/Public/statics/aceadmin/js/html5shiv.js"></script><script src="/ts/Public/statics/aceadmin/js/respond.min.js"></script><![endif]-->
+  <link rel="stylesheet" href="/ts/tpl/Public/css/base.css" />
+  <style type="text/css">
+        #sidebar .nav-list{
+            overflow-y: auto;
+        }
+        .b-nav-li{
+            padding: 5px 0;
+        }
+    </style>
+ </head>
+ <body>
+  
+  <div class="navbar navbar-default" id="navbar">
+   <script type="text/javascript">
+        try{ace.settings.check('navbar' , 'fixed')}catch(e){}
+    </script>
+   <div class="navbar-container" id="navbar-container">
+    <div class="navbar-header pull-left">
+     <a href="/ts/index.php/Admin/Index/index" class="navbar-brand"><small><i class="icon-th"></i> 树障分析管理</small></a>
+    </div>
+    <div class="navbar-header pull-right" role="navigation">
+     <ul class="nav ace-nav">
+      <li class="light-blue"> <a data-toggle="dropdown" href="#" class="dropdown-toggle"><img class="nav-user-photo" src="/ts/Public/statics/aceadmin/avatars/avatar2.png" alt="Jason's Photo" /> <span class="user-info"><small>欢迎,</small> <?php echo ($_SESSION['user']['true_name']); ?></span><i class="icon-caret-down"></i></a>
+       <ul class="user-menu pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
+        <li class="divider"></li>
+        <li><a href="<?php echo U('Home/Index/logout');?>"><i class="icon-off"></i> 退出</a></li>
+       </ul></li>
+     </ul>
+    </div>
+   </div>
+  </div>
+  <div class="main-container" id="main-container">
+   <script type="text/javascript">
+        try{ace.settings.check('main-container' , 'fixed')}catch(e){}
+    </script>
+   <div class="main-container-inner">
+    <a class="menu-toggler" id="menu-toggler" href="#"><span class="menu-text"></span></a>
+    <div class="sidebar" id="sidebar">
+     <script type="text/javascript">
+                try{ace.settings.check('sidebar' , 'fixed')}catch(e){}
+            </script>
+     <!-- <div class="sidebar-shortcuts" id="sidebar-shortcuts">
+      <div class="sidebar-shortcuts-large" id="sidebar-shortcuts-large"> 
+       <button class="btn btn-success"><i class="icon-signal"></i></button> 
+       <button class="btn btn-info"><i class="icon-pencil"></i></button> 
+       <button class="btn btn-warning"><i class="icon-group"></i></button> 
+       <button class="btn btn-danger"><i class="icon-cogs"></i></button>
+      </div>
+      <div class="sidebar-shortcuts-mini" id="sidebar-shortcuts-mini">
+       <span class="btn btn-success"></span>
+       <span class="btn btn-info"></span>
+       <span class="btn btn-warning"></span>
+       <span class="btn btn-danger"></span>
+      </div>
+     </div> -->
+     <!-- #sidebar-shortcuts -->
+     <ul class="nav nav-list" >
+      <?php if(is_array($nav_data)): foreach($nav_data as $key=>$v): if(empty($v['_data'])): ?><li class="b-nav-li"><a href="<?php echo U($v['mca']);?>" ><i class="fa fa-<?php echo ($v['ico']); ?> icon-test"></i> <span class="menu-text"><?php echo ($v['name']); ?></span></a></li>
+    <?php else: ?>
+
+        <li class="b-has-child"><a href="#" class="dropdown-toggle b-nav-parent"><i class="fa fa-<?php echo ($v['ico']); ?> icon-test"></i> <span class="menu-text"><?php echo ($v['name']); ?></span><b class="arrow icon-angle-down"></b></a>
+         <ul class="submenu" id="<?php echo ($v['name']); ?>">
+        <!--  style="display: block;" -->
+        <?php if(is_array($v['_data'])): foreach($v['_data'] as $key=>$n): ?><!-- <li class="b-nav-li"><a href="<?php echo U($n['mca']);?>" ><i class="icon-double-angle-right"></i> <?php echo ($n['name']); ?></a> -->
+
+
+          <li class="b-has-child"><a href="#" class="dropdown-toggle b-nav-parent"><i class="fa fa-<?php echo ($v['ico']); ?> icon-test"></i> <span class="menu-text"><?php echo ($n['name']); ?></span><b class="arrow icon-angle-down"></b></a>
+         <ul class="submenu" id="<?php echo ($n['name']); ?>">
+        <?php if(is_array($n['_data'])): foreach($n['_data'] as $key=>$l): ?><li class="b-nav-li"><a href="<?php echo U($l['mca']);?>" ><i class="icon-double-angle-right"></i> <?php echo ($l['name']); ?></a>
+        </li>
+         </li><?php endforeach; endif; ?>
+       </ul> 
+       
+            
+           
+              
+        </li>
+         </li><?php endforeach; endif; ?>
+       </ul> 
+         </li><?php endif; endforeach; endif; ?>
+     </ul>
+    <!--  <div class="sidebar-collapse" id="sidebar-collapse">
+      <i class="icon-double-angle-left" data-icon1="icon-double-angle-left" data-icon2="icon-double-angle-right"></i>
+     </div> -->
+     <script type="text/javascript">
+                try{ace.settings.check('sidebar' , 'collapsed')}catch(e){}
+            </script>
+    </div>
+    <div class="main-content">
+     <div class="page-content">
+      
 <div class="col-xs-12">
     <div class="tabbable">
     <table class="table table-striped table-bordered table-hover table-condensed">
@@ -12,7 +119,7 @@
         <li>  <a href="javascript:;"   class="btn disabled" data-toggle="tab">巡检记录</a></li>
         <li>  <a href="javascript:;"   class="btn disabled" data-toggle="tab">处理记录</a></li>
           <!--   <li>
-          <a href="/ts/index.php/Admin/Tree/add/group_id/{$group_id}"  >增加树片</a></li>  -->
+          <a href="/ts/index.php/Admin/Tree/add/group_id/<?php echo ($group_id); ?>"  >增加树片</a></li>  -->
       </ul>
         <tr>
           <td>
@@ -20,16 +127,12 @@
             
            <!--   <select style="width:8%" name="line_id" id="line_id" onblur="submitForm();">
             <option value ="">全部线路</option>
-            <foreach name="querydata['device_lines']" item="v">
-             <option value ="{$v['did']}">{$v['voltage_degree']}kV{$v['device_name']}</option>
-            </foreach>
+            <?php if(is_array($querydata['device_lines'])): foreach($querydata['device_lines'] as $key=>$v): ?><option value ="<?php echo ($v['did']); ?>"><?php echo ($v['voltage_degree']); ?>kV<?php echo ($v['device_name']); ?></option><?php endforeach; endif; ?>
             </select>   -->
 
               <input  list="datalist" placeholder="线路名称" type="text" style="width: 8%;" name="line_id" id="line_id"  onblur="submitForm()"/> 
              <datalist id="datalist">
-             <foreach name="querydata['device_lines']" item="v">
-             <option value ="{$v['device_name']}"></option>
-             </foreach>
+             <?php if(is_array($querydata['device_lines'])): foreach($querydata['device_lines'] as $key=>$v): ?><option value ="<?php echo ($v['device_name']); ?>"></option><?php endforeach; endif; ?>
            
              </datalist> 
 
@@ -72,16 +175,12 @@
 
             <select style="width:8%" name="town"   id="town" onchange="submitForm();">
             <option value ="">镇</option>
-            <foreach name="querydata['towns']" item="v">
-             <option value ="{$v['id']}">{$v['name']}</option>
-            </foreach>
+            <?php if(is_array($querydata['towns'])): foreach($querydata['towns'] as $key=>$v): ?><option value ="<?php echo ($v['id']); ?>"><?php echo ($v['name']); ?></option><?php endforeach; endif; ?>
             </select>
 
             <select style="width:8%" name="village"  id="village" onchange="submitForm();">
             <option value ="">村</option>
-            <foreach name="querydata['villages']" item="v">
-             <option value ="{$v['id']}">{$v['name']}</option>
-             </foreach>
+            <?php if(is_array($querydata['villages'])): foreach($querydata['villages'] as $key=>$v): ?><option value ="<?php echo ($v['id']); ?>"><?php echo ($v['name']); ?></option><?php endforeach; endif; ?>
             </select>
 
             <select style="width:8%" name="tree_status"  id="tree_status" onchange="submitForm();">
@@ -108,7 +207,7 @@
            
 
            <!--  <input style="width:8%" class="btn btn-sm btn-success" type="button" onclick="dataFilter(this)" value="数据筛选"> -->
-             <a  style="width:8%" class="btn btn-sm btn-success" href="/ts/index.php/Admin/Tree/add/group_id/{$group_id}"  >增加树片</a>
+             <a  style="width:8%" class="btn btn-sm btn-success" href="/ts/index.php/Admin/Tree/add/group_id/<?php echo ($group_id); ?>"  >增加树片</a>
              
 
             </form>
@@ -209,114 +308,107 @@
 
                    
             </tr>
-          <foreach name="data" item="v">
-            <tr>
-              <td >{$v['tid']}</td>
-              <td >{$v['accountability_department']}</td>
-              <td style="display:none" >{$v['accountability_number']}</td>
-              <td  >{$v['accountability_group']}</td>
-              <td  >{$v['accountability_person']}</td>
-              <td  >{$v['county']}</td>
-              <td  >{$v['town']}</td>
-              <td  >{$v['village']}</td>
-              <td  >{$v['voltage_degree']}kV{$v['device_name']}</td>
-              <td  >{$v['star_tower']}</td>
-              <td  >{$v['end_tower']}</td>
-              <td  >{$v['danger_num']}</td>
-              <td  >{$v['first_check_person']}</td>
-              <td  >{$v['first_check_time']|date='Y-m-d',###}</td> 
-              <td style="display:none" >{$v['first_upload_time']|date='Y-m-d',###}</td>  
-              <td  >{$v['tree_status']}</td>
-              <td  >{$v['tree_type']}</td>    
-              <td style="display:none" ><if condition="$v['tree_danger'] eq '1'">是
-                <else /> 否
-                </if></td>
+          <?php if(is_array($data)): foreach($data as $key=>$v): ?><tr>
+              <td ><?php echo ($v['tid']); ?></td>
+              <td ><?php echo ($v['accountability_department']); ?></td>
+              <td style="display:none" ><?php echo ($v['accountability_number']); ?></td>
+              <td  ><?php echo ($v['accountability_group']); ?></td>
+              <td  ><?php echo ($v['accountability_person']); ?></td>
+              <td  ><?php echo ($v['county']); ?></td>
+              <td  ><?php echo ($v['town']); ?></td>
+              <td  ><?php echo ($v['village']); ?></td>
+              <td  ><?php echo ($v['voltage_degree']); ?>kV<?php echo ($v['device_name']); ?></td>
+              <td  ><?php echo ($v['star_tower']); ?></td>
+              <td  ><?php echo ($v['end_tower']); ?></td>
+              <td  ><?php echo ($v['danger_num']); ?></td>
+              <td  ><?php echo ($v['first_check_person']); ?></td>
+              <td  ><?php echo (date('Y-m-d',$v['first_check_time'])); ?></td> 
+              <td style="display:none" ><?php echo (date('Y-m-d',$v['first_upload_time'])); ?></td>  
+              <td  ><?php echo ($v['tree_status']); ?></td>
+              <td  ><?php echo ($v['tree_type']); ?></td>    
+              <td style="display:none" ><?php if($v['tree_danger'] == '1'): ?>是
+                <?php else: ?> 否<?php endif; ?></td>
 
-                <td style="display:none" >{$v['tree_danger_num']}</td>
-                <td style="display:none" >{$v['tree_danger_num_unit']}</td>
-                <td style="display:none" >{$v['tree_danger_area']}</td>
-                <td style="display:none" >{$v['tree_danger_area_unit']}</td> 
-                <td style="display:none" >{$v['tree_danger_height']}</td> 
-                <td style="display:none" >{$v['average_radius']}</td>
-                <td style="display:none" >{$v['average_height']}</td>
+                <td style="display:none" ><?php echo ($v['tree_danger_num']); ?></td>
+                <td style="display:none" ><?php echo ($v['tree_danger_num_unit']); ?></td>
+                <td style="display:none" ><?php echo ($v['tree_danger_area']); ?></td>
+                <td style="display:none" ><?php echo ($v['tree_danger_area_unit']); ?></td> 
+                <td style="display:none" ><?php echo ($v['tree_danger_height']); ?></td> 
+                <td style="display:none" ><?php echo ($v['average_radius']); ?></td>
+                <td style="display:none" ><?php echo ($v['average_height']); ?></td>
               
-                <td  >{$v['detail_last_time']|date='Y-m-d',###}</td> 
-                <td  id="t-datail_check_person">{$v['datail_check_person']}</td>
-                <td style="display:none" id="t-datail_check_time">{$v['datail_check_time']|date='Y-m-d',###}</td>
-                <td id="t-datail_danger_degree">{$v['datail_danger_degree']}</td>
+                <td  ><?php echo (date('Y-m-d',$v['detail_last_time'])); ?></td> 
+                <td  id="t-datail_check_person"><?php echo ($v['datail_check_person']); ?></td>
+                <td style="display:none" id="t-datail_check_time"><?php echo (date('Y-m-d',$v['datail_check_time'])); ?></td>
+                <td id="t-datail_danger_degree"><?php echo ($v['datail_danger_degree']); ?></td>
                         
-                <td  style="display:none" id="t-datail_check_change_conclusion">{$v['datail_check_change_conclusion']}</td>
-                <td   id="t-datail_check_process_conclusion">{$v['datail_check_process_conclusion']}</td>                        
-                <td  style="display:none" id="t-datail_check_posistion_conclusion">{$v['datail_check_posistion_conclusion']}</td>          
-                <td style="display:none" id="t-datail_tree_type">{$v['datail_tree_type']}</td>
-                <td style="display:none" id="t-datail_tree_num">{$v['datail_tree_num']}</td>
-                <td style="display:none" id="t-datail_tree_num_unit">{$v['datail_tree_num_unit']}</td>
-                <td style="display:none" id="t-datail_tree_area">{$v['datail_tree_area']}</td>
-                <td style="display:none" id="t-datail_tree_area_unit">{$v['datail_tree_area_unit']}</td>
-                <td style="display:none" id="t-datail_tree_height">{$v['datail_tree_height']}</td>
-                <td style="display:none" id="t-datail_tree_horizontal">{$v['datail_tree_horizontal']}</td>
-                <td style="display:none" id="t-datail_tree_vertical">{$v['datail_tree_vertical']}</td>
-                <td style="display:none" id="t-datail_tree_grand_height">{$v['datail_tree_grand_height']}</td>
+                <td  style="display:none" id="t-datail_check_change_conclusion"><?php echo ($v['datail_check_change_conclusion']); ?></td>
+                <td   id="t-datail_check_process_conclusion"><?php echo ($v['datail_check_process_conclusion']); ?></td>                        
+                <td  style="display:none" id="t-datail_check_posistion_conclusion"><?php echo ($v['datail_check_posistion_conclusion']); ?></td>          
+                <td style="display:none" id="t-datail_tree_type"><?php echo ($v['datail_tree_type']); ?></td>
+                <td style="display:none" id="t-datail_tree_num"><?php echo ($v['datail_tree_num']); ?></td>
+                <td style="display:none" id="t-datail_tree_num_unit"><?php echo ($v['datail_tree_num_unit']); ?></td>
+                <td style="display:none" id="t-datail_tree_area"><?php echo ($v['datail_tree_area']); ?></td>
+                <td style="display:none" id="t-datail_tree_area_unit"><?php echo ($v['datail_tree_area_unit']); ?></td>
+                <td style="display:none" id="t-datail_tree_height"><?php echo ($v['datail_tree_height']); ?></td>
+                <td style="display:none" id="t-datail_tree_horizontal"><?php echo ($v['datail_tree_horizontal']); ?></td>
+                <td style="display:none" id="t-datail_tree_vertical"><?php echo ($v['datail_tree_vertical']); ?></td>
+                <td style="display:none" id="t-datail_tree_grand_height"><?php echo ($v['datail_tree_grand_height']); ?></td>
   
                 <td  id="t-datail_tree_over">
-                  <if condition="$v['datail_tree_over'] eq '1'">是
-                    <else /> 否
-                        </if></td>
+                  <?php if($v['datail_tree_over'] == '1'): ?>是
+                    <?php else: ?> 否<?php endif; ?></td>
                 </td> 
                 <td  id="t-datail_final_danger">
-                    <if condition="$v['datail_final_danger'] eq '1'">是
-                   <else /> 否
-                   </if>
+                    <?php if($v['datail_final_danger'] == '1'): ?>是
+                   <?php else: ?> 否<?php endif; ?>
                 </td>
                 <!-- AT-AX没有展示（已处理） -->
-                <td  style="display:none">{$v['detail_check_method']}</td>
-                <td  style="display:none">{$v['detail_temperature']}</td>
-                <td  style="display:none">{$v['detail_load']}</td>
+                <td  style="display:none"><?php echo ($v['detail_check_method']); ?></td>
+                <td  style="display:none"><?php echo ($v['detail_temperature']); ?></td>
+                <td  style="display:none"><?php echo ($v['detail_load']); ?></td>
 
-                <td  style="display:none"><if condition="$v['detail_retain'] eq '1'">是
-                  <else /> 否
-                  </if></td>  
+                <td  style="display:none"><?php if($v['detail_retain'] == '1'): ?>是
+                  <?php else: ?> 否<?php endif; ?></td>  
 
-                <td  style="display:none">{$v['detail_address']}</td>
-                <td  style="display:none" >{$v['detail_owner']}</td>
-                <td  style="display:none" >{$v['detail_phone']}</td>
-                <td  style="display:none" >{$v['detail_plant_time']}</td>
+                <td  style="display:none"><?php echo ($v['detail_address']); ?></td>
+                <td  style="display:none" ><?php echo ($v['detail_owner']); ?></td>
+                <td  style="display:none" ><?php echo ($v['detail_phone']); ?></td>
+                <td  style="display:none" ><?php echo ($v['detail_plant_time']); ?></td>
 
 
                 <!--BA-BE没有展示  （已处理）--> 
-                <td  style="display:none" >{$v['detail_compensation_condition']}</td>
+                <td  style="display:none" ><?php echo ($v['detail_compensation_condition']); ?></td>
                     
-                <td  style="display:none">{$v['detail_build_deal']}</td>
-                <td  style="display:none">{$v['detail_run_deal']}</td>
-                <td  style="display:none">{$v['detail_notice_number']}</td>
+                <td  style="display:none"><?php echo ($v['detail_build_deal']); ?></td>
+                <td  style="display:none"><?php echo ($v['detail_run_deal']); ?></td>
+                <td  style="display:none"><?php echo ($v['detail_notice_number']); ?></td>
                 <!--找不到对应的 datail_check_conclusion （已删除）-->
-                <!-- <td style="display:none" id="t-datail_check_conclusion">{$v['datail_check_conclusion']}</td> -->
-                <td style="display:none" id="t-datail_update_time">{$v['datail_update_time']|date='Y-m-d',###}</td>                
-              <td style="display:none" id="t-datail_update_person">{$v['datail_update_person']}</td>
-              <td style="display:none" id="t-datail_update_group">{$v['datail_update_group']}</td>
-              <td style="display:none" >{$v['site_condition']}</td>
+                <!-- <td style="display:none" id="t-datail_check_conclusion"><?php echo ($v['datail_check_conclusion']); ?></td> -->
+                <td style="display:none" id="t-datail_update_time"><?php echo (date('Y-m-d',$v['datail_update_time'])); ?></td>                
+              <td style="display:none" id="t-datail_update_person"><?php echo ($v['datail_update_person']); ?></td>
+              <td style="display:none" id="t-datail_update_group"><?php echo ($v['datail_update_group']); ?></td>
+              <td style="display:none" ><?php echo ($v['site_condition']); ?></td>
               <td style="display:none">
-              <if condition="$v['processed'] eq '1'">是
-              <else /> 否
-              </if>
+              <?php if($v['processed'] == '1'): ?>是
+              <?php else: ?> 否<?php endif; ?>
               </td>
-              <td style="display:none" >{$v['dead_line_time']|date='Y-m-d',###}</td> 
+              <td style="display:none" ><?php echo (date('Y-m-d',$v['dead_line_time'])); ?></td> 
 
               <td>
                
-              <a href="/ts/index.php/Admin/Tree/base/group_id/{$group_id}/tid/{$v['tid']}/line_id/{$v['line_id']}"  class="btn btn-info btn-sm" >查看详情</a>
+              <a href="/ts/index.php/Admin/Tree/base/group_id/<?php echo ($group_id); ?>/tid/<?php echo ($v['tid']); ?>/line_id/<?php echo ($v['line_id']); ?>"  class="btn btn-info btn-sm" >查看详情</a>
 
-               <!-- <a href="javascript:;"  tid="{$v['tid']}"  onclick="tree_deatil(this)" >巡查记录</a>||
+               <!-- <a href="javascript:;"  tid="<?php echo ($v['tid']); ?>"  onclick="tree_deatil(this)" >巡查记录</a>||
 
-              <a href="javascript:;"  tid="{$v['tid']}"  onclick="tree_process(this)" >处理记录</a>|| -->
-             <!--  <a href="javascript:;"   tid="{$v['tid']}" line_id="{$v['line_id']}" onclick="edit_tree(this)">修改</a>|| -->
+              <a href="javascript:;"  tid="<?php echo ($v['tid']); ?>"  onclick="tree_process(this)" >处理记录</a>|| -->
+             <!--  <a href="javascript:;"   tid="<?php echo ($v['tid']); ?>" line_id="<?php echo ($v['line_id']); ?>" onclick="edit_tree(this)">修改</a>|| -->
 
-            <!--   <a href="javascript:;"  tid="{$v['tid']}" onclick="delete_tree(this)">删除</a>   -->
+            <!--   <a href="javascript:;"  tid="<?php echo ($v['tid']); ?>" onclick="delete_tree(this)">删除</a>   -->
               </td>
-            </tr>
-          </foreach>
+            </tr><?php endforeach; endif; ?>
         </table>
-        <div align="center"> {$pagehtml}</div>
+        <div align="center"> <?php echo ($pagehtml); ?></div>
       </div>
        </div>
      
@@ -332,7 +424,7 @@
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
           <h4 class="modal-title" id="myModalLabel">数据筛选</h4></div>
         <div class="modal-body" >
-          <form id="bjy-form" class="form-inline"  action="{:U('Admin/Nav/edit')}" method="post">
+          <form id="bjy-form" class="form-inline"  action="<?php echo U('Admin/Nav/edit');?>" method="post">
               <p> 
               <input class="" type="checkbox" id="select-base-all" onchange="selectBaseAll(this);">全选
            
@@ -484,15 +576,55 @@
 
 
 
-</block>
 
+     </div>
+    </div>
+   </div>
+   <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse"><i class="icon-double-angle-up icon-only bigger-110"></i></a>
+  </div>
+  <!--[if !IE]> -->
+  <script src="/ts/Public/statics/js/jquery-1.10.2.min.js"></script>
+  <!-- <![endif]-->
+  <!--[if IE]><script src="/ts/Public/statics/js/jquery-1.10.2.min.js"></script><![endif]-->
+  <!--[if !IE]> -->
+  <script type="text/javascript">
+        window.jQuery || document.write("<script src='/ts/Public/statics/aceadmin/js/jquery-2.0.3.min.js'>"+"<"+"script>");
+    </script>
+  <!-- <![endif]-->
+  <!--[if IE]><script type="text/javascript">
+        window.jQuery || document.write("<script src='/ts/Public/statics/aceadmin/js/jquery-1.10.2.min.js'>"+"<"+"script>");
+    </script><![endif]-->
+  <script type="text/javascript">
+    if("ontouchend" in document) document.write("<script src='/ts/Public/statics/aceadmin/js/jquery.mobile.custom.min.js'>"+"<"+"script>");
+  </script>
 
-
-</block>
-
-
-
-<block name="js">
+  <script type="text/javascript">
+   window.onload = function() 
+    { 
+        divset=document.getElementById("树木管理").style.display="block";
+        divset=document.getElementById("系统设置").style.display="block";
+        divset=document.getElementById("权限系统").style.display="block";
+         divset=document.getElementById("基础信息维护").style.display="block";
+     
+     
+    }
+   
+  </script>
+  <script src="/ts/Public/statics/aceadmin/js/bootstrap.min.js"></script>
+  <script src="/ts/Public/statics/aceadmin/js/typeahead-bs2.min.js"></script> 
+  <!--[if lte IE 8]><script src="/ts/Public/statics/aceadmin/js/excanvas.min.js"></script><![endif]-->
+  <script src="/ts/Public/statics/aceadmin/js/jquery-ui-1.10.3.custom.min.js"></script>
+  <script src="/ts/Public/statics/aceadmin/js/jquery.ui.touch-punch.min.js"></script>
+  <script src="/ts/Public/statics/aceadmin/js/jquery.slimscroll.min.js"></script>
+  <script src="/ts/Public/statics/aceadmin/js/jquery.easy-pie-chart.min.js"></script>
+  <script src="/ts/Public/statics/aceadmin/js/jquery.sparkline.min.js"></script>
+  <script src="/ts/Public/statics/aceadmin/js/flot/jquery.flot.min.js"></script>
+  <script src="/ts/Public/statics/aceadmin/js/flot/jquery.flot.pie.min.js"></script>
+  <script src="/ts/Public/statics/aceadmin/js/flot/jquery.flot.resize.min.js"></script>
+  <script src="/ts/Public/statics/aceadmin/js/ace-elements.min.js"></script>
+  <script src="/ts/Public/statics/aceadmin/js/ace.min.js"></script>
+  <script src="/ts/tpl/Public/js/base.js"></script>
+  
     <script>
 
    /*  function selectBaseAll()
@@ -648,4 +780,10 @@
       
     });   
   </script>
-</block>
+
+   <script>
+    var BASE_URL = '/ts/Public/statics/webuploader-0.1.5';
+</script>
+<script src="/ts/Public/statics/js/webuploader.min.js"></script> 
+ </body>
+</html>

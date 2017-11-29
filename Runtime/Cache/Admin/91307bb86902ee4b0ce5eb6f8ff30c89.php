@@ -1,17 +1,17 @@
-<!--  <ul class="nav nav-tabs padding-12 tab-color-blue background-blue" id="myTab">
+<?php if (!defined('THINK_PATH')) exit();?><!--  <ul class="nav nav-tabs padding-12 tab-color-blue background-blue" id="myTab">
         <li >
-         <a href="javascript:;"  tid="{$tree_id}" onclick="process_list(this)" >列表</a>
+         <a href="javascript:;"  tid="<?php echo ($tree_id); ?>" onclick="process_list(this)" >列表</a>
          </li>
          <li class="active" >
        
-        <a href="javascript:;"    tid="{$tree_id}" onclick="add(this)" >添加新记录</a>
+        <a href="javascript:;"    tid="<?php echo ($tree_id); ?>" onclick="add(this)" >添加新记录</a>
         </li>
         
          <li >
-        <a href="javascript:;"   tid="{$tree_id}" onclick="file(this)">处理文件</a>
+        <a href="javascript:;"   tid="<?php echo ($tree_id); ?>" onclick="file(this)">处理文件</a>
         </li>
         <li >
-        <a href="javascript:;"   tid="{$tree_id}" onclick="uploadfile(this)">上传处理文件</a>
+        <a href="javascript:;"   tid="<?php echo ($tree_id); ?>" onclick="uploadfile(this)">上传处理文件</a>
         </li>
  </ul> -->
  
@@ -40,24 +40,24 @@
           </tr>
           
           <tr>
-           <td><input style="width:150px;" id="record_plan_clean_time" type="date" value="{$data['record_plan_clean_time'|date='Y-m-d',###]}" name="record_plan_clean_time"></td>
-          <td><input style="width:150px;" id="record_task_time" type="date" value="{$data['record_task_time'|date='Y-m-d',###]}" name="record_task_time"></td>
+           <td><input style="width:150px;" id="record_plan_clean_time" type="date" value="<?php echo (date('Y-m-d',$data['record_plan_clean_time'])); ?>" name="record_plan_clean_time"></td>
+          <td><input style="width:150px;" id="record_task_time" type="date" value="<?php echo (date('Y-m-d',$data['record_task_time'])); ?>" name="record_task_time"></td>
            <td>
-            <select style="width:100px"  id="record_is_additional" value="{$data['record_is_additional']}" name="record_is_additional">
+            <select style="width:100px"  id="record_is_additional" value="<?php echo ($data['record_is_additional']); ?>" name="record_is_additional">
             <option value ="1" >是</option>
             <option value ="0">否</option>  
            </select>
            </td>
-          <td><input style="width:100px;" id="record_department" type="text" value="{$data['record_department']}" name="record_department"></td>
-          <td><input style="width:100px;" id="record_person" type="text" value="{$data['record_person']}" name="record_person"></td>
-          <td><input style="width:100px;" id="record_person_phone" type="text" value="{$data['record_person_phone']}" name="record_person_phone"></td>
-          <td><input style="width:100;" id="record_accountability_person" type="text" value="{$data['record_accountability_person']}" name="record_accountability_person"></td>
-          <td><input style="width:100px;" id="record_verify_person" type="text" value="{$data['record_verify_person']}" name="record_verify_person"></td>
-          <td><input style="width:100px;" id="record_verify_person_phone" type="text" value="{$data['record_verify_person_phone']}" name="record_verify_person_phone"></td>
-          <td><input style="width:150px;" id="record_plan_verify_time" type="date" value="{$data['record_plan_verify_time'|date='Y-m-d',###]}" name="record_plan_verify_time"></td>
+          <td><input style="width:100px;" id="record_department" type="text" value="<?php echo ($data['record_department']); ?>" name="record_department"></td>
+          <td><input style="width:100px;" id="record_person" type="text" value="<?php echo ($data['record_person']); ?>" name="record_person"></td>
+          <td><input style="width:100px;" id="record_person_phone" type="text" value="<?php echo ($data['record_person_phone']); ?>" name="record_person_phone"></td>
+          <td><input style="width:100;" id="record_accountability_person" type="text" value="<?php echo ($data['record_accountability_person']); ?>" name="record_accountability_person"></td>
+          <td><input style="width:100px;" id="record_verify_person" type="text" value="<?php echo ($data['record_verify_person']); ?>" name="record_verify_person"></td>
+          <td><input style="width:100px;" id="record_verify_person_phone" type="text" value="<?php echo ($data['record_verify_person_phone']); ?>" name="record_verify_person_phone"></td>
+          <td><input style="width:150px;" id="record_plan_verify_time" type="date" value="<?php echo (date('Y-m-d',$data['record_plan_verify_time'])); ?>" name="record_plan_verify_time"></td>
 
-          <td><input style="width:150px;" id="record_verify_time" type="date" value="{$data['record_verify_time'|date='Y-m-d',###]}" name="record_verify_time"></td> 
-          <td><input style="width:150px;" id="record_plan_consult_time" type="text" value="{$data['record_plan_consult_time']}" name="record_plan_consult_time"></td>
+          <td><input style="width:150px;" id="record_verify_time" type="date" value="<?php echo (date('Y-m-d',$data['record_verify_time'])); ?>" name="record_verify_time"></td> 
+          <td><input style="width:150px;" id="record_plan_consult_time" type="text" value="<?php echo ($data['record_plan_consult_time']); ?>" name="record_plan_consult_time"></td>
       
               
           </tr>     
@@ -91,29 +91,29 @@
           
           <tr>
          
-          <td><textarea style="height:100px;" id="record_consult_detail" name="record_consult_detail">{$data['record_consult_detail']}</textarea> </td>
-          <td><input style="width:180px;" id="record_verify_situ" type="text" value="{$data['record_verify_situ']}" name="record_verify_situ"></td>
+          <td><textarea style="height:100px;" id="record_consult_detail" name="record_consult_detail"><?php echo ($data['record_consult_detail']); ?></textarea> </td>
+          <td><input style="width:180px;" id="record_verify_situ" type="text" value="<?php echo ($data['record_verify_situ']); ?>" name="record_verify_situ"></td>
 
-          <td><input style="width:180px;" id="record_verify_consult_situ" type="text" value="{$data['record_verify_consult_situ']}" name="record_verify_consult_situ"></td>
+          <td><input style="width:180px;" id="record_verify_consult_situ" type="text" value="<?php echo ($data['record_verify_consult_situ']); ?>" name="record_verify_consult_situ"></td>
 
-          <td><input style="width:180px;" id="record_verify_consult_matter" type="text" value="{$data['record_verify_consult_matter']}" name="record_verify_consult_matter"></td>
-          <td><input style="width:180px;" id="record_process_situ" type="text" value="{$data['record_process_situ']}" name="record_process_situ"></td>
+          <td><input style="width:180px;" id="record_verify_consult_matter" type="text" value="<?php echo ($data['record_verify_consult_matter']); ?>" name="record_verify_consult_matter"></td>
+          <td><input style="width:180px;" id="record_process_situ" type="text" value="<?php echo ($data['record_process_situ']); ?>" name="record_process_situ"></td>
           
           
           <td>
-           <select style="width:100px"  id="record_need_apper" value="{$data['record_need_apper']}" name="record_need_apper" >
+           <select style="width:100px"  id="record_need_apper" value="<?php echo ($data['record_need_apper']); ?>" name="record_need_apper" >
             <option value ="1" >是</option>
             <option value ="0">否</option>  
            </select>
            </td>
 
-           <td><input style="width:100px;" id="record_apper_level" type="text" value="{$data['record_apper_level']}" name="record_apper_level"></td>
-           <td><input style="width:150px;" id="record_accept_time" type="date" value="{$data['record_accept_time'|date='Y-m-d',###]}" name="record_accept_time"></td>
-           <td><input style="width:100px;" id="record_accept_conclusion1" type="text" value="{$data['record_accept_conclusion1']}" name="record_accept_conclusion1"></td>
-           <td><input style="width:100px;" id="record_accept_conclusion2" type="text" value="{$data['record_accept_conclusion2']}" name="record_accept_conclusion2"></td>
-           <td><input style="width:150px;" id="record_confirm_time" type="date" value="{$data['record_confirm_time'|date='Y-m-d',###]}" name="record_confirm_time"></td>
-           <td><input style="width:100px;" id="record_confirm_tag" type="text" value="{$data['record_confirm_tag']}" name="record_confirm_tag"></td>
-           <td><input style="width:100px;" id="record_remark" type="text" value="{$data['record_remark']}" name="record_remark"></td>
+           <td><input style="width:100px;" id="record_apper_level" type="text" value="<?php echo ($data['record_apper_level']); ?>" name="record_apper_level"></td>
+           <td><input style="width:150px;" id="record_accept_time" type="date" value="<?php echo (date('Y-m-d',$data['record_accept_time'])); ?>" name="record_accept_time"></td>
+           <td><input style="width:100px;" id="record_accept_conclusion1" type="text" value="<?php echo ($data['record_accept_conclusion1']); ?>" name="record_accept_conclusion1"></td>
+           <td><input style="width:100px;" id="record_accept_conclusion2" type="text" value="<?php echo ($data['record_accept_conclusion2']); ?>" name="record_accept_conclusion2"></td>
+           <td><input style="width:150px;" id="record_confirm_time" type="date" value="<?php echo (date('Y-m-d',$data['record_confirm_time'])); ?>" name="record_confirm_time"></td>
+           <td><input style="width:100px;" id="record_confirm_tag" type="text" value="<?php echo ($data['record_confirm_tag']); ?>" name="record_confirm_tag"></td>
+           <td><input style="width:100px;" id="record_remark" type="text" value="<?php echo ($data['record_remark']); ?>" name="record_remark"></td>
               
           </tr>     
 </table>
@@ -132,7 +132,7 @@
 </div>
 
  <div class="text-center">
- <input style="width:6%" class="btn btn-sm btn-success "  tid="{$tree_id}" type="button" onclick="process_add_record(this)"  value="确定">
+ <input style="width:6%" class="btn btn-sm btn-success "  tid="<?php echo ($tree_id); ?>" type="button" onclick="process_add_record(this)"  value="确定">
  </div>
 
 

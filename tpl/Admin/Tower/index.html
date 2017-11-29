@@ -9,7 +9,7 @@
         <li class="active">
           <a href="javascript:;" data-toggle="tab">杆塔列表</a></li>
 
-        <li>  <a href="/treesys/index.php/Admin/Tower/add"  >增加杆塔</a></li>
+        <li>  <a href="/ts/index.php/Admin/Tower/add"  >增加杆塔</a></li>
         <li >  <a href="javascript:;" class="btn disabled" >修改杆塔</a></li>
         
       
@@ -87,7 +87,7 @@
         
 
               <td>
-              <a href="/treesys/index.php/Admin/Tower/edit/tower_id/{$v['tower_id']}/line_name/{$line_name}">修改</a>
+              <a href="/ts/index.php/Admin/Tower/edit/tower_id/{$v['tower_id']}/line_name/{$line_name}">修改</a>
               ||<a href="javascript:;" tower_id="{$v['tower_id']}" tower_serial="{$v['tower_serial']}" onclick="delete_tower(this);">删除</a>
 
           
@@ -120,7 +120,7 @@ function delete_tower(obj)
   {
   $.ajax({
           type:"POST",
-           url:"/treesys/index.php/Admin/Tower/delete",
+           url:"/ts/index.php/Admin/Tower/delete",
            data:{
              tower_id:tower_id,
              tower_serial:tower_serial,

@@ -23,7 +23,7 @@
 <div class="box">
      
       <form id="upload-file-form" action="" method="post">
-        <webuploader  url="/treesys/index.php/Admin/TreeProcess/ajax_upload" id="upload-file" name="file" />
+        <webuploader  url="/ts/index.php/Admin/TreeProcess/ajax_upload" id="upload-file" name="file" />
         本次上传描述：
         <!-- <input   style="width:300px" type="text" name="extend" value=""> -->
         <textarea style="width:300px ;height:100px;"  id="upload-extend" name="extend"></textarea> 
@@ -54,7 +54,7 @@ function upload_submit(obj)
   //  alert(temp);
 	$.ajax({
           type:"POST",
-          url:"/treesys/index.php/Admin/TreeProcess/uploadfile",
+          url:"/ts/index.php/Admin/TreeProcess/uploadfile",
           data:$('#upload-file-form').serialize(),
           	  
              
@@ -87,7 +87,7 @@ function upload_submit(obj)
 //        var tid=$(obj).attr('tid');
 //         $.ajax({
 //           type:"GET",
-//            url:"/treesys/index.php/Admin/TreeProcess/uploadfile",
+//            url:"/ts/index.php/Admin/TreeProcess/uploadfile",
 //            data:{
 //               tid:tid
 //              },
@@ -106,7 +106,7 @@ function upload_submit(obj)
 //        var tid=$(obj).attr('tid');
 //         $.ajax({
 //           type:"GET",
-//            url:"/treesys/index.php/Admin/TreeProcess/index",
+//            url:"/ts/index.php/Admin/TreeProcess/index",
 //            data:{
 //               tid:tid
 //              },
@@ -122,7 +122,7 @@ function upload_submit(obj)
 //        var tid=$(obj).attr('tid');
 //         $.ajax({
 //           type:"GET",
-//            url:"/treesys/index.php/Admin/TreeProcess/file",
+//            url:"/ts/index.php/Admin/TreeProcess/file",
 //            data:{
 //               tid:tid
 //              },
@@ -138,7 +138,7 @@ function upload_submit(obj)
 //        var tid=$(obj).attr('tid');
 //         $.ajax({
 //           type:"GET",
-//            url:"/treesys/index.php/Admin/TreeProcess/add",
+//            url:"/ts/index.php/Admin/TreeProcess/add",
 //            data:{
 //               tid:tid
 //              },

@@ -181,7 +181,7 @@ class ReadDataController extends HomeBaseController
                   $basedata['average_height']=$data[25];
                   
                
-                  $tid=M("tree_base")->data($basedata)->add();
+                  $tid=M("tree_base_copy")->data($basedata)->add();
                   //以下是detail表
                   $detaildata['detail_tid']=$tid;
 
@@ -238,7 +238,7 @@ class ReadDataController extends HomeBaseController
                   $detaildata['detail_build_deal']=$data[54];
                   $detaildata['detail_run_deal']=$data[55];
                   $detaildata['detail_notice_number']=$data[56]; 
-                   M("tree_detail")->data($detaildata)->add();
+                   //M("tree_detail")->data($detaildata)->add();
                    //var_dump(M("tree_detail")->getLastSql());
                    
 

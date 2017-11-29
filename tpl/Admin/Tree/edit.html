@@ -178,7 +178,7 @@
          
           $.ajax({
              type:"POST",
-              url:"/treesys/index.php/Admin/Tree/edit",
+              url:"/ts/index.php/Admin/Tree/edit",
               data:{
                 group_id:{$group_id},
                 tid:{$edit_tid},
@@ -228,7 +228,7 @@
                 error:function(XMLHttpRequest, textStatus, thrownError){}
              });
              $('#tree-edit-modal').modal('hide');
-             window.location.href="/treesys/index.php/Admin/Tree/index/group_id/{$group_id}";
+             window.location.href="/ts/index.php/Admin/Tree/index/group_id/{$group_id}";
     }
     function editSubmitForm()
      { 
@@ -239,7 +239,7 @@
         sessionStorage.setItem("edit_village",document.getElementById("edit_village").value); 
       $.ajax({
       type:"GET",
-      url:"/treesys/index.php/Admin/TreeCommon/freshForm",
+      url:"/ts/index.php/Admin/TreeCommon/freshForm",
       data:{
         edit_voltage_degree:document.getElementById("edit_voltage_degree").value,
         edit_town:document.getElementById("edit_town").value,

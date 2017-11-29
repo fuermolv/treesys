@@ -6,13 +6,13 @@
 
         <ul class="nav nav-tabs padding-12 tab-color-blue background-blue" id="myTab">
          <li >
-         <a href="/treesys/index.php/Admin/Tree/index/group_id/{$group_id}" >树片列表</a></li>
+         <a href="/ts/index.php/Admin/Tree/index/group_id/{$group_id}" >树片列表</a></li>
 
         <li class="active">  <a href="javascript:;" data-toggle="tab">树片详情</a></li>
-        <li>  <a href="/treesys/index.php/Admin/TreeDetail/index/group_id/{$group_id}/tid/{$tid}" >巡检记录</a></li>
-        <li>  <a href="/treesys/index.php/Admin/TreeProcess/index/group_id/{$group_id}/tid/{$tid}" >处理记录</a></li>
+        <li>  <a href="/ts/index.php/Admin/TreeDetail/index/group_id/{$group_id}/tid/{$tid}" >巡检记录</a></li>
+        <li>  <a href="/ts/index.php/Admin/TreeProcess/index/group_id/{$group_id}/tid/{$tid}" >处理记录</a></li>
            <!-- <li>
-          <a href="/treesys/index.php/Admin/Tree/add/group_id/{$group_id}"  >增加树片</a></li> -->
+          <a href="/ts/index.php/Admin/Tree/add/group_id/{$group_id}"  >增加树片</a></li> -->
       </ul>
         <tr>
           <td>
@@ -395,7 +395,7 @@
            var tid=$(obj).attr('tid');
           
            $.ajax({
-           url:'/treesys/index.php/Admin/Tree/delete',
+           url:'/ts/index.php/Admin/Tree/delete',
            type:'GET', 
            async:true,    
            data:{
@@ -424,7 +424,7 @@
    
       $.ajax({
       type:"GET",
-      url:"/treesys/index.php/Admin/Tree/edit",
+      url:"/ts/index.php/Admin/Tree/edit",
       data:{
       
         edit_line_id:$(obj).attr('line_id'),
