@@ -4,7 +4,12 @@
               <tr>
                   <th rowspan="1">飞机类型</th>
                   <th colspan="1">飞机类型</th>
-                  <td><input style="width:80%" type="text" name="fly_plane_type" id="fly_plane_type"></td>
+                  <td>
+                      <select style="width:80%"  id="fly_plane_type" value="1" name="fly_plane_type">
+                          <option value ="1" >激光机</option>
+                          <option value ="0">固定翼</option>  
+                         </select>  
+                    
                 </tr>  
               <tr>
                   <th rowspan="25">机巡数据</th>                  
@@ -17,7 +22,7 @@
                 </tr>
                 <tr>
                   <th colspan="1">测量时间</th>
-                  <td><input style="width:80%" type="text" name="fly_check_time" id="fly_check_time"></td>
+                  <td><input style="width:80%" type="date" name="fly_check_time" id="fly_check_time"></td>
                 </tr>
                 <tr>
                   <th colspan="1">经度(E）</th>
@@ -73,11 +78,11 @@
                 </tr>
                 <tr>
                   <th colspan="1">飞行日期（巡视开始时间）</th>
-                  <td><input style="width:80%" type="text" name="fly_start_time" id="fly_start_time"></td>
+                  <td><input style="width:80%" type="date" name="fly_start_time" id="fly_start_time"></td>
                 </tr>
                 <tr>
                   <th colspan="1">（巡视结束时间）</th>
-                  <td><input style="width:80%" type="text" name="fly_end_time" id="fly_end_time"></td>
+                  <td><input style="width:80%" type="date" name="fly_end_time" id="fly_end_time"></td>
                 </tr>
                 <tr>
                   <th colspan="1">当地天气</th>
@@ -93,19 +98,19 @@
                 </tr>
                 <tr>
                   <th colspan="1">报告编制日期</th>
-                  <td><input style="width:80%" type="text" name="fly_report_made_time" id="fly_report_made_time"></td>
+                  <td><input style="width:80%" type="date" name="fly_report_made_time" id="fly_report_made_time"></td>
                 </tr>
                 <tr>
                   <th colspan="1">收机（系统）巡报告时间</th>
-                  <td><input style="width:80%" type="text" name="fly_receive_report_time" id="fly_receive_report_time"></td>
+                  <td><input style="width:80%" type="date" name="fly_receive_report_time" id="fly_receive_report_time"></td>
                 </tr>
                 <tr>
                   <th colspan="1">班组收报告时间</th>
-                  <td><input style="width:80%" type="text" name="fly_group_receive_report_time" id="fly_group_receive_report_time"></td>
+                  <td><input style="width:80%" type="date" name="fly_group_receive_report_time" id="fly_group_receive_report_time"></td>
                 </tr>
                 <tr>
                   <th colspan="1">班组反馈时间</th>
-                  <td><input style="width:80%" type="text" name="fly_group_feedback_time" id="fly_group_feedback_time"></td>
+                  <td><input style="width:80%" type="date" name="fly_group_feedback_time" id="fly_group_feedback_time"></td>
                 </tr>
                 <tr>
                   <th rowspan="4">判断飞机与档案数据</th>                                      
@@ -127,7 +132,7 @@
                 <tr>
                   <th rowspan="3">飞机后数据处理情况</th>                                                          
                   <th colspan="1">飞机后处理时间</th>
-                  <td><input style="width:80%" type="text" name="fly_later_deal_time" id="fly_later_deal_time"></td>
+                  <td><input style="width:80%" type="date" name="fly_later_deal_time" id="fly_later_deal_time"></td>
                 </tr>
                 <tr>
                   <th colspan="1">处理情况</th>
@@ -159,7 +164,7 @@ function fly_add_record(obj)
           type:"POST",
            url:"/ts/index.php/Admin/TreeFly/add",
            data:{
-            fly_tid:$("#fly_tid").val(),
+            fly_tid:fly_tid,
             fly_voltage_degree:$("#fly_voltage_degree").val(),
             fly_line_name:$("#fly_line_name").val(),
             fly_extent:$("#fly_extent").val(),
@@ -202,7 +207,7 @@ function fly_add_record(obj)
              type:"GET",
              url:"/ts/index.php/Admin/TreeFly/index",
              data:{
-             tid:fly_tid
+             tid:tid
              },
              success:function(msg){
 
