@@ -40,7 +40,7 @@
                   
             <td colspan="5">请选择飞机类型：</td>
             <td colspan="4">
-            <select style="width:100%" name="fly_plane_type" id="fly_plane_type" value="1" onchange="submitForm();">
+            <select style="width:100%" name="fly_plane_type" id="fly_plane_type" value="{$fly_plane_type}" onchange="submitForm();">
               <option value ="1">激光机</option>
               <option value ="0" >固定翼</option>
               </select>
@@ -134,7 +134,10 @@
                 <td id="fly_later_deal_time">{$v['fly_later_deal_time']|date='Y-m-d',###}</td>
                 <td id="fly_deal_condition">{$v['fly_deal_condition']}</td>
                 <td id="fly_deal_remark">{$v['fly_deal_remark']}</td>                
-                <td><a href="javascript:;"  tid="{$tree_id}" flyid="{$v['fly_id']}" groupid="{$group_id}" onclick="delete_fly(this);">删除</a></td>
+                <td><a href="javascript:;"  tid="{$tree_id}" flyid="{$v['fly_id']}" groupid="{$group_id}" class="btn btn-sm btn-success" type="button" onclick="delete_fly(this);">删除</a>
+                    <a href="javascript:;"   flyid="{$v['fly_id']}"  class="btn btn-sm btn-success" type="button" onclick="edit_fly(this);">修改</a>
+                    
+                </td>
             </tr>
           </foreach>
         </table>
@@ -189,7 +192,26 @@
             error:function(XMLHttpRequest, textStatus, thrownError){}
           })
     }
-
+    function edit_fly(obj)
+    {
+       var fly_id=$(obj).attr('flyid');
+       console.log(fly_id);
+        $.ajax({
+          type:"GET",
+           url:"/ts/index.php/Admin/TreeFly/edit",
+           data:{
+            fly_id:fly_id
+             },
+             success:function(msg){
+          $("#tree-fly-record").html(msg);
+          $("#list_button").removeClass("disabled");
+          $("#list_button").addClass("btn-success");
+          $("#add_button").removeClass("disabled");
+          $("#add_button").addClass("btn-success");
+            },
+            error:function(XMLHttpRequest, textStatus, thrownError){}
+          })
+    }
 
 
 
@@ -197,7 +219,7 @@
 <script type="text/javascript">
   $(document).ready(function()
   {  
-  $("#fly_plane_type").val(sessionStorage.getItem("fly_plane_type"))
+  $("#fly_plane_type").val({$fly_plane_type})
     
   //  console.log({$tree_id})
   });
