@@ -33,7 +33,8 @@ class TreeController extends AdminBaseController {
         $lienes = M("auth_rule")->where($map)->select();
         $map = null;
         $map['did'] = array('in', $lienes[0]['group_device']);
-        if($lienes[0]['group_device'][0]=-1)
+       
+        if($lienes[0]['group_device'][0]=="-")
         {
         	$map=null;
         }
