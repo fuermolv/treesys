@@ -1,0 +1,157 @@
+[ 2017-12-13T14:19:35+08:00 ] ::1 /ts/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000029s ]
+INFO: [ app_init ] --END-- [ RunTime:0.072799s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.031328s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.031507s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.004639s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.004771s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.352202s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.352322s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.030897s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.031092s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.008541s ]
+INFO: [ app_end ] --END-- [ RunTime:0.008673s ]
+
+[ 2017-12-13T14:19:58+08:00 ] ::1 /ts/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000024s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000415s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000479s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000582s ]
+ERR: SQLSTATE[HY000] [2002] ÓÉÓÚÁ¬½Ó·½ÔÚÒ»¶ÎÊ±¼äºóÃ»ÓÐÕýÈ·´ð¸´»òÁ¬½ÓµÄÖ÷»úÃ»ÓÐ·´Ó¦£¬Á¬½Ó³¢ÊÔÊ§°Ü¡£
+
+
+[ 2017-12-13T14:27:41+08:00 ] ::1 /ts/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000026s ]
+INFO: [ app_init ] --END-- [ RunTime:0.020439s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.020110s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.020223s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000096s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000202s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.100111s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.100299s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.010958s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.011068s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.008199s ]
+INFO: [ app_end ] --END-- [ RunTime:0.008308s ]
+
+[ 2017-12-13T14:27:43+08:00 ] ::1 /ts/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000310s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000358s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000451s ]
+SQL: SHOW COLUMNS FROM `treesys_users` [ RunTime:0.0096s ]
+SQL: SELECT * FROM `treesys_users` WHERE `username` = 'admin' AND `password` = 'e10adc3949ba59abbe56e057f20f883e' LIMIT 1   [ RunTime:0.0096s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000092s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000194s ]
+NOTIC: [8] Undefined variable: error C:\wamp64\www\ts\Runtime\Cache\Home\cf67dc478d0f9143c4e32b762444702a.php ç¬¬ 6 è¡Œ.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.083383s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.083491s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000219s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000309s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000437s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000566s ]
+
+[ 2017-12-13T16:43:15+08:00 ] ::1 /ts/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000033s ]
+INFO: [ app_init ] --END-- [ RunTime:0.014256s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.039245s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.039403s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000109s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000220s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.169206s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.169335s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.005137s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.005243s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.009257s ]
+INFO: [ app_end ] --END-- [ RunTime:0.009363s ]
+
+[ 2017-12-13T16:43:17+08:00 ] ::1 /ts/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000033s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000410s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000637s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000807s ]
+SQL: SELECT * FROM `treesys_users` WHERE `username` = 'admin' AND `password` = 'e10adc3949ba59abbe56e057f20f883e' LIMIT 1   [ RunTime:0.0095s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000114s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000226s ]
+NOTIC: [8] Undefined variable: error C:\wamp64\www\ts\Runtime\Cache\Home\cf67dc478d0f9143c4e32b762444702a.php ç¬¬ 6 è¡Œ.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.038170s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.038288s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000219s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000308s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000359s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000447s ]
+
+[ 2017-12-13T19:53:37+08:00 ] ::1 /ts/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000031s ]
+INFO: [ app_init ] --END-- [ RunTime:0.023246s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.026320s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.026452s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.007640s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.007767s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.359176s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.359298s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.010179s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.010282s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.008513s ]
+INFO: [ app_end ] --END-- [ RunTime:0.008617s ]
+
+[ 2017-12-13T19:53:39+08:00 ] ::1 /ts/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000022s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000333s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000343s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000435s ]
+SQL: SELECT * FROM `treesys_users` WHERE `username` = 'admin' AND `password` = 'e10adc3949ba59abbe56e057f20f883e' LIMIT 1   [ RunTime:0.0098s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000091s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000194s ]
+NOTIC: [8] Undefined variable: error C:\wamp64\www\ts\Runtime\Cache\Home\cf67dc478d0f9143c4e32b762444702a.php ç¬¬ 6 è¡Œ.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.041303s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.041461s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000349s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000481s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000639s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000769s ]
+

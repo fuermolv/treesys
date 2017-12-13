@@ -118,7 +118,9 @@
         <li>  <a href="javascript:;"   class="btn disabled" data-toggle="tab">树片详情</a></li>
         <li>  <a href="javascript:;"   class="btn disabled" data-toggle="tab">巡检记录</a></li>
         <li>  <a href="javascript:;"   class="btn disabled" data-toggle="tab">处理记录</a></li>
-          <!--   <li>
+        <li>  <a href="javascript:;"   class="btn disabled" data-toggle="tab">飞行记录</a></li>
+        
+        <!--   <li>
           <a href="/ts/index.php/Admin/Tree/add/group_id/<?php echo ($group_id); ?>"  >增加树片</a></li>  -->
       </ul>
         <tr>
@@ -278,7 +280,7 @@
            <th style="display:none" id="t-datail_tree_vertical">最危急树障导线对树木垂直距离（米）</th>
            <th style="display:none" id="t-datail_tree_grand_height">最危急树障导线对地（米）</th>
            <th  id="t-datail_tree_over">是否高出导线</th>  
-           <th  id="t-datail_final_danger">最终自然生长高度是否构成紧急级别隐患</th>
+           <th  id="t-datail_final_danger">最终自然生长高度是否构成一般级别缺陷</th>
            <!-- AT-AX没有展示（已处理） -->
            <th style="display:none" id="t-detail_check_method">测量方法</th> 
            <th style="display:none" id="t-detail_temperature">气温（℃）</th> 
@@ -343,8 +345,8 @@
                 <td id="t-datail_danger_degree"><?php echo ($v['datail_danger_degree']); ?></td>
                         
                 <td  style="display:none" id="t-datail_check_change_conclusion"><?php echo ($v['datail_check_change_conclusion']); ?></td>
-                <td   id="t-datail_check_process_conclusion"><?php echo ($v['datail_check_process_conclusion']); ?></td>                        
-                <td  style="display:none" id="t-datail_check_posistion_conclusion"><?php echo ($v['datail_check_posistion_conclusion']); ?></td>          
+                <td  style="display:none" id="t-datail_check_process_conclusion"><?php echo ($v['datail_check_process_conclusion']); ?></td>                        
+                <td   id="t-datail_check_posistion_conclusion"><?php echo ($v['datail_check_posistion_conclusion']); ?></td>          
                 <td style="display:none" id="t-datail_tree_type"><?php echo ($v['datail_tree_type']); ?></td>
                 <td style="display:none" id="t-datail_tree_num"><?php echo ($v['datail_tree_num']); ?></td>
                 <td style="display:none" id="t-datail_tree_num_unit"><?php echo ($v['datail_tree_num_unit']); ?></td>
@@ -774,7 +776,7 @@
       $("#tree_status").val(sessionStorage.getItem("tree_status"))
       $("#star_tower").val(sessionStorage.getItem("star_tower"))
       $("#end_tower").val(sessionStorage.getItem("end_tower"))
-       $("#datail_danger_degree").val(sessionStorage.getItem("datail_danger_degree"))
+      $("#datail_danger_degree").val(sessionStorage.getItem("datail_danger_degree"))
       $("#orderBy").val(sessionStorage.getItem("orderBy"))
    
       

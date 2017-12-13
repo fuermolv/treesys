@@ -118,6 +118,8 @@
         <li class="active">  <a href="javascript:;" data-toggle="tab">树片详情</a></li>
         <li>  <a href="/ts/index.php/Admin/TreeDetail/index/group_id/<?php echo ($group_id); ?>/tid/<?php echo ($tid); ?>" >巡检记录</a></li>
         <li>  <a href="/ts/index.php/Admin/TreeProcess/index/group_id/<?php echo ($group_id); ?>/tid/<?php echo ($tid); ?>" >处理记录</a></li>
+        <li>  <a href="/ts/index.php/Admin/TreeFly/index/group_id/<?php echo ($group_id); ?>/tid/<?php echo ($tid); ?>" >飞行记录</a></li>
+        
            <!-- <li>
           <a href="/ts/index.php/Admin/Tree/add/group_id/<?php echo ($group_id); ?>"  >增加树片</a></li> -->
       </ul>
