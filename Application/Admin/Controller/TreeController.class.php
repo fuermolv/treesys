@@ -253,7 +253,11 @@ class TreeController extends AdminBaseController {
             $base_data['average_height']=$ar['average_height']; 
             $base_data['dead_line_time']=strtotime($ar['dead_line_time']);
             $base_data['processed']=$ar['processed'];
-            
+            $base_data['tree_property']=$ar['tree_property'];
+            $base_data['new_plant']=$ar['new_plant'];
+            $base_data['defect_type']=$ar['defect_type'];
+            $base_data['survival']=$ar['survival']; 
+
             $TreeBase=D("TreeBase");
             $result = $TreeBase->add($base_data);
             
