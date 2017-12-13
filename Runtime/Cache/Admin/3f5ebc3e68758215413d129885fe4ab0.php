@@ -107,14 +107,103 @@
     <div class="main-content">
      <div class="page-content">
       
-<div class="page-header"><h1><i class="fa fa-home"></i> 公告</h1></div><div class="col-xs-12">
+
+<div class="col-xs-12">
+    <div class="tabbable">
+    <table class="table table-striped table-bordered table-hover table-condensed">
+
+       <ul class="nav nav-tabs padding-12 tab-color-blue background-blue" id="myTab">
+        <li class="active">
+          <a href="javascript:;" data-toggle="tab">杆塔列表</a></li>
+
+        <li>  <a href="/ts/index.php/Admin/Tower/add"  >增加杆塔</a></li>
+        <li >  <a href="javascript:;" class="btn disabled" >修改杆塔</a></li>
+        
+      
+        
+      </ul>
+        <tr>
+          <td>
+            <form class="form-inline" action="" id="my_form">
+            
+
+              <input  list="datalist" placeholder="线路名称" type="text" style="width: 8%;" name="line_name" id="line_name"/> 
+             <datalist id="datalist">
+             <?php if(is_array($querydata['device_lines'])): foreach($querydata['device_lines'] as $key=>$v): ?><option value ="<?php echo ($v['device_name']); ?>"></option><?php endforeach; endif; ?>
+             </datalist> 
+
+      
+
+
+            
+
+            <input style="width:8%" class="btn btn-sm btn-success" type="submit"  value="查找线路">
+
+             
 
 
 
-<font color="#FF0000" size="7">说明：</font><br /> 
+            </form>
+          </td>
+        </tr>
+      </table>
 
-<font size="5">1.(2017-12-13)，新版本正在不断更新</font><br />  
-<font size="5">2.当前版本为了验证整体流程，有缺失数据列在本周内会添加到系统中</font><br />  
+      <div class="tab-content" id="tree-deatil-record">
+        <div class="table-responsive">
+        <table class="table table-striped table-bordered table-hover table-condensed " id="data-table">
+
+          <tr>
+           <th  >序号 </th>
+           <th  >所属线路名称</th>
+           <th  >电压值</th>
+           <th  >杆塔号</th>
+           <th  >经度(度）</th>
+           <th  >经度(分）</th>
+           <th  >经度(秒）</th>
+           <th  >纬度(度）</th>
+           <th  >纬度(分）</th>
+           <th  >纬度(秒）</th>
+          <th  >备注</th>
+           <th  >更新时间</th>
+           <th  >更新人</th>
+           
+           
+           
+           <th  >操作</th>  
+
+          </tr>
+          <?php if(is_array($data)): foreach($data as $key=>$v): ?><tr>
+              <td ><?php echo ($v['tower_serial']); ?></td>
+              
+              <td ><?php echo ($v['tower_line_name']); ?></td>
+              <td ><?php echo ($v['tower_line_degree']); ?></td>
+              <td ><?php echo ($v['tower_number_old']); ?></td>
+              <td ><?php echo ($v['tower_longitude_d']); ?></td>
+              <td ><?php echo ($v['tower_longitude_m']); ?></td>
+              <td ><?php echo ($v['tower_longitude_s']); ?></td>
+              <td ><?php echo ($v['tower_latitude_d']); ?></td>
+              <td ><?php echo ($v['tower_latitude_m']); ?></td>
+              <td ><?php echo ($v['tower_latitude_s']); ?></td>
+              <td ><?php echo ($v['tower_remark']); ?></td>
+              <td ><?php echo (date('Y-m-d',$v['tower_update_time'])); ?></td>
+              <td ><?php echo ($v['tower_update_person']); ?></td>
+              
+        
+
+              <td>
+              <a href="/ts/index.php/Admin/Tower/edit/tower_id/<?php echo ($v['tower_id']); ?>/line_name/<?php echo ($line_name); ?>">修改</a>
+              ||<a href="javascript:;" tower_id="<?php echo ($v['tower_id']); ?>" tower_serial="<?php echo ($v['tower_serial']); ?>" onclick="delete_tower(this);">删除</a>
+
+          
+              </td>
+            </tr><?php endforeach; endif; ?>
+        </table>
+        <div align="center"> <?php echo ($pagehtml); ?></div>
+      </div>
+       </div>
+    </div>
+  </div>
+
 
 
      </div>
@@ -166,6 +255,43 @@
   <script src="/ts/Public/statics/aceadmin/js/ace.min.js"></script>
   <script src="/ts/tpl/Public/js/base.js"></script>
   
+<script>
+function delete_tower(obj)
+{
+  var tower_id=$(obj).attr('tower_id');
+  var tower_serial=$(obj).attr('tower_serial');
+  if(confirm('确定删除？'))
+  {
+  $.ajax({
+          type:"POST",
+           url:"/ts/index.php/Admin/Tower/delete",
+           data:{
+             tower_id:tower_id,
+             tower_serial:tower_serial,
+             
+
+
+             },
+             success:function(msg)
+            {
+    
+             location.reload();
+            
+            },
+            error:function(XMLHttpRequest, textStatus, thrownError){}
+          })
+
+}
+}
+    
+    
+</script>
+
+    
+
+
+   
+
    <script>
     var BASE_URL = '/ts/Public/statics/webuploader-0.1.5';
 </script>

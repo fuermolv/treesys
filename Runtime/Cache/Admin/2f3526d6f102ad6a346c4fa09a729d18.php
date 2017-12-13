@@ -107,15 +107,170 @@
     <div class="main-content">
      <div class="page-content">
       
-<div class="page-header"><h1><i class="fa fa-home"></i> 公告</h1></div><div class="col-xs-12">
+<div class="col-xs-12">
+    <div class="tabbable">
+    <table class="table table-striped table-bordered table-hover table-condensed">
+
+       <ul class="nav nav-tabs padding-12 tab-color-blue background-blue" id="myTab">
+          <li>
+          <a href="/ts/index.php/Admin/TreeStatistics/index">日统计</a>
+          </li>
+
+          <li class="active">
+          <a href="javascript:;"">飞行统计</a>
+          </li>
+      
+        
+        <!--   <li>
+          <a href="/ts/index.php/Admin/Tree/add/group_id/<?php echo ($group_id); ?>"  >增加树片</a></li>  -->
+      </ul>
+        <tr>
+          <td>
+            <form class="form-inline"    action="" id="my_form">
+            
+
+            <select style="width:8%" name="sta_type"  id="sta_type" >
+
+                   <?php if($sta_type == 0): ?><option value ="0">激光</option>
+              <option value ="1">固定翼</option>
+            <?php else: ?> 
+               <option value ="0">激光</option>
+               <option value ="1"  selected = "selected">固定翼</option><?php endif; ?>
+           
+            </select>
+
+             
+
+             起始统计时间 <input type="date" style="width:8%"  value="<?php echo ($start_s_time); ?>" name="start_s_time"  id="start_s_time" >
+             截止统计时间 <input type="date" style="width:8%"  value="<?php echo ($end_s_time); ?>" name="end_s_time"  id="end_s_time" >
+          
+           
+
+           <!--  <input style="width:8%" class="btn btn-sm btn-success" type="button" onclick="dataFilter(this)" value="数据筛选"> -->
+              <input style="width:8%" type="submit" class="btn btn-sm btn-success" value="确定">
+             
+             
+
+            </form>
+          </td>
+        </tr>
+      </table>
+
+  <table class="table table-striped table-bordered table-hover table-condensed" >
+       <tr>
+     <th>线路管辖班组</th>    
+     <th colspan="9">550kV</th>
+     <th colspan="9">220kV</th>
+     <th colspan="9">110kV</th>
+     <th colspan="9">35kV</th>
+    
+     </tr>
+
+      <th ></th>
+     <th colspan="3">测为重大</th>
+     <th colspan="3">测为一般</th>
+     <th colspan="3">测为其他</th>
+      <th colspan="3">测为重大</th>
+     <th colspan="3">测为一般</th>
+     <th colspan="3">测为其他</th>
+      <th colspan="3">测为重大</th>
+     <th colspan="3">测为一般</th>
+     <th colspan="3">测为其他</th>
+      <th colspan="3">测为重大</th>
+     <th colspan="3">测为一般</th>
+     <th colspan="3">测为其他</th>
+  
+     </tr>
+
+     </tr>
+     <th ></th>
+     <th >核后为重大</th>
+     <th >核后为一般</th>
+     <th >核后为无</th>
+     <th >核后为重大</th>
+     <th >核后为一般</th>
+     <th >核后为无</th>
+     <th >核后为重大</th>
+     <th >核后为一般</th>
+     <th >核后为无</th>
+     <th >核后为重大</th>
+     <th >核后为一般</th>
+     <th >核后为无</th>
+     <th >核后为重大</th>
+     <th >核后为一般</th>
+     <th >核后为无</th>
+     <th >核后为重大</th>
+     <th >核后为一般</th>
+     <th >核后为无</th>
+     <th >核后为重大</th>
+     <th >核后为一般</th>
+     <th >核后为无</th>
+     <th >核后为重大</th>
+     <th >核后为一般</th>
+     <th >核后为无</th>
+     <th >核后为重大</th>
+     <th >核后为一般</th>
+     <th >核后为无</th>
+      <th >核后为重大</th>
+     <th >核后为一般</th>
+     <th >核后为无</th>
+      <th >核后为重大</th>
+     <th >核后为一般</th>
+     <th >核后为无</th>
+     <th >核后为重大</th>
+     <th >核后为一般</th>
+     <th >核后为无</th>
+
+     </tr>
+     <tr>
+     <?php if(is_array($group_data)): foreach($group_data as $key=>$v): ?><td><?php echo ($v['title']); ?></td> 
+     <td>0</td> 
+     <td>0</td> 
+     <td>0</td> 
+     <td>0</td> 
+     <td>0</td> 
+
+     <td>0</td> 
+     <td>0</td> 
+     <td>0</td> 
+     <td>0</td> 
+     <td>0</td> 
+     <td>0</td> 
+     <td>0</td> 
+     <td>0</td> 
+     <td>0</td> 
+     <td>0</td> 
+     <td>0</td> 
+     <td>0</td> 
+     <td>0</td> 
+     <td>0</td> 
+     <td>0</td> 
+     <td>0</td> 
+     <td>0</td> 
+     <td>0</td> 
+     <td>0</td> 
+     <td>0</td> 
+     <td>0</td> 
+     <td>0</td> 
+     <td>0</td> 
+     <td>0</td>
+     <td>0</td> 
+     <td>0</td> 
+     <td>0</td> 
+     <td>0</td> 
+     <td>0</td> 
+     <td>0</td> 
+     <td>0</td> 
+     
+     
 
 
+      </tr><?php endforeach; endif; ?>
 
-<font color="#FF0000" size="7">说明：</font><br /> 
-
-<font size="5">1.(2017-12-13)，新版本正在不断更新</font><br />  
-<font size="5">2.当前版本为了验证整体流程，有缺失数据列在本周内会添加到系统中</font><br />  
-
+ </table>
+     
+      
+ 
 
      </div>
     </div>

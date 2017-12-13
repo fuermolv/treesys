@@ -107,15 +107,60 @@
     <div class="main-content">
      <div class="page-content">
       
-<div class="page-header"><h1><i class="fa fa-home"></i> 公告</h1></div><div class="col-xs-12">
-
-
-
-<font color="#FF0000" size="7">说明：</font><br /> 
-
-<font size="5">1.(2017-12-13)，新版本正在不断更新</font><br />  
-<font size="5">2.当前版本为了验证整体流程，有缺失数据列在本周内会添加到系统中</font><br />  
-
+  <div class="page-header">
+    <h1>
+      <i class="fa fa-home"></i>首页 &gt; 用户组列表 &gt; 分配权限</h1>
+  </div>
+  <div class="col-xs-12">
+    <div class="tabbable">
+      <ul class="nav nav-tabs padding-12 tab-color-blue background-blue" id="myTab">
+        <li class="active">
+          <a href="#home" data-toggle="tab">菜单列表</a></li>
+        <li>
+          <a href="javascript:;" onclick="add()">添加菜单</a></li>
+      </ul>
+      <div class="tab-content">
+        <h1 class="text-center">为
+          <span style="color:red"><?php echo ($group_data['title']); ?></span>分配权限</h1>
+        <form action="" method="post">
+          <input type="hidden" name="id" value="<?php echo ($group_data['id']); ?>">
+          <table class="table table-striped table-bordered table-hover table-condensed
+          ">
+            <?php if(is_array($rule_data)): foreach($rule_data as $key=>$v): if(empty($v['_data'])): ?><tr class="b-group">
+                  <th width="10%">
+                    <label><?php echo ($v['title']); ?>
+                      <input type="checkbox" name="rule_ids[]" value="<?php echo ($v['id']); ?>" <?php if(in_array($v['id'],$group_data['rules'])): ?>checked="checked"<?php endif; ?>onclick="checkAll(this)" ></label></th>
+                  <td></td>
+                </tr>
+                <?php else: ?>
+                <tr class="b-group">
+                  <th width="10%">
+                    <label><?php echo ($v['title']); ?>
+                      <input type="checkbox" name="rule_ids[]" value="<?php echo ($v['id']); ?>" <?php if(in_array($v['id'],$group_data['rules'])): ?>checked="checked"<?php endif; ?>onclick="checkAll(this)"></label></th>
+                  <td class="b-child">
+                    <?php if(is_array($v['_data'])): foreach($v['_data'] as $key=>$n): ?><table class="table table-striped table-bordered table-hover table-condensed">
+                        <tr class="b-group">
+                          <th width="10%">
+                            <label><?php echo ($n['title']); ?>
+                              <input type="checkbox" name="rule_ids[]" value="<?php echo ($n['id']); ?>" <?php if(in_array($n['id'],$group_data['rules'])): ?>checked="checked"<?php endif; ?>onclick="checkAll(this)"></label></th>
+                          <td>
+                            <?php if(!empty($n['_data'])): if(is_array($n['_data'])): $i = 0; $__LIST__ = $n['_data'];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$c): $mod = ($i % 2 );++$i;?><label>&emsp;<?php echo ($c['title']); ?>
+                                  <input type="checkbox" name="rule_ids[]" value="<?php echo ($c['id']); ?>" <?php if(in_array($c['id'],$group_data['rules'])): ?>checked="checked"<?php endif; ?>></label><?php endforeach; endif; else: echo "" ;endif; endif; ?>
+                          </td>
+                        </tr>
+                      </table><?php endforeach; endif; ?>
+                  </td>
+                </tr><?php endif; endforeach; endif; ?>
+            <tr>
+              <th></th>
+              <td>
+                <input class="btn btn-success" type="submit" value="提交"></td>
+            </tr>
+          </table>
+        </form>
+      </div>
+    </div>
+  </div>
 
      </div>
     </div>
@@ -144,8 +189,7 @@
         divset=document.getElementById("树木管理").style.display="block";
         divset=document.getElementById("系统设置").style.display="block";
         divset=document.getElementById("权限系统").style.display="block";
-        divset=document.getElementById("基础信息维护").style.display="block";
-        divset=document.getElementById("树障统计信息").style.display="block";
+         divset=document.getElementById("基础信息维护").style.display="block";
      
      
     }
@@ -166,6 +210,10 @@
   <script src="/ts/Public/statics/aceadmin/js/ace.min.js"></script>
   <script src="/ts/tpl/Public/js/base.js"></script>
   
+  <script>function checkAll(obj) {
+      $(obj).parents('.b-group').eq(0).find("input[type='checkbox']").prop('checked', $(obj).prop('checked'));
+    }</script>
+
    <script>
     var BASE_URL = '/ts/Public/statics/webuploader-0.1.5';
 </script>
