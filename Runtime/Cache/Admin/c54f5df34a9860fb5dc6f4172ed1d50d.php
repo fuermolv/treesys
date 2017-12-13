@@ -1,10 +1,117 @@
-a<extend name="Public:base"/><block name="title">树木列表</block>
-<block name="content">
+<?php if (!defined('THINK_PATH')) exit();?><!DOCTYPE html>
+<html lang="en">
+ <head>
+  <link rel="stylesheet" href="/ts/Public/statics/webuploader-0.1.5/xb-webuploader.css">
+<script src="/ts/Public/statics/js/jquery-1.10.2.min.js"></script>
+  <meta charset="utf-8" />
+  <title>首页</title>
+  
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="/ts/Public/statics/aceadmin/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="/ts/Public/statics/aceadmin/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="/ts/Public/statics/font-awesome-4.4.0/css/font-awesome.min.css" />
+  <!--[if IE 7]><link rel="stylesheet" href="/ts/Public/statics/aceadmin/css/font-awesome-ie7.min.css"/><![endif]-->
+  <link rel="stylesheet" href="/ts/Public/statics/aceadmin/css/ace.min.css" />
+  <!--[if lte IE 8]><link rel="stylesheet" href="/ts/Public/statics/aceadmin/css/ace-ie.min.css"/><![endif]-->
+  <!--[if lt IE 9]><script src="/ts/Public/statics/aceadmin/js/html5shiv.js"></script><script src="/ts/Public/statics/aceadmin/js/respond.min.js"></script><![endif]-->
+  <link rel="stylesheet" href="/ts/tpl/Public/css/base.css" />
+  <style type="text/css">
+        #sidebar .nav-list{
+            overflow-y: auto;
+        }
+        .b-nav-li{
+            padding: 5px 0;
+        }
+    </style>
+ </head>
+ <body>
+  
+  <div class="navbar navbar-default" id="navbar">
+   <script type="text/javascript">
+        try{ace.settings.check('navbar' , 'fixed')}catch(e){}
+    </script>
+   <div class="navbar-container" id="navbar-container">
+    <div class="navbar-header pull-left">
+     <a href="/ts/index.php/Admin/Index/index" class="navbar-brand"><small><i class="icon-th"></i> 树障分析管理</small></a>
+    </div>
+    <div class="navbar-header pull-right" role="navigation">
+     <ul class="nav ace-nav">
+      <li class="light-blue"> <a data-toggle="dropdown" href="#" class="dropdown-toggle"><img class="nav-user-photo" src="/ts/Public/statics/aceadmin/avatars/avatar2.png" alt="Jason's Photo" /> <span class="user-info"><small>欢迎,</small> <?php echo ($_SESSION['user']['true_name']); ?></span><i class="icon-caret-down"></i></a>
+       <ul class="user-menu pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
+        <li class="divider"></li>
+        <li><a href="<?php echo U('Home/Index/logout');?>"><i class="icon-off"></i> 退出</a></li>
+       </ul></li>
+     </ul>
+    </div>
+   </div>
+  </div>
+  <div class="main-container" id="main-container">
+   <script type="text/javascript">
+        try{ace.settings.check('main-container' , 'fixed')}catch(e){}
+    </script>
+   <div class="main-container-inner">
+    <a class="menu-toggler" id="menu-toggler" href="#"><span class="menu-text"></span></a>
+    <div class="sidebar" id="sidebar">
+     <script type="text/javascript">
+                try{ace.settings.check('sidebar' , 'fixed')}catch(e){}
+            </script>
+     <!-- <div class="sidebar-shortcuts" id="sidebar-shortcuts">
+      <div class="sidebar-shortcuts-large" id="sidebar-shortcuts-large"> 
+       <button class="btn btn-success"><i class="icon-signal"></i></button> 
+       <button class="btn btn-info"><i class="icon-pencil"></i></button> 
+       <button class="btn btn-warning"><i class="icon-group"></i></button> 
+       <button class="btn btn-danger"><i class="icon-cogs"></i></button>
+      </div>
+      <div class="sidebar-shortcuts-mini" id="sidebar-shortcuts-mini">
+       <span class="btn btn-success"></span>
+       <span class="btn btn-info"></span>
+       <span class="btn btn-warning"></span>
+       <span class="btn btn-danger"></span>
+      </div>
+     </div> -->
+     <!-- #sidebar-shortcuts -->
+     <ul class="nav nav-list" >
+      <?php if(is_array($nav_data)): foreach($nav_data as $key=>$v): if(empty($v['_data'])): ?><li class="b-nav-li"><a href="<?php echo U($v['mca']);?>" ><i class="fa fa-<?php echo ($v['ico']); ?> icon-test"></i> <span class="menu-text"><?php echo ($v['name']); ?></span></a></li>
+    <?php else: ?>
+
+        <li class="b-has-child"><a href="#" class="dropdown-toggle b-nav-parent"><i class="fa fa-<?php echo ($v['ico']); ?> icon-test"></i> <span class="menu-text"><?php echo ($v['name']); ?></span><b class="arrow icon-angle-down"></b></a>
+         <ul class="submenu" id="<?php echo ($v['name']); ?>">
+        <!--  style="display: block;" -->
+        <?php if(is_array($v['_data'])): foreach($v['_data'] as $key=>$n): ?><!-- <li class="b-nav-li"><a href="<?php echo U($n['mca']);?>" ><i class="icon-double-angle-right"></i> <?php echo ($n['name']); ?></a> -->
+
+
+          <li class="b-has-child"><a href="#" class="dropdown-toggle b-nav-parent"><i class="fa fa-<?php echo ($v['ico']); ?> icon-test"></i> <span class="menu-text"><?php echo ($n['name']); ?></span><b class="arrow icon-angle-down"></b></a>
+         <ul class="submenu" id="<?php echo ($n['name']); ?>">
+        <?php if(is_array($n['_data'])): foreach($n['_data'] as $key=>$l): ?><li class="b-nav-li"><a href="<?php echo U($l['mca']);?>" ><i class="icon-double-angle-right"></i> <?php echo ($l['name']); ?></a>
+        </li>
+         </li><?php endforeach; endif; ?>
+       </ul> 
+       
+            
+           
+              
+        </li>
+         </li><?php endforeach; endif; ?>
+       </ul> 
+         </li><?php endif; endforeach; endif; ?>
+     </ul>
+    <!--  <div class="sidebar-collapse" id="sidebar-collapse">
+      <i class="icon-double-angle-left" data-icon1="icon-double-angle-left" data-icon2="icon-double-angle-right"></i>
+     </div> -->
+     <script type="text/javascript">
+                try{ace.settings.check('sidebar' , 'collapsed')}catch(e){}
+            </script>
+    </div>
+    <div class="main-content">
+     <div class="page-content">
+      
 <div class="col-xs-12">
     <div class="tabbable">
             <ul class="nav nav-tabs padding-12 tab-color-blue background-blue" id="myTab">
                     <li >
-                     <a href="/ts/index.php/Admin/Tree/index/group_id/{$group_id}" >树片列表</a></li>
+                     <a href="/ts/index.php/Admin/Tree/index/group_id/<?php echo ($group_id); ?>" >树片列表</a></li>
                      <li>  <a href="javascript:;"   class="btn disabled" data-toggle="tab">树片详情</a></li>
                      <li>  <a href="javascript:;"   class="btn disabled" data-toggle="tab">巡检记录</a></li>
                      <li>  <a href="javascript:;"   class="btn disabled"     data-toggle="tab">处理记录</a></li>
@@ -72,9 +179,7 @@ a<extend name="Public:base"/><block name="title">树木列表</block>
                 <td>
                                 <select  style="width:80%"  name="town"   id="town" onchange="submitForm();">
                                         <option value ="">镇</option>
-                                        <foreach name="querydata['towns']" item="v">
-                                         <option value ="{$v['id']}">{$v['name']}</option>
-                                        </foreach>
+                                        <?php if(is_array($querydata['towns'])): foreach($querydata['towns'] as $key=>$v): ?><option value ="<?php echo ($v['id']); ?>"><?php echo ($v['name']); ?></option><?php endforeach; endif; ?>
                                 </select>
                         </td>
 </tr>
@@ -83,9 +188,7 @@ a<extend name="Public:base"/><block name="title">树木列表</block>
                 <td>
                                 <select  style="width:80%"  name="village"  id="village" onchange="submitForm();">
                                         <option value ="">村</option>
-                                        <foreach name="querydata['villages']" item="v">
-                                         <option value ="{$v['id']}">{$v['name']}</option>
-                                         </foreach>
+                                        <?php if(is_array($querydata['villages'])): foreach($querydata['villages'] as $key=>$v): ?><option value ="<?php echo ($v['id']); ?>"><?php echo ($v['name']); ?></option><?php endforeach; endif; ?>
                                 </select>
                         </td>
 
@@ -108,15 +211,11 @@ a<extend name="Public:base"/><block name="title">树木列表</block>
                 <td>
                                 <!-- <select  style="width:80%"  name="line_id" id="line_id" onchange="submitForm();">
                                 <option value ="">全部线路</option>
-                                <foreach name="querydata['device_lines']" item="v">
-                                 <option value ="{$v['did']}">{$v['voltage_degree']}kV{$v['device_name']}</option>
-                                </foreach>
+                                <?php if(is_array($querydata['device_lines'])): foreach($querydata['device_lines'] as $key=>$v): ?><option value ="<?php echo ($v['did']); ?>"><?php echo ($v['voltage_degree']); ?>kV<?php echo ($v['device_name']); ?></option><?php endforeach; endif; ?>
                                 </select> -->
                       <input  list="datalist" placeholder="线路名称" type="text" style="width: 80%;" name="line_id" id="line_id" /> 
                       <datalist id="datalist">
-                      <foreach name="querydata['device_lines']" item="v">
-                      <option value ="{$v['device_name']}"></option>
-                    </foreach>
+                      <?php if(is_array($querydata['device_lines'])): foreach($querydata['device_lines'] as $key=>$v): ?><option value ="<?php echo ($v['device_name']); ?>"></option><?php endforeach; endif; ?>
 
                     </td>
 </tr>
@@ -211,7 +310,7 @@ a<extend name="Public:base"/><block name="title">树木列表</block>
                 
 </tr>
 <tr>
-        <th rowspan="7">隐患最新情况</th>
+        <th rowspan="3">隐患最新情况</th>
         <th colspan="1">更新时间（最新隐患调查、测量日期） </th>
         <td><input  style="width:80%"   type="date" name="detail_last_time" id="detail_last_time" ></td>
         
@@ -226,39 +325,6 @@ a<extend name="Public:base"/><block name="title">树木列表</block>
                 <th colspan="1">测量时刻(更新时间。到时、分)</th>
                 <td><input  style="width:80%"   type="datetime-local" name="datail_check_time" id="datail_check_time" ></td>
                 
-</tr>
-<tr>
-        
-                <th colspan="1">树木按地点属性</th>
-                <td><input  style="width:80%"   type="tree_property" name="tree_property" id="tree_property" ></td>               
-</tr>
-<tr>
-                        <th colspan="1">是否新种、新移栽</th>
-                        <td>
-                                <select  style="width:80%"   id="new_plant" name="new_plant" id="new_plant">
-                                         <option value ="新种树苗" >新种树苗</option>
-                                         <option value ="新移栽树">新移栽树</option>  
-                                         <option value ="无">无</option>                                          
-                                         </select></td>                        
-</tr>
-<tr>
-        
-                <th colspan="1">是否临近重大、一般缺陷</th>
-                <td>
-                        <select  style="width:80%"   id="defect_type" name="defect_type" id="defect_type">
-                                 <option value ="临近重大缺陷" >临近重大缺陷</option>
-                                 <option value ="临近一般缺陷">临近一般缺陷</option>  
-                                 <option value ="否">否</option>  
-                                 
-                                 </select></td>                
-</tr>
-<tr>
-                        <th colspan="1">是否会翻生</th>
-                        <td>
-                                <select  style="width:80%"   id="survival" name="survival" id="survival">
-                                         <option value ="会翻生" >会翻生</option>
-                                         <option value ="不会翻生">不会翻生</option>  
-                                         </select></td>                        
 </tr>
 <tr>
                 <th rowspan="3">隐患最新情况（程度）</th>
@@ -432,11 +498,55 @@ a<extend name="Public:base"/><block name="title">树木列表</block>
 <div class="text-center">
         <input style="width:8%" class="btn btn-sm btn-success "  type="button" onclick="tree_add_record()"  value="确定">
 </div>  
-</block>
 
+     </div>
+    </div>
+   </div>
+   <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse"><i class="icon-double-angle-up icon-only bigger-110"></i></a>
+  </div>
+  <!--[if !IE]> -->
+  <script src="/ts/Public/statics/js/jquery-1.10.2.min.js"></script>
+  <!-- <![endif]-->
+  <!--[if IE]><script src="/ts/Public/statics/js/jquery-1.10.2.min.js"></script><![endif]-->
+  <!--[if !IE]> -->
+  <script type="text/javascript">
+        window.jQuery || document.write("<script src='/ts/Public/statics/aceadmin/js/jquery-2.0.3.min.js'>"+"<"+"script>");
+    </script>
+  <!-- <![endif]-->
+  <!--[if IE]><script type="text/javascript">
+        window.jQuery || document.write("<script src='/ts/Public/statics/aceadmin/js/jquery-1.10.2.min.js'>"+"<"+"script>");
+    </script><![endif]-->
+  <script type="text/javascript">
+    if("ontouchend" in document) document.write("<script src='/ts/Public/statics/aceadmin/js/jquery.mobile.custom.min.js'>"+"<"+"script>");
+  </script>
 
-
-<block name="js" >
+  <script type="text/javascript">
+   window.onload = function() 
+    { 
+        divset=document.getElementById("树木管理").style.display="block";
+        divset=document.getElementById("系统设置").style.display="block";
+        divset=document.getElementById("权限系统").style.display="block";
+         divset=document.getElementById("基础信息维护").style.display="block";
+     
+     
+    }
+   
+  </script>
+  <script src="/ts/Public/statics/aceadmin/js/bootstrap.min.js"></script>
+  <script src="/ts/Public/statics/aceadmin/js/typeahead-bs2.min.js"></script> 
+  <!--[if lte IE 8]><script src="/ts/Public/statics/aceadmin/js/excanvas.min.js"></script><![endif]-->
+  <script src="/ts/Public/statics/aceadmin/js/jquery-ui-1.10.3.custom.min.js"></script>
+  <script src="/ts/Public/statics/aceadmin/js/jquery.ui.touch-punch.min.js"></script>
+  <script src="/ts/Public/statics/aceadmin/js/jquery.slimscroll.min.js"></script>
+  <script src="/ts/Public/statics/aceadmin/js/jquery.easy-pie-chart.min.js"></script>
+  <script src="/ts/Public/statics/aceadmin/js/jquery.sparkline.min.js"></script>
+  <script src="/ts/Public/statics/aceadmin/js/flot/jquery.flot.min.js"></script>
+  <script src="/ts/Public/statics/aceadmin/js/flot/jquery.flot.pie.min.js"></script>
+  <script src="/ts/Public/statics/aceadmin/js/flot/jquery.flot.resize.min.js"></script>
+  <script src="/ts/Public/statics/aceadmin/js/ace-elements.min.js"></script>
+  <script src="/ts/Public/statics/aceadmin/js/ace.min.js"></script>
+  <script src="/ts/tpl/Public/js/base.js"></script>
+  
 <script type="text/javascript">
     function submitForm()
      {
@@ -492,10 +602,6 @@ a<extend name="Public:base"/><block name="title">树木列表</block>
             detail_last_time:$("#detail_last_time").val(),
             datail_check_person:$("#datail_check_person").val(),
             datail_check_time:$("#datail_check_time").val(),
-            tree_property:$("#tree_property").val(),
-            new_plant:$("#new_plant").val(),
-            defect_type:$("#defect_type").val(),
-            survival:$("#survival").val(),
             datail_danger_degree:$("#datail_danger_degree").val(),
             datail_check_change_conclusion:$("#datail_check_change_conclusion").val(),
             datail_check_process_conclusion:$("#datail_check_process_conclusion").val(),
@@ -534,11 +640,11 @@ a<extend name="Public:base"/><block name="title">树木列表</block>
                  alert("增加成功"); }
                 // alert(msg);
                 // if(msg==1)parent.location.reload();
-                // window.location.href="Admin/Tree/index/group_id/{$group_id}";
+                // window.location.href="Admin/Tree/index/group_id/<?php echo ($group_id); ?>";
             },
            error:function(XMLHttpRequest, textStatus, thrownError){}
           })
-          window.location.href="/ts/index.php/Admin/Tree/index/group_id/{$group_id}";
+          window.location.href="/ts/index.php/Admin/Tree/index/group_id/<?php echo ($group_id); ?>";
 
 }
 
@@ -593,4 +699,10 @@ a<extend name="Public:base"/><block name="title">树木列表</block>
 // };
 
   </script>
-</block>
+
+   <script>
+    var BASE_URL = '/ts/Public/statics/webuploader-0.1.5';
+</script>
+<script src="/ts/Public/statics/js/webuploader.min.js"></script> 
+ </body>
+</html>
