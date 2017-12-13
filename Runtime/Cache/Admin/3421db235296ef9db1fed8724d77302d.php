@@ -183,7 +183,7 @@
            <th  id="t-datail_tree_vertical">最危急树障导线对树木垂直距离（米）</th>
            <th  id="t-datail_tree_grand_height">最危急树障导线对地（米）</th>
            <th  id="t-datail_tree_over">是否高出导线</th>
-           <th  id="t-datail_final_danger">最终自然生长高度是否构成紧急级别隐患</th>           
+           <th  id="t-datail_final_danger">最终自然生长高度是否构成一般级别缺陷</th>           
            <th  id="t-detail_check_method">测量方法</th>                      
            <th  id="t-detail_temperature">气温（℃）</th>
            <th  id="t-detail_load">负荷（A）</th>
@@ -425,7 +425,8 @@
         divset=document.getElementById("树木管理").style.display="block";
         divset=document.getElementById("系统设置").style.display="block";
         divset=document.getElementById("权限系统").style.display="block";
-         divset=document.getElementById("基础信息维护").style.display="block";
+        divset=document.getElementById("基础信息维护").style.display="block";
+        divset=document.getElementById("树障统计信息").style.display="block";
      
      
     }

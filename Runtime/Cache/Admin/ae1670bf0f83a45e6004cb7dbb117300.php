@@ -107,15 +107,115 @@
     <div class="main-content">
      <div class="page-content">
       
-<div class="page-header"><h1><i class="fa fa-home"></i> 公告</h1></div><div class="col-xs-12">
-
-
-
-<font color="#FF0000" size="7">说明：</font><br /> 
-
-<font size="5">1.(2017-12-13)，新版本正在不断更新</font><br />  
-<font size="5">2.当前版本为了验证整体流程，有缺失数据列在本周内会添加到系统中</font><br />  
-
+  <div class="page-header">
+    <h1>
+      <i class="fa fa-home"></i>首页 &gt;菜单管理</h1>
+  </div>
+  <div class="col-xs-12">
+    <div class="tabbable">
+      <ul class="nav nav-tabs padding-12 tab-color-blue background-blue" id="myTab">
+        <li class="active">
+          <a href="#home" data-toggle="tab">菜单列表</a></li>
+        <li>
+          <a href="javascript:;" onclick="add()">添加菜单</a></li>
+      </ul>
+      <div class="tab-content">
+        <form class="" action="<?php echo U('Admin/Nav/order');?>" method="post">
+          <table class="table table-striped table-bordered table-hover table-condensed">
+            <tr>
+              <th width="5%">排序</th>
+              <th>菜单名</th>
+              <th>连接</th>
+              <th>操作</th></tr>
+            <?php if(is_array($data)): foreach($data as $key=>$v): ?><tr>
+                <td>
+                  <input class="input-medium" style="width:40px;height:25px;" type="text" name="<?php echo ($v['id']); ?>" value="<?php echo ($v['order_number']); ?>"></td>
+                <td><?php echo ($v['_name']); ?></td>
+                <td><?php echo ($v['mca']); ?></td>
+                <td>
+                  <a href="javascript:;" navId="<?php echo ($v['id']); ?>" navName="<?php echo ($v['name']); ?>" onclick="add_child(this)">添加子菜单</a>|
+                  <a href="javascript:;" navId="<?php echo ($v['id']); ?>" navName="<?php echo ($v['name']); ?>" navMca="<?php echo ($v['mca']); ?>" navIco="<?php echo ($v['ico']); ?>" onclick="edit(this)">修改</a>|
+                  <a href="javascript:if(confirm('确定删除？'))location='<?php echo U('Admin/Nav/delete',array('id'=>$v['id']));?>'">删除</a></td>
+              </tr><?php endforeach; endif; ?>
+            <tr>
+              <th>
+                <input class="btn btn-success" type="submit" value="排序"></th>
+              <td></td>
+              <td></td>
+            </tr>
+          </table>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="bjy-add" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title" id="myModalLabel">添加菜单</h4></div>
+        <div class="modal-body">
+          <form id="bjy-form" class="form-inline" action="<?php echo U('Admin/Nav/add');?>" method="post">
+            <input type="hidden" name="pid" value="0">
+            <table class="table table-striped table-bordered table-hover table-condensed">
+              <tr>
+                <th width="12%">菜单名：</th>
+                <td>
+                  <input class="input-medium" type="text" name="name"></td>
+              </tr>
+              <tr>
+                <th>连接：</th>
+                <td>
+                  <input class="input-medium" type="text" name="mca">输入模块/控制器/方法即可 例如 Admin/Nav/index</td></tr>
+              <tr>
+                <th>图标：</th>
+                <td>
+                  <input class="input-medium" type="text" name="ico">font-awesome图标 输入fa fa- 后边的即可</td></tr>
+              <tr>
+                <th></th>
+                <td>
+                  <input class="btn btn-success" type="submit" value="添加"></td>
+              </tr>
+            </table>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="bjy-edit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title" id="myModalLabel">修改菜单</h4></div>
+        <div class="modal-body">
+          <form id="bjy-form" class="form-inline" action="<?php echo U('Admin/Nav/edit');?>" method="post">
+            <input type="hidden" name="id">
+            <table class="table table-striped table-bordered table-hover table-condensed">
+              <tr>
+                <th width="12%">菜单名：</th>
+                <td>
+                  <input class="input-medium" type="text" name="name"></td>
+              </tr>
+              <tr>
+                <th>连接：</th>
+                <td>
+                  <input class="input-medium" type="text" name="mca">输入模块/控制器/方法即可 例如 Admin/Nav/index</td></tr>
+              <tr>
+                <th>图标：</th>
+                <td>
+                  <input class="input-medium" type="text" name="ico">font-awesome图标 输入fa fa- 后边的即可</td></tr>
+              <tr>
+                <th></th>
+                <td>
+                  <input class="btn btn-success" type="submit" value="修改"></td>
+              </tr>
+            </table>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
 
      </div>
     </div>
@@ -144,8 +244,7 @@
         divset=document.getElementById("树木管理").style.display="block";
         divset=document.getElementById("系统设置").style.display="block";
         divset=document.getElementById("权限系统").style.display="block";
-        divset=document.getElementById("基础信息维护").style.display="block";
-        divset=document.getElementById("树障统计信息").style.display="block";
+         divset=document.getElementById("基础信息维护").style.display="block";
      
      
     }
@@ -166,6 +265,36 @@
   <script src="/ts/Public/statics/aceadmin/js/ace.min.js"></script>
   <script src="/ts/tpl/Public/js/base.js"></script>
   
+  <script>// 添加菜单
+    function add() {
+      $("input[name='name'],input[name='mca']").val('');
+      $("input[name='pid']").val(0);
+      $('#bjy-add').modal('show');
+    }
+
+    // 添加子菜单
+    function add_child(obj) {
+      var navId = $(obj).attr('navId');
+      $("input[name='pid']").val(navId);
+      $("input[name='name']").val('');
+      $("input[name='mca']").val('');
+      $("input[name='ico']").val('');
+      $('#bjy-add').modal('show');
+    }
+
+    // 修改菜单
+    function edit(obj) {
+      var navId = $(obj).attr('navId');
+      var navName = $(obj).attr('navName');
+      var navMca = $(obj).attr('navMca');
+      var navIco = $(obj).attr('navIco');
+      $("input[name='id']").val(navId);
+      $("input[name='name']").val(navName);
+      $("input[name='mca']").val(navMca);
+      $("input[name='ico']").val(navIco);
+      $('#bjy-edit').modal('show');
+    }</script>
+
    <script>
     var BASE_URL = '/ts/Public/statics/webuploader-0.1.5';
 </script>

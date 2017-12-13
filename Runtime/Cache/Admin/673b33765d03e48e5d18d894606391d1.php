@@ -107,15 +107,94 @@
     <div class="main-content">
      <div class="page-content">
       
-<div class="page-header"><h1><i class="fa fa-home"></i> 公告</h1></div><div class="col-xs-12">
-
-
-
-<font color="#FF0000" size="7">说明：</font><br /> 
-
-<font size="5">1.(2017-12-13)，新版本正在不断更新</font><br />  
-<font size="5">2.当前版本为了验证整体流程，有缺失数据列在本周内会添加到系统中</font><br />  
-
+  <div class="page-header">
+    <h1>首页&gt; 权限管理</h1></div>
+  <div class="col-xs-12">
+    <div class="tabbable">
+      <ul class="nav nav-tabs padding-12 tab-color-blue background-blue" id="myTab">
+        <li class="active">
+          <a href="#home" data-toggle="tab">权限列表</a></li>
+        <li>
+          <a href="javascript:;" onclick="add()">添加权限</a></li>
+      </ul>
+      <div class="tab-content">
+        <table class="table table-striped table-bordered table-hover table-condensed">
+          <tr>
+            <th>权限名</th>
+            <th>权限</th>
+            <th>操作</th></tr>
+          <?php if(is_array($data)): foreach($data as $key=>$v): ?><tr>
+              <td><?php echo ($v['_name']); ?></td>
+              <td><?php echo ($v['name']); ?></td>
+              <td>
+                <a href="javascript:;" ruleId="<?php echo ($v['id']); ?>" onclick="add_child(this)">添加子权限</a>|
+                <a href="javascript:;" ruleId="<?php echo ($v['id']); ?>" ruleName="<?php echo ($v['name']); ?>" ruleTitle="<?php echo ($v['title']); ?>" onclick="edit(this)">修改</a>|
+                <a href="javascript:if(confirm('确定删除？'))location='<?php echo U('Admin/Rule/delete',array('id'=>$v['id']));?>'">删除</a></td>
+            </tr><?php endforeach; endif; ?>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="bjy-add" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title" id="myModalLabel">添加权限</h4></div>
+        <div class="modal-body">
+          <form id="bjy-form" class="form-inline" action="<?php echo U('Admin/Rule/add');?>" method="post">
+            <input type="hidden" name="pid" value="0">
+            <table class="table table-striped table-bordered table-hover table-condensed">
+              <tr>
+                <th width="12%">权限名：</th>
+                <td>
+                  <input class="input-medium" type="text" name="title"></td>
+              </tr>
+              <tr>
+                <th>权限：</th>
+                <td>
+                  <input class="input-medium" type="text" name="name">输入模块/控制器/方法即可 例如 Admin/Rule/index</td></tr>
+              <tr>
+                <th></th>
+                <td>
+                  <input class="btn btn-success" type="submit" value="添加"></td>
+              </tr>
+            </table>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="bjy-edit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title" id="myModalLabel">修改权限</h4></div>
+        <div class="modal-body">
+          <form id="bjy-form" class="form-inline" action="<?php echo U('Admin/Rule/edit');?>" method="post">
+            <input type="hidden" name="id">
+            <table class="table table-striped table-bordered table-hover table-condensed">
+              <tr>
+                <th width="12%">权限名：</th>
+                <td>
+                  <input class="input-medium" type="text" name="title"></td>
+              </tr>
+              <tr>
+                <th>权限：</th>
+                <td>
+                  <input class="input-medium" type="text" name="name">输入模块/控制器/方法即可 例如 Admin/Rule/index</td></tr>
+              <tr>
+                <th></th>
+                <td>
+                  <input class="btn btn-success" type="submit" value="修改"></td>
+              </tr>
+            </table>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
 
      </div>
     </div>
@@ -144,8 +223,7 @@
         divset=document.getElementById("树木管理").style.display="block";
         divset=document.getElementById("系统设置").style.display="block";
         divset=document.getElementById("权限系统").style.display="block";
-        divset=document.getElementById("基础信息维护").style.display="block";
-        divset=document.getElementById("树障统计信息").style.display="block";
+         divset=document.getElementById("基础信息维护").style.display="block";
      
      
     }
@@ -166,6 +244,33 @@
   <script src="/ts/Public/statics/aceadmin/js/ace.min.js"></script>
   <script src="/ts/tpl/Public/js/base.js"></script>
   
+  <script>// 添加菜单
+    function add() {
+      $("input[name='title'],input[name='name']").val('');
+      $("input[name='pid']").val(0);
+      $('#bjy-add').modal('show');
+    }
+
+    // 添加子菜单
+    function add_child(obj) {
+      var ruleId = $(obj).attr('ruleId');
+      $("input[name='pid']").val(ruleId);
+      $("input[name='title']").val('');
+      $("input[name='name']").val('');
+      $('#bjy-add').modal('show');
+    }
+
+    // 修改菜单
+    function edit(obj) {
+      var ruleId = $(obj).attr('ruleId');
+      var ruletitle = $(obj).attr('ruletitle');
+      var ruleName = $(obj).attr('ruleName');
+      $("input[name='id']").val(ruleId);
+      $("input[name='title']").val(ruletitle);
+      $("input[name='name']").val(ruleName);
+      $('#bjy-edit').modal('show');
+    }</script>
+
    <script>
     var BASE_URL = '/ts/Public/statics/webuploader-0.1.5';
 </script>
