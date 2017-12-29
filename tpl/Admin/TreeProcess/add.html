@@ -30,7 +30,7 @@
            <th id="t-record_verify_person" >输电所安排的隐患核实工作人员姓名</th>
            <th id="t-record_verify_person_phone" >输电所安排的隐患核实工作人员联系电话</th>
            <th id="t-record_plan_verify_time" >属地单位计划与户主商谈前的隐患核实时间</th>
-            <th id="t-record_verify_time" >属地单位与户主商谈前的隐患核实时间</th>
+           <th id="t-record_verify_time" >属地单位与户主商谈前的隐患核实时间</th>
            <th  id="t-record_plan_consult_time" >属地供单位计划协商的时间段</th>
 
            
@@ -60,7 +60,8 @@
           <td><input style="width:150px;" id="record_plan_consult_time" type="text" value="{$data['record_plan_consult_time']}" name="record_plan_consult_time"></td>
       
               
-          </tr>     
+          </tr>  
+
 </table>
 </div>
       
@@ -121,7 +122,33 @@
 
 </div>
 
+<div class="table-responsive">
+  <table class="table table-striped table-bordered table-hover table-condensed " id="data-table">
+     <tr>
 
+     <th  id="t-record_tree_deal_plan_time" >树竹计划处理时间(周)日期</th>        
+     <th id="t-record_tree_deal_time" >树竹实际处理日期</th>
+     <th  id="t-record_tree_degree_change" >树竹级别变化登记</th>
+     <th  id="t-record_stump_deal_plan_time">树/竹桩计划处理时间(周)日期</th>
+     <th  id="t-record_stump_deal_time">树/竹桩实际处理日期</th>
+     
+     <th  id="t-record_stump_degree_change">树/竹桩处理过程登记</th>
+    </tr>
+    
+    <tr>
+    <td><textarea style="width:180px;" id="record_tree_deal_plan_time" name="record_tree_deal_plan_time">{$data['record_tree_deal_plan_time']}</textarea> </td>
+    <td><input style="width:180px;" id="record_tree_deal_time" type="text" value="{$data['record_tree_deal_time']}" name="record_tree_deal_time"></td>
+
+    <td><input style="width:180px;" id="record_tree_degree_change" type="text" value="{$data['record_tree_degree_change']}" name="record_tree_degree_change"></td>
+
+    <td><input style="width:180px;" id="record_stump_deal_plan_time" type="text" value="{$data['record_stump_deal_plan_time']}" name="record_stump_deal_plan_time"></td>
+    <td><input style="width:180px;" id="record_stump_deal_time" type="text" value="{$data['record_stump_deal_time']}" name="record_stump_deal_time"></td>
+    <td><input style="width:100px;" id="record_stump_degree_change" type="text" value="{$data['record_stump_degree_change']}" name="record_stump_degree_change"></td>
+    </tr>     
+</table>
+
+
+</div>
 
 
 
@@ -172,9 +199,14 @@ function process_add_record(obj)
              record_accept_conclusion2:$("#record_accept_conclusion2").val(),
              record_confirm_time:$("#record_confirm_time").val(),
              record_confirm_tag:$("#record_confirm_tag").val(),
-             record_remark:$("#record_remark").val()
+             record_remark:$("#record_remark").val(),
 
-            
+             record_tree_deal_plan_time:$("#record_tree_deal_plan_time").val(),
+             record_tree_deal_time:$("#record_tree_deal_time").val(),
+             record_tree_degree_change:$("#record_tree_degree_change").val(),
+             record_stump_deal_plan_time:$("#record_stump_deal_plan_time").val(),
+             record_stump_deal_time:$("#record_stump_deal_time").val(),
+             record_stump_degree_change:$("#record_stump_degree_change").val()
              },
              success:function(msg){
              var tid=msg;

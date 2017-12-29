@@ -66,6 +66,7 @@
 <tr>
   <th colspan="1">隐患单位</th>
   <th  style="text-align:center;" colspan="28">隐患处理与管控（处理过程）</th>
+  <th  style="text-align:center;" colspan="6">计划处理与实际处理</th>
   
 </tr>
           <tr>
@@ -105,8 +106,16 @@
             <th  >备注</th>
            <th  >更新人</th>
            <th  >更新时间</th> 
-           <th  >操作</th>  
+           <th  >操作</th>
+           <th  >树竹计划处理时间(周)日期</th>
+           <th  >树竹实际处理日期</th>
+            <th  >树竹级别变化登记</th>
+           <th  >树/竹桩计划处理时间(周)日期</th>
+           <th  >树/竹桩实际处理日期</th> 
+           <th  >树/竹桩处理过程登记</th> 
+           
           </tr>
+
           <foreach name="data" item="v">
             <tr>
             <td id="t-record_id">{$v['record_id']}</td>
@@ -160,6 +169,16 @@
               <td>
               <a href="javascript:;"  tid="{$tree_id}" record_id="{$v['record_id']}" onclick="delete_process(this);">删除</a>
               </td>
+
+              <td id="t-record_tree_deal_plan_time">{$v['record_tree_deal_plan_time']}</td>
+              
+              <td id="t-record_tree_deal_time">{$v['record_tree_deal_time']}</td>
+              <td id="t-record_tree_degree_change">{$v['record_tree_degree_change']}</td>
+              
+              <td id="t-record_stump_deal_plan_time">{$v['record_stump_deal_plan_time']}</td>
+                             
+              <td id="t-record_stump_deal_time">{$v['record_stump_deal_time']}</td>
+              <td id="t-record_stump_degree_change">{$v['record_stump_degree_change']}</td>
             </tr>
           </foreach>
         </table>
