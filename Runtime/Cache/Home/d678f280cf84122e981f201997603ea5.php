@@ -22,6 +22,20 @@ p {font-size:20px;}
 </head>
 <body>
 
+<script type="text/javascript">
+    var isChrome = window.navigator.userAgent.indexOf("Chrome") !== -1;
+    var isFireFox = window.navigator.userAgent.indexOf("Firefox") !== -1;
+    if (isChrome) 
+    {
+      
+    }else
+    {
+      alert("建议使用谷歌浏览器浏览");
+    }
+    
+  
+</script>
+
 <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
   <tr>
     <td height="200" align="center" valign="bottom"><img src="/ts/tpl/Public/images/logo.jpg" width="609" height="43" /></td>
@@ -37,7 +51,6 @@ p {font-size:20px;}
   </tr>
 
   <tr>
-  	 
       <td height="320" align="center">
       <form  method="post">
       <p class="big">	账号	： <input type="text" name="username" value="" /></p>
@@ -46,9 +59,10 @@ p {font-size:20px;}
       <br>
 			<p class="big"> <input type="submit" value="登录" /></p></form>
 			<br>
-			<p class="big">	<a href="<?php echo U('Home/Index/logout');?>">退出登录</a></p>
+		
        </td>
   </tr>
  </table>
 
-	 	</body></html>
+
+	</body></html>
