@@ -1,4 +1,4 @@
-<extend name="Public:base"/><block name="title">树片详情</block>
+<extend name="Public:base"/><block name="title">树障详情</block>
 <block name="content">
 <div class="col-xs-12">
     <div class="tabbable">
@@ -6,15 +6,15 @@
 
         <ul class="nav nav-tabs padding-12 tab-color-blue background-blue" id="myTab">
          <li >
-         <a href="/ts/index.php/Admin/Tree/index/group_id/{$group_id}" >树片列表</a></li>
+         <a href="/ts/index.php/Admin/Tree/index/group_id/{$group_id}" >树障列表</a></li>
 
-        <li class="active">  <a href="javascript:;" data-toggle="tab">树片详情</a></li>
+        <li class="active">  <a href="javascript:;" data-toggle="tab">树障详情</a></li>
         <li>  <a href="/ts/index.php/Admin/TreeDetail/index/group_id/{$group_id}/tid/{$tid}" >巡检记录</a></li>
         <li>  <a href="/ts/index.php/Admin/TreeProcess/index/group_id/{$group_id}/tid/{$tid}" >处理记录</a></li>
-        <li>  <a href="/ts/index.php/Admin/TreeFly/index/group_id/{$group_id}/tid/{$tid}" >飞行记录</a></li>
+        <!-- <li>  <a href="/ts/index.php/Admin/TreeFly/index/group_id/{$group_id}/tid/{$tid}" >飞行记录</a></li> -->
         
            <!-- <li>
-          <a href="/ts/index.php/Admin/Tree/add/group_id/{$group_id}"  >增加树片</a></li> -->
+          <a href="/ts/index.php/Admin/Tree/add/group_id/{$group_id}"  >增加树障</a></li> -->
       </ul>
         <tr>
           <td>
@@ -22,10 +22,10 @@
             
            
 
-               <a href="" style="width:10%" id="list_button" tid="{$tid}" class="btn btn-sm disabled"  >树片信息</a>
+               <a href="" style="width:10%" id="list_button" tid="{$tid}" class="btn btn-sm disabled"  >树障信息</a>
                <input style="width:10%" id="edit_button" class="btn btn-sm btn-success" type="button"   tid="{$tid}" line_id="{line_id}" onclick="edit_tree(this)" value="修改基本信息">  
-              <!--  <input style="width:6%" class="btn btn-sm btn-success" type="button" onclick="" value="树片归档"> -->
-               <input style="width:10%" class="btn btn-sm btn-danger" type="button" tid="{$tid}"  onclick="delete_tree(this)" onclick="" value="删除树片">
+              <!--  <input style="width:6%" class="btn btn-sm btn-success" type="button" onclick="" value="树障归档"> -->
+               <input style="width:10%" class="btn btn-sm btn-danger" type="button" tid="{$tid}"  onclick="delete_tree(this)" onclick="" value="删除树障">
            
 
 
