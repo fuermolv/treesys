@@ -84,14 +84,17 @@
          <!-- <li class="b-nav-li"><a href="{:U($n['mca'])}" ><i class="icon-double-angle-right"></i> {$n['name']}</a> -->
 
 
-          <li class="b-has-child"><a href="#" class="dropdown-toggle b-nav-parent"><i class="fa fa-{$v['ico']} icon-test"></i> <span class="menu-text">{$n['name']}</span><b class="arrow icon-angle-down"></b></a>
-         <ul class="submenu" id="{$n['name']}">
+          <li class="b-has-child"><a href="{:U($n['mca'])}" class="dropdown-toggle b-nav-parent"><i class="fa fa-{$v['ico']} icon-test"></i> 
+          <span class="menu-text">{$n['name']}</span>
+      
+          </a>
+         <!-- <ul class="submenu" id="{$n['name']}">
         <foreach name="n['_data']" item="l">
          <li class="b-nav-li"><a href="{:U($l['mca'])}" ><i class="icon-double-angle-right"></i> {$l['name']}</a>
         </li>
          </li>
         </foreach>
-       </ul> 
+       </ul>  -->
        
             
            

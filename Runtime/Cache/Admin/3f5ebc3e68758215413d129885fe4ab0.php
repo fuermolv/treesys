@@ -82,12 +82,14 @@
         <?php if(is_array($v['_data'])): foreach($v['_data'] as $key=>$n): ?><!-- <li class="b-nav-li"><a href="<?php echo U($n['mca']);?>" ><i class="icon-double-angle-right"></i> <?php echo ($n['name']); ?></a> -->
 
 
-          <li class="b-has-child"><a href="#" class="dropdown-toggle b-nav-parent"><i class="fa fa-<?php echo ($v['ico']); ?> icon-test"></i> <span class="menu-text"><?php echo ($n['name']); ?></span><b class="arrow icon-angle-down"></b></a>
-         <ul class="submenu" id="<?php echo ($n['name']); ?>">
+          <li class="b-has-child"><a href="<?php echo U($n['mca']);?>" class="dropdown-toggle b-nav-parent"><i class="fa fa-<?php echo ($v['ico']); ?> icon-test"></i> 
+          <span class="menu-text"><?php echo ($n['name']); ?></span><b class="arrow icon-angle-down"></b>
+          </a>
+         <!-- <ul class="submenu" id="<?php echo ($n['name']); ?>">
         <?php if(is_array($n['_data'])): foreach($n['_data'] as $key=>$l): ?><li class="b-nav-li"><a href="<?php echo U($l['mca']);?>" ><i class="icon-double-angle-right"></i> <?php echo ($l['name']); ?></a>
         </li>
          </li><?php endforeach; endif; ?>
-       </ul> 
+       </ul>  -->
        
             
            

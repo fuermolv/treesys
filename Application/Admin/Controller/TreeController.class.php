@@ -29,18 +29,18 @@ class TreeController extends AdminBaseController {
         $limit = 15;
         $group_id = I('get.group_id');
         //确定班组线路
-        $map['id'] = $group_id;
-        $lienes = M("auth_rule")->where($map)->select();
-        $map = null;
-        $map['did'] = array('in', $lienes[0]['group_device']);
+        // $map['id'] = $group_id;
+        // $lienes = M("auth_rule")->where($map)->select();
+        // $map = null;
+        // $map['did'] = array('in', $lienes[0]['group_device']);
        
-        if($lienes[0]['group_device'][0]=="-")
-        {
-        	$map=null;
-        }
-        $device_lines = M("device_line")->where($map)->select();
-        $querydata['device_lines'] = $device_lines;
-        $map = null;
+        // if($lienes[0]['group_device'][0]=="-")
+        // {
+        // 	$map=null;
+        // }
+        // $device_lines = M("device_line")->where($map)->select();
+        // $querydata['device_lines'] = $device_lines;
+        // $map = null;
         //选出县镇乡
         if (!empty($county)) {
             $map['fid'] = $county;
@@ -60,10 +60,10 @@ class TreeController extends AdminBaseController {
 
         } else {
             $lines = array(-1);
-            foreach ($device_lines as $d) {
-                array_push($lines, $d['did']);
-            }
-            $map['line_id'] = array('in', $lines);
+            // foreach ($device_lines as $d) {
+            //     array_push($lines, $d['did']);
+            // }
+            // $map['line_id'] = array('in', $lines);
         }
 
         if (!empty($town)) {
