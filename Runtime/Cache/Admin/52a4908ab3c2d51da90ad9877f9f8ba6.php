@@ -82,12 +82,15 @@
         <?php if(is_array($v['_data'])): foreach($v['_data'] as $key=>$n): ?><!-- <li class="b-nav-li"><a href="<?php echo U($n['mca']);?>" ><i class="icon-double-angle-right"></i> <?php echo ($n['name']); ?></a> -->
 
 
-          <li class="b-has-child"><a href="#" class="dropdown-toggle b-nav-parent"><i class="fa fa-<?php echo ($v['ico']); ?> icon-test"></i> <span class="menu-text"><?php echo ($n['name']); ?></span><b class="arrow icon-angle-down"></b></a>
-         <ul class="submenu" id="<?php echo ($n['name']); ?>">
+          <li class="b-has-child"><a href="<?php echo U($n['mca']);?>" class="dropdown-toggle b-nav-parent"><i class="fa fa-<?php echo ($v['ico']); ?> icon-test"></i> 
+          <span class="menu-text"><?php echo ($n['name']); ?></span>
+      
+          </a>
+         <!-- <ul class="submenu" id="<?php echo ($n['name']); ?>">
         <?php if(is_array($n['_data'])): foreach($n['_data'] as $key=>$l): ?><li class="b-nav-li"><a href="<?php echo U($l['mca']);?>" ><i class="icon-double-angle-right"></i> <?php echo ($l['name']); ?></a>
         </li>
          </li><?php endforeach; endif; ?>
-       </ul> 
+       </ul>  -->
        
             
            
@@ -113,15 +116,15 @@
 
         <ul class="nav nav-tabs padding-12 tab-color-blue background-blue" id="myTab">
          <li>
-         <a href="/ts/index.php/Admin/Tree/index/group_id/<?php echo ($group_id); ?>" >树片列表</a></li>
+         <a href="/ts/index.php/Admin/Tree/index" >树障列表</a></li>
 
-        <li>  <a href="/ts/index.php/Admin/Tree/base/group_id/<?php echo ($group_id); ?>/tid/<?php echo ($tree_id); ?>" >树片详情</a></li>
-        <li>  <a href="/ts/index.php/Admin/TreeDetail/index/group_id/<?php echo ($group_id); ?>/tid/<?php echo ($tree_id); ?>">巡检记录</a></li>
+        <li>  <a href="/ts/index.php/Admin/Tree/base/tid/<?php echo ($tree_id); ?>" >树障详情</a></li>
+        <li>  <a href="/ts/index.php/Admin/TreeDetail/index/tid/<?php echo ($tree_id); ?>">巡检记录</a></li>
         <li class="active">  <a href="avascript:;" >处理记录</a></li>
-        <li>  <a href="/ts/index.php/Admin/TreeFly/index/group_id/<?php echo ($group_id); ?>/tid/<?php echo ($tree_id); ?>">飞行记录</a></li>
+        <!-- <li>  <a href="/ts/index.php/Admin/TreeFly/index/group_id/<?php echo ($group_id); ?>/tid/<?php echo ($tree_id); ?>">飞行记录</a></li> -->
         
            <!-- <li>
-          <a href="/ts/index.php/Admin/Tree/add/group_id/<?php echo ($group_id); ?>"  >增加树片</a></li> -->
+          <a href="/ts/index.php/Admin/Tree/add/group_id/<?php echo ($group_id); ?>"  >增加树障</a></li> -->
       </ul>
         <tr>
           <td>
@@ -170,7 +173,9 @@
         <table class="table table-striped table-bordered table-hover table-condensed " id="data-table">
 <tr>
   <th colspan="1">隐患单位</th>
-  <th  style="text-align:center;" colspan="28">隐患处理与管控（处理过程）</th>
+  <th  style="text-align:center;" colspan="24">隐患处理与管控（处理过程）</th>
+  <th  style="text-align:center;" colspan="6">计划处理与实际处理</th>
+   <th  style="text-align:center;" colspan="4">额外信息</th>
   
 </tr>
           <tr>
@@ -207,11 +212,20 @@
            <!-- 已有协议编号 -->
            <th  >输电班组人员确认时间</th>
            <th  >输电班组人员确认签名</th>
-            <th  >备注</th>
+          
+           <th  >树竹计划处理时间(周)日期</th>
+           <th  >树竹实际处理日期</th>
+            <th  >树竹级别变化登记</th>
+           <th  >树/竹桩计划处理时间(周)日期</th>
+           <th  >树/竹桩实际处理日期</th> 
+           <th  >树/竹桩处理过程登记</th> 
+             <th  >备注</th>
            <th  >更新人</th>
            <th  >更新时间</th> 
-           <th  >操作</th>  
+           <th  >操作</th>
+           
           </tr>
+
           <?php if(is_array($data)): foreach($data as $key=>$v): ?><tr>
             <td id="t-record_id"><?php echo ($v['record_id']); ?></td>
             <td id="t-record_plan_clean_time"><?php echo (date('Y-m-d',$v['record_plan_clean_time'])); ?></td>
@@ -253,7 +267,18 @@
                <td id="t-record_confirm_time"><?php echo (date('Y-m-d',$v['record_confirm_time'])); ?></td>
                <td id="t-record_confirm_tag"><?php echo ($v['record_confirm_tag']); ?></td>
 
-               <td id="t-record_remark"><?php echo ($v['record_remark']); ?></td>
+            
+
+              <td id="t-record_tree_deal_plan_time"><?php echo ($v['record_tree_deal_plan_time']); ?></td>
+              
+              <td id="t-record_tree_deal_time"><?php echo ($v['record_tree_deal_time']); ?></td>
+              <td id="t-record_tree_degree_change"><?php echo ($v['record_tree_degree_change']); ?></td>
+              
+              <td id="t-record_stump_deal_plan_time"><?php echo ($v['record_stump_deal_plan_time']); ?></td>
+                             
+              <td id="t-record_stump_deal_time"><?php echo ($v['record_stump_deal_time']); ?></td>
+              <td id="t-record_stump_degree_change"><?php echo ($v['record_stump_degree_change']); ?></td>
+                 <td id="t-record_remark"><?php echo ($v['record_remark']); ?></td>
                
               <td id="t-record_update_person"><?php echo ($v['record_update_person']); ?></td>
               <td id="t-record_update_time"><?php echo (date('Y-m-d',$v['record_update_time'])); ?></td>
@@ -448,9 +473,9 @@
   <script type="text/javascript">
    window.onload = function() 
     { 
-        divset=document.getElementById("树木管理").style.display="block";
+        divset=document.getElementById("树障管理").style.display="block";
         divset=document.getElementById("系统设置").style.display="block";
-        divset=document.getElementById("权限系统").style.display="block";
+        divset=document.getElementById("权限控制").style.display="block";
         divset=document.getElementById("基础信息维护").style.display="block";
         divset=document.getElementById("树障统计信息").style.display="block";
      

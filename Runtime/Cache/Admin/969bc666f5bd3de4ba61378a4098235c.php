@@ -93,7 +93,7 @@
           </tr>
 
           <tr>
-           <th  id="t-datail_check_process_conclusion">测量结论处理</th>
+           <th  id="t-datail_check_process_conclusion">调查结论处理</th>
            <td>
             <select  style="width:80%" name="datail_check_process_conclusion" id="datail_check_process_conclusion">
           
@@ -110,12 +110,12 @@
 
           <tr>
            <th rowspan="1">隐患最新情况（位置）</th>                  
-           <th  id="t-datail_check_posistion_conclusion">测量结论位置</th>
+           <th  id="t-datail_check_posistion_conclusion">调查结论位置</th>
            <td><input style="width:80%" id="datail_check_posistion_conclusion" type="text" value="<?php echo ($data['datail_check_posistion_conclusion']); ?>" name="datail_check_posistion_conclusion"></td>
           </tr>
 
           <tr> 
-              <th rowspan="11">隐患最新情况（表象）</th>              
+              <th rowspan="14">隐患最新情况（表象）</th>              
            <th  id="t-datail_tree_type">最危急树障种类</th>
            <td><input style="width:80%" id="datail_tree_type" type="text" value="<?php echo ($data['datail_tree_type']); ?>" name="datail_tree_type"></td>
           </tr>
@@ -160,7 +160,26 @@
            <th  id="t-datail_tree_grand_height">最危急树障导线对地（米）</th>
            <td><input style="width:80%" id="datail_tree_grand_height" type="text" value="<?php echo ($data['datail_tree_grand_height']); ?>" name="datail_tree_grand_height"></td>
           </tr>
-          
+          <tr> 
+            <th  id="t-datail_mix_net_distance">最小净空距离（米）</th>
+            <td><input style="width:80%" id="datail_mix_net_distance" type="text" value="<?php echo ($data['datail_mix_net_distance']); ?>" name="datail_mix_net_distance"></td>
+           </tr>
+           
+           <tr> 
+            <th  id="t-datail_mix_lodging_distance">树木倒伏导线最小距离（米）</th>
+            <td><input style="width:80%" id="datail_mix_lodging_distance" type="text" value="<?php echo ($data['datail_mix_lodging_distance']); ?>" name="datail_mix_lodging_distance"></td>
+           </tr>  
+           <tr> 
+            <th  id="t-datail_lodging_degree">倒伏判断隐患级别</th> 
+            <td>
+               <select style="width:80%"  id="datail_lodging_degree" value="<?php echo ($data['datail_lodging_degree']); ?>" name="datail_lodging_degree">
+                 <option value ='重大' >重大</option>
+                 <option value ='一般'>一般</option>  
+                 <option value ='其他' >其他</option>
+                 <option value ='不构成其他'>不构成其他</option>  
+                </select></td> 
+           </tr>
+
           <tr> 
            <th  id="t-datail_tree_over">是否高出导线</th> 
            <td>
@@ -171,7 +190,7 @@
           </tr>
               
           <tr>          
-           <th  id="t-datail_final_danger">最终自然生长高度是否构成紧急级别隐患</th>
+           <th  id="t-datail_final_danger">最终自然生长高度是否构成一般级别缺陷</th>
            <td>
               <select style="width:80%"  id="datail_final_danger" value="<?php echo ($data['datail_final_danger']); ?>" name="datail_final_danger">
                 <option value ='1' >是</option>
@@ -301,6 +320,11 @@
              datail_tree_horizontal:$("#datail_tree_horizontal").val(),
              datail_tree_vertical:$("#datail_tree_vertical").val(),
              datail_tree_grand_height:$("#datail_tree_grand_height").val(),
+
+             datail_mix_net_distance:$("#datail_mix_net_distance").val(),
+             datail_mix_lodging_distance:$("#datail_mix_lodging_distance").val(),
+             datail_lodging_degree:$("#datail_lodging_degree").val(),
+
              datail_tree_over:$("#datail_tree_over").val(),
              datail_final_danger:$("#datail_final_danger").val(),
              detail_check_method:$("#detail_check_method").val(),

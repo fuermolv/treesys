@@ -82,12 +82,15 @@
         <?php if(is_array($v['_data'])): foreach($v['_data'] as $key=>$n): ?><!-- <li class="b-nav-li"><a href="<?php echo U($n['mca']);?>" ><i class="icon-double-angle-right"></i> <?php echo ($n['name']); ?></a> -->
 
 
-          <li class="b-has-child"><a href="#" class="dropdown-toggle b-nav-parent"><i class="fa fa-<?php echo ($v['ico']); ?> icon-test"></i> <span class="menu-text"><?php echo ($n['name']); ?></span><b class="arrow icon-angle-down"></b></a>
-         <ul class="submenu" id="<?php echo ($n['name']); ?>">
+          <li class="b-has-child"><a href="<?php echo U($n['mca']);?>" class="dropdown-toggle b-nav-parent"><i class="fa fa-<?php echo ($v['ico']); ?> icon-test"></i> 
+          <span class="menu-text"><?php echo ($n['name']); ?></span>
+      
+          </a>
+         <!-- <ul class="submenu" id="<?php echo ($n['name']); ?>">
         <?php if(is_array($n['_data'])): foreach($n['_data'] as $key=>$l): ?><li class="b-nav-li"><a href="<?php echo U($l['mca']);?>" ><i class="icon-double-angle-right"></i> <?php echo ($l['name']); ?></a>
         </li>
          </li><?php endforeach; endif; ?>
-       </ul> 
+       </ul>  -->
        
             
            
@@ -113,15 +116,15 @@
 
         <ul class="nav nav-tabs padding-12 tab-color-blue background-blue" id="myTab">
          <li >
-         <a href="/ts/index.php/Admin/Tree/index/group_id/<?php echo ($group_id); ?>" >树片列表</a></li>
+         <a href="/ts/index.php/Admin/Tree/index/group_id/<?php echo ($group_id); ?>" >树障列表</a></li>
 
-        <li class="active">  <a href="javascript:;" data-toggle="tab">树片详情</a></li>
-        <li>  <a href="/ts/index.php/Admin/TreeDetail/index/group_id/<?php echo ($group_id); ?>/tid/<?php echo ($tid); ?>" >巡检记录</a></li>
-        <li>  <a href="/ts/index.php/Admin/TreeProcess/index/group_id/<?php echo ($group_id); ?>/tid/<?php echo ($tid); ?>" >处理记录</a></li>
-        <li>  <a href="/ts/index.php/Admin/TreeFly/index/group_id/<?php echo ($group_id); ?>/tid/<?php echo ($tid); ?>" >飞行记录</a></li>
+        <li class="active">  <a href="javascript:;" data-toggle="tab">树障详情</a></li>
+        <li>  <a href="/ts/index.php/Admin/TreeDetail/index/tid/<?php echo ($tid); ?>" >巡检记录</a></li>
+        <li>  <a href="/ts/index.php/Admin/TreeProcess/index/tid/<?php echo ($tid); ?>" >处理记录</a></li>
+        <!-- <li>  <a href="/ts/index.php/Admin/TreeFly/index/group_id/<?php echo ($group_id); ?>/tid/<?php echo ($tid); ?>" >飞行记录</a></li> -->
         
            <!-- <li>
-          <a href="/ts/index.php/Admin/Tree/add/group_id/<?php echo ($group_id); ?>"  >增加树片</a></li> -->
+          <a href="/ts/index.php/Admin/Tree/add/group_id/<?php echo ($group_id); ?>"  >增加树障</a></li> -->
       </ul>
         <tr>
           <td>
@@ -129,10 +132,10 @@
             
            
 
-               <a href="" style="width:10%" id="list_button" tid="<?php echo ($tid); ?>" class="btn btn-sm disabled"  >树片信息</a>
+               <a href="" style="width:10%" id="list_button" tid="<?php echo ($tid); ?>" class="btn btn-sm disabled"  >树障信息</a>
                <input style="width:10%" id="edit_button" class="btn btn-sm btn-success" type="button"   tid="<?php echo ($tid); ?>" line_id="{line_id}" onclick="edit_tree(this)" value="修改基本信息">  
-              <!--  <input style="width:6%" class="btn btn-sm btn-success" type="button" onclick="" value="树片归档"> -->
-               <input style="width:10%" class="btn btn-sm btn-danger" type="button" tid="<?php echo ($tid); ?>"  onclick="delete_tree(this)" onclick="" value="删除树片">
+              <!--  <input style="width:6%" class="btn btn-sm btn-success" type="button" onclick="" value="树障归档"> -->
+               <input style="width:10%" class="btn btn-sm btn-danger" type="button" tid="<?php echo ($tid); ?>"  onclick="delete_tree(this)" onclick="" value="删除树障">
            
 
 
@@ -361,10 +364,10 @@
                         <td  ><?php echo ($v['average_height']); ?></td>
                     </tr> 
                     <tr>
-                        <th colspan="35">隐患最新信息</th>
+                        <th colspan="26">隐患最新信息</th>
                       </tr>    
                     <tr>
-                        <th colspan="3">隐患最新情况</th>
+                        <th colspan="7">隐患最新情况</th>
                         <th colspan="3">隐患最新情况（程度）</th>
                         <th colspan="1">隐患最新情况（位置）</th>
                         <th colspan="11">隐患最新情况（表象）</th>
@@ -376,10 +379,14 @@
                     <th colspan="1">更新时间（最新隐患调查、测量日期）</th>
                     <th colspan="1">更新人（最新隐患调查人）</th>
                     <th colspan="1">测量时刻(更新时间。到时、分)</th>
+                    <th colspan="1">树木按地点属性</th>
+                    <th colspan="1">是否新种、新移栽</th>
+                    <th colspan="1">是否临近重大、一般缺陷</th>
+                    <th colspan="1">是否会翻生</th>
                     <th colspan="1">隐患级别（最新隐患）</th>
-                    <th colspan="1">测量结论(级别变化)</th>
-                    <th colspan="1">测量结论(处理)</th>                
-                    <th colspan="1">测量结论(位置)</th>
+                    <th colspan="1">调查结论(级别变化)</th>
+                    <th colspan="1">调查结论(处理)</th>                
+                    <th colspan="1">调查结论(位置)</th>
                     <!-- <th colspan="1">最危急树障相对杆塔、线路位置，距离弧垂点或导线近地点位置等描述。如距离#x杆塔x米处、弧垂点。。。</th>（也就是测量结论(位置)） -->
                     <th colspan="1">最危急树障种类</th>
                     <th colspan="1">最危急树障数量(棵数、墩数)</th>
@@ -400,6 +407,12 @@
                         <td  ><?php echo (date('Y-m-d',$v['detail_last_time'])); ?></td>                                                 
                         <td  ><?php echo ($v['datail_check_person']); ?></td> 
                         <td  id="t-datail_check_time"><?php echo (date('Y-m-d',$v['datail_check_time'])); ?></td>
+                        
+                        <td  id="t-tree_property"><?php echo ($v['tree_property']); ?></td>                        
+                        <td  id="t-new_plant"><?php echo ($v['new_plant']); ?></td>
+                        <td  id="t-defect_type"><?php echo ($v['defect_type']); ?></td>                        
+                        <td  id="t-survival"><?php echo ($v['survival']); ?></td>
+                        
                         <td  id="t-datail_danger_degree"><?php echo ($v['datail_danger_degree']); ?></td>                        
                         <td  id="t-datail_check_change_conclusion"><?php echo ($v['datail_check_change_conclusion']); ?></td>
                         <td  id="t-datail_check_process_conclusion"><?php echo ($v['datail_check_process_conclusion']); ?></td>                        
@@ -499,9 +512,9 @@
   <script type="text/javascript">
    window.onload = function() 
     { 
-        divset=document.getElementById("树木管理").style.display="block";
+        divset=document.getElementById("树障管理").style.display="block";
         divset=document.getElementById("系统设置").style.display="block";
-        divset=document.getElementById("权限系统").style.display="block";
+        divset=document.getElementById("权限控制").style.display="block";
         divset=document.getElementById("基础信息维护").style.display="block";
         divset=document.getElementById("树障统计信息").style.display="block";
      
@@ -565,7 +578,7 @@
       data:{
       
         edit_line_id:$(obj).attr('line_id'),
-        group_id:<?php echo ($group_id); ?>,
+       // group_id:<?php echo ($group_id); ?>,
         edit_tid:$(obj).attr('tid'),
         edit_index:1
           },

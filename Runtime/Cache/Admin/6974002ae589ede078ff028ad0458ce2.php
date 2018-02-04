@@ -116,15 +116,15 @@
 
        <ul class="nav nav-tabs padding-12 tab-color-blue background-blue" id="myTab">
         <li class="active">
-          <a href="javascript:;" data-toggle="tab">树片列表</a></li>
+          <a href="javascript:;" data-toggle="tab">树障列表</a></li>
 
-        <li>  <a href="javascript:;"   class="btn disabled" data-toggle="tab">树片详情</a></li>
+        <li>  <a href="javascript:;"   class="btn disabled" data-toggle="tab">树障详情</a></li>
         <li>  <a href="javascript:;"   class="btn disabled" data-toggle="tab">巡检记录</a></li>
         <li>  <a href="javascript:;"   class="btn disabled" data-toggle="tab">处理记录</a></li>
-        <li>  <a href="javascript:;"   class="btn disabled" data-toggle="tab">飞行记录</a></li>
+        <!-- <li>  <a href="javascript:;"   class="btn disabled" data-toggle="tab">飞行记录</a></li> -->
         
         <!--   <li>
-          <a href="/ts/index.php/Admin/Tree/add/group_id/<?php echo ($group_id); ?>"  >增加树片</a></li>  -->
+          <a href="/ts/index.php/Admin/Tree/add/group_id/<?php echo ($group_id); ?>"  >增加树障</a></li>  -->
       </ul>
         <tr>
           <td>
@@ -212,7 +212,7 @@
            
 
            <!--  <input style="width:8%" class="btn btn-sm btn-success" type="button" onclick="dataFilter(this)" value="数据筛选"> -->
-             <a  style="width:8%" class="btn btn-sm btn-success" href="/ts/index.php/Admin/Tree/add/group_id/<?php echo ($group_id); ?>"  >增加树片</a>
+             <a  style="width:8%" class="btn btn-sm btn-success" href="/ts/index.php/Admin/Tree/add/group_id/<?php echo ($group_id); ?>"  >增加树障</a>
              
 
             </form>
@@ -402,7 +402,7 @@
 
               <td>
                
-              <a href="/ts/index.php/Admin/Tree/base/group_id/<?php echo ($group_id); ?>/tid/<?php echo ($v['tid']); ?>/line_id/<?php echo ($v['line_id']); ?>"  class="btn btn-info btn-sm" >查看详情</a>
+              <a href="/ts/index.php/Admin/Tree/base/tid/<?php echo ($v['tid']); ?>/line_id/<?php echo ($v['line_id']); ?>"  class="btn btn-info btn-sm" >查看详情</a>
 
                <!-- <a href="javascript:;"  tid="<?php echo ($v['tid']); ?>"  onclick="tree_deatil(this)" >巡查记录</a>||
 
@@ -606,9 +606,9 @@
   <script type="text/javascript">
    window.onload = function() 
     { 
-        divset=document.getElementById("树木管理").style.display="block";
+        divset=document.getElementById("树障管理").style.display="block";
         divset=document.getElementById("系统设置").style.display="block";
-        divset=document.getElementById("权限系统").style.display="block";
+        divset=document.getElementById("权限控制").style.display="block";
         divset=document.getElementById("基础信息维护").style.display="block";
         divset=document.getElementById("树障统计信息").style.display="block";
      

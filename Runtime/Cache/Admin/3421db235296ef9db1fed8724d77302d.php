@@ -82,12 +82,15 @@
         <?php if(is_array($v['_data'])): foreach($v['_data'] as $key=>$n): ?><!-- <li class="b-nav-li"><a href="<?php echo U($n['mca']);?>" ><i class="icon-double-angle-right"></i> <?php echo ($n['name']); ?></a> -->
 
 
-          <li class="b-has-child"><a href="#" class="dropdown-toggle b-nav-parent"><i class="fa fa-<?php echo ($v['ico']); ?> icon-test"></i> <span class="menu-text"><?php echo ($n['name']); ?></span><b class="arrow icon-angle-down"></b></a>
-         <ul class="submenu" id="<?php echo ($n['name']); ?>">
+          <li class="b-has-child"><a href="<?php echo U($n['mca']);?>" class="dropdown-toggle b-nav-parent"><i class="fa fa-<?php echo ($v['ico']); ?> icon-test"></i> 
+          <span class="menu-text"><?php echo ($n['name']); ?></span>
+      
+          </a>
+         <!-- <ul class="submenu" id="<?php echo ($n['name']); ?>">
         <?php if(is_array($n['_data'])): foreach($n['_data'] as $key=>$l): ?><li class="b-nav-li"><a href="<?php echo U($l['mca']);?>" ><i class="icon-double-angle-right"></i> <?php echo ($l['name']); ?></a>
         </li>
          </li><?php endforeach; endif; ?>
-       </ul> 
+       </ul>  -->
        
             
            
@@ -113,15 +116,15 @@
 
         <ul class="nav nav-tabs padding-12 tab-color-blue background-blue" id="myTab">
          <li >
-         <a href="/ts/index.php/Admin/Tree/index/group_id/<?php echo ($group_id); ?>" >树片列表</a></li>
+         <a href="/ts/index.php/Admin/Tree/index" >树障列表</a></li>
 
-        <li>  <a href="/ts/index.php/Admin/Tree/base/group_id/<?php echo ($group_id); ?>/tid/<?php echo ($tree_id); ?>" >树片详情</a></li>
+        <li>  <a href="/ts/index.php/Admin/Tree/base/tid/<?php echo ($tree_id); ?>" >树障详情</a></li>
         <li class="active">  <a href="javascript:;"    data-toggle="tab">巡检记录</a></li>
-        <li>  <a href="/ts/index.php/Admin/TreeProcess/index/group_id/<?php echo ($group_id); ?>/tid/<?php echo ($tree_id); ?>" >处理记录</a></li>
-        <li>  <a href="/ts/index.php/Admin/TreeFly/index/group_id/<?php echo ($group_id); ?>/tid/<?php echo ($tree_id); ?>">飞行记录</a></li>
+        <li>  <a href="/ts/index.php/Admin/TreeProcess/index/tid/<?php echo ($tree_id); ?>" >处理记录</a></li>
+        <!-- <li>  <a href="/ts/index.php/Admin/TreeFly/index/group_id/<?php echo ($group_id); ?>/tid/<?php echo ($tree_id); ?>">飞行记录</a></li> -->
         
         <!-- <li>
-          <a href="/ts/index.php/Admin/Tree/add/group_id/<?php echo ($group_id); ?>"  >增加树片</a></li> -->
+          <a href="/ts/index.php/Admin/Tree/add/group_id/<?php echo ($group_id); ?>"  >增加树障</a></li> -->
       </ul>
         <tr>
           <td>
@@ -157,7 +160,7 @@
     <th colspan="3">隐患最新情况</th>    
     <th colspan="3">隐患最新情况（程度）</th>
     <th colspan="1">隐患最新情况（位置）</th>                    
-    <th colspan="11">隐患最新情况（表象）</th>
+    <th colspan="14">隐患最新情况（表象）</th>
     <th colspan="3">隐患最新情况（监测）</th>
     <th colspan="1">隐患来源</th>
     <th colspan="4">隐患权属人信息</th>
@@ -171,8 +174,8 @@
            <th  id="t-datail_check_time">测量时刻(更新时间。到时、分)</th>      
            <th  id="t-datail_danger_degree">隐患级别（最新隐患）</th>
            <th  id="t-datail_check_change_conclusion">调查结论（缺陷级别变化)</th>
-           <th  id="t-datail_check_process_conclusion">测量结论处理）</th>
-           <th  id="t-datail_check_posistion_conclusion">测量结论位置</th>           
+           <th  id="t-datail_check_process_conclusion">调查结论(处理）</th>
+           <th  id="t-datail_check_posistion_conclusion">调查结论(位置)</th>           
            <th  id="t-datail_tree_type">最危急树障种类</th>
            <th  id="t-datail_tree_num">最危急树障数量(棵数、墩数)</th>
            <th  id="t-datail_tree_num_unit">最危急树障数量单位（棵、墩）</th>
@@ -182,6 +185,11 @@
            <th  id="t-datail_tree_horizontal">最危急树障导线对树木水平距离（米）</th>
            <th  id="t-datail_tree_vertical">最危急树障导线对树木垂直距离（米）</th>
            <th  id="t-datail_tree_grand_height">最危急树障导线对地（米）</th>
+
+           <th  id="t-datail_mix_net_distance">最小净空距离（米）</th>
+           <th  id="t-datail_mix_lodging_distance">树木倒伏导线最小距离（米）</th>
+           <th  id="t-datail_lodging_degree">倒伏判断隐患级别</th>
+
            <th  id="t-datail_tree_over">是否高出导线</th>
            <th  id="t-datail_final_danger">最终自然生长高度是否构成一般级别缺陷</th>           
            <th  id="t-detail_check_method">测量方法</th>                      
@@ -221,10 +229,21 @@
               <td id="t-datail_tree_horizontal"><?php echo ($v['datail_tree_horizontal']); ?></td>
               <td id="t-datail_tree_vertical"><?php echo ($v['datail_tree_vertical']); ?></td>
               <td id="t-datail_tree_grand_height"><?php echo ($v['datail_tree_grand_height']); ?></td>
+              
+              <td id="t-datail_mix_net_distance"><?php echo ($v['datail_mix_net_distance']); ?></td>
+              <td id="t-datail_mix_lodging_distance"><?php echo ($v['datail_mix_lodging_distance']); ?></td>
+              <td id="t-datail_lodging_degree"><?php echo ($v['datail_lodging_degree']); ?></td>
+
+
               <td id="t-datail_tree_over">
                 <?php if($v['datail_tree_over'] == 1): ?>是
               <?php else: ?> 否<?php endif; ?></td>
-              </td> 
+
+              <!-- <td id="t-datail_tree_over">
+                <?php if($v['datail_tree_over'] == 1): ?>是
+              <?php else: ?> 否<?php endif; ?></td>
+              </td>  -->
+              <!-- 不知道如何多了一个值，之前检查的时候是没有的 -->
               <td id="t-datail_final_danger">
                 <?php if($v['datail_final_danger'] == 1): ?>是
                <?php else: ?> 否<?php endif; ?></td>
@@ -422,9 +441,9 @@
   <script type="text/javascript">
    window.onload = function() 
     { 
-        divset=document.getElementById("树木管理").style.display="block";
+        divset=document.getElementById("树障管理").style.display="block";
         divset=document.getElementById("系统设置").style.display="block";
-        divset=document.getElementById("权限系统").style.display="block";
+        divset=document.getElementById("权限控制").style.display="block";
         divset=document.getElementById("基础信息维护").style.display="block";
         divset=document.getElementById("树障统计信息").style.display="block";
      

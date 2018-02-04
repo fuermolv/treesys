@@ -82,12 +82,15 @@
         <?php if(is_array($v['_data'])): foreach($v['_data'] as $key=>$n): ?><!-- <li class="b-nav-li"><a href="<?php echo U($n['mca']);?>" ><i class="icon-double-angle-right"></i> <?php echo ($n['name']); ?></a> -->
 
 
-          <li class="b-has-child"><a href="#" class="dropdown-toggle b-nav-parent"><i class="fa fa-<?php echo ($v['ico']); ?> icon-test"></i> <span class="menu-text"><?php echo ($n['name']); ?></span><b class="arrow icon-angle-down"></b></a>
-         <ul class="submenu" id="<?php echo ($n['name']); ?>">
+          <li class="b-has-child"><a href="<?php echo U($n['mca']);?>" class="dropdown-toggle b-nav-parent"><i class="fa fa-<?php echo ($v['ico']); ?> icon-test"></i> 
+          <span class="menu-text"><?php echo ($n['name']); ?></span>
+      
+          </a>
+         <!-- <ul class="submenu" id="<?php echo ($n['name']); ?>">
         <?php if(is_array($n['_data'])): foreach($n['_data'] as $key=>$l): ?><li class="b-nav-li"><a href="<?php echo U($l['mca']);?>" ><i class="icon-double-angle-right"></i> <?php echo ($l['name']); ?></a>
         </li>
          </li><?php endforeach; endif; ?>
-       </ul> 
+       </ul>  -->
        
             
            
@@ -111,8 +114,8 @@
     <div class="tabbable">
             <ul class="nav nav-tabs padding-12 tab-color-blue background-blue" id="myTab">
                     <li >
-                     <a href="/ts/index.php/Admin/Tree/index/group_id/<?php echo ($group_id); ?>" >树片列表</a></li>
-                     <li>  <a href="javascript:;"   class="btn disabled" data-toggle="tab">树片详情</a></li>
+                     <a href="/ts/index.php/Admin/Tree/index/group_id/<?php echo ($group_id); ?>" >树障列表</a></li>
+                     <li>  <a href="javascript:;"   class="btn disabled" data-toggle="tab">树障详情</a></li>
                      <li>  <a href="javascript:;"   class="btn disabled" data-toggle="tab">巡检记录</a></li>
                      <li>  <a href="javascript:;"   class="btn disabled"     data-toggle="tab">处理记录</a></li>
                     </ul> 
@@ -250,7 +253,7 @@
 <tr>
                 <th colspan="1">树障存在的状态</th>
                 <td>
-                 <select  style="width:80%"  name="tree_status" id="tree_status" onchange="submitForm();">
+                 <select  style="width:80%"  name="tree_status" id="tree_status" >
                                         <option value ="未处理" >未处理</option>
                                         <option value ="翻生">翻生</option>
                                         <option value ="已彻底处理(含树桩)" >已彻底处理(含树桩)</option>
@@ -309,8 +312,8 @@
                 <td><input  style="width:80%" type="text" name="average_height" id="average_height"></td>
                 
 </tr>
-<tr>
-        <th rowspan="3">隐患最新情况</th>
+<!-- <tr>
+        <th rowspan="7">隐患最新情况</th>
         <th colspan="1">更新时间（最新隐患调查、测量日期） </th>
         <td><input  style="width:80%"   type="date" name="detail_last_time" id="detail_last_time" ></td>
         
@@ -325,6 +328,39 @@
                 <th colspan="1">测量时刻(更新时间。到时、分)</th>
                 <td><input  style="width:80%"   type="datetime-local" name="datail_check_time" id="datail_check_time" ></td>
                 
+</tr>
+<tr>
+        
+                <th colspan="1">树木按地点属性</th>
+                <td><input  style="width:80%"   type="tree_property" name="tree_property" id="tree_property" ></td>               
+</tr>
+<tr>
+                        <th colspan="1">是否新种、新移栽</th>
+                        <td>
+                                <select  style="width:80%"   id="new_plant" name="new_plant" id="new_plant">
+                                         <option value ="新种树苗" >新种树苗</option>
+                                         <option value ="新移栽树">新移栽树</option>  
+                                         <option value ="无">无</option>                                          
+                                         </select></td>                        
+</tr>
+<tr>
+        
+                <th colspan="1">是否临近重大、一般缺陷</th>
+                <td>
+                        <select  style="width:80%"   id="defect_type" name="defect_type" id="defect_type">
+                                 <option value ="临近重大缺陷" >临近重大缺陷</option>
+                                 <option value ="临近一般缺陷">临近一般缺陷</option>  
+                                 <option value ="否">否</option>  
+                                 
+                                 </select></td>                
+</tr>
+<tr>
+                        <th colspan="1">是否会翻生</th>
+                        <td>
+                                <select  style="width:80%"   id="survival" name="survival" id="survival">
+                                         <option value ="会翻生" >会翻生</option>
+                                         <option value ="不会翻生">不会翻生</option>  
+                                         </select></td>                        
 </tr>
 <tr>
                 <th rowspan="3">隐患最新情况（程度）</th>
@@ -476,7 +512,7 @@
         <th colspan="1">隐患通知书编号、情况</th> 
         <td><input  style="width:80%" type="text" name="detail_notice_number" id="detail_notice_number"></td>
         
-</tr>
+</tr> -->
 
 <tr>
                 <th rowspan="2">系统新增</th>
@@ -523,10 +559,11 @@
   <script type="text/javascript">
    window.onload = function() 
     { 
-        divset=document.getElementById("树木管理").style.display="block";
+        divset=document.getElementById("树障管理").style.display="block";
         divset=document.getElementById("系统设置").style.display="block";
-        divset=document.getElementById("权限系统").style.display="block";
-         divset=document.getElementById("基础信息维护").style.display="block";
+        divset=document.getElementById("权限控制").style.display="block";
+        divset=document.getElementById("基础信息维护").style.display="block";
+        divset=document.getElementById("树障统计信息").style.display="block";
      
      
     }
@@ -599,36 +636,40 @@
            average_height:$("#average_height").val(), 
            dead_line_time:$("#dead_line_time").val(),
            processed:$("#processed").val(),
-            detail_last_time:$("#detail_last_time").val(),
-            datail_check_person:$("#datail_check_person").val(),
-            datail_check_time:$("#datail_check_time").val(),
-            datail_danger_degree:$("#datail_danger_degree").val(),
-            datail_check_change_conclusion:$("#datail_check_change_conclusion").val(),
-            datail_check_process_conclusion:$("#datail_check_process_conclusion").val(),
-            datail_check_posistion_conclusion:$("#datail_check_posistion_conclusion").val(),
-            datail_tree_type:$("#datail_tree_type").val(),
-            datail_tree_num:$("#datail_tree_num").val(),
-            datail_tree_num_unit:$("#datail_tree_num_unit").val(),
-            datail_tree_area:$("#datail_tree_area").val(),
-            datail_tree_area_unit:$("#datail_tree_area_unit").val(),
-            datail_tree_height:$("#datail_tree_height").val(),
-            datail_tree_horizontal:$("#datail_tree_horizontal").val(),
-            datail_tree_vertical:$("#datail_tree_vertical").val(),
-            datail_tree_grand_height:$("#datail_tree_grand_height").val(),
-            datail_tree_over:$("#datail_tree_over").val(),
-            datail_final_danger:$("#datail_final_danger").val(),
-            detail_check_method:$("#detail_check_method").val(),
-            detail_temperature:$("#detail_temperature").val(),
-            detail_load:$("#detail_load").val(),
-            detail_retain:$("#detail_retain").val(),
-            detail_address:$("#detail_address").val(),
-            detail_owner:$("#detail_owner").val(),
-            detail_phone:$("#detail_phone").val(),
-            detail_plant_time:$("#detail_plant_time").val(),
-            detail_compensation_condition:$("#detail_compensation_condition").val(),
-            detail_build_deal:$("#detail_build_deal").val(),
-            detail_run_deal:$("#detail_run_deal").val(),
-            detail_notice_number:$("#detail_notice_number").val(),
+        //     detail_last_time:$("#detail_last_time").val(),
+        //     datail_check_person:$("#datail_check_person").val(),
+        //     datail_check_time:$("#datail_check_time").val(),
+        //     tree_property:$("#tree_property").val(),
+        //     new_plant:$("#new_plant").val(),
+        //     defect_type:$("#defect_type").val(),
+        //     survival:$("#survival").val(),
+        //     datail_danger_degree:$("#datail_danger_degree").val(),
+        //     datail_check_change_conclusion:$("#datail_check_change_conclusion").val(),
+        //     datail_check_process_conclusion:$("#datail_check_process_conclusion").val(),
+        //     datail_check_posistion_conclusion:$("#datail_check_posistion_conclusion").val(),
+        //     datail_tree_type:$("#datail_tree_type").val(),
+        //     datail_tree_num:$("#datail_tree_num").val(),
+        //     datail_tree_num_unit:$("#datail_tree_num_unit").val(),
+        //     datail_tree_area:$("#datail_tree_area").val(),
+        //     datail_tree_area_unit:$("#datail_tree_area_unit").val(),
+        //     datail_tree_height:$("#datail_tree_height").val(),
+        //     datail_tree_horizontal:$("#datail_tree_horizontal").val(),
+        //     datail_tree_vertical:$("#datail_tree_vertical").val(),
+        //     datail_tree_grand_height:$("#datail_tree_grand_height").val(),
+        //     datail_tree_over:$("#datail_tree_over").val(),
+        //     datail_final_danger:$("#datail_final_danger").val(),
+        //     detail_check_method:$("#detail_check_method").val(),
+        //     detail_temperature:$("#detail_temperature").val(),
+        //     detail_load:$("#detail_load").val(),
+        //     detail_retain:$("#detail_retain").val(),
+        //     detail_address:$("#detail_address").val(),
+        //     detail_owner:$("#detail_owner").val(),
+        //     detail_phone:$("#detail_phone").val(),
+        //     detail_plant_time:$("#detail_plant_time").val(),
+        //     detail_compensation_condition:$("#detail_compensation_condition").val(),
+        //     detail_build_deal:$("#detail_build_deal").val(),
+        //     detail_run_deal:$("#detail_run_deal").val(),
+        //     detail_notice_number:$("#detail_notice_number").val(),
         },
              success:function(msg){
                 console.log(msg);

@@ -25,14 +25,14 @@ class AdminBaseController extends BaseController{
 	    }*/
 		
 		
-		$result=$auth->check($rule_name,$_SESSION['user']['id']);
-		if(!$result){
-			$this->error('您没有权限访问');
-		}
+		// $result=$auth->check($rule_name,$_SESSION['user']['id']);
+		// if(!$result){
+		// 	$this->error('您没有权限访问');
+		// }
 		// 分配菜单数据
 		
 		$nav_data=D('AdminNav')->getTreeData('level','order_number,id');
-		//var_dump($nav_data);
+
 		
 		$assign=array(
 			'nav_data'=>$nav_data

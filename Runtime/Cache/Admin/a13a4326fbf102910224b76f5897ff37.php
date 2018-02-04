@@ -189,9 +189,9 @@
   <script type="text/javascript">
    window.onload = function() 
     { 
-        divset=document.getElementById("树木管理").style.display="block";
+        divset=document.getElementById("树障管理").style.display="block";
         divset=document.getElementById("系统设置").style.display="block";
-        divset=document.getElementById("权限系统").style.display="block";
+        divset=document.getElementById("权限控制").style.display="block";
         divset=document.getElementById("基础信息维护").style.display="block";
         divset=document.getElementById("树障统计信息").style.display="block";
      

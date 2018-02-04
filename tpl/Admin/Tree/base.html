@@ -9,8 +9,8 @@
          <a href="/ts/index.php/Admin/Tree/index/group_id/{$group_id}" >树障列表</a></li>
 
         <li class="active">  <a href="javascript:;" data-toggle="tab">树障详情</a></li>
-        <li>  <a href="/ts/index.php/Admin/TreeDetail/index/group_id/{$group_id}/tid/{$tid}" >巡检记录</a></li>
-        <li>  <a href="/ts/index.php/Admin/TreeProcess/index/group_id/{$group_id}/tid/{$tid}" >处理记录</a></li>
+        <li>  <a href="/ts/index.php/Admin/TreeDetail/index/tid/{$tid}" >巡检记录</a></li>
+        <li>  <a href="/ts/index.php/Admin/TreeProcess/index/tid/{$tid}" >处理记录</a></li>
         <!-- <li>  <a href="/ts/index.php/Admin/TreeFly/index/group_id/{$group_id}/tid/{$tid}" >飞行记录</a></li> -->
         
            <!-- <li>
@@ -282,9 +282,9 @@
                     <th colspan="1">是否临近重大、一般缺陷</th>
                     <th colspan="1">是否会翻生</th>
                     <th colspan="1">隐患级别（最新隐患）</th>
-                    <th colspan="1">测量结论(级别变化)</th>
-                    <th colspan="1">测量结论(处理)</th>                
-                    <th colspan="1">测量结论(位置)</th>
+                    <th colspan="1">调查结论(级别变化)</th>
+                    <th colspan="1">调查结论(处理)</th>                
+                    <th colspan="1">调查结论(位置)</th>
                     <!-- <th colspan="1">最危急树障相对杆塔、线路位置，距离弧垂点或导线近地点位置等描述。如距离#x杆塔x米处、弧垂点。。。</th>（也就是测量结论(位置)） -->
                     <th colspan="1">最危急树障种类</th>
                     <th colspan="1">最危急树障数量(棵数、墩数)</th>
@@ -440,7 +440,7 @@
       data:{
       
         edit_line_id:$(obj).attr('line_id'),
-        group_id:{$group_id},
+       // group_id:{$group_id},
         edit_tid:$(obj).attr('tid'),
         edit_index:1
           },
