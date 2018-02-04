@@ -118,7 +118,7 @@
         <li class="active">
           <a href="javascript:;" data-toggle="tab">日统计</a></li>
 
-        <li>  <a href="/ts/index.php/Admin/TreeStatistics/fly">飞行统计</a></li>
+      <!--   <li>  <a href="/ts/index.php/Admin/TreeStatistics/fly">飞行统计</a></li> -->
       
         
         <!--   <li>
@@ -209,26 +209,26 @@
 
      </tr>
      <tr>
-     <?php if(is_array($group_data)): foreach($group_data as $key=>$v): ?><td><?php echo ($v['title']); ?></td> 
-     <td>0</td> 
-     <td>0</td> 
-     <td>0</td> 
-     <td>0</td> 
-     <td>0</td> 
+     <?php if(is_array($group_data)): foreach($group_data as $key=>$v): ?><td><?php echo ($v['group_name']); ?></td> 
+     <td>5</td> 
+     <td>2</td> 
+     <td>3</td> 
+     <td>4</td> 
+     <td>8</td> 
 
-     <td>0</td> 
-     <td>0</td> 
-     <td>0</td> 
-     <td>0</td> 
-     <td>0</td> 
-     <td>0</td> 
-     <td>0</td> 
-     <td>0</td> 
-     <td>0</td> 
-     <td>0</td> 
-     <td>0</td> 
-     <td>0</td> 
-     <td>0</td> 
+     <td>4</td> 
+     <td>9</td> 
+     <td>2</td> 
+     <td>6</td> 
+     <td>7</td> 
+     <td>1</td> 
+     <td>3</td> 
+     <td>5</td> 
+     <td>4</td> 
+     <td>2</td> 
+     <td>4</td> 
+     <td>2</td> 
+     <td>3</td> 
      <td>0</td> 
      
 

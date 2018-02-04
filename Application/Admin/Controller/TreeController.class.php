@@ -24,6 +24,7 @@ class TreeController extends AdminBaseController {
         $datail_danger_degree=I('get.datail_danger_degree');
         $tree_status=I('get.tree_status');
         $star_tower=I('get.star_tower');
+        $accountability_group=I('get.accountability_group');
         $end_tower=I('get.end_tower');
         $village = I('get.village');
         $limit = 15;
@@ -38,8 +39,22 @@ class TreeController extends AdminBaseController {
         // {
         // 	$map=null;
         // }
-        // $device_lines = M("device_line")->where($map)->select();
-        // $querydata['device_lines'] = $device_lines;
+        $device_lines = F('device_lines');
+        if(empty($device_lines)or $device_lines==FALSE)
+        {
+        $device_lines = M("device_line")->where($map)->select();
+        F('device_lines',$device_lines);
+        }
+        $querydata['device_lines'] = $device_lines;
+
+
+
+         $gmap['group_status'] = 1;
+        $groups = M("group")->where($gmap)->select();
+        $querydata['device_groups'] = $groups;
+
+
+
         // $map = null;
         //选出县镇乡
         if (!empty($county)) {
@@ -106,6 +121,11 @@ class TreeController extends AdminBaseController {
         if (empty($orderBy)) {
             $orderBy = 'tid desc';
         }
+         if (!empty($accountability_group)) {
+            $map['accountability_group'] = $accountability_group;
+            
+        }
+
 
         
         // $data=D('TreeBase')->getPage(new TreeBaseModel(),$map,$order,$limit);

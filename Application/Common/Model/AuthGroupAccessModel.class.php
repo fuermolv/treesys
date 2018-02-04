@@ -23,11 +23,13 @@ class AuthGroupAccessModel extends BaseModel{
 	 */
 	public function getAllData(){
 		$data=$this
-			->field('u.id,u.username,u.true_name,u.remark,u.phone,u.email,aga.group_id,ag.title')
+			->field('u.id,u.username,u.true_name,u.remark,u.phone,u.email,aga.group_id,ag.title,g.group_name')
 			->alias('aga')
 			->join('__USERS__ u ON aga.uid=u.id','RIGHT')
 			->join('__AUTH_GROUP__ ag ON aga.group_id=ag.id','LEFT')
+			->join('__GROUP__ g ON g.group_id=u.group','LEFT')
 			->select();
+
 		// 获取第一条数据
 		$first=$data[0];
 		$first['title']=array();

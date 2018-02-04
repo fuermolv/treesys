@@ -228,6 +228,7 @@ class RuleController extends AdminBaseController{
     public function add_admin(){
         if(IS_POST){
             $data=I('post.');
+
             $result=D('Users')->addData($data);
             if($result){
                 if (!empty($data['group_ids'])) {
@@ -251,6 +252,7 @@ class RuleController extends AdminBaseController{
             $assign=array(
                 'data'=>$data
                 );
+      
             $this->assign($assign);
             $this->display();
         }
@@ -264,6 +266,7 @@ class RuleController extends AdminBaseController{
             $data=I('post.');
             // 组合where数组条件
             $uid=$data['id'];
+            $g_id=$data['accountability_group'];
             $map=array(
                 'id'=>$uid
                 );
@@ -311,6 +314,9 @@ class RuleController extends AdminBaseController{
                 'user_data'=>$user_data,
                 'group_data'=>$group_data
                 );
+              $groups = M("group")->select();
+            $querydata['device_groups'] = $groups;
+            $this->assign('querydata', $querydata);
             $this->assign($assign);
             $this->display();
         }

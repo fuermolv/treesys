@@ -126,9 +126,41 @@
         <!--   <li>
           <a href="/ts/index.php/Admin/Tree/add/group_id/<?php echo ($group_id); ?>"  >增加树障</a></li>  -->
       </ul>
+         <form class="form-inline"    action="" id="my_form">
+       
         <tr>
           <td>
-            <form class="form-inline"    action="" id="my_form">
+          
+            
+
+             </select>
+            <select style="width:8%; background-color:#6495ED; color:#FFF;"  name="accountability_group"  id="accountability_group" onchange="submitForm();">
+          
+               <option value ="">全部班组</option>
+              <?php if(is_array($querydata['device_groups'])): foreach($querydata['device_groups'] as $key=>$gv): ?><option value ="<?php echo ($gv['group_name']); ?>"><?php echo ($gv['group_name']); ?></option><?php endforeach; endif; ?>
+           
+            </select> 
+          <!--     <div>
+             <input  list="datalist" placeholder="选择班组" type="text" style="width: 8%;" name="accountability_group" id="accountability_group"  onblur="submitForm()"/> 
+             <datalist id="datalist">
+
+             <?php if(is_array($querydata['device_groups'])): foreach($querydata['device_groups'] as $key=>$gv): ?><option value ="<?php echo ($gv['name']); ?>"></option><?php endforeach; endif; ?>
+           
+             </datalist>  -->
+              
+
+            
+             
+
+        
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+         
+
+
             
            <!--   <select style="width:8%" name="line_id" id="line_id" onblur="submitForm();">
             <option value ="">全部线路</option>
@@ -684,6 +716,8 @@
     function submitForm()
      {
       sessionStorage.setItem("voltage_degree",document.getElementById("voltage_degree").value);
+      sessionStorage.setItem("accountability_group",document.getElementById("accountability_group").value);
+     
       sessionStorage.setItem("line_id",document.getElementById("line_id").value); 
       sessionStorage.setItem("county",document.getElementById("county").value); 
       sessionStorage.setItem("town",document.getElementById("town").value); 
@@ -775,6 +809,8 @@
       $("#line_id").val(sessionStorage.getItem("line_id"))
       $("#county").val(sessionStorage.getItem("county"))
       $("#town").val(sessionStorage.getItem("town"))
+      $("#accountability_group").val(sessionStorage.getItem("accountability_group"))
+     
 
       $("#village").val(sessionStorage.getItem("village"))
       $("#tree_status").val(sessionStorage.getItem("tree_status"))

@@ -21,6 +21,7 @@
             <th width="10%">手机</th>
 
             <th>用户组</th>
+            <th>班组</th>
              <th width="10%">备注</th>
             <th>操作</th></tr>
           <foreach name="data" item="v">
@@ -29,6 +30,7 @@
               <td>{$v['true_name']}</td>
               <td>{$v['phone']}</td>
               <td>{$v['title']}</td>
+              <th>{$v['group_name']}</th>
              
               <td>{$v['remark']}</td>
 

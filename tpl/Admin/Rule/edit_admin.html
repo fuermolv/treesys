@@ -25,6 +25,17 @@
                 <foreach name="data" item="v">{$v['title']}
                   <input class="xb-icheck" type="checkbox" name="group_ids[]" value="{$v['id']}" <in name="v['id']" value="$group_data">checked="checked"</in>> &emsp;</foreach></td>
             </tr>
+
+              <tr><th>班组分配</th><td>   
+                                </select>
+                               <select style="width:8%;"  name="accountability_group"  id="accountability_group" onchange="submitForm();">
+          
+                            
+                              <foreach name="querydata['device_groups']" item="gv">
+                                <option value ="{$gv['group_id']}">{$gv['group_name']}</option>
+                              </foreach>
+           
+                            </select> </td></tr>
             <tr>
               <th>姓名</th>
               <td>

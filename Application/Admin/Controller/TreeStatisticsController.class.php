@@ -16,11 +16,11 @@ class TreeStatisticsController extends AdminBaseController {
           $sta_type = I('get.sta_type');
           $end_s_time = I('get.end_s_time');
             $start_s_time = I('get.start_s_time');
-          $map['monitor']=1;
-          $orderBy='id';
-          $group_data =M("auth_rule")->where($map)->order($orderBy)->select();
-
+        
+           $orderBy='group_id';
           
+           $gmap['group_status'] = 1;
+           $group_data = M("group")->where($gmap)->order($orderBy)->select();
            $this->assign('sta_type', $sta_type);
        
            $this->assign('end_s_time', $end_s_time);
