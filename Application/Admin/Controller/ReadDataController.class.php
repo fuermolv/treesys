@@ -179,7 +179,10 @@ class ReadDataController extends HomeBaseController
                   $basedata['tree_danger_height']=$data[23];
                   $basedata['average_radius']=$data[24];
                   $basedata['average_height']=$data[25];
-                  
+                  $basedata['tree_property']=$data[29];
+                  $basedata['new_plant']=$data[30];
+                  $basedata['defect_type']=$data[31];
+                  $basedata['survival']=$data[32];
                
                   $tid=M("tree_base_copy")->data($basedata)->add();
                   //以下是detail表
@@ -188,27 +191,31 @@ class ReadDataController extends HomeBaseController
                   $detaildata['detail_last_time']=convTime($data[26]);
                   $detaildata['datail_check_person']=$data[27];
                   $detaildata['datail_check_time']=convTime($data[28]);
-                  $detaildata['datail_danger_degree']=$data[29];
-                  $detaildata['datail_check_change_conclusion']=$data[30];
-                  $detaildata['datail_check_process_conclusion']=$data[31];
-                  $detaildata['datail_check_posistion_conclusion']=$data[33];
-                  $detaildata['datail_tree_type']=$data[34];
-                  $detaildata['datail_tree_num']=$data[35];
-                  $detaildata['datail_tree_num_unit']=$data[36];
-                  $detaildata['datail_tree_area']=$data[37];
-                  $detaildata['datail_tree_area_unit']=$data[38];
-                  $detaildata['datail_tree_height']=$data[39];                  
-                  $detaildata['datail_tree_horizontal']=$data[40];
-                  $detaildata['datail_tree_vertical']=$data[41];
-                  $detaildata['datail_tree_grand_height']=$data[42];
-                  if($data[43]=='是')
+                  $detaildata['datail_danger_degree']=$data[33];
+                  $detaildata['datail_check_change_conclusion']=$data[34];
+                  $detaildata['datail_check_process_conclusion']=$data[35];
+                  $detaildata['datail_check_posistion_conclusion']=$data[36];
+                  $detaildata['datail_tree_type']=$data[37];
+                  $detaildata['datail_tree_num']=$data[38];
+                  $detaildata['datail_tree_num_unit']=$data[39];
+                  $detaildata['datail_tree_area']=$data[40];
+                  $detaildata['datail_tree_area_unit']=$data[41];
+                  $detaildata['datail_tree_height']=$data[42];                  
+                  $detaildata['datail_tree_horizontal']=$data[43];
+                  $detaildata['datail_tree_vertical']=$data[44];
+                  $detaildata['datail_tree_grand_height']=$data[45];
+                  $detaildata['datail_mix_net_distance']=$data[46];
+                  $detaildata['datail_mix_lodging_distance']=$data[47];
+                  $detaildata['datail_lodging_degree']=$data[48];
+
+                  if($data[49]=='是')
                   {
                   	$detaildata['datail_tree_over']=1;
                   }else
                   {
                   	$detaildata['datail_tree_over']=0;
                   }
-                  if($data[44]=='是')
+                  if($data[50]=='是')
                   {
                   	$detaildata['datail_final_danger']=1;
                   }else
@@ -219,10 +226,10 @@ class ReadDataController extends HomeBaseController
 
                   // $detaildata['datail_tree_over']=$data[43];
                   // $detaildata['datail_final_danger']=$data[44];
-                  $detaildata['detail_check_method']=$data[45];                  
-                  $detaildata['detail_temperature']=$data[46];
-                  $detaildata['detail_load']=$data[47];
-                   if($data[48]=='是')
+                  $detaildata['detail_check_method']=$data[57];                  
+                  $detaildata['detail_temperature']=$data[58];
+                  $detaildata['detail_load']=$data[59];
+                   if($data[60]=='是')
                   {
                   	$detaildata['detail_retain']=1;
                   }else
@@ -230,17 +237,24 @@ class ReadDataController extends HomeBaseController
                   	$detaildata['detail_retain']=0;
                   }
                   // $detaildata['detail_retain']=$data[48];
-                  $detaildata['detail_address']=$data[49];  
-                  $detaildata['detail_owner']=$data[50];
-                  $detaildata['detail_phone']=$data[51]; 
-                  $detaildata['detail_plant_time']=$data[52]; 
-                  $detaildata['detail_compensation_condition']=$data[53]; 
-                  $detaildata['detail_build_deal']=$data[54];
-                  $detaildata['detail_run_deal']=$data[55];
-                  $detaildata['detail_notice_number']=$data[56]; 
+                  $detaildata['detail_address']=$data[61];  
+                  $detaildata['detail_owner']=$data[62];
+                  $detaildata['detail_phone']=$data[63]; 
+                  $detaildata['detail_plant_time']=$data[64]; 
+                  $detaildata['detail_compensation_condition']=$data[65]; 
+                  $detaildata['detail_build_deal']=$data[66];
+                  $detaildata['detail_run_deal']=$data[67];
+                  $detaildata['detail_notice_number']=$data[68]; 
                    //M("tree_detail")->data($detaildata)->add();
                    //var_dump(M("tree_detail")->getLastSql());
-                   
+
+
+                  //  $processdata['record_tree_deal_plan_time']=$data[51]; 
+                  //  $processdata['record_tree_deal_time']=$data[52]; 
+                  //  $processdata['record_tree_degree_change']=$data[53]; 
+                  //  $processdata['record_stump_deal_plan_time']=$data[54]; 
+                  //  $processdata['record_stump_deal_time']=$data[55]; 
+                  //  $processdata['record_stump_degree_change']=$data[56];  
 
 
               }
