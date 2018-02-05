@@ -5908,7 +5908,7 @@ class Image {
     // Should we use anti-aliasing. Note: This really slows down graphics!
     function SetAntiAliasing($aFlg=true) {
 	$this->use_anti_aliasing = $aFlg;
-	imageantialias($this->img,$aFlg);
+	//imageantialias($this->img,$aFlg);
     }
 
     function CreateRawCanvas($aWidth=0,$aHeight=0) {
