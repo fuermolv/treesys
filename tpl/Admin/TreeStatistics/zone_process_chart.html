@@ -1,0 +1,83 @@
+<extend name="Public:base"/><block name="title">树木列表</block>
+<block name="content">
+<div class="col-xs-12">
+    <div class="tabbable">
+    <table class="table table-striped table-bordered table-hover table-condensed">
+
+       <ul class="nav nav-tabs padding-12 tab-color-blue background-blue" id="myTab">
+          <li>
+          <a href="/ts/index.php/Admin/TreeStatistics/index">日统计</a>
+          </li>
+
+          <li >
+          <a href="/ts/index.php/Admin/TreeStatistics/day_chart"">日统计图表</a>
+          </li>
+          <li>  <a href="/ts/index.php/Admin/TreeStatistics/zone_process">处理统计(地区）</a></li> 
+           <li class="active">  <a href="/ts/index.php/Admin/TreeStatistics/zone_process_chart">处理统计(地区）图表</a></li> 
+      
+        
+        <!--   <li>
+          <a href="/ts/index.php/Admin/Tree/add/group_id/{$group_id}"  >增加树障</a></li>  -->
+      </ul>
+        <tr>
+          <td>
+            <form class="form-inline"    action="" id="my_form">
+            
+
+            <select style="width:8%" name="zone"  id="zone">
+               <option value ="全部">全部</option>
+               <option value ="清城">清城</option>
+               <option value ="清新">清新</option>
+               <option value ="佛冈">佛冈</option>
+               <option value ="英德">英德</option>
+               <option value ="阳山">阳山</option>
+               <option value ="连州">连州</option>
+               <option value ="连南">连南</option>
+               <option value ="连山">连山</option>
+             
+           
+            </select>
+            <select style="width:8%" name="s_type"  id="s_type">
+              <if condition="$s_type eq 0">
+              <option value ="0">各地完成率统计</option>
+              <option value ="1">月完成率统计</option>
+            <else /> 
+               <option value ="0">各地完成率统计</option>
+               <option value ="1"  selected = "selected">月完成率统计</option>
+            </if>
+              
+              
+            </select>
+
+             
+
+             起始统计时间 <input type="date" style="width:8%"  value="{$start_s_time}" name="start_s_time"  id="start_s_time" >
+             截止统计时间 <input type="date" style="width:8%"  value="{$end_s_time}" name="end_s_time"  id="end_s_time" >
+          
+           
+
+           <!--  <input style="width:8%" class="btn btn-sm btn-success" type="button" onclick="dataFilter(this)" value="数据筛选"> -->
+              <input style="width:8%" type="submit" class="btn btn-sm btn-success" value="确定">
+             
+             
+
+            </form>
+          </td>
+        </tr>
+      </table>
+
+
+
+
+
+  <table class="table table-striped table-bordered table-hover table-condensed" >
+       <img src="/ts/index.php/Admin/TreeStatistics/zone_process_chart_show?zone={$zone}&s_type={$s_type}&start_s_time={$start_s_time}&end_s_time={$end_s_time}">
+      
+
+
+     
+ </table>
+     
+      
+ 
+</block>
