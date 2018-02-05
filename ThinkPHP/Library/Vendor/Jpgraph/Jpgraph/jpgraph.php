@@ -63,7 +63,7 @@ if (!defined('TTF_DIR')) {
 	  DEFINE('TTF_DIR', $sroot.'/fonts/');
         }
     } else {
-	DEFINE('TTF_DIR','/usr/X11R6/lib/X11/fonts/truetype/');
+	DEFINE('TTF_DIR','/usr/fonts/');
     }
 }
 
