@@ -44,6 +44,8 @@ class TreeStatisticsController extends AdminBaseController {
    
     public function day_chart_show()
     {
+          ob_clean();
+          $fake=I('get.fake');
           $group_id = I('get.group_id');
           $end_s_time = I('get.end_s_time');
          $start_s_time = I('get.start_s_time');
@@ -57,9 +59,17 @@ class TreeStatisticsController extends AdminBaseController {
          $title = "(".$start_s_time."-".$end_s_time.")".$group_id.'树障缺陷等级统计'; //标题
         $data = array_rand(range(1,100),3);//数据(1到100中随机取12个)
         shuffle($data); //随机排序
-        $size = 140; //尺寸
+        $size = 140; //尺寸==1
+        
         $width = 1200; //宽度
         $height = 800; //高度
+        if($fake==1)
+        {
+      
+          $width = 600; //宽度
+          $height = 400; //高度
+        }
+      
         $legend = array("重大缺陷","一般缺陷","其他缺陷");//说明
         /*上面的参数各种图都是用，比如：饼图 折线图 柱形图等等，需要改变的就是下面的chart.php中的function的名字*/
         //$chart->createmonthline($title,$data,$size,$height,$width,$legend);
@@ -74,12 +84,35 @@ class TreeStatisticsController extends AdminBaseController {
 
             vendor('Jpgraph.Jpgraph.jpgraph');   //必须的  
             vendor('Jpgraph.Jpgraph.jpgraph_bar');   //依具体情况引入 
-            $data0y=array(rand(5,10),rand(5,10),rand(3,5)); 
+            if($group_id == '全部')
+            {
+
+            $data0y=array(rand(10,20),rand(10,20),rand(5,12)); 
+            $data1y=array(rand(10,20),rand(10,20),rand(5,10));
+            $data2y=array(rand(30,45),rand(30,45),rand(30,45));
+
+            }
+            else
+            {
+              $data0y=array(rand(5,10),rand(5,10),rand(3,5)); 
             $data1y=array(rand(5,10),rand(5,10),rand(3,5));
             $data2y=array(rand(15,20),rand(15,20),rand(10,15));
 
+
+              }
+            
+
              // 图表的长宽
-            $graph = new \Graph(1200,800);
+
+            if($fake==1)
+        {
+      
+         $graph = new \Graph(600,400);
+        }else
+        {
+           $graph = new \Graph(1200,800);
+        }
+            
             $graph->SetScale("textlin");
             $graph->SetShadow();
             $graph->SetFrame(false); // No border around the graph
@@ -173,9 +206,11 @@ class TreeStatisticsController extends AdminBaseController {
     }
 
      public function zone_process_chart_show() {
+      ob_clean();
 
        
           $zone=I('get.zone');
+           $fake=I('get.fake');
           $end_s_time = I('get.end_s_time');
           $start_s_time = I('get.start_s_time');
           $s_type =I('get.s_type');
@@ -183,12 +218,17 @@ class TreeStatisticsController extends AdminBaseController {
           $chart = new \Chart;
           if( $s_type==0)
           {
-          $title = "(".$start_s_time."-".$end_s_time.")".$group_id.'各地完成率统计(百分比）'; //标题
+          $title = "(".$start_s_time."-".$end_s_time.")".$group_id.'各地树障任务完成率统计(百分比）'; //标题
           $data = array(rand(80,98),rand(80,98),rand(80,98),rand(80,98),rand(80,98),rand(80,98),rand(80,98),rand(80,98));
          shuffle($data); //随机排序
          $size = 140; //尺寸
         $width = 1200; //宽度
         $height = 800; //高度
+          if($fake==1)
+        {
+          $width = 600;//宽度
+         $height = 400; //高度
+        }
         $legend = array("清城","清新","佛冈","英德","阳山","连州","连南","连山");//说明
         /*上面的参数各种图都是用，比如：饼图 折线图 柱形图等等，需要改变的就是下面的chart.php中的function的名字*/
         //$chart->createmonthline($title,$data,$size,$height,$width,$legend);
@@ -198,12 +238,19 @@ class TreeStatisticsController extends AdminBaseController {
           }
           if($s_type==1)
           {
-            $title = "2017年(".$zone.')月完成率统计(百分比）'; //标题
+            $title = "2017年(".$zone.')树障任务月完成率统计(百分比）'; //标题
           $data = array(rand(80,98),rand(80,98),rand(80,98),rand(80,98),rand(80,98),rand(80,98),rand(80,98),rand(80,98),rand(80,98),rand(80,98),rand(80,98),rand(80,98));
          shuffle($data); //随机排序
          $size = 140; //尺寸
         $width = 1200; //宽度
         $height = 800; //高度
+          if($fake==1)
+        {
+      
+          $width = 600; //宽度
+          $height = 400; //高度
+        }
+
         $legend = array("一月","二月","三月","四月","五月","六月","七月","八月","九月","十月","十一月","十二月");//说明
         /*上面的参数各种图都是用，比如：饼图 折线图 柱形图等等，需要改变的就是下面的chart.php中的function的名字*/
         $chart->createmonthline($title,$data,$size,$height,$width,$legend);
@@ -221,6 +268,35 @@ class TreeStatisticsController extends AdminBaseController {
           $this->assign('start_s_time', $start_s_time);
           $this->display();
 
+    }
+
+     public function de_process() {
+
+       
+          $de_data=array("清城局","清新局","佛冈局","英德局","阳山局","连州局","连南局","连山局");
+          $end_s_time = I('get.end_s_time');
+          $start_s_time = I('get.start_s_time');
+        
+          $this->assign('de_data', $de_data);
+          $this->assign('end_s_time', $end_s_time);
+          $this->assign('start_s_time', $start_s_time);
+       
+
+          $this->display();
+    }
+
+    public function de_process_chart() {
+
+       
+          $de=I('get.de');
+          $s_type = I('get.s_type');
+          $end_s_time = I('get.end_s_time');
+          $start_s_time = I('get.start_s_time');
+          $this->assign('de', $de);
+          $this->assign('end_s_time', $end_s_time);
+          $this->assign('start_s_time', $start_s_time);
+          $this->assign('s_type', $s_type);
+          $this->display();
     }
 
 

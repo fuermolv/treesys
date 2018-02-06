@@ -34,7 +34,7 @@
     </script>
    <div class="navbar-container" id="navbar-container">
     <div class="navbar-header pull-left">
-     <a href="/ts/index.php/Admin/Index/index" class="navbar-brand"><small><i class="icon-th"></i> 树障分析管理</small></a>
+     <a href="/ts/index.php/Admin/Index/index" class="navbar-brand"><img  src="/ts/tpl/Public/images/nanwang.png" /><small> </small></a>
     </div>
     <div class="navbar-header pull-right" role="navigation">
      <ul class="nav ace-nav">
@@ -110,11 +110,26 @@
     <div class="main-content">
      <div class="page-content">
       
-<div class="page-header"><h1><i class="fa fa-home"></i> 公告</h1></div><div class="col-xs-12">
+<div class="page-header"><h1><i class="fa fa-home"></i> 首页</h1></div><div class="col-xs-12">
 
 
 
-<font color="#FF0000" size="7">说明：</font><br /> 
+<table class="table table-striped table-bordered table-hover table-condensed" >
+
+
+
+
+ <img src="/ts/index.php/Admin/TreeStatistics/day_chart_show?group_id=全部&s_type=0&fake=1&start_s_time=2018-01-29&end_s_time=2018-02-05">
+ <img src="/ts/index.php/Admin/TreeStatistics/day_chart_show?group_id=全部&s_type=1&fake=1&start_s_time=2018-01-29&end_s_time=2018-02-05">
+
+ <img src="/ts/index.php/Admin/TreeStatistics/zone_process_chart_show?zone=全部&s_type=0&fake=1&start_s_time=2018-01-29&end_s_time=2018-02-05">
+ <img src="/ts/index.php/Admin/TreeStatistics/zone_process_chart_show?zone=全部&s_type=1&fake=1&start_s_time=2018-01-29&end_s_time=2018-02-05">
+ 
+      
+
+
+     
+ </table>
 
 <!-- <font size="5">1.(2017-12-13)，新版本正在不断更新</font><br />  
 <font size="5">2.当前版本为了验证整体流程，有缺失数据列在本周内会添加到系统中</font><br />   -->

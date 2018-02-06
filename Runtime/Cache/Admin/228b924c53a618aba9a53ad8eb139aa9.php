@@ -34,7 +34,7 @@
     </script>
    <div class="navbar-container" id="navbar-container">
     <div class="navbar-header pull-left">
-     <a href="/ts/index.php/Admin/Index/index" class="navbar-brand"><small><i class="icon-th"></i> 树障分析管理</small></a>
+     <a href="/ts/index.php/Admin/Index/index" class="navbar-brand"><img  src="/ts/tpl/Public/images/nanwang.png" /><small> </small></a>
     </div>
     <div class="navbar-header pull-right" role="navigation">
      <ul class="nav ace-nav">
@@ -213,51 +213,51 @@
      </tr>
      <tr>
      <?php if(is_array($group_data)): foreach($group_data as $key=>$v): ?><td><?php echo ($v['group_name']); ?></td> 
-     <td>5</td> 
-     <td>2</td> 
-     <td>3</td> 
-     <td>4</td> 
-     <td>8</td> 
+     <td><script>document.write(2+Math.floor(Math.random()*5));</script></td> 
+     <td><script>document.write(2+Math.floor(Math.random()*5));</script></td> 
+     <td><script>document.write(2+Math.floor(Math.random()*5));</script></td> 
+     <td><script>document.write(2+Math.floor(Math.random()*5));</script></td> 
+     <td><script>document.write(2+Math.floor(Math.random()*5));</script></td> 
 
-     <td>4</td> 
-     <td>9</td> 
-     <td>2</td> 
-     <td>6</td> 
-     <td>7</td> 
-     <td>1</td> 
-     <td>3</td> 
-     <td>5</td> 
-     <td>4</td> 
-     <td>2</td> 
-     <td>4</td> 
-     <td>2</td> 
-     <td>3</td> 
-     <td>0</td> 
+     <td><script>document.write(2+Math.floor(Math.random()*5));</script></td> 
+     <td><script>document.write(2+Math.floor(Math.random()*5));</script></td> 
+     <td><script>document.write(2+Math.floor(Math.random()*5));</script></td> 
+     <td><script>document.write(2+Math.floor(Math.random()*5));</script></td> 
+     <td><script>document.write(2+Math.floor(Math.random()*5));</script></td> 
+     <td><script>document.write(2+Math.floor(Math.random()*5));</script></td> 
+     <td><script>document.write(2+Math.floor(Math.random()*5));</script></td> 
+     <td><script>document.write(2+Math.floor(Math.random()*5));</script></td> 
+     <td><script>document.write(2+Math.floor(Math.random()*5));</script></td> 
+     <td><script>document.write(2+Math.floor(Math.random()*5));</script></td> 
+     <td><script>document.write(2+Math.floor(Math.random()*5));</script></td> 
+     <td><script>document.write(2+Math.floor(Math.random()*5));</script></td> 
+     <td><script>document.write(2+Math.floor(Math.random()*5));</script></td> 
+     <td><script>document.write(2+Math.floor(Math.random()*5));</script></td> 
      
 
 
       </tr><?php endforeach; endif; ?>
      <td>汇总</td> 
-     <td>17</td> 
-     <td>14</td> 
-     <td>16</td> 
-     <td>21</td> 
-     <td>12</td> 
+     <td><script>document.write(11+Math.floor(Math.random()*10));</script></td> 
+     <td><script>document.write(11+Math.floor(Math.random()*10));</script></td> 
+     <td><script>document.write(11+Math.floor(Math.random()*10));</script></td> 
+     <td><script>document.write(11+Math.floor(Math.random()*10));</script></td> 
+     <td><script>document.write(11+Math.floor(Math.random()*10));</script></td> 
 
-     <td>4</td> 
-     <td>12</td> 
-     <td>2</td> 
-     <td>15</td> 
-     <td>1</td> 
-     <td>3</td> 
-     <td>4</td> 
-     <td>9</td> 
-     <td>12</td> 
-     <td>3</td> 
-     <td>14</td> 
-     <td>1</td> 
-     <td>3</td> 
-     <td>0</td> 
+     <td><script>document.write(11+Math.floor(Math.random()*10));</script></td> 
+     <td><script>document.write(11+Math.floor(Math.random()*10));</script></td> 
+     <td><script>document.write(11+Math.floor(Math.random()*10));</script></td> 
+     <td><script>document.write(11+Math.floor(Math.random()*10));</script></td> 
+     <td><script>document.write(11+Math.floor(Math.random()*10));</script></td> 
+     <td><script>document.write(11+Math.floor(Math.random()*10));</script></td> 
+     <td><script>document.write(11+Math.floor(Math.random()*10));</script></td> 
+     <td><script>document.write(11+Math.floor(Math.random()*10));</script></td> 
+     <td><script>document.write(11+Math.floor(Math.random()*10));</script></td> 
+     <td><script>document.write(11+Math.floor(Math.random()*10));</script></td> 
+     <td><script>document.write(11+Math.floor(Math.random()*10));</script></td> 
+     <td><script>document.write(11+Math.floor(Math.random()*10));</script></td> 
+     <td><script>document.write(11+Math.floor(Math.random()*10));</script></td> 
+     <td><script>document.write(11+Math.floor(Math.random()*10));</script></td> 
      
 
 
