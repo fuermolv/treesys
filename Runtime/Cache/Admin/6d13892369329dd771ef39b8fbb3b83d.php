@@ -300,7 +300,7 @@
 
  <table class="table table-striped table-bordered table-hover table-condensed" >
             <?php if(is_array($data)): foreach($data as $key=>$v): ?><tr>
-                <th colspan="25">隐患基本信息</th>
+                <th  colspan="25"><font size="2" color="red">隐患基本信息</font></th>
               </tr>
                 <tr>
                     <th colspan="4">隐患单位</th>
@@ -318,22 +318,22 @@
                     <th colspan="1">村</th>
                     <th colspan="1">电压等级（KV）</th>
                     <th colspan="1">线路名称</th>
-                    <th colspan="1">小号杆（塔周围时大小号杆相同）</th>
-                    <th colspan="1">大号杆（塔周围时大小号杆相同）</th>
+                    <th colspan="1">小号杆</th>
+                    <th colspan="1">大号杆（</th>
                     <th colspan="1">隐患序号</th>
                     <th colspan="1">首次调查人</th>
-                    <th colspan="1">首次隐患调查、测量日期</th>
+                    <th colspan="1">首次隐患调查日期</th>
                     <th colspan="1">首次上报日期</th>
                     <th colspan="1">树障存在的状态</th>
                     <th colspan="1">树障种类</th>
-                    <th colspan="1">保护区范围外(如超高树木、上山侧等)是否有需要处理的树障</th>
-                    <th colspan="1">结合地形砍够保护区及保护区附近需处理的隐患树障数量（棵、墩数）</th>
-                    <th colspan="1">结合地形砍够保护区及保护区附近需处理的隐患树障数量单位（棵、墩）</th>
-                    <th colspan="1">结合地形砍够保护区及保护区附近需处理的隐患树障数量(亩数)</th>
-                    <th colspan="1">结合地形砍够保护区及保护区附近需处理的隐患树障数量单位（亩）</th>
-                    <th colspan="1">结合地形砍够保护区及保护区附近需处理的隐患树障树高（m）</th>
-                    <th colspan="1">结合地形砍够保护区及保护区附近需处理的隐患树木胸径范围(cm)</th>
-                    <th colspan="1">树木平均高度(m)</th>
+                    <th colspan="1">保护区范围外是否有需要处理的树障</th>
+                    <th colspan="1">需处理的隐患树障数量</th>
+                    <th colspan="1">需处理的隐患树障数量单位</th>
+                    <th colspan="1">隐患树障数量</th>
+                    <th colspan="1">需处理的隐患树障数量单位</th>
+                    <th colspan="1">需处理的隐患树障树高</th>
+                    <th colspan="1">需处理的隐患树木胸径范围</th>
+                    <th colspan="1">树木平均高度</th>
                 </tr>
                     <tr>
                       <td  ><?php echo ($v['accountability_department']); ?></td>
@@ -363,8 +363,14 @@
                         <td  ><?php echo ($v['average_radius']); ?></td>
                         <td  ><?php echo ($v['average_height']); ?></td>
                     </tr> 
+                    </table>
+                    <br/>
+                    <br/>
+                  
+                   <table class="table table-striped table-bordered table-hover table-condensed" >
+
                     <tr>
-                        <th colspan="26">隐患最新信息</th>
+                        <th colspan="26"><font size="2" color="red">隐患最新信息</font></th>
                       </tr>    
                     <tr>
                         <th colspan="7">隐患最新情况</th>
@@ -376,27 +382,27 @@
  
                     </tr>
                     <tr>
-                    <th colspan="1">更新时间（最新隐患调查、测量日期）</th>
-                    <th colspan="1">更新人（最新隐患调查人）</th>
-                    <th colspan="1">测量时刻(更新时间。到时、分)</th>
+                    <th colspan="1">最新隐患调查日期）</th>
+                    <th colspan="1">最新隐患调查人</th>
+                    <th colspan="1">测量时刻</th>
                     <th colspan="1">树木按地点属性</th>
                     <th colspan="1">是否新种、新移栽</th>
                     <th colspan="1">是否临近重大、一般缺陷</th>
                     <th colspan="1">是否会翻生</th>
-                    <th colspan="1">隐患级别（最新隐患）</th>
-                    <th colspan="1">调查结论(级别变化)</th>
-                    <th colspan="1">调查结论(处理)</th>                
-                    <th colspan="1">调查结论(位置)</th>
+                    <th colspan="1">隐患级别</th>
+                    <th colspan="1">级别变化</th>
+                    <th colspan="1">处理结论</th>                
+                    <th colspan="1">位置结论</th>
                     <!-- <th colspan="1">最危急树障相对杆塔、线路位置，距离弧垂点或导线近地点位置等描述。如距离#x杆塔x米处、弧垂点。。。</th>（也就是测量结论(位置)） -->
                     <th colspan="1">最危急树障种类</th>
-                    <th colspan="1">最危急树障数量(棵数、墩数)</th>
-                    <th colspan="1">最危急树障数量单位（棵、墩）</th>
-                    <th colspan="1">最危急树障数量(亩数)</th>
-                    <th colspan="1">最危急树障数量单位（亩）</th>
-                    <th colspan="1">最危急树障树高（米）</th>
-                    <th colspan="1">最危急树障导线对树木水平距离（米）</th>
-                    <th colspan="1">最危急树障导线对树木垂直距离（米）</th>
-                    <th colspan="1">最危急树障导线对地（米）</th>
+                    <th colspan="1">最危急树障数量</th>
+                    <th colspan="1">最危急树障数量单位</th>
+                    <th colspan="1">最危急树障面积</th>
+                    <th colspan="1">最危急树障面积单位</th>
+                    <th colspan="1">最危急树障树高</th>
+                    <th colspan="1">最危急树障导线对树木水平距离</th>
+                    <th colspan="1">最危急树障导线对树木垂直距离</th>
+                    <th colspan="1">最危急树障导线对地距离</th>
                     <th colspan="1">是否高出导线</th>
                     <th colspan="1">最终自然生长高度是否构成紧急级别隐患</th> 
                     <th colspan="1">测量方法</th> 
@@ -450,12 +456,12 @@
                         <th colspan="5">系统新增</th> 
                     </tr>
                     <tr>
-                        <th colspan="1">种植物权属方－联系人地址</th>  
-                        <th colspan="1">种植物权属方－联系人姓名</th> 
-                        <th colspan="1">种植物权属方－联系人电话</th> 
-                        <th colspan="1">高杆植物种植时间</th>
+                        <th colspan="1">种植物联系人地址</th>  
+                        <th colspan="1">种植物联系人姓名</th> 
+                        <th colspan="1">种植物联系人电话</th> 
+                        <th colspan="1">种植时间</th>
                         <th colspan="1">青赔情况</th>  
-                        <th colspan="1">线路建设时协议签定情况</th> 
+                        <th colspan="1">协议签定情况</th> 
                         <th colspan="1">运行过程中协议情况</th> 
                         <th colspan="1">隐患通知书编号、情况</th>
                         <th colspan="1">更新时间</th>

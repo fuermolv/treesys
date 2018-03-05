@@ -71,8 +71,7 @@ class TreeController extends AdminBaseController {
         if (!empty($line_id)) 
         {
             $map['device_name'] = $line_id;
-            $orderBy = 'star_tower';
-
+            $orderBy = 'tid desc';
         } else {
             $lines = array(-1);
             // foreach ($device_lines as $d) {

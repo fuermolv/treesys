@@ -57,8 +57,8 @@ class TreeStatisticsController extends AdminBaseController {
          if($s_type==0)
          {
          $title = "(".$start_s_time."-".$end_s_time.")".$group_id.'树障缺陷等级统计'; //标题
-        $data = array_rand(range(1,100),3);//数据(1到100中随机取12个)
-        shuffle($data); //随机排序
+        $data = array(rand(2,5),rand(10,30),rand(10,30)); //数据(1到100中随机取12个)
+       
         $size = 140; //尺寸==1
         
         $width = 1200; //宽度

@@ -30,8 +30,8 @@ class Chart{
 	  // 设置标题
 	  $graph->title->Set(iconv("utf-8","gb2312",$title));
 	  //$graph->title->SetFont(FF_VERDANA,FS_BOLD,18); 
-	  $graph->title->SetFont(FF_SIMSUN,FS_BOLD,18); 
-	  $graph->title->SetColor("darkblue");
+	  $graph->title->SetFont(FF_SIMSUN,FS_BOLD,11); 
+	  //$graph->title->SetColor("darkblue");
 	  $graph->legend->Pos(0.1,0.2);
 	  $graph->SetFrame(false,'#ffffff',0);//去掉周围的边框
 	  // Create 3D pie plot
@@ -179,7 +179,7 @@ class Chart{
 	$graph->SetScale("textlin");
 	$graph->SetShadow();
 	$graph->title->Set(iconv('utf-8', 'gb2312',"{$title}"));
-	$graph->title->SetFont(FF_SIMSUN,FS_NORMAL,14);
+	$graph->title->SetFont(FF_SIMSUN,FS_NORMAL,11);
 	$graph->SetFrame(false,'#ffffff',0);//去掉周围的边框
 	$graph->xaxis->SetFont(FF_SIMSUN,FS_NORMAL,9);
 	$graph->xaxis->SetTickLabels($labels);

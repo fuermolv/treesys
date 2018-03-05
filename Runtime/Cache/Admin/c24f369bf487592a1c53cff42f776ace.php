@@ -118,12 +118,16 @@
 
 
 
+ <table class="table table-striped table-bordered table-hover table-condensed" >
+ 	<tr>
+ <th><img src="/ts/index.php/Admin/TreeStatistics/day_chart_show?group_id=全部&s_type=0&fake=1&start_s_time=2018-01-29&end_s_time=2018-02-05"></th>
+ <th><img src="/ts/index.php/Admin/TreeStatistics/day_chart_show?group_id=全部&s_type=1&fake=1&start_s_time=2018-01-29&end_s_time=2018-02-05"></th>
 
- <img src="/ts/index.php/Admin/TreeStatistics/day_chart_show?group_id=全部&s_type=0&fake=1&start_s_time=2018-01-29&end_s_time=2018-02-05">
- <img src="/ts/index.php/Admin/TreeStatistics/day_chart_show?group_id=全部&s_type=1&fake=1&start_s_time=2018-01-29&end_s_time=2018-02-05">
-
- <img src="/ts/index.php/Admin/TreeStatistics/zone_process_chart_show?zone=全部&s_type=0&fake=1&start_s_time=2018-01-29&end_s_time=2018-02-05">
- <img src="/ts/index.php/Admin/TreeStatistics/zone_process_chart_show?zone=全部&s_type=1&fake=1&start_s_time=2018-01-29&end_s_time=2018-02-05">
+<tr>
+ <th><img src="/ts/index.php/Admin/TreeStatistics/zone_process_chart_show?zone=全部&s_type=0&fake=1&start_s_time=2018-01-29&end_s_time=2018-02-05"></th>
+ <th><img src="/ts/index.php/Admin/TreeStatistics/zone_process_chart_show?zone=全部&s_type=1&fake=1&start_s_time=2018-01-29&end_s_time=2018-02-05"></th>
+ </tr>
+  </table>
  
       
 

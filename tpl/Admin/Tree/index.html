@@ -172,7 +172,7 @@
         <div class="table-responsive">
         <table class="table table-striped table-bordered table-hover table-condensed " id="data-table">
           <tr>
-            <th  id="t-tid">编号（系统编号）</th>
+            <th  id="t-tid">系统编号</th>
             <th  id="t-accountability_department">运行单位</th>
             <th style="display:none" id="t-accountability_number">序号</th>
             <th  id="t-accountability_group">责任班组</th>                     
@@ -181,8 +181,8 @@
             <th  id="t-town">镇</th>
             <th  id="t-village">村委会</th>
            <th  id="t-device_name">线路名称</th>
-           <th  id="t-star_tower" >小号杆（塔周围时大小号杆相同）</th>
-           <th  id="t-end_tower">大号杆（塔周围时大小号杆相同）</th>
+           <th  id="t-star_tower" >小号杆</th>
+           <th  id="t-end_tower">大号杆</th>
            <th  id="t-danger_num">隐患序号</th>
            <th  id="t-first_check_person">首次调查人</th>
            <th  id="t-first_check_time">首次隐患调查、测量日期</th>
@@ -190,21 +190,16 @@
            <th  id="t-tree_status">树障存在的状态</th>
            <th  id="t-tree_type">树障种类</th>
            <th style="display:none" id="t-tree_danger">保护区范围外(如超高树木、上山侧等)是否有需要处理的树障</th>
-           <th style="display:none" id="t-tree_danger_num">结合地形砍够保护区及保护区附近需处理的隐患树障数量（棵、墩数）</th>
-           <th style="display:none" id="t-tree_danger_num_unit">结合地形砍够保护区及保护区附近需处理的隐患树障数量单位（棵、墩）</th>
-           <th style="display:none" id="t-tree_danger_area">结合地形砍够保护区及保护区附近需处理的隐患树障数量(亩数)</th>
-           <th style="display:none" id="t-tree_danger_area_unit">结合地形砍够保护区及保护区附近需处理的隐患树障数量单位（亩）</th>
-           <th style="display:none" id="t-tree_danger_height">结合地形砍够保护区及保护区附近需处理的隐患树障树高（m）</th>
-           <th style="display:none" id="t-average_radius">结合地形砍够保护区及保护区附近需处理的隐患树木胸径范围(cm)</th>
+           <th style="display:none" id="t-tree_danger_num">结合地形砍够保护区及保护区附近需处datail_danger_degree树木胸径范围(cm)</th>
            <th style="display:none" id="t-average_height">树木平均高度(m)</th>
-           <th  id="t-detail_last_time">更新时间（最新隐患调查、测量日期）</th>
-           <th  id="t-datail_check_person">更新人（最新隐患调查人）</th>
+           <th  id="t-detail_last_time">更新时间</th>
+           <th  id="t-datail_check_person">更新人</th>
            <th style="display:none" id="t-datail_check_time">测量时刻(更新时间。到时、分)</th>
-           <th  id="t-datail_danger_degree">隐患级别（最新隐患）</th>
+           <th  id="t-datail_danger_degree">隐患级别</th>
            <!-- 调查结论级别变化清册AD-AH 没有展示（已处理）-->
            <th style="display:none" id="t-datail_check_change_conclusion">测量结论(级别变化)</th>
            <th style="display:none" id="t-datail_check_process_conclusion">测量结论(处理)</th>                
-           <th  id="t-datail_check_posistion_conclusion">测量结论(位置)</th>
+           <th  id="t-datail_check_posistion_conclusion">隐患点位置</th>
 
 
            <th style="display:none" id="t-datail_tree_type">最危急树障种类</th>
@@ -281,8 +276,16 @@
                 <td  >{$v['detail_last_time']|date='Y-m-d',###}</td> 
                 <td  id="t-datail_check_person">{$v['datail_check_person']}</td>
                 <td style="display:none" id="t-datail_check_time">{$v['datail_check_time']|date='Y-m-d',###}</td>
+
+                <if condition="$v['datail_danger_degree'] eq '重大'">
+                <td id="t-datail_danger_degree"><font color="red">重大</font></td>
+                <else /> 
                 <td id="t-datail_danger_degree">{$v['datail_danger_degree']}</td>
-                        
+                </if>
+                 
+
+                <!-- <td id="t-datail_danger_degree">{$v['datail_danger_degree']}</td>
+ -->                        
                 <td  style="display:none" id="t-datail_check_change_conclusion">{$v['datail_check_change_conclusion']}</td>
                 <td  style="display:none" id="t-datail_check_process_conclusion">{$v['datail_check_process_conclusion']}</td>                        
                 <td   id="t-datail_check_posistion_conclusion">{$v['datail_check_posistion_conclusion']}</td>          
