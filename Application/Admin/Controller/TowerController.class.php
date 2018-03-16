@@ -92,6 +92,20 @@ class TowerController extends AdminBaseController {
 
         $this->ajaxReturn("success");
     }
+
+     public function add_line()
+    {
+        $data=I('post.');
+       
+       
+        $result=M("device_line")->add($data);
+      
+        if ($result) {
+            $this->success('修改成功',U('Admin/Tower/index'));
+        }else{
+            $this->error('修改失败');
+        }
+    }
     public function add()
     {
     	 if(IS_GET)

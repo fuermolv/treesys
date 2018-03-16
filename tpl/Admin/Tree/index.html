@@ -97,7 +97,7 @@
             <select style="width:8%" name="county"  id="county" onchange="submitForm();">
             <option value ="">县区</option>
             <option value ="1">清城区</option>
-            <option value ="2">清新县</option>
+            <option value ="2">清新区</option>
             <option value="3">佛冈县</option>
             <option value="4">英德市</option>
             <option value ="5">阳山县</option>
@@ -124,22 +124,27 @@
 
             <select style="width:8%" name="tree_status"  id="tree_status" onchange="submitForm();">
             <option value ="">树木状态</option>
-            <option value ="未砍">未砍</option>
-            <option value ="翻抽">翻抽</option>
-            <option value="新种">新种</option>
+            <option value ="未处理">未处理</option>
+            <option value ="翻生" >翻生</option>
+            <option value="已彻底处理(含树桩)" >已彻底处理(含树桩)</option>
+            <option value="一直无树竹"  >一直无树竹</option>
        
             </select>
 
             <select style="width:8%" name="datail_danger_degree"  id="datail_danger_degree" onchange="submitForm();">
             <option value ="">隐患级别</option>
-            <option value ="一般">一般</option>
             <option value ="重大">重大</option>
+            <option value ="一般" >一般</option>
+            <option value="其他" >其他</option>
+            <option value="不构成其他">不构成其他</option>
+            <option value="处理后无树竹" >处理后无树竹</option>
+            <option value="一直无树竹" >一直无树竹</option>
            
             </select>
          
             <select style="width:8%" name="orderBy" id="orderBy" onchange="submitForm();">
             <option value ="">排序方式</option>
-            <option value ="first_upload_time desc">首次上报时间降序</option>
+            <option value ="datail_danger_degree_num desc">隐患等级降序</option>
          
             <option value ="datail_update_time desc">更新时间降序</option>         
             </select>
@@ -192,8 +197,8 @@
            <th style="display:none" id="t-tree_danger">保护区范围外(如超高树木、上山侧等)是否有需要处理的树障</th>
            <th style="display:none" id="t-tree_danger_num">结合地形砍够保护区及保护区附近需处datail_danger_degree树木胸径范围(cm)</th>
            <th style="display:none" id="t-average_height">树木平均高度(m)</th>
-           <th  id="t-detail_last_time">更新时间</th>
-           <th  id="t-datail_check_person">更新人</th>
+          <!--  <th  id="t-detail_last_time">更新时间</th>
+           <th  id="t-datail_check_person">更新人</th> -->
            <th style="display:none" id="t-datail_check_time">测量时刻(更新时间。到时、分)</th>
            <th  id="t-datail_danger_degree">隐患级别</th>
            <!-- 调查结论级别变化清册AD-AH 没有展示（已处理）-->
@@ -273,8 +278,8 @@
                 <td style="display:none" >{$v['average_radius']}</td>
                 <td style="display:none" >{$v['average_height']}</td>
               
-                <td  >{$v['detail_last_time']|date='Y-m-d',###}</td> 
-                <td  id="t-datail_check_person">{$v['datail_check_person']}</td>
+              <!--   <td  >{$v['detail_last_time']|date='Y-m-d',###}</td> 
+                <td  id="t-datail_check_person">{$v['datail_check_person']}</td> -->
                 <td style="display:none" id="t-datail_check_time">{$v['datail_check_time']|date='Y-m-d',###}</td>
 
                 <if condition="$v['datail_danger_degree'] eq '重大'">

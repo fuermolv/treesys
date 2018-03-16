@@ -16,15 +16,34 @@
                                 <tr><th>班组分配</th><td>   
                                 </select>
                                <select style="width:8%;"  name="accountability_group"  id="accountability_group" onchange="submitForm();">
-          
+                                 
                             
                               <foreach name="querydata['device_groups']" item="gv">
                                 <option value ="{$gv['group_name']}">{$gv['group_name']}</option>
                               </foreach>
-           
-                            </select> </td></tr>
+
+
+                               <tr><th>属地局分配</th><td>   
+                                </select>
+                                <select style="width:8%;"  name="department_id"  id="department_id">
+                                 
+                            
+                              <foreach name="querydata['local_department']" item="dv">
+                                <option value ="{$dv['department_id']}">{$dv['department_name']}</option>
+                              </foreach>
+
+                           
+
+                          
+
+                            
                               
 
+
+
+                              
+                              
+           
 
 
 

@@ -26,7 +26,16 @@ a<extend name="Public:base"/><block name="title">树木列表</block>
 <tr>
                 <th colspan="1">责任班组</th>
                 <td>
-                                <select style="width:80%" name="accountability_group" id="accountability_group"  >
+
+                	<select style="width:80%;"  name="accountability_group"  id="accountability_group" >
+          
+                            
+                              <foreach name="querydata['device_groups']" item="gv">
+                                <option value ="{$gv['group_id']}">{$gv['group_name']}</option>
+                              </foreach>
+           
+                     </select>
+                               <!--  <select style="width:80%" name="accountability_group" id="accountability_group"  >
                                 <option value ="">责任班组</option>
                                 <option value ="输电线路1班">输电线路1班</option>
                                 <option value ="输电线路2班">输电线路2班</option>
@@ -43,7 +52,8 @@ a<extend name="Public:base"/><block name="title">树木列表</block>
                                 <option value="英德组输电一班">英德组输电一班</option>
                                 <option value="英德组输电二班">英德组输电二班</option>
                                 <option value="英德组输电三班">英德组输电三班</option>
-                                </select></td>
+                                </select> -->
+                            </td>
 </tr>
 <tr>
                 <th colspan="1">巡视段责任人</th>
@@ -57,7 +67,7 @@ a<extend name="Public:base"/><block name="title">树木列表</block>
                                 <select  style="width:80%"  name="county"  id="county" onchange="submitForm();">
                                                 <option value ="">县区</option>
                                                 <option value ="1">清城区</option>
-                                                <option value ="2">清新县</option>
+                                                <option value ="2">清新区</option>
                                                 <option value="3">佛冈县</option>
                                                 <option value="4">英德市</option>
                                                 <option value ="5">阳山县</option>

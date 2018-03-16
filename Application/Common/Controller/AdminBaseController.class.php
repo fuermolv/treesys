@@ -12,6 +12,8 @@ class AdminBaseController extends BaseController{
 		parent::_initialize();
 		$auth=new \Think\Auth();
 
+	    $passController=array("TreeStatistics");
+
         $rule_name=MODULE_NAME.'/'.CONTROLLER_NAME.'/'.ACTION_NAME;
         /*if(CONTROLLER_NAME=='Nav'||CONTROLLER_NAME=='Rule'||CONTROLLER_NAME=='Index'||CONTROLLER_NAME=='ShowNav')
         {
@@ -23,13 +25,18 @@ class AdminBaseController extends BaseController{
 		 
 		   $rule_name=substr(($_SERVER["REQUEST_URI"]),19);
 	    }*/
+	 //    if(!in_array(CONTROLLER_NAME, $passController))
+	 //    {
 		
+
+
 		
 		// $result=$auth->check($rule_name,$_SESSION['user']['id']);
 		// if(!$result){
 		// 	$this->error('您没有权限访问');
 		// }
-		// 分配菜单数据
+	 //    }
+		
 		
 		$nav_data=D('AdminNav')->getTreeData('level','order_number,id');
 

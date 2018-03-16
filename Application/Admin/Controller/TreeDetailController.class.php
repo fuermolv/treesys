@@ -25,6 +25,8 @@ class TreeDetailController extends AdminBaseController
         $orderBy = 'detail_id desc';
     
         $data=$model->where($map)->order($orderBy)->select();
+        $local_department = M("local_department")->select();
+         $this->assign('local_department',$local_department);
         
        $this->assign('data', $data);
        $this->assign('group_id',$group_id);
@@ -79,6 +81,121 @@ class TreeDetailController extends AdminBaseController
           $detail_tid=$ar['detail_tid'];
           $map['detail_tid']=$detail_tid;
           $data['datail_uptodate']=0;
+
+          //自动计算隐患等级
+          if($ar['datail_danger_degree']==-1) //自动计算模式
+          {    
+
+                 $amap['tid']=$detail_tid;
+                 $v=M("tree_base")->field('dl.voltage_degree')->where($amap)->alias('base')->join('__DEVICE_LINE__ dl ON base.line_id=dl.did', 'LEFT')->select();
+
+                 $a=$ar['datail_tree_height'];
+                 $b=$ar['datail_tree_horizontal'];
+                 $c=$ar['datail_tree_vertical'];
+                 if($ar['datail_tree_over']==1) //树木高于导线
+                 {
+                    $d=sqrt(pow($b,2)+pow($c,2)); //B方+C方的和开方
+                 }
+                else //树木低于导线
+                 {
+                    $d=sqrt(pow(($a-$c),2)+pow($b,2))-$a;
+                 }
+
+                 $v=$v[0]['voltage_degree'];
+                 if($v==500)
+                 {
+                      if($d<=7)
+                      {
+                          $ar['datail_danger_degree']='重大';
+                      }
+                      if($d>7 and $d<=10)
+                      {
+                        $ar['datail_danger_degree']='一般';
+                      }
+                      if($d>10 and $d<=16)
+                      {
+                        $ar['datail_danger_degree']='其他';
+                      }
+                       if($d>16)
+                      {
+                        $ar['datail_danger_degree']='不构成其他';
+                      }
+
+                 }
+                 if($v==220)
+                 {
+                      if($d<=4.5)
+                      {
+                          $ar['datail_danger_degree']='重大';
+                      }
+                      if($d>4.5 and $d<=7.5)
+                      {
+                        $ar['datail_danger_degree']='一般';
+                      }
+                      if($d>7.5 and $d<=13.5)
+                      {
+                        $ar['datail_danger_degree']='其他';
+                      }
+                       if($d>13.5)
+                      {
+                        $ar['datail_danger_degree']='不构成其他';
+                      }
+                 }
+                 if($v==35 or $v==110)
+                 {
+                      if($d<=4)
+                      {
+                          $ar['datail_danger_degree']='重大';
+                      }
+                      if($d>4 and $d<=7)
+                      {
+                        $ar['datail_danger_degree']='一般';
+                      }
+                      if($d>7 and $d<=13)
+                      {
+                        $ar['datail_danger_degree']='其他';
+                      }
+                       if($d>13)
+                      {
+                        $ar['datail_danger_degree']='不构成其他';
+                      }
+                 }
+
+          }
+
+
+         
+
+
+
+          $dd=$ar['datail_danger_degree'];
+          if($dd=='重大')
+          {
+            $ar['datail_danger_degree_num']=6;
+          }
+          if($dd=='一般')
+          {
+            $ar['datail_danger_degree_num']=5;
+          }
+          if($dd=='其他')
+          {
+            $ar['datail_danger_degree_num']=4;
+          }
+          if($dd=='不构成其他')
+          {
+            $ar['datail_danger_degree_num']=3;
+          }
+          if($dd=='处理后无树竹')
+          {
+            $ar['datail_danger_degree_num']=2;
+          }
+          if($dd=='一直无树竹')
+          {
+            $ar['datail_danger_degree_num']=1;
+          }
+
+
+          //
 
           M("tree_detail")->where($map)->data($data)->save();
 
@@ -141,15 +258,19 @@ class TreeDetailController extends AdminBaseController
    {
 
  
-       $tree_id = I('get.tid');
+        $tree_id = I('get.tid');
        
         $map['file_tid'] = $tree_id;
         $map['file_type']='check';
         $orderBy = 'file_id desc';
         $data=M("tree_file")->where($map)->order($orderBy)->select();
 
+
+        
+
        $this->assign('data', $data);
        $this->assign('tree_id',$tree_id);
+   
 
        $content=$this->fetch();
        $this->ajaxReturn($content);

@@ -118,7 +118,7 @@ class TreeController extends AdminBaseController {
             $map['end_tower'] = array('ELT',$end_tower);
         }
         if (empty($orderBy)) {
-            $orderBy = 'tid desc';
+            $orderBy = 'datail_danger_degree_num desc';
         }
          if (!empty($accountability_group)) {
             $map['accountability_group'] = $accountability_group;
@@ -129,9 +129,10 @@ class TreeController extends AdminBaseController {
         
         // $data=D('TreeBase')->getPage(new TreeBaseModel(),$map,$order,$limit);
         $model = new TreeBaseModel();
+        $map['datail_uptodate'] = 1;
         $count = $model->where($map)->alias('base')->join('__DEVICE_LINE__ dl ON base.line_id=dl.did', 'LEFT')->join('treesys_tree_detail detail ON base.tid=detail.detail_tid ', 'LEFT')
         ->count();
-        $map['datail_uptodate'] = 1;
+    
         $page = new_page($count, $limit);
         $list = $model
         /*->field('detail.tid as tree_id,base.*,dl.*')*/->where($map)->alias('base')->join('__DEVICE_LINE__ dl ON base.line_id=dl.did', 'LEFT')->join('treesys_tree_detail detail ON base.tid=detail.detail_tid ', 'LEFT')->order($orderBy)->limit($page->firstRow . ',' . $page->listRows)->select();
@@ -152,16 +153,26 @@ class TreeController extends AdminBaseController {
         $tree_id = I('get.tid');
         $group_id = I('get.group_id');
         //确定班组线路
-     
+        
      
        
         $model = new TreeBaseModel();
       
         $map['datail_uptodate'] = 1;
         $map['tid']= $tree_id;
-        $data=$model->where($map)->alias('base')->join('__DEVICE_LINE__ dl ON base.line_id=dl.did', 'LEFT')->join('treesys_tree_detail detail ON base.tid=detail.detail_tid ', 'LEFT')->select();
+        $data=$model->where($map)->alias('base')->join('__DEVICE_LINE__ dl ON base.line_id=dl.did', 'LEFT')->join('treesys_tree_detail detail ON base.tid=detail.detail_tid ', 'LEFT')
+        ->join('treesys_order od ON base.tid=od.order_tid ', 'LEFT')->select();
+
+        if(empty($data[0]['order_div']))
+        {
+            $data[0]['order_div']='未设定';
+        }
+
+      
         
-       
+        $orderBy='serial';
+        $conf_data = M("order_configure")->order($orderBy)->select();
+        $this->assign('conf_data', $conf_data);
         
    
         $this->assign('group_id', $group_id);
@@ -179,8 +190,24 @@ class TreeController extends AdminBaseController {
         $map['tid'] = $tid;
         M("tree_base")->where(array($map))->delete();
         $map=null;
+
         $map['detail_tid'] = $tid;
         $result = M("TreeDetail")->where(array($map))->delete();
+
+        $map=null;
+        $map['record_tid'] = $tid;
+        $result = M("treesys_tree_process_record")->where(array($map))->delete();
+
+        $map=null;
+        $map['oreder_tid'] = $tid;
+        $result = M("treesys_order")->where(array($map))->delete();
+
+      
+
+
+
+
+
         if($result){
             $this->success("成功删除树片",U("Admin/Tree/index/group_id/{$group_id}"));
             }
@@ -361,7 +388,11 @@ class TreeController extends AdminBaseController {
                 $map['sid'] = $town;
                 $querydata['villages'] = M("areas")->where($map)->select();
             }
-            $map = null;    
+            $map = null;
+            $gmap['group_status'] = 1;
+            $groups = M("group")->where($gmap)->select();
+            $querydata['device_groups'] = $groups;
+
             $this->assign('group_id', $group_id);
             $this->assign('querydata', $querydata);
             $this->display();
@@ -387,12 +418,13 @@ class TreeController extends AdminBaseController {
                 
                 $editTidData['line_name']=$line_name[0]["voltage_degree"].'kV'.$line_name[0]["device_name"];
                 //查询可以选择的线路
-                $group_id = I('get.group_id');
-                $map=null;
-                $map['id'] = $group_id;
-                $edit_lienes = M("auth_rule")->where($map)->select();
-                $map = null;
-                $map['did'] = array('in', $edit_lienes[0]['group_device']);
+                 $map=null;
+                // $group_id = I('get.group_id');
+                // $map=null;
+                // $map['id'] = $group_id;
+                // $edit_lienes = M("auth_rule")->where($map)->select();
+                // $map = null;
+                // $map['did'] = array('in', $edit_lienes[0]['group_device']);
                 $edit_device_lines = M("device_line")->where($map)->select();
                 $querydata['device_lines'] = $edit_device_lines;
                 if (!empty($editTidData['county'])) {
@@ -413,6 +445,9 @@ class TreeController extends AdminBaseController {
                     $map['sid'] = $town_id[0]['id'];
                     $querydata['villages'] = M("areas")->where($map)->select();
                 }
+                 $gmap['group_status'] = 1;
+                 $groups = M("group")->where($gmap)->select();
+                 $querydata['device_groups'] = $groups;
 
                 $this->assign('querydata', $querydata); 
                 $this->assign('edit_tid', $edit_tid);
@@ -426,6 +461,8 @@ class TreeController extends AdminBaseController {
         if(IS_POST)
         {
             $group_id = I('post.group_id');
+            $tid = I('post.tid');
+
             $user_id=$_SESSION['user']['id'];
             $map['id']=$user_id;
             $user=M("users")->where($map)->select();
@@ -445,7 +482,7 @@ class TreeController extends AdminBaseController {
             
             $result = D("TreeBase")->editData($map,$ar);
             if($result){
-                $this->success("成功修改树片",U("Admin/Tree/index/group_id/{$group_id}"));
+                $this->success("成功修改树片",U("Admin/Tree/base/tid/{$tid}"));
                 }
                 else{   
                     $this->error('修改树片失败');}
@@ -457,5 +494,7 @@ class TreeController extends AdminBaseController {
             
         }
     } 
+
+
     
 }

@@ -252,6 +252,14 @@ class RuleController extends AdminBaseController{
             $assign=array(
                 'data'=>$data
                 );
+            $or='group_id desc';
+            $groups = M("group")->order($or)->select();
+            $querydata['device_groups'] = $groups;
+            $or='department_id desc';
+            $local_department = M("local_department")->order($or)->select();
+            $querydata['local_department'] = $local_department;
+            $this->assign('querydata', $querydata);
+
       
             $this->assign($assign);
             $this->display();
@@ -316,7 +324,13 @@ class RuleController extends AdminBaseController{
                 );
               $groups = M("group")->select();
             $querydata['device_groups'] = $groups;
+
+         
+
+
+
             $this->assign('querydata', $querydata);
+           
             $this->assign($assign);
             $this->display();
         }

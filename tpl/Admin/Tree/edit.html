@@ -5,7 +5,7 @@
         <tr>
           <th>线路名称： </th>
           <td>          
-        <select  style="width:80%"  name="edit_line_id" id="edit_line_id" onchange="editSubmitForm(this);">
+        <select   style="width:80%"  name="edit_line_id" id="edit_line_id" onchange="editSubmitForm(this);">
         <option value ={$editTidData['line_id']}  checked> {$editTidData['line_name']}</option>
         <foreach name="querydata['device_lines']" item="v">
          <option value ="{$v['did']}">{$v['voltage_degree']}kV{$v['device_name']}</option>
@@ -29,7 +29,7 @@
         <select style="width:80%"  name="edit_county"  id="edit_county" onchange="editSubmitForm(this);">
         <option value ={$editTidData['county']} checked>{$editTidData['county']}</option>
         <option value ="1">清城区</option>
-        <option value ="2">清新县</option>
+        <option value ="2">清新区</option>
         <option value="3">佛冈县</option>
         <option value="4">英德市</option>
         <option value ="5">阳山县</option>
@@ -70,24 +70,33 @@
         </tr>
         <tr>
             <td>责任班组</td><td>
-                <select style="width:80%"  name="edit_accountability_group"  id="edit_accountability_group" >
+
+              <select style="width:80%;"  name="edit_accountability_group"  id="edit_accountability_group" >
+          
+                            
+                              <foreach name="querydata['device_groups']" item="gv">
+                                <option value ="{$gv['group_id']}">{$gv['group_name']}</option>
+                              </foreach>
+           
+                     </select>
+                <!-- <select style="width:80%"  name="edit_accountability_group"  id="edit_accountability_group" >
                 <option value ={$editTidData['accountability_group']} checked>{$editTidData['accountability_group']}</option>    
                 <option value ="输电线路1班">输电线路1班</option>
                 <option value ="输电线路2班">输电线路2班</option>
-                <option value ="输电线路3班县">输电线路3班县</option>
+                <option value ="输电线路3班县">输电线路3班</option>
                 <option value="输电线路4班">输电线路4班</option>
-                <option value="输电线路5班市4">输电线路5班市</option>
+                <option value="输电线路5班市4">输电线路5班</option>
                 <option value ="输电线路6班">输电线路6班</option>
                 <option value ="输电线路7班">输电线路7班</option>
-                <option value ="输电线路8班县">输电线路8班县</option>
+                <option value ="输电线路8班县">输电线路8班</option>
                 <option value="输电线路9班">输电线路9班</option>
                 <option value="输电电缆班">输电电缆班</option>
-                <option value="管理人员">管理人员</option>
+                
                 <option value="连南组">连南组</option>
                 <option value="英德组输电一班">英德组输电一班</option>
                 <option value="英德组输电二班">英德组输电二班</option>
                 <option value="英德组输电三班">英德组输电三班</option>
-                </select></td>
+                </select> --></td>
         </tr>
         <tr>
             <td>巡视段责任人</td><td><input style="width:80%" type="text" name="edit_accountability_person" id="edit_accountability_person" value={$editTidData['accountability_person']}></td>
@@ -112,8 +121,9 @@
         </tr>
         <tr>
             <td>树障存在的状态</td><td>
+
             
-             <select  style="width:80%" name="tree_status" id="tree_status">
+             <select  style="width:80%" name="edit_tree_status" id="edit_tree_status">
                 <option value ={$editTidData['tree_status']}  checked>{$editTidData['tree_status']}</option>
                 <option value ="未处理">未处理</option>
                 <option value ="翻生" >翻生</option>
@@ -191,7 +201,7 @@
              type:"POST",
               url:"/ts/index.php/Admin/Tree/edit",
               data:{
-                group_id:{$group_id},
+              
                 tid:{$edit_tid},
                 accountability_department:document.getElementById("edit_accountability_department").value,
                 accountability_number:document.getElementById("edit_accountability_number").value,
@@ -257,7 +267,7 @@
         edit_county:document.getElementById("edit_county").value,
         edit_village:document.getElementById("edit_village").value,
         edit_line_id:document.getElementById("edit_line_id").value,
-        group_id:{$group_id},
+        // group_id:{$group_id},
         edit_tid:{$edit_tid}
           },
         success:function(msg){

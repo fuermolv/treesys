@@ -45,14 +45,14 @@ class TreeCommonController extends PublicBaseController
         $edit_voltage_degree = I('get.edit_voltage_degree');
         $edit_village = I('get.edit_village');
         $edit_tid = I('get.edit_tid'); 
-        $group_id = I('get.group_id');
-                //确定班组线路       
-        $map=null;
-        $map['id'] = $group_id;
-        $edit_lienes = M("auth_rule")->where($map)->select();
+        // $group_id = I('get.group_id');
+        //         //确定班组线路       
+        // $map=null;
+        // $map['id'] = $group_id;
+        // $edit_lienes = M("auth_rule")->where($map)->select();
                 
         $map = null;
-        $map['did'] = array('in', $edit_lienes[0]['group_device']);
+        // $map['did'] = array('in', $edit_lienes[0]['group_device']);
         $edit_device_lines = M("device_line")->where($map)->select();
         $querydata['device_lines'] = $edit_device_lines;
                 

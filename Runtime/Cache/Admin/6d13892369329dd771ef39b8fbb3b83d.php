@@ -133,7 +133,33 @@
            
 
                <a href="" style="width:10%" id="list_button" tid="<?php echo ($tid); ?>" class="btn btn-sm disabled"  >树障信息</a>
-               <input style="width:10%" id="edit_button" class="btn btn-sm btn-success" type="button"   tid="<?php echo ($tid); ?>" line_id="{line_id}" onclick="edit_tree(this)" value="修改基本信息">  
+
+
+                <li class="dropdown btn btn-sm btn-success" style="width:10%">
+                <a href="javascript:;" style="color:#FFFFFF" class="dropdown-toggle" data-toggle="dropdown">
+                    修改或更新
+                    <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu"   style="z-index:9999;">
+                  
+                   <!--  <li class="divider"></li> -->
+                    <li><a href="javascript:;" tid="<?php echo ($tid); ?>" line_id="{line_id}"  onclick="edit_tree(this);">修改基础信息</a></li>
+                    <li><a href="javascript:;" tid="<?php echo ($tid); ?>"  onclick="add_detail(this);">更新巡检记录</a></li>
+
+                   
+
+                   
+
+                </ul>
+            </li>
+
+
+
+
+             <!--  
+               <input style="width:10%" id="edit_button" class="btn btn-sm btn-success"  type="button"   tid="<?php echo ($tid); ?>" line_id="{line_id}" onclick="add_detail(this)" value="
+               修改基本数据"> -->
+            
               <!--  <input style="width:6%" class="btn btn-sm btn-success" type="button" onclick="" value="树障归档"> -->
                <input style="width:10%" class="btn btn-sm btn-danger" type="button" tid="<?php echo ($tid); ?>"  onclick="delete_tree(this)" onclick="" value="删除树障">
            
@@ -293,8 +319,43 @@
  
  -->
 
-<div id="tree-base-content">
-	
+ <div id="tree-base-content">
+
+<nav class="navbar navbar-default" role="navigation">
+    <div class="container-fluid">
+    <div class="navbar-header">
+        <a class="navbar-brand" href="#"><font size="2">树障当前状态：</font></a>
+    </div>
+    <div>
+        <ul class="nav navbar-nav">
+            <li class="active"><a href="#"><font size="2" color="red"><?php echo ($data[0]['order_div']); ?></font></a></li>
+           
+          <!--   <li class="dropdown" >
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    处理
+                    <b class="caret"></b>
+                </a>
+              
+                <ul class="dropdown-menu" >
+                  
+                    <li class="divider"></li>
+                    <li><a href="javascript:;" tid="<?php echo ($tid); ?>"  onclick="edit_order(this);">更改树障状态(进入下一流程）</a></li>
+
+                   
+
+                   
+
+                </ul>
+               
+            </li> -->
+        </ul>
+    </div>
+    </div>
+</nav>
+
+ 
+  <br/>
+  <br/>
 
 
 
@@ -494,6 +555,42 @@
       
     </div>
 
+      <div class="modal fade" id="bjy-edit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title" id="myModalLabel">修改树障状态</h4></div>
+        <div class="modal-body">
+          <form id="bjy-form" class="form-inline" action="<?php echo U('Admin/TreeOrder/order_edit');?>" method="post">
+            <input type="hidden" name="tid">
+            <table class="table table-striped table-bordered table-hover table-condensed">
+              <tr>
+                <th width="12%">状态名称</th>
+                <td>
+                 <select style="width:80%;"  name="order_status"  id="order_status" >
+                    <?php if(is_array($conf_data)): foreach($conf_data as $key=>$gv): ?><option value ="<?php echo ($gv['status_name']); ?>"><?php echo ($gv['status_name']); ?></option><?php endforeach; endif; ?> 
+                 </select>
+              </tr>
+
+              <tr>
+                <th width="12%">备注</th>
+                <td>
+                 <input style="width:80%;" type="text" name="order_remark" id="order_remark" />
+              </tr>
+             
+              <tr>
+                <th></th>
+                <td>
+                  <input class="btn btn-success" type="submit" value="修改"></td>
+              </tr>
+            </table>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
      </div>
     </div>
    </div>
@@ -544,6 +641,34 @@
   <script src="/ts/tpl/Public/js/base.js"></script>
   
    <script>
+       function add_detail(obj)
+    {
+
+       var tid=$(obj).attr('tid');
+        $.ajax({
+          type:"GET",
+           url:"/ts/index.php/Admin/TreeDetail/add",
+           data:{
+              tid:tid
+             },
+             success:function(msg){
+    
+            $("#tree-base-content").html(msg);
+          
+          
+            },
+            error:function(XMLHttpRequest, textStatus, thrownError){}
+          })
+    }
+
+       function edit_order(obj) {
+      var tid = $(obj).attr('tid');
+    
+      $("input[name='tid']").val(tid);
+    
+      $('#bjy-edit').modal('show');
+    }
+
    function delete_tree(obj)
      {
        if(confirm('确定删除？'))
@@ -577,7 +702,7 @@
        }
      }
       function edit_tree(obj) {
-   
+     
       $.ajax({
       type:"GET",
       url:"/ts/index.php/Admin/Tree/edit",
@@ -589,6 +714,7 @@
         edit_index:1
           },
       success:function(msg){
+
           $("#tree-base-content").html(msg);
           $("#list_button").removeClass("disabled");
           $("#list_button").addClass("btn-success");
@@ -598,8 +724,8 @@
         },
       error:function(XMLHttpRequest, textStatus, thrownError)
       {
-
-      }
+            
+      } 
       });
   
     }

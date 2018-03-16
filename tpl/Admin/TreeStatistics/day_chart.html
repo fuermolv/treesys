@@ -22,9 +22,19 @@
         <tr>
           <td>
             <form class="form-inline"    action="" id="my_form">
+
+
+             <select style="width:8%; "  name="group_id"  id="group_id" onchange="submitForm();">
+          
+              <option value ="">全部班组</option>
+              <foreach name="group_data" item="gv">
+             <option value ="{$gv['group_name']}">{$gv['group_name']}</option>
+             </foreach>
+           
+            </select> 
             
 
-            <select style="width:8%" name="group_id"  id="group_id">
+         <!--    <select style="width:8%" name="group_id"  id="group_id">
                <option value ="全部">全部</option>
                <option value ="1班">1班</option>
                <option value ="2班">2班</option>
@@ -36,7 +46,7 @@
                <option value ="8班">8班</option>
              
            
-            </select>
+            </select> -->
             <select style="width:8%" name="s_type"  id="s_type">
               <if condition="$s_type eq 0">
               <option value ="0">缺陷等级统计</option>

@@ -22,7 +22,7 @@
             
                
                 <a href="" style="width:10%" id="list_button" class="btn btn-sm disabled" >巡查记录列表</a>
-                <input style="width:10%" id="add_button" class="btn btn-sm btn-success" type="button" tid="{$tree_id}" onclick="add_detail(this)" value="添加新记录">
+               <!--  <input style="width:10%" id="add_button" class="btn btn-sm btn-success" type="button" tid="{$tree_id}" onclick="add_detail(this)" value="添加新记录"> -->
 
                <a href="javascript:;"  style="width:10%" id="list_file_button" class="btn btn-sm btn-success" type="button"  tid="{$tree_id}" onclick="file(this)">查看巡查文件</a>
         
@@ -35,6 +35,56 @@
           </td>
         </tr>
       </table>
+
+
+    <div class="modal fade" id="bjy-edit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title" id="myModalLabel">初始化任务单流程</h4></div>
+        <div class="modal-body">
+          <form id="bjy-form" class="form-inline" action="{:U('Admin/TreeOrder/order_edit')}" method="post">
+            <input type="hidden" name="tid">
+            <input type="hidden" name="order_file_id">
+            <table class="table table-striped table-bordered table-hover table-condensed">
+              <tr>
+                <th width="20%">备注(必填)</th>
+                <td>
+                 <input style="width:80%;"  name="order_remark" />
+                </td>
+              </tr>
+
+               <tr>
+                <th width="20%">当前状态(选填)</th>
+                <td>
+                 <input style="width:80%;"  name="order_div" />
+                </td>
+              </tr>
+
+              <tr>
+                <th width="20%">属地局</th>
+                <td>
+                  <input  list="datalist" placeholder="属地局名称" type="text" style="width: 80%;" name="order_local_department" id="order_local_department" /> 
+                      <datalist id="datalist">
+                      <foreach name="local_department" item="v">
+                      <option value ="{$v['department_name']}"></option>
+                    </foreach>
+                </td>
+              </tr>
+
+             
+              <tr>
+                <th></th>
+                <td>
+                  <input class="btn btn-success" type="submit" value="确定"></td>
+              </tr>
+            </table>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
 
 <!-- <ul class="nav nav-tabs padding-12 tab-color-blue background-blue" id="myTab">
         <li class="active">
@@ -182,6 +232,8 @@
        </div>
     </div>
   </div>
+
+
  <script type="text/javascript">
   function delete_detail(obj)
      {
@@ -311,6 +363,20 @@
 
           })
     }
+
+     function init_order(obj)
+ {
+      var file_id = $(obj).attr('file_id');
+      var tid = $(obj).attr('tid');
+
+
+    
+      $("input[name='order_file_id']").val(file_id);
+      $("input[name='tid']").val(tid);
+    
+      $('#bjy-edit').modal('show');
+ }
+
 
 </script>
 </block>
