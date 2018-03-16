@@ -1017,6 +1017,7 @@ function ajax_upload($path='file',$format='empty',$maxSize='52428800'){
     ini_set('max_execution_time', '0');
     // 去除两边的/
     $path=trim($path,'/');
+   
     // 添加Upload根目录
    // $path=strtolower(substr($path, 0,6))==='upload' ? ucfirst($path) : ''.$path;
     // 上传文件类型控制
