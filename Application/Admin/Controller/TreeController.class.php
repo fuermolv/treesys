@@ -39,17 +39,34 @@ class TreeController extends AdminBaseController {
         // {
         // 	$map=null;
         // }
-        $device_lines = F('device_lines');
+
+        if(empty($accountability_group))
+        {
+        $device_lines = S('device_lines');
         if(empty($device_lines)or $device_lines==FALSE)
         {
-        $device_lines = M("device_line")->where($map)->select();
-        F('device_lines',$device_lines);
+         $device_lines = M("device_line")->where($map)->select();
+         S('device_lines',$device_lines,3600);
         }
-        $querydata['device_lines'] = $device_lines;
+       
+        }
+        else
+        {
+            $device_lines = S('device_lines'.md5($accountability_group));
+            if(empty($device_lines)or $device_lines==FALSE)
+            {
+                 $map['accountability_group']=$accountability_group;
+                 $device_lines = M("tree_base")->field('device_name')->alias('base')->join('__DEVICE_LINE__ dl ON base.line_id=dl.did', 'LEFT')->where($map)->group('device_name')->select();
+                 S('device_lines'.md5($accountability_group),$device_lines,3600);
+            }
+        }
+         $querydata['device_lines'] = $device_lines;
+        
+       
 
 
 
-         $gmap['group_status'] = 1;
+        $gmap['group_status'] = 1;
         $groups = M("group")->where($gmap)->select();
         $querydata['device_groups'] = $groups;
 
@@ -163,9 +180,9 @@ class TreeController extends AdminBaseController {
         $data=$model->where($map)->alias('base')->join('__DEVICE_LINE__ dl ON base.line_id=dl.did', 'LEFT')->join('treesys_tree_detail detail ON base.tid=detail.detail_tid ', 'LEFT')
         ->join('treesys_order od ON base.tid=od.order_tid ', 'LEFT')->select();
 
-        if(empty($data[0]['order_div']))
+        if(empty($data[0]['tree_div']))
         {
-            $data[0]['order_div']='未设定';
+            $data[0]['tree_div']='未设定';
         }
 
       

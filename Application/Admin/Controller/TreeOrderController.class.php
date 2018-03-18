@@ -137,7 +137,7 @@ class TreeOrderController extends AdminBaseController {
             $data['order_status']=1;
             $data['order_tid']=$data['tid'];
             $result=M("order")->where($map)->add($data);
-          }
+        }
         // }else
         // {
          
@@ -160,10 +160,59 @@ class TreeOrderController extends AdminBaseController {
         }
     }
 
+    public function edit_tree_div()
+    {   
+         $data=I('post.');
+        
+        $omap['order_tid']=$data['tid'];
+        $order_data=M("order")->alias('o')->join('treesys_order_configure cf ON o.order_status=cf.configure_id', 'LEFT')->where($omap)->select();
+        $success=TRUE;
+        
+        if(!empty($order_data))
+        {
+           $order_rule=$order_data[0]['auth_group_id'];
+           $uid=$_SESSION['user']['id'];
+           $umap['uid']=$uid;
+           $users_auth_group=M("auth_group_access")->alias('o')->join('treesys_auth_group ag ON o.group_id=ag.id', 'LEFT')->where($umap)->select();
+           $success=FALSE;
+          for($i=0;$i<count($users_auth_group);$i++)
+          {
+            if($users_auth_group[$i]['id']==$order_data[0]['auth_group_id'])
+            {
+              $success=TRUE;
+            }
+
+          }
+
+
+        }
+     
+
+
+       
+        if($success)
+        {
+        
+        $map['tid']=$data['tid'];
+        $result=M("tree_base")->where($map)->save($data);
+       }
+
+        if ($result) {
+
+            $this->success('成功',U('Admin/Tree/base/tid/'.$data['tid']));
+        }else
+        {
+           $this->error('失败(该树障已处于任务流中应由相关人员修改)');
+        }
+
+    }
+
     public function next()
     {
       $data=I('post.');
       $map['order_id']=$data['order_id'];
+
+
       if(empty($data['order_remark']))
       {
         $this->error('失败-备注不能为空');
@@ -177,6 +226,17 @@ class TreeOrderController extends AdminBaseController {
         $result=M("order")->where($map)->save($data);
         if($result)
         {
+          $tmap['tid']=$data['tid'];
+          $tdata['tree_div']=$data['order_div'];
+          M("tree_base")->where($tmap)->save($tdata);
+           for($i=0;$i<count($users_auth_group);$i++)
+          {
+            $group_id_list[$i]=$users_auth_group[$i]['id'];
+          }
+
+
+
+
           $this->success('成功',U('Admin/TreeOrder/index'));
         }else
         {
@@ -208,6 +268,9 @@ class TreeOrderController extends AdminBaseController {
         $result=M("order")->where($map)->save($data);
         if($result)
         {
+          $tmap['tid']=$data['tid'];
+          $tdata['tree_div']=$data['order_div'];
+          M("tree_base")->where($tmap)->save($tdata);
           $this->success('成功',U('Admin/TreeOrder/index'));
         }else
         {

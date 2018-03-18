@@ -48,7 +48,8 @@ class TreeStatisticsController extends AdminBaseController{
 
         
             $model= M("tree_base");
-            $list = $model->field('datail_check_change_conclusion,accountability_group,voltage_degree,datail_danger_degree,datail_tree_num,datail_tree_area')->where($smap)->alias('base')->join('__DEVICE_LINE__ dl ON base.line_id=dl.did', 'LEFT')->join('treesys_tree_detail detail ON base.tid=detail.detail_tid ', 'LEFT')->select();
+            $list = $model->field('datail_check_change_conclusion,accountability_group,voltage_degree,datail_danger_degree,datail_tree_num,datail_tree_area')
+            ->where($smap)->alias('base')->join('__DEVICE_LINE__ dl ON base.line_id=dl.did', 'LEFT')->join('treesys_tree_detail detail ON base.tid=detail.detail_tid ', 'LEFT')->select();
          
 
             for($i=0;$i<sizeof($list);$i++)
