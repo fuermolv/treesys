@@ -169,6 +169,56 @@
           <tr>
             <td>树木平均高度(m)</td><td><input style="width:80%" type="text" name="edit_average_height" id="edit_average_height" value={$editTidData['average_heightr']}></td>
         </tr>
+        <tr>
+            <td>树木按地点属性</td><td>
+                <select style="width:80%"    name="edit_tree_property" id="edit_tree_property">
+                        <option value ={$editTidData['tree_property']}  checked>{$editTidData['tree_property']}</option>                        
+                        <option value ="山地树" >山地树</option>
+                        <option value ="公路树">公路树</option>  
+                        <option value ="苗圃场">苗圃场</option> 
+                        <option value ="村庄水泥路树">村庄水泥路树</option> 
+                        <option value ="村庄土路树">村庄土路树</option> 
+                        <option value ="近村屋树">近村屋树</option> 
+                        <option value ="河岸树">河岸树</option> 
+                        <option value ="河床树">河床树</option> 
+                        <option value ="公园树">公园树</option> 
+                        <option value ="塘(池、库)边树">塘(池、库)边树</option> 
+                        <option value ="水田树">水田树</option> 
+                        <option value ="旱地">旱地</option> 
+                        <option value ="" ></option>
+                       </select></td>       
+        </tr>
+        <tr>
+            <td>是否新种、新移栽</td><td>
+                <select style="width:80%"    name="edit_new_plant" id="edit_new_plant">
+                        <option value ={$editTidData['new_plant']}  checked>{$editTidData['new_plant']}</option>                        
+                        <option value ="是" >是</option>
+                        <option value ="否">否</option>
+                        <option value ="" ></option>  
+                       </select></td>       
+        </tr>
+
+        <tr>
+            <td>是否临近重大、一般缺陷</td><td>
+                <select style="width:80%"    name="edit_defect_type" id="edit_defect_type">
+                        <option value ={$editTidData['defect_type']}  checked>{$editTidData['defect_type']}</option>                        
+                        <option value ="重大">重大</option>  
+                        <option value ="即将生长出重大">即将生长出重大</option>                          
+                        <option value ="一般" >一般</option>
+                        <option value ="" ></option>
+                                                
+                       </select></td>       
+        </tr>
+        <tr>
+            <td>是否会翻生</td><td>
+                <select style="width:80%"    name="edit_survival" id="edit_survival">
+                        <option value ={$editTidData['survival']}  checked>{$editTidData['survival']}</option>                        
+                        <option value ="会翻生" >会翻生</option>
+                        <option value ="不会翻生">不会翻生</option> 
+                        <option value ="" ></option> 
+                       </select></td>       
+        </tr>
+
           <tr>
               <td>截止时间</td><td><input style="width:80%" type="date" name="edit_dead_line_time" id="edit_dead_line_time" value={$editTidData['dead_line_time']|date='Y-m-d',###}></td>
           </tr>
@@ -229,10 +279,10 @@
                 average_radius:document.getElementById("edit_average_radius").value,
                 average_height:document.getElementById("edit_average_height").value,
                 
-                // owner:document.getElementById("edit_owner").value,
-                // owner_phone:document.getElementById("edit_owner_phone").value,
-                // site_condition:document.getElementById("edit_site_condition").value,
-                // tree_age:document.getElementById("edit_tree_age").value,
+                tree_property:document.getElementById("edit_tree_property").value,
+                new_plant:document.getElementById("edit_new_plant").value,
+                defect_type:document.getElementById("edit_defect_type").value,
+                survival:document.getElementById("edit_survival").value,
 
                 dead_line_time:document.getElementById("edit_dead_line_time").value,
                 // first_check_method:document.getElementById("edit_first_check_method").value,
