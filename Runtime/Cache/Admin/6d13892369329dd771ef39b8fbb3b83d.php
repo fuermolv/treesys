@@ -325,7 +325,7 @@
                 </tr>
                         <td  ><?php echo (date('Y-m-d',$v['detail_last_time'])); ?></td>                                                 
                         <td  ><?php echo ($v['datail_check_person']); ?></td> 
-                        <td  id="t-datail_check_time"><?php echo (date('Y-m-d',$v['datail_check_time'])); ?></td>
+                        <td  id="t-datail_check_time"><?php echo (date('Y-m-d H:i:s',$v['datail_check_time'])); ?></td>
                         
                         <td  id="t-tree_property"><?php echo ($v['tree_property']); ?></td>                        
                         <td  id="t-new_plant"><?php echo ($v['new_plant']); ?></td>
@@ -365,7 +365,7 @@
                     </tr>
                     <tr>
                         <th colspan="4">隐患权属人信息</th>
-                        <th colspan="4">隐患处理与管控</th>                
+                        <th colspan="5">隐患处理与管控</th>                
                         <th colspan="5">系统新增</th> 
                     </tr>
                     <tr>
@@ -377,6 +377,7 @@
                         <th colspan="1">协议签定情况</th> 
                         <th colspan="1">运行过程中协议情况</th> 
                         <th colspan="1">隐患通知书编号、情况</th>
+                        <th colspan="1">任务单发布时间</th>
                         <th colspan="1">更新时间</th>
                         <th colspan="1">更新人</th>                                 
                         <th colspan="1">更新班组</th>                 
@@ -392,6 +393,7 @@
                         <td  ><?php echo ($v['detail_build_deal']); ?></td>
                       <td  ><?php echo ($v['detail_run_deal']); ?></td>
                       <td  ><?php echo ($v['detail_notice_number']); ?></td>
+                      <td  ><?php echo ($v['detail_order_time']); ?></td>
                       <td  ><?php echo (date('Y-m-d',$v['datail_update_time'])); ?></td>
                       <td  id="t-datail_update_person"><?php echo ($v['datail_update_person']); ?></td>                     
                       <td  id="t-datail_update_group"><?php echo ($v['datail_update_group']); ?></td> 

@@ -217,7 +217,7 @@
                 </tr>
                         <td  >{$v['detail_last_time']|date='Y-m-d',###}</td>                                                 
                         <td  >{$v['datail_check_person']}</td> 
-                        <td  id="t-datail_check_time">{$v['datail_check_time']|date='Y-m-d',###}</td>
+                        <td  id="t-datail_check_time">{$v['datail_check_time']|date='Y-m-d H:i:s',###}</td>
                         
                         <td  id="t-tree_property">{$v['tree_property']}</td>                        
                         <td  id="t-new_plant">{$v['new_plant']}</td>
@@ -260,7 +260,7 @@
                     </tr>
                     <tr>
                         <th colspan="4">隐患权属人信息</th>
-                        <th colspan="4">隐患处理与管控</th>                
+                        <th colspan="5">隐患处理与管控</th>                
                         <th colspan="5">系统新增</th> 
                     </tr>
                     <tr>
@@ -272,6 +272,7 @@
                         <th colspan="1">协议签定情况</th> 
                         <th colspan="1">运行过程中协议情况</th> 
                         <th colspan="1">隐患通知书编号、情况</th>
+                        <th colspan="1">任务单发布时间</th>
                         <th colspan="1">更新时间</th>
                         <th colspan="1">更新人</th>                                 
                         <th colspan="1">更新班组</th>                 
@@ -287,6 +288,7 @@
                         <td  >{$v['detail_build_deal']}</td>
                       <td  >{$v['detail_run_deal']}</td>
                       <td  >{$v['detail_notice_number']}</td>
+                      <td  >{$v['detail_order_time']}</td>
                       <td  >{$v['datail_update_time']|date='Y-m-d',###}</td>
                       <td  id="t-datail_update_person">{$v['datail_update_person']}</td>                     
                       <td  id="t-datail_update_group">{$v['datail_update_group']}</td> 

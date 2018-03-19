@@ -134,65 +134,31 @@ class ReadDataController extends HomeBaseController
                       $data[$x]=str_replace("#","",$data[$x]);
                       $data[$x]=str_replace(array("\r\n", "\r", "\n"), "", $data[$x]);   
                      } 
+
               	   }
-              	   $basedata['tree_remark']=iconv("GBK","utf-8",$file);
-              	   
-                   $basedata['accountability_department']=$data[0];
-                   $basedata['accountability_number']=$data[1];
-                   
-                   $basedata['accountability_group']=$data[2];
-                   $basedata['accountability_person']=$data[3];
-                   $basedata['county']=$data[4];
-                   $basedata['town']=$data[5];
-                   if(!empty($data[6]))
-                   {
-                         $basedata['village']=$data[6];
-                   }else
-                   {
-                   	$basedata['village']=$data[7];
-                   }
-                   $basedata['voltage_degree']=$data[8];
-                   $basedata['line_id']=$data[9];
-                  //  line_name excel里面是中文，存储在base表中的是数字
 
 
-                  $basedata['star_tower']=$data[10];
-                  $basedata['end_tower']=$data[11];
-                  $basedata['danger_num']=$data[12];
-                  $basedata['first_check_person']=$data[13];
-                  $basedata['first_check_time']=convTime($data[14]);
-                  $basedata['first_upload_time']=convTime($data[15]);            
-                  $basedata['tree_status']=$data[16];
-                  $basedata['tree_type']=$data[17];
-                  if($data[18]=='是')
-                  {
-                  $basedata['tree_danger']=1;
-                  }
-                  else
-                  {
-                    $basedata['tree_danger']=0;
-                  }
 
+             
+              	 
+                
+                   $map['line_name_temp']=$data[9];
+                  $map['star_tower']=$data[10];
+                  $map['end_tower']=$data[11];
+                  $map['danger_num']=$data[12];
+                
               
-                  $basedata['tree_danger_num']=$data[19];
-                  $basedata['tree_danger_num_unit']=$data[20];
-                  $basedata['tree_danger_area']=$data[21];
-                  $basedata['tree_danger_area_unit']=$data[22];
-                  $basedata['tree_danger_height']=$data[23];
-                  $basedata['average_radius']=$data[24];
-                  $basedata['average_height']=$data[25];
-                  $basedata['tree_property']=$data[29];
-                  $basedata['new_plant']=$data[30];
-                  $basedata['defect_type']=$data[31];
-                  $basedata['survival']=$data[32];
-                  try
-                  {
-                     $tid=M("tree_base_copy")->data($basedata)->add(); 
-                  }
-                  catch(\Think\Exception $e)
-                  {
-                      continue;
-                  }
+
+                  $tdata['time_temp']=$data[69];
+                 
+                   try
+                   {
+                      $result=M("tree_base")->where($map)->save($tdata);
+                   }
+                   catch(\Think\Exception $e)
+                   {
+                       continue;
+                   }
 
                    
                

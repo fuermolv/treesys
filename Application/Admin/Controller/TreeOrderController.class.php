@@ -222,6 +222,10 @@ class TreeOrderController extends AdminBaseController {
         $this->error('失败-该任务单已经过验收');
       }
         $data['order_status']=$data['order_status']+1;
+        if($data['order_status']==8)
+        {
+          $data['order_tag']=1;
+        }
 
         $result=M("order")->where($map)->save($data);
         if($result)

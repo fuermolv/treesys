@@ -13,6 +13,7 @@ class AdminBaseController extends BaseController{
 		$auth=new \Think\Auth();
 
 	    $passController=array("TreeStatistics");
+	    $passMethod=array("ajax_upload");
 
         $rule_name=MODULE_NAME.'/'.CONTROLLER_NAME.'/'.ACTION_NAME;
         /*if(CONTROLLER_NAME=='Nav'||CONTROLLER_NAME=='Rule'||CONTROLLER_NAME=='Index'||CONTROLLER_NAME=='ShowNav')
@@ -25,17 +26,17 @@ class AdminBaseController extends BaseController{
 		 
 		   $rule_name=substr(($_SERVER["REQUEST_URI"]),19);
 	    }*/
-	 //    if(!in_array(CONTROLLER_NAME, $passController))
-	 //    {
+	    if(!(in_array(CONTROLLER_NAME, $passController) or in_array(ACTION_NAME, $passMethod)))
+	    {
 		
 
 
 		
-		// $result=$auth->check($rule_name,$_SESSION['user']['id']);
-		// if(!$result){
-		// 	$this->error('您没有权限访问');
-		// }
-	 //    }
+		$result=$auth->check($rule_name,$_SESSION['user']['id']);
+		if(!$result){
+			$this->error('您没有权限访问');
+		}
+	    }
 		
 		
 		$nav_data=D('AdminNav')->getTreeData('level','order_number,id');

@@ -247,7 +247,7 @@
           </tr>
           
           <tr>
-           <th rowspan="4">隐患处理与管控</th> 
+           <th rowspan="5">隐患处理与管控</th> 
            <th  id="t-detail_compensation_condition">青赔情况</th>
            <td><input style="width:80%" id="detail_compensation_condition" type="text" value="{$data['detail_compensation_condition']}" name="detail_compensation_condition"></td>
           </tr>
@@ -265,6 +265,10 @@
           <tr> 
            <th  id="t-detail_notice_number">隐患通知书编号、情况</th>
            <td><input style="width:80%" id="detail_notice_number" type="text" value="{$data['detail_notice_number']}" name="detail_notice_number"></td>  
+          </tr>
+           <tr> 
+           <th  id="t-detail_order_time">任务单发布时间</th>
+           <td><input style="width:80%" id="detail_order_time" type="text" value="{$data['detail_order_time']}" name="detail_order_time"></td>  
           </tr>
 
         
@@ -340,6 +344,9 @@
              detail_build_deal:$("#detail_build_deal").val(),
              detail_run_deal:$("#detail_run_deal").val(),
              detail_notice_number:$("#detail_notice_number").val(),
+             detail_order_time:$("#detail_order_time").val(),
+
+             
 
              },
              success:function(msg){

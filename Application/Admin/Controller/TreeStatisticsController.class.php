@@ -594,6 +594,8 @@ class TreeStatisticsController extends AdminBaseController{
 
           $model= M("tree_base");
           $list = $model->field('county,order_tag,voltage_degree,datail_danger_degree')->where($smap)->alias('base')->join('__DEVICE_LINE__ dl ON base.line_id=dl.did', 'LEFT')->join('treesys_order od ON base.tid=od.order_tid', 'LEFT')->join('treesys_tree_detail detail ON base.tid=detail.detail_tid ', 'LEFT')->select();
+
+
           for($i=0;$i<sizeof($list);$i++)
           {
              $temp=$list[$i];
@@ -601,6 +603,7 @@ class TreeStatisticsController extends AdminBaseController{
              $t= $temp['order_tag'];
              $v= $temp['voltage_degree'];
              $d=$temp['datail_danger_degree'];
+
              if($d=='重大' or $d=='一般')
              {
                if($t==0)
@@ -615,6 +618,7 @@ class TreeStatisticsController extends AdminBaseController{
                 $data[$c][$v][$d]['完成']= $data[$c][$v]['完成']+1;
                 $data['汇总'][$v][$d]['发布']= $data[$c][$v]['发布']+1;
                 $data['汇总'][$v][$d]['完成']= $data[$c][$v]['完成']+1;
+
                 
              }   
              }
@@ -653,13 +657,14 @@ class TreeStatisticsController extends AdminBaseController{
 
           }
 
+
+
          
       
 
          
-           
-           
-           $this->assign('data', $data);
+         
+          $this->assign('data', $data);
           $this->assign('zone_data', $zone_data);
           $this->assign('end_s_time', $end_s_time);
           $this->assign('start_s_time', $start_s_time);
