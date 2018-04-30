@@ -101,7 +101,7 @@ class ReadDataController extends HomeBaseController
        
        }
 
-   public function readTreeRecord()
+   public function readTreeRecords()
    {
 
          $dir = "./TreeRecord/data";
@@ -118,6 +118,8 @@ class ReadDataController extends HomeBaseController
               $path=$dir . "/" . $file;
              
               $datalist=import_excel($path);
+              $filename=iconv("GBK","utf-8",$file);
+
            
 
 
@@ -142,23 +144,73 @@ class ReadDataController extends HomeBaseController
              
               	 
                 
-                   $map['line_name_temp']=$data[9];
-                  $map['star_tower']=$data[10];
-                  $map['end_tower']=$data[11];
-                  $map['danger_num']=$data[12];
+                  //  $map['line_name_temp']=$data[9];
+                  // $map['star_tower']=$data[10];
+                  // $map['end_tower']=$data[11];
+                  // $map['danger_num']=$data[12];
                 
               
 
-                  $tdata['time_temp']=$data[69];
+                  // $tdata['time_temp']=$data[69];
                  
-                   try
+                  //  try
+                  //  {
+                  //     $result=M("tree_base")->where($map)->save($tdata);
+                  //  }
+                  //  catch(\Think\Exception $e)
+                  //  {
+                  //      continue;
+                  //  }
+
+                  
+                    $basedata['accountability_department']=$data[0];
+                   $basedata['accountability_number']=$data[1];
+                   
+                   $basedata['accountability_group']=$filename;
+                   $basedata['accountability_person']=$data[3];
+                   $basedata['county']=$data[4];
+                   $basedata['town']=$data[5];
+                   if(!empty($data[6]))
                    {
-                      $result=M("tree_base")->where($map)->save($tdata);
-                   }
-                   catch(\Think\Exception $e)
+                         $basedata['village']=$data[6];
+                   }else
                    {
-                       continue;
+                    $basedata['village']=$data[7];
                    }
+                   $basedata['voltage_degree']=$data[8];
+                   $basedata['line_id']=$data[9];
+                  //  line_name excel里面是中文，存储在base表中的是数字
+                  $basedata['star_tower']=$data[10];
+                  $basedata['end_tower']=$data[11];
+                  $basedata['danger_num']=$data[12];
+                  $basedata['first_check_person']=$data[13];
+                  $basedata['first_check_time']=convTime($data[14]);
+                  $basedata['first_upload_time']=convTime($data[15]);            
+                  $basedata['tree_status']=$data[16];
+                  $basedata['tree_type']=$data[17];
+                  if($data[18]=='是')
+                  {
+                  $basedata['tree_danger']=1;
+                  }
+                  else
+                  {
+                    $basedata['tree_danger']=0;
+                  }
+              
+                  $basedata['tree_danger_num']=$data[19];
+                  $basedata['tree_danger_num_unit']=$data[20];
+                  $basedata['tree_danger_area']=$data[21];
+                  $basedata['tree_danger_area_unit']=$data[22];
+                  $basedata['tree_danger_height']=$data[23];
+                  $basedata['average_radius']=$data[24];
+                  $basedata['average_height']=$data[25];
+                  $basedata['tree_property']=$data[29];
+                  $basedata['new_plant']=$data[30];
+                  $basedata['defect_type']=$data[31];
+                  $basedata['survival']=$data[32];
+                  $tid=M("tree_base_copy")->data($basedata)->add(); 
+                  
+                 
 
                    
                
@@ -166,74 +218,75 @@ class ReadDataController extends HomeBaseController
                  
                    
                   //以下是detail表
-                  // $detaildata['detail_tid']=$tid;
+                  $detaildata['detail_tid']=$tid;
 
-                  // $detaildata['detail_last_time']=convTime($data[26]);
-                  // $detaildata['datail_check_person']=$data[27];
-                  // $detaildata['datail_check_time']=convTime($data[28]);
-                  // $detaildata['datail_danger_degree']=$data[33];
-                  // $detaildata['datail_check_change_conclusion']=$data[34];
-                  // $detaildata['datail_check_process_conclusion']=$data[35];
-                  // $detaildata['datail_check_posistion_conclusion']=$data[36];
-                  // $detaildata['datail_tree_type']=$data[37];
-                  // $detaildata['datail_tree_num']=$data[38];
-                  // $detaildata['datail_tree_num_unit']=$data[39];
-                  // $detaildata['datail_tree_area']=$data[40];
-                  // $detaildata['datail_tree_area_unit']=$data[41];
-                  // $detaildata['datail_tree_height']=$data[42];                  
-                  // $detaildata['datail_tree_horizontal']=$data[43];
-                  // $detaildata['datail_tree_vertical']=$data[44];
-                  // $detaildata['datail_tree_grand_height']=$data[45];
-                  // $detaildata['datail_mix_net_distance']=$data[46];
-                  // $detaildata['datail_mix_lodging_distance']=$data[47];
-                  // $detaildata['datail_lodging_degree']=$data[48];
+                  $detaildata['detail_last_time']=convTime($data[26]);
+                  $detaildata['datail_check_person']=$data[27];
+                  $detaildata['datail_check_time']=convTime($data[28]);
+                  $detaildata['datail_danger_degree']=$data[33];
+                  $detaildata['datail_check_change_conclusion']=$data[34];
+                  $detaildata['datail_check_process_conclusion']=$data[35];
+                  $detaildata['datail_check_posistion_conclusion']=$data[36];
+                  $detaildata['datail_tree_type']=$data[37];
+                  $detaildata['datail_tree_num']=$data[38];
+                  $detaildata['datail_tree_num_unit']=$data[39];
+                  $detaildata['datail_tree_area']=$data[40];
+                  $detaildata['datail_tree_area_unit']=$data[41];
+                  $detaildata['datail_tree_height']=$data[42];                  
+                  $detaildata['datail_tree_horizontal']=$data[43];
+                  $detaildata['datail_tree_vertical']=$data[44];
+                  $detaildata['datail_tree_grand_height']=$data[45];
+                  $detaildata['datail_mix_net_distance']=$data[46];
+                  $detaildata['datail_mix_lodging_distance']=$data[47];
+                  $detaildata['datail_lodging_degree']=$data[48];
 
-                  // if($data[49]=='是')
-                  // {
-                  // 	$detaildata['datail_tree_over']=1;
-                  // }else
-                  // {
-                  // 	$detaildata['datail_tree_over']=0;
-                  // }
-                  // if($data[50]=='能构成一般')
-                  // {
-                  // 	$detaildata['datail_final_danger']=1;
-                  // }else
-                  // {
-                  // 	$detaildata['datail_final_danger']=0;
-                  // }
+                  if($data[49]=='是')
+                  {
+                  	$detaildata['datail_tree_over']=1;
+                  }else
+                  {
+                  	$detaildata['datail_tree_over']=0;
+                  }
+                  if($data[50]=='能构成一般')
+                  {
+                  	$detaildata['datail_final_danger']=1;
+                  }else
+                  {
+                  	$detaildata['datail_final_danger']=0;
+                  }
 
 
-                  // // $detaildata['datail_tree_over']=$data[43];
-                  // // $detaildata['datail_final_danger']=$data[44];
-                  // $detaildata['detail_check_method']=$data[57];                  
-                  // $detaildata['detail_temperature']=$data[58];
-                  // $detaildata['detail_load']=$data[59];
-                  //  if($data[60]=='是')
-                  // {
-                  // 	$detaildata['detail_retain']=1;
-                  // }else
-                  // {
-                  // 	$detaildata['detail_retain']=0;
-                  // }
-                  // // $detaildata['detail_retain']=$data[48];
-                  // $detaildata['detail_address']=$data[61];  
-                  // $detaildata['detail_owner']=$data[62];
-                  // $detaildata['detail_phone']=$data[63]; 
-                  // $detaildata['detail_plant_time']=$data[64]; 
-                  // $detaildata['detail_compensation_condition']=$data[65]; 
-                  // $detaildata['detail_build_deal']=$data[66];
-                  // $detaildata['detail_run_deal']=$data[67];
-                  // $detaildata['detail_notice_number']=$data[68]; 
+                  // $detaildata['datail_tree_over']=$data[43];
+                  // $detaildata['datail_final_danger']=$data[44];
+                  $detaildata['detail_check_method']=$data[57];                  
+                  $detaildata['detail_temperature']=$data[58];
+                  $detaildata['detail_load']=$data[59];
+                   if($data[60]=='是')
+                  {
+                  	$detaildata['detail_retain']=1;
+                  }else
+                  {
+                  	$detaildata['detail_retain']=0;
+                  }
+                  // $detaildata['detail_retain']=$data[48];
+                  $detaildata['detail_address']=$data[61];  
+                  $detaildata['detail_owner']=$data[62];
+                  $detaildata['detail_phone']=$data[63]; 
+                  $detaildata['detail_plant_time']=$data[64]; 
+                  $detaildata['detail_compensation_condition']=$data[65]; 
+                  $detaildata['detail_build_deal']=$data[66];
+                  $detaildata['detail_run_deal']=$data[67];
+                  $detaildata['detail_notice_number']=$data[68]; 
+                  $detaildata['detail_order_time']=$data[69]; 
 
-                  //  try
-                  // {
-                  //      M("tree_detail")->data($detaildata)->add();
-                  // }
-                  // catch(\Think\Exception $e)
-                  // {
-                  //     continue;
-                  // }
+                   try
+                  {
+                       M("tree_detail_copy")->data($detaildata)->add();
+                  }
+                  catch(\Think\Exception $e)
+                  {
+                      continue;
+                  }
                  
 
 

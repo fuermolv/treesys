@@ -18,10 +18,11 @@
     <div class="wrapper"> 
       <div class="container">
         <strong><span style="font-weight: bold;font-size: 25px;">清远供电局输电走廊树障管理系统</span></strong> 
-        <form class="form" action="" method="post">
-          <input type="text" name="username" placeholder="账号">
-          <input type="password" name="password"  placeholder="密码">
-          <button type="submit" id="login-button">登录</button>
+        <form  id="myform" class="form" action="" method="post">
+          <input type="text" name="un" placeholder="账号">
+          <input type="text" id="pw1" placeholder="密码"  onkeyup="keyUpPass()" onkeypress="hiddenPass()"> 
+          <input  type="hidden"  id="pw" name="pw"  placeholder="密码">
+          <button type="submit"  id="login-button">登录</button>
         </form>
       </div>
     </div>
@@ -33,4 +34,40 @@
         <script src="__ROOT__/Public/statics/js/supersized-init.js"></script>
         <script src="__ROOT__/Public/statics/js/scripts.js"></script>
 </body>
+
+<script>
+function hiddenPass(e){
+ 
+      e = e ? e : window.event;
+   var kcode = e.which ? e.which : e.keyCode;
+      var pass = document.getElementById("pw1");
+      var j_pass = document.getElementById("pw");
+     
+     
+         if(kcode!=8&&kcode!=13)
+      {
+       var keychar=String.fromCharCode(kcode);
+       j_pass.value=j_pass.value+keychar;
+       j_pass.value=j_pass.value.substring(0,pass.length);
+      }
+     
+     }
+
+     function keyUpPass(e){
+  e = e ? e : window.event;
+   var kcode = e.which ? e.which : e.keyCode;
+   
+    $("#pw1").val($("#pw1").val().replace(/./g,'*'));
+   
+   
+   if(kcode==8){
+   
+     var j_pass = document.getElementById("pw");
+ 
+     $("#pw").val(j_pass.value.substring(0,$("#pw1").val().length));
+   }
+ }
+ 
+ </script>
+
 </html>

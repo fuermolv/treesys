@@ -34,7 +34,10 @@ class AdminBaseController extends BaseController{
 		
 		$result=$auth->check($rule_name,$_SESSION['user']['id']);
 		if(!$result){
-			$this->error('您没有权限访问');
+
+			  header('HTTP/1.1 404 Not Found');
+              //$this->display( ' Public:404 ' );
+			 $this->error('您没有权限访问');
 		}
 	    }
 		

@@ -71,7 +71,7 @@
       </div>
      </div> -->
      <!-- #sidebar-shortcuts -->
-     <ul class="nav nav-list" >
+     <ul class="nav nav-list">
       <foreach name="nav_data" item="v">
        <empty name="v['_data']">
       <li class="b-nav-li"><a href="{:U($v['mca'])}" ><i class="fa fa-{$v['ico']} icon-test"></i> <span class="menu-text">{$v['name']}</span></a></li>
@@ -114,8 +114,8 @@
                 try{ace.settings.check('sidebar' , 'collapsed')}catch(e){}
             </script>
     </div>
-    <div class="main-content">
-     <div class="page-content">
+    <div class="main-content" >
+     <div class="page-content" >
       <block name="content"></block>
      </div>
     </div>

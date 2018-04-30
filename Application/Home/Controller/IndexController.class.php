@@ -9,11 +9,29 @@ class IndexController extends HomeBaseController{
 	 * 首页
 	 */
 	public function index(){
+
+
+        if("/ts/.bash_history"==$_SERVER["REQUEST_URI"])
+        {
+        	
+        	header('HTTP/1.1 404 Not Found');
+              //$this->display( ' Public:404 ' );
+			 $this->error('您没有权限访问');
+        }
+		
         if(IS_POST){
             // 做一个简单的登录 组合where数组条件 
             $map=I('post.');
-            $map['password']=md5($map['password']);
+            $map['password']=md5($map['pw']);
+            $map['username']=$map['un'];
+            unset($map['pw']);
+            unset($map['pw1']);
+            unset($map['un']);
+           
+
+
             $data=M('Users')->where($map)->find();
+        
             if (empty($data)) {
                 $this->error('账号或密码错误');
             }else{

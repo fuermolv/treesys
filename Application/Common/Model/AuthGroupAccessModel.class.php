@@ -22,12 +22,14 @@ class AuthGroupAccessModel extends BaseModel{
 	 * 获取管理员权限列表
 	 */
 	public function getAllData(){
+		$orderBy='u.id';
 		$data=$this
 			->field('u.id,u.username,u.true_name,u.remark,u.phone,u.email,aga.group_id,ag.title,g.group_name')
 			->alias('aga')
 			->join('__USERS__ u ON aga.uid=u.id','RIGHT')
 			->join('__AUTH_GROUP__ ag ON aga.group_id=ag.id','LEFT')
 			->join('__GROUP__ g ON g.group_id=u.group','LEFT')
+			->order($orderBy)
 			->select();
 
 		// 获取第一条数据
