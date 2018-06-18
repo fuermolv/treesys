@@ -94,6 +94,10 @@ class TreeAggController extends AdminBaseController {
           {
             $this->error('导入失败:只能导入pdf文件','',5);
           }
+          if(strpos($path,'#') !=false)
+          {
+            $this->error('文件名不能含有#','',5);
+          }
           
           $temp=explode("/",$path);
           $name_t=$temp[count($temp)-1];
