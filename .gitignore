@@ -1,3 +1,4 @@
 Runtime/
 UpLoad/
 Application/Common/Conf/db.php
+ThinkPHP/Library/Think/Upload/Driver/Local.class.php

@@ -106,6 +106,15 @@ class TreeProcessController extends AdminBaseController
         $orderBy = 'file_id desc';
         $data=M("tree_file")->where($map)->order($orderBy)->select();
 
+        foreach ($data as &$d)
+        {
+          $path=$d['file_path'];
+          $path=str_replace("#","%23",$path);
+          $path=str_replace("+","%2B",$path);
+          $d['file_path']=$path;
+
+        }
+
        $this->assign('data', $data);
        $this->assign('tree_id',$tree_id);
 

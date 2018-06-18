@@ -60,10 +60,21 @@ class TreeAggController extends AdminBaseController {
         $list = $model->where($map)->order($orderBy)->limit($page->firstRow . ',' . $page->listRows)->select();
         $data = array('data' => $list, 'page' => $page->show());
 
+        foreach ($data['data'] as &$d)
+        {
+          $path=$d['ag_file_path'];
+
+          $path=str_replace("#","%23",$path);
+          $path=str_replace("+","%2B",$path);
+          $d['ag_file_path']=$path;
+
+        }
+
+
          
         $this->assign('data', $data['data']);
         $this->assign('pagehtml', $data['page']);
-         $this->assign('querydata', $querydata);
+        $this->assign('querydata', $querydata);
      
 
         $this->display();
@@ -94,10 +105,10 @@ class TreeAggController extends AdminBaseController {
           {
             $this->error('导入失败:只能导入pdf文件','',5);
           }
-          if(strpos($path,'#') !=false)
-          {
-            $this->error('文件名不能含有#','',5);
-          }
+          // if(strpos($path,'#') !=false)
+          // {
+          //   $this->error('文件名不能含有#','',5);
+          // }
           
           $temp=explode("/",$path);
           $name_t=$temp[count($temp)-1];
