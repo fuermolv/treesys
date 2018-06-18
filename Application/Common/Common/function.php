@@ -1326,7 +1326,11 @@ function import_excel($file){
          $type='Excel2007'; 
      }elseif($type=='xls') { 
          $type = 'Excel5'; 
-    } 
+    }
+
+    if($type=='csv'){
+         $type = 'CSV'; 
+    }
 
      ini_set('max_execution_time', '0');
      Vendor('PHPExcel.PHPExcel');

@@ -1,0 +1,145 @@
+<extend name="Public:base"/><block name="title">杆塔管理</block>
+<block name="content">
+
+<div class="col-xs-12">
+    <div class="tabbable">
+    <table class="table table-striped table-bordered table-hover table-condensed">
+
+       <ul class="nav nav-tabs padding-12 tab-color-blue background-blue" id="myTab">
+        <li>
+          
+           <li class="active">  <a href="javascript:;" class="btn disabled" >飞行记录</a></li>
+        <li>  <a href="/ts/index.php/Admin/TreeLineReport/fly_upload"  >数据导入</a></li>
+       
+    
+
+        
+      
+        
+      </ul>
+        <tr>
+          <td>
+            <form class="form-inline" action="" id="my_form">
+            
+
+              <input  list="datalist" placeholder="线路名称" type="text" style="width: 8%;" name="line_name" id="line_name"/> 
+             <datalist id="datalist">
+             <foreach name="querydata['device_lines']" item="v">
+             <option value ="{$v['device_name']}"></option>
+             </foreach>
+             </datalist> 
+
+
+            <select style="width:8%" name="voltage_degree" id="voltage_degree" onchange="submitForm();">
+            <option value ="" >电压等级</option>
+            <option value ="500">500kV</option>
+            <option value ="220" >220kV</option>
+            <option value="110" >110kV</option>
+            <option value="35"  >35kV</option>
+            </select>
+
+
+             <input style="width:8%" name="start_tower" id="start_tower" placeholder="起始杆塔" type="text" ">
+         
+
+      
+                报告起始时间 <input type="date" style="width:8%"   name="start_s_time"  id="start_s_time" >
+                报告结束时间 <input type="date" style="width:8%"   name="end_s_time"  id="end_s_time" >
+
+            
+
+            <input style="width:8%" class="btn btn-sm btn-success" type="submit"  value="确定">
+           
+
+             
+
+
+
+            </form>
+          </td>
+        </tr>
+      </table>
+
+      <div class="tab-content" id="tree-deatil-record">
+        <div class="table-responsive">
+        <table class="table table-striped table-bordered table-hover table-condensed " id="data-table">
+
+          <tr>
+           <th >电压等级 </th>
+           <th  >线路名称 </th>
+           <th  >起始杆塔</th>
+           <th  >结束杆塔</th>
+           <th  >测量时间</th>
+           <th  >经度</th>
+           <th  >纬度</th>
+           <th  >高度</th>
+           <th  >档距</th>
+           <th  >距小号塔距离</th>
+           <th  >地物类型</th>
+           <th  >水平距离</th>
+           <th  >垂直距离</th>
+           <th  >净空距离</th>
+           <th  >缺陷等级</th>
+           <th  >安全距离</th>
+
+          
+
+          </tr>
+          <foreach name="data" item="v">
+            <tr>
+
+              <td >{$v['fly_voltage_degree']}</td>
+              <td >{$v['raw_fly_line_name']}</td>
+              
+              <td >{$v['star_tower']}</td>
+              <td >{$v['end_tower']}</td>
+              <td >{$v['fly_time']|date='Y-m-d',###}</td>
+              <td >{$v['fly_longitude']}</td>
+              <td >{$v['fly_latitude']}</td>
+              <td >{$v['fly_height']}</td>
+              <td >{$v['fly_p_distance']}</td>
+              <td >{$v['fly_tower_distance']}</td>
+              <td >{$v['fly_tree_type']}</td>
+              <td >{$v['fly_horizontal_distance']}</td>
+
+             
+              <td >{$v['fly_vertical_distance']}</td>
+              <td >{$v['fly_air_distance']}</td>
+              <td >{$v['fly_danger_degree']}</td>
+              <td >{$v['fly_safe_distance']}</td>
+
+              
+        
+
+             
+            </tr>
+          </foreach>
+        </table>
+        <div align="center"> {$pagehtml}</div>
+      </div>
+       </div>
+    </div>
+  </div>
+
+
+   
+</block>
+
+
+
+</block>
+
+
+
+<block name="js">
+<script>
+  
+    
+    
+</script>
+
+    
+
+
+   
+</block>

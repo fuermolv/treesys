@@ -50,15 +50,10 @@
 function upload_submit(obj)
 {        
 
- //   var temp=$("#upload-extend").val();
-  //  alert(temp);
 	$.ajax({
           type:"POST",
           url:"/ts/index.php/Admin/TreeProcess/uploadfile",
           data:$('#upload-file-form').serialize(),
-          	  
-             
-
             success:function(msg)
             {
                 
@@ -66,89 +61,14 @@ function upload_submit(obj)
             },
            error:function(XMLHttpRequest, textStatus, thrownError)
            {
-
            }
-         
 
        })
-
-
-
     window.location.reload();
-    //file(obj);
 
 }
 
 
-
-
-//  function uploadfile(obj)
-//     {
-//        var tid=$(obj).attr('tid');
-//         $.ajax({
-//           type:"GET",
-//            url:"/ts/index.php/Admin/TreeProcess/uploadfile",
-//            data:{
-//               tid:tid
-//              },
-//              success:function(msg){
-//             $("#tree-process-record").html(msg);
-//             },
-//             error:function(XMLHttpRequest, textStatus, thrownError)
-//             {
-               
-//             }
-//           })
-//     }
-
-//    function process_list(obj)
-//     {
-//        var tid=$(obj).attr('tid');
-//         $.ajax({
-//           type:"GET",
-//            url:"/ts/index.php/Admin/TreeProcess/index",
-//            data:{
-//               tid:tid
-//              },
-//              success:function(msg){
-    
-//           $("#tree-process-record").html(msg);
-//             },
-//             error:function(XMLHttpRequest, textStatus, thrownError){}
-//           })
-//     }
-//      function file(obj)
-//     {
-//        var tid=$(obj).attr('tid');
-//         $.ajax({
-//           type:"GET",
-//            url:"/ts/index.php/Admin/TreeProcess/file",
-//            data:{
-//               tid:tid
-//              },
-//              success:function(msg){
-    
-//           $("#tree-process-record").html(msg);
-//             },
-//             error:function(XMLHttpRequest, textStatus, thrownError){}
-//           })
-//     }
-//      function add(obj)
-//     {
-//        var tid=$(obj).attr('tid');
-//         $.ajax({
-//           type:"GET",
-//            url:"/ts/index.php/Admin/TreeProcess/add",
-//            data:{
-//               tid:tid
-//              },
-//              success:function(msg){
-    
-//           $("#tree-process-record").html(msg);
-//             },
-//             error:function(XMLHttpRequest, textStatus, thrownError){}
-//           })
-//     }
 
 
 

@@ -2,160 +2,220 @@
 namespace Admin\Controller;
 use Common\Controller\TreeSysController;
 use Common\Model\TreeBaseModel;
-use Common\Model\TreeFlyModel;
+use Common\Model\TreeDetailModel;
 use Common\Controller\AdminBaseController;
 /**
  * 后台首页控制器
  */
-class TreeFlyController extends AdminBaseController 
-{
+class TreeFlyController extends AdminBaseController {
     /**
      * 首页
      */
-    public function _initialize()
-    {
-      parent::_initialize();
-    }
-    public function index() {
-
-        $tree_id = I('get.tid');
-        $group_id = I('get.group_id');
-        $fly_plane_type=I('get.fly_plane_type');
-        $model = new TreeFlyModel();
-        $map['fly_tid'] = $tree_id;
-        if($fly_plane_type=="")
-        {
-            $fly_plane_type="1";
-        }
-        // var_dump($fly_plane_type);
-        
-        $map['fly_plane_type'] = $fly_plane_type;
-        $orderBy = 'fly_id desc';
-        $data=$model->where($map)->order($orderBy)->select();
-       $this->assign('data', $data);
-       $this->assign('fly_plane_type', $fly_plane_type);       
-       $this->assign('group_id',$group_id);
-       $this->assign('tree_id',$tree_id);
-       $this->display();
-
-      /* $content=$this->fetch();
-       $this->ajaxReturn($content);*/
-   }
-   public function edit() {
-    if(IS_POST)
-    {
-        $ar=$_POST;
-        $fly_tid=$ar['fly_tid'];
-        $fly_id=$ar['fly_id'];
-        
-      //   $map['detail_tid']=$detail_tid;
-      //   $data['datail_uptodate']=0;
-
-      //   M("tree_detail")->where($map)->data($data)->save();
-
-          
-        $map=null;
-        $user_id=$_SESSION['user']['id'];
-
-        $map['id']=$user_id;
-        $user=M("users")->where($map)->select();
-        $ar['fly_check_time']=strtotime($ar['fly_check_time']);
-        $ar['fly_start_time']=strtotime($ar['fly_start_time']);
-        $ar['fly_end_time']=strtotime($ar['fly_end_time']);
-        $ar['fly_report_made_time']=strtotime($ar['fly_report_made_time']);
-        $ar['fly_receive_report_time']=strtotime($ar['fly_receive_report_time']);
-        $ar['fly_group_receive_report_time']=strtotime($ar['fly_group_receive_report_time']);
-        $ar['fly_group_feedback_time']=strtotime($ar['fly_group_feedback_time']);
-        $ar['fly_later_deal_time']=strtotime($ar['fly_later_deal_time']); 
-        $ar['fly_update_time']=NOW_TIME;
-        $ar['fly_update_person']=$user[0]['true_name'];
-        $map=null;
-        $map['fly_id']=$fly_id;
-        // var_dump($map);
-        $result = D("TreeFly")->editData($map,$ar);
-        $this->ajaxReturn($result);
-
-    }
-    else{
-        $fly_id=I('get.fly_id');
-        
-        $model = new TreeFlyModel();
-        $map['fly_id'] = $fly_id;
-        
-        // var_dump($fly_plane_type);
-        
-        $orderBy = 'fly_id desc';
-        $data=$model->where($map)->order($orderBy)->select();
-       $this->assign('data', $data[0]);
-       $this->assign('fly_id', $fly_id);
-       
-    //    var_dump($data);
-       $this->display();
-    }
-            
+  
     
-          /* $content=$this->fetch();
-           $this->ajaxReturn($content);*/
-       }  
-   public function delete() 
-   {
-        $fly_id = I('get.fly_id');
-        $fly_tid=I('get.fly_tid');
-        $group_id=I('get.group_id');
-        $map['fly_id'] = $fly_id;
-        var_dump($fly_id);
-        $record=D('TreeFly');
-        $result = $record->where(array($map))->delete();
-        if($result){
-            $this->success("成功删除飞行记录",U("Admin/TreeFly/index/group_id/{$group_id}"));
-            }
-        else{   
-            $this->error('删除飞行记录失败');}
-        
-   }
-   public function add()
-   {
-       if(IS_POST)
-      {
+   
+    public function fly() 
+    {
 
-          $ar=$_POST;
-          $fly_tid=$ar['fly_tid'];
-        //   $map['detail_tid']=$detail_tid;
-        //   $data['datail_uptodate']=0;
 
-        //   M("tree_detail")->where($map)->data($data)->save();
 
+         $device_lines = M("device_line")->select();
+        $querydata['device_lines'] = $device_lines;
+        $line_name = I('get.line_name');
+        $start_tower = I('get.start_tower');
+        $voltage_degree = I('get.voltage_degree');
+
+
+         if (!empty( $voltage_degree))
+        {
+             $map['voltage_degree']=$voltage_degree;
             
-          $map=null;
-          $user_id=$_SESSION['user']['id'];
+        }
+        if (!empty( $line_name))
+        {
+             $map['fly_line_name']=$line_name;
+            
+        }
+          if (!empty($start_tower))
+        {
+             
+             $map['star_tower']=$start_tower;
+        }
 
-          $map['id']=$user_id;
-          $user=M("users")->where($map)->select();
-          $ar['fly_check_time']=strtotime($ar['fly_check_time']);
-          $ar['fly_start_time']=strtotime($ar['fly_start_time']);
-          $ar['fly_end_time']=strtotime($ar['fly_end_time']);
-          $ar['fly_report_made_time']=strtotime($ar['fly_report_made_time']);
-          $ar['fly_receive_report_time']=strtotime($ar['fly_receive_report_time']);
-          $ar['fly_group_receive_report_time']=strtotime($ar['fly_group_receive_report_time']);
-          $ar['fly_group_feedback_time']=strtotime($ar['fly_group_feedback_time']);
-          $ar['fly_later_deal_time']=strtotime($ar['fly_later_deal_time']); 
-          $ar['fly_update_time']=NOW_TIME;
-          $ar['fly_update_person']=$user[0]['true_name'];
-          $record=D('TreeFly');
-          $record->addData($ar);
-          $this->ajaxReturn($fly_tid);
-      }
-      else
+        
+            if(!empty($start_s_time) and !empty($end_s_time))
+            {
+              $smap['fly_time']= array('between',array(convTime($start_s_time),convTime($end_s_time)));
+                 
+            }
+            if(!empty($start_s_time) and empty($end_s_time))
+            {
+              $smap['fly_time']= array('EGT',convTime($start_s_time));
+                 
+            }
+
+             if(empty($start_s_time) and !empty($end_s_time))
+            {
+              $smap['fly_time']= array('ELT',convTime($end_s_time));
+                 
+            }
+
+       
+
+        $model= M("fly");
+
+        $count =$model->where($map)->count();
+      
+
+        $limit = 20;
+        $orderBy='fly_time desc,fly_serial desc';
+        $page = new_page($count, $limit);
+        $list =M("fly")->alias('fly')->join('__DEVICE_LINE__ dl ON fly.fly_line_name=dl.device_name', 'LEFT')->where($map)->order($orderBy)->limit($page->firstRow . ',' . $page->listRows)->select();
+        $data = array('data' => $list, 'page' => $page->show());
+
+
+         
+        $this->assign('data', $data['data']);
+        $this->assign('pagehtml', $data['page']);
+        $this->assign('star_tower',  $start_tower);
+        $this->assign('line_name', $line_name);
+        $this->assign('querydata', $querydata);
+
+        $this->display();
+
+    }
+
+ 
+
+    public function fly_upload()
+   {
+
+        if(IS_POST)
       {
-        $tree_id = I('get.tid');
-        $this->assign('tree_id',$tree_id);
-        $content=$this->fetch();
-        $this->ajaxReturn($content);
+
+       
+      $filelist = I('post.file');
+      $extend = I('post.extend');
+      foreach ($filelist as $file) 
+      {
+          $data=null;
+          $path=$file;
+          $flag=$this->ReadFlyData($path);
+          if ($flag==1){
+            break;
+          }
+  
+
+      }
+      if($flag==1){
+         $this->error('导入失败','',5);
+      }else{
+         $this->success('导入成功','',5);
+      }
+
+     
+
+      }else
+      {
+
+          $this->display();
+      }
+    }
 
 
-      }   
-   }
+  public function ReadFlyData($path)
+    {
 
+       $path=".".$path;
+       $contents_before = file_get_contents($path);  
+       $contents_after = iconv('GBK','UTF-8',$contents_before);  
+       file_put_contents($path, $contents_after); 
+       $datalist=import_excel($path);
+       $flag=0;
+       $model=M("fly");
+       $model->startTrans();
+       $x=0;
+       foreach ($datalist as $data)
+       {  
+        if($x==0)
+        {
+          $x++;
+          continue;
+        }
+       
+          try{
+
+
+          $flydata['fly_serial']=$data[0];
+          $lt=$data[1];
+          $startdata=explode("-",$lt)[0];
+          $enddata=explode("-",$lt)[1];
+          $flydata['fly_line_name']=explode("#",$startdata)[0];         
+          $flydata['raw_fly_line_name']=explode("#",$startdata)[0];
+          $flydata['star_tower']=explode("#",$startdata)[1];         
+          $flydata['end_tower']=explode("#",$enddata)[1];
+          $flydata['fly_time']=convTime($data[2]);
+          $flydata['fly_longitude']=$data[3];
+          $flydata['fly_latitude']=$data[4];
+          $flydata['fly_height']=$data[5];
+          $flydata['fly_p_distance']=$data[6];         
+          $flydata['fly_tower_distance']=$data[7];
+          $flydata['fly_tree_type']=$data[8];
+          $flydata['fly_horizontal_distance']=$data[9];
+          $flydata['fly_vertical_distance']=$data[10];
+          $flydata['fly_air_distance']=$data[11];
+          $flydata['fly_danger_degree']=$data[12];
+          $flydata['fly_safe_distance']=$data[13];
+          M("fly")->data($flydata)->add();
+           }catch (\Think\Exception $e){
+              $flag=1;
+              break;
+           }
+
+   
+          }
+
+           if ($flag==1){
+            $model->rollback();
+           }else{
+            $model->commit();
+           }
+           return $flag;
+          
+        }
+
+
+
+    public function ajax_upload(){
+        
+        // 根据自己的业务调整上传路径、允许的格式、文件大小
+        ajax_upload('/Public/Upload/fly');
+    }
+    
+
+   public  function convTime($data)
+      {
+
+
+        $time=strtotime($data);
+        if($time==false)
+        {
+          
+          $data=str_replace(".","-",$data);
+          $time=strtotime($data);
+          return $time;
+          
+        }
+        else
+        {
+          return $time;
+        }
+       
+       }
+
+   
+   
+   
 
     
 }

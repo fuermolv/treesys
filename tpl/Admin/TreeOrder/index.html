@@ -25,21 +25,34 @@
 
       </ul>
 
-       <form class="form-inline"    action=""  id="my_form">
-            <tr>
-           <td>
-              <input  list="datalist" placeholder="线路名称" type="text" style="width: 8%;" name="line_id" id="line_id"  onblur="submitForm()"/> 
+           <tr>
+          <td>
+            <form class="form-inline" action="" id="my_form">
+            
+
+              <input  list="datalist" placeholder="线路名称" type="text" style="width: 8%;" name="line_name" id="line_name"/> 
              <datalist id="datalist">
              <foreach name="querydata['device_lines']" item="v">
              <option value ="{$v['device_name']}"></option>
              </foreach>
              </datalist> 
 
-               </td>
-              </tr>
+      
 
-          </form>
 
+            
+
+            <input style="width:8%" class="btn btn-sm btn-success" type="submit"  value="查找线路">
+           
+
+             
+
+
+
+            </form>
+          </td>
+        </tr>
+      </table>
 
       
 
