@@ -64,7 +64,7 @@ class TreeFlyController extends AdminBaseController {
 
         $model= M("fly");
 
-        $count =$model->where($map)->count();
+        $count =$model->alias('fly')->join('__DEVICE_LINE__ dl ON fly.fly_line_name=dl.device_name', 'LEFT')->where($map)->count();
       
 
         $limit = 20;
