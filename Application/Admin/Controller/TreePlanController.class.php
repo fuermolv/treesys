@@ -2,6 +2,10 @@
 namespace Admin\Controller;
 use Common\Controller\TreeSysController;
 use Common\Controller\AdminBaseController;
+
+use Common\Model\TreeBaseModel;
+use Common\Model\TreeDetailModel;
+
 /**
  * 后台首页控制器
  */
@@ -11,7 +15,7 @@ class TreePlanController extends AdminBaseController {
      */
   
     
-   
+
     public function check_plan() 
     {
          
@@ -74,11 +78,9 @@ class TreePlanController extends AdminBaseController {
 
 
          $this->display();
+       }
 
 
-    }
-
- 
 
     public function export_check_plan()
     {
@@ -329,27 +331,20 @@ class TreePlanController extends AdminBaseController {
                 $plan_data['cut_source']="翻生树障";
                 $plan_data['last_check_time']=$last_chek_time;
                 M("plan_cut")->data($plan_data)->add();
-
-
             
         }
 
 
-
-
-
-
-        }
+        
 
 
         }
-
-
         
     }
-
+  }
 
    
    
+
 
 }
