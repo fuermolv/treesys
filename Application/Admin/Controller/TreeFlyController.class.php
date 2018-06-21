@@ -166,6 +166,37 @@ class TreeFlyController extends AdminBaseController {
           $flydata['fly_air_distance']=$data[11];
           $flydata['fly_danger_degree']=$data[12];
           $flydata['fly_safe_distance']=$data[13];
+
+
+          $dd=$flydata['fly_danger_degree'];
+          if($dd=='重大')
+          {
+            $ar['fly_danger_serial']=6;
+          }
+          if($dd=='一般')
+          {
+            $ar['fly_danger_serial']=5;
+          }
+          if($dd=='其他')
+          {
+            $ar['fly_danger_serial']=4;
+          }
+          if($dd=='不构成其他')
+          {
+            $ar['fly_danger_serial']=3;
+          }
+          if($dd=='处理后无树竹')
+          {
+            $ar['fly_danger_serial']=2;
+          }
+          if($dd=='一直无树竹')
+          {
+            $ar['fly_danger_serial']=1;
+          }
+
+
+
+
           M("fly")->data($flydata)->add();
            }catch (\Think\Exception $e){
               $flag=1;
