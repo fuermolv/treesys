@@ -24,6 +24,13 @@ class TreePlanController extends AdminBaseController {
         $line_name = I('get.line_name');
         $start_tower = I('get.start_tower');
         $voltage_degree = I('get.voltage_degree');
+        $plan_type = I('get.plan_type');
+
+           if (!empty( $plan_type))
+        {
+             $map['check_source']=$plan_type;
+            
+        }
            if (!empty( $voltage_degree))
         {
              $map['voltage_degree']=$voltage_degree;
@@ -57,7 +64,7 @@ class TreePlanController extends AdminBaseController {
                  
             }
  
-         $map['check_plan_time']=array("GT",NOW_TIME);
+         // $map['check_plan_time']=array("GT",NOW_TIME);
 
         $model= M("plan_check");
 
@@ -85,6 +92,8 @@ class TreePlanController extends AdminBaseController {
     public function export_check_plan()
     {
   
+
+
         $model= M("plan_check");
         $limit = 200;
         $map['check_plan_time']=array("GT",NOW_TIME);
@@ -180,7 +189,10 @@ class TreePlanController extends AdminBaseController {
 
 
     public function export_cut_plan()
+
     {
+
+
         $model= M("plan_cut");
         $limit = 200;
         $map['cut_plan_time']=array("GT",NOW_TIME);
@@ -210,46 +222,46 @@ class TreePlanController extends AdminBaseController {
     public function make_check_plan()
     {
         
-        //巡检记录
-        $tmodel= M("tree_base");
-        $tmap['tree_status']="未处理";
-        $TreeData=$tmodel->where($tmap)->alias('base')->join('__DEVICE_LINE__ dl ON base.line_id=dl.did', 'LEFT')->join('treesys_tree_detail detail ON base.tid=detail.detail_tid ', 'LEFT')->select();
+        // //巡检记录
+        // $tmodel= M("tree_base");
+        // $tmap['tree_status']="未处理";
+        // $TreeData=$tmodel->where($tmap)->alias('base')->join('__DEVICE_LINE__ dl ON base.line_id=dl.did', 'LEFT')->join('treesys_tree_detail detail ON base.tid=detail.detail_tid ', 'LEFT')->select();
         
-        foreach ($TreeData as $t){
+        // foreach ($TreeData as $t){
 
-            $last_chek_time=$t['detail_last_time'];
+        //     $last_chek_time=$t['detail_last_time'];
 
-            if ($last_chek_time !=0){
+        //     if ($last_chek_time !=0){
 
-                $danger_degree=$t['datail_danger_degree'];
+        //         $danger_degree=$t['datail_danger_degree'];
                 
-                if ($danger_degree=="重大")
-                {
-                    $plan_data['check_plan_time']=strtotime("+7days",$last_chek_time);
-                }
-                if ($danger_degree=="一般")
-                {
-                    $plan_data['check_plan_time']=strtotime("+1months",$last_chek_time);
-                }
-                if ($danger_degree=="其他")
-                {
-                    $plan_data['check_plan_time']=strtotime("+3months",$last_chek_time);
-                }
-                $plan_data['check_create_time']=NOW_TIME;
-                $plan_data['danger_degree']=$t['datail_danger_degree'];
-                $plan_data['danger_degree_serial']=$t['datail_danger_degree_num'];
-                $plan_data['check_tid']=$t['tid'];
-                $plan_data['check_line_id']=$t['did'];
-                $plan_data['check_start_tower']=$t['star_tower'];
-                $plan_data['check_end_tower']=$t['end_tower'];
-                $plan_data['check_source']="人工巡检";
-                $plan_data['check_group']=$t['accountability_group'];
-                $plan_data['last_check_time']=$last_chek_time;
-                M("plan_check")->data($plan_data)->add();
+        //         if ($danger_degree=="重大")
+        //         {
+        //             $plan_data['check_plan_time']=strtotime("+7days",$last_chek_time);
+        //         }
+        //         if ($danger_degree=="一般")
+        //         {
+        //             $plan_data['check_plan_time']=strtotime("+1months",$last_chek_time);
+        //         }
+        //         if ($danger_degree=="其他")
+        //         {
+        //             $plan_data['check_plan_time']=strtotime("+3months",$last_chek_time);
+        //         }
+        //         $plan_data['check_create_time']=NOW_TIME;
+        //         $plan_data['danger_degree']=$t['datail_danger_degree'];
+        //         $plan_data['danger_degree_serial']=$t['datail_danger_degree_num'];
+        //         $plan_data['check_tid']=$t['tid'];
+        //         $plan_data['check_line_id']=$t['did'];
+        //         $plan_data['check_start_tower']=$t['star_tower'];
+        //         $plan_data['check_end_tower']=$t['end_tower'];
+        //         $plan_data['check_source']="人工巡检";
+        //         $plan_data['check_group']=$t['accountability_group'];
+        //         $plan_data['last_check_time']=$last_chek_time;
+        //         M("plan_check")->data($plan_data)->add();
 
-            }
+        //     }
 
-        }
+        // }
        $plan_data=null;
        $flymodel= M("fly");
        $FlyData=$flymodel->alias('fly')->join('__DEVICE_LINE__ dl ON fly.fly_line_name=dl.device_name', 'LEFT')->select();
