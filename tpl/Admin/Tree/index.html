@@ -65,8 +65,14 @@
            
              </datalist> 
 
+            <select style="width:8%" name="source_type" id="source_type" onchange="submitForm();">
+            <option value ="" >数据来源</option>
+            <option value ="飞行报告">飞行报告</option>
+            <option value ="人工巡检" >人工巡检</option>
 
- 
+            </select>
+
+        
             
  
 
@@ -472,6 +478,8 @@
       // sessionStorage.setItem("star_tower",document.getElementById("star_tower").value);  
       // sessionStorage.setItem("end_tower",document.getElementById("end_tower").value);  
       sessionStorage.setItem("orderBy",document.getElementById("orderBy").value); 
+      sessionStorage.setItem("source_type",document.getElementById("source_type").value); 
+
       
 
 
@@ -555,7 +563,8 @@
       $("#county").val(sessionStorage.getItem("county"))
       $("#town").val(sessionStorage.getItem("town"))
       $("#accountability_group").val(sessionStorage.getItem("accountability_group"))
-     
+      $("#source_type").val(sessionStorage.getItem("source_type"))
+
 
       $("#village").val(sessionStorage.getItem("village"))
       $("#tree_status").val(sessionStorage.getItem("tree_status"))

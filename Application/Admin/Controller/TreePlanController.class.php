@@ -92,7 +92,7 @@ class TreePlanController extends AdminBaseController {
     public function export_check_plan()
     {
   
-
+        // $this->make_check_plan();
 
         $model= M("plan_check");
         $limit = 200;
@@ -191,7 +191,7 @@ class TreePlanController extends AdminBaseController {
     public function export_cut_plan()
 
     {
-
+ 
 
         $model= M("plan_cut");
         $limit = 200;
@@ -262,10 +262,16 @@ class TreePlanController extends AdminBaseController {
         //     }
 
         // }
+
+
+       //飞行计划
        $plan_data=null;
        $flymodel= M("fly");
        $FlyData=$flymodel->alias('fly')->join('__DEVICE_LINE__ dl ON fly.fly_line_name=dl.device_name', 'LEFT')->select();
        foreach ($FlyData as $f){
+
+
+  
 
              $last_chek_time=$f['fly_time'];
 
@@ -293,11 +299,48 @@ class TreePlanController extends AdminBaseController {
                 $plan_data['check_end_tower']=$f['end_tower'];
                 $plan_data['check_source']="飞行报告";
                 $plan_data['last_check_time']=$last_chek_time;
-                M("plan_check")->data($plan_data)->add();
+
+
+
+
+       	    $plan_map['check_source']="飞行报告";
+       	    $plan_map['check_start_tower']=$plan_data['check_start_tower'];
+       	    $plan_map['check_end_tower']=$plan_data['check_end_tower'];
+       	    $plan_map['check_line_id']=$plan_data['check_line_id'];
+
+       	    $c=M("plan_check");
+       	  
+       	    $exist_plan=$c->where($plan_map)->select();
+       	 
+
+
+       	    if (empty($exist_plan) or count($exist_plan)<1)
+       	    {
+                  M("plan_check")->data($plan_data)->add();
+
+                   
+       	    }
+       	    else
+       	    {
+
+       	    	 $old_check_time=$exist_plan[0]['check_plan_time'];
+
+       	    
+       	    	 if ($old_check_time > $plan_data['check_plan_time'])
+       	    	 {
+       	    	 	//更新原有记录
+
+       	    	 	M("plan_check")->where($plan_map)->save($plan_data);
+       	    	 }
+
+       	    }
+
+               
 
             }
 
        }
+        $this->success('生成成功','',5);
 
        
 

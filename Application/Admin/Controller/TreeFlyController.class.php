@@ -108,9 +108,9 @@ class TreeFlyController extends AdminBaseController {
 
       }
       if($flag==1){
-         $this->error('导入失败','',5);
+       $this->error('导入失败','',5);
       }else{
-         $this->success('导入成功','',5);
+        $this->success('导入成功','',5);
       }
 
      
@@ -142,8 +142,25 @@ class TreeFlyController extends AdminBaseController {
           $x++;
           continue;
         }
+
+
+
+          for ($i=0; $i<=14; $i++)
+         {
+            if(!empty($data[$i]) and (strpos($data[$i],'.') !=false) and $i!=3  and $i!=4)
+           {
+                $raw_string=$data[$i];
+                $format_num = sprintf("%.3f",$raw_string);
+                $data[$i]=$format_num;
+                
+           } 
+         }
+
+
        
           try{
+
+
 
 
           $flydata['fly_serial']=$data[0];
@@ -168,37 +185,42 @@ class TreeFlyController extends AdminBaseController {
           $flydata['fly_safe_distance']=$data[13];
 
 
+
+
           $dd=$flydata['fly_danger_degree'];
           if($dd=='重大')
           {
-            $ar['fly_danger_serial']=6;
+            $flydata['fly_danger_serial']=6;
           }
           if($dd=='一般')
           {
-            $ar['fly_danger_serial']=5;
+            $flydata['fly_danger_serial']=5;
           }
           if($dd=='其他')
           {
-            $ar['fly_danger_serial']=4;
+            $flydata['fly_danger_serial']=4;
           }
           if($dd=='不构成其他')
           {
-            $ar['fly_danger_serial']=3;
+            $flydata['fly_danger_serial']=3;
           }
           if($dd=='处理后无树竹')
           {
-            $ar['fly_danger_serial']=2;
+            $flydata['fly_danger_serial']=2;
           }
-          if($dd=='一直无树竹')
+          if($v=='一直无树竹')
           {
-            $ar['fly_danger_serial']=1;
+            $flydata['fly_danger_serial']=1;
           }
+
 
 
 
 
           M("fly")->data($flydata)->add();
+          $this->save_to_base_data($flydata);
            }catch (\Think\Exception $e){
+
               $flag=1;
               break;
            }
@@ -214,6 +236,88 @@ class TreeFlyController extends AdminBaseController {
            return $flag;
           
         }
+
+
+    public function save_to_base_data($flydata){
+        $md5=md5($flydata['fly_longitude']."-".$flydata['fly_latitude']);
+        $fmap['tree_md5']=$md5;
+
+        $found=M("tree_base")->where($fmap)->select();
+
+        //往base插入一条新的
+        if (empty($found) or count($found)<1)
+        {     
+              $lmap['device_name']=$flydata['fly_line_name'];
+              $line_data=M("device_line")->where($lmap)->select();
+              if (count($line_data)<1)
+              {
+                   $insert_line['device_name']=$flydata['fly_line_name'];
+                   $insert_line['voltage_degree']="unknown";
+                   $line_id=M("fly")->data($insert_line)->add();
+
+              }else
+              {
+                    $line_id=$line_data[0]['did'];
+              }
+
+              $base_data['line_id']=$line_id;
+              $base_data['tree_md5']=$md5;
+              $base_data['star_tower']=$flydata['star_tower'];
+              $base_data['end_tower']=$flydata['end_tower'];
+              $base_data['tree_property']=$flydata['fly_tree_type'];
+              $base_data['tree_park_distance']=$flydata['fly_p_distance'];
+              $base_data['tree_longitude']=$flydata['fly_longitude'];
+              $base_data['tree_latitude']=$flydata['fly_latitude'];
+              $base_data['tree_small_distance']=$flydata['fly_tower_distance'];
+
+              
+             
+
+             $base=M("tree_base");
+             $tid=$base->data($base_data)->add(); 
+            
+        }else{
+             $tid=$found['0']['tid'];
+        }
+
+
+
+        $map['detail_tid']=$tid;
+        $data['datail_uptodate']=0;
+        M("tree_detail")->where($map)->data($data)->save();
+
+       
+
+        $detail_data['detail_tid']=$tid;
+        $detail_data['datail_danger_degree']=$flydata['fly_danger_degree'];
+        $detail_data['datail_danger_degree_num']=$flydata['fly_danger_serial'];
+      
+        $detail_data['datail_tree_horizontal']=$flydata['fly_horizontal_distance'];
+        $detail_data['datail_tree_vertical']=$flydata['fly_vertical_distance'];
+        $detail_data['datail_mix_net_distance']=$flydata['fly_air_distance'];
+        $detail_data['detail_fly_height']=$flydata['fly_height'];
+        $detail_data['detail_last_time']=$flydata['fly_time'];
+        $detail_data['detail_safe_distance']=$flydata['fly_safe_distance'];
+        $detail_data['detail_source']="飞行报告";
+       
+
+        
+        M("tree_detail")->data($detail_data)->add(); 
+      
+
+       
+       
+
+
+
+
+
+
+
+
+
+
+    }
 
 
 

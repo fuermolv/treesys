@@ -29,6 +29,7 @@ class TreeController extends AdminBaseController {
         $village = I('get.village');
         $limit = 15;
         $group_id = I('get.group_id');
+        $source_type = I('get.source_type');
         //确定班组线路
         // $map['id'] = $group_id;
         // $lienes = M("auth_rule")->where($map)->select();
@@ -135,12 +136,20 @@ class TreeController extends AdminBaseController {
             $map['end_tower'] = array('ELT',$end_tower);
         }
         if (empty($orderBy)) {
-            $orderBy = 'datail_danger_degree_num desc';
+       
+          $orderBy = 'datail_danger_degree_num desc';
         }
          if (!empty($accountability_group)) {
             $map['accountability_group'] = $accountability_group;
             
         }
+
+          if (!empty($source_type)) {
+
+             $map['detail_source'] = $source_type;
+            
+        }
+        
 
 
         
