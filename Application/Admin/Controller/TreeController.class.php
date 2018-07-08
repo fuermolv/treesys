@@ -15,31 +15,19 @@ class TreeController extends AdminBaseController {
        
         //$device_lines = session('device_li
         $orderBy = I('get.orderBy');
-        $dead_line_time_begin = I('get.dead_line_time_begin');
-        $dead_line_time_end = I('get.dead_line_time_end');
         $line_id = I('get.line_id');
         $county = I('get.county');
         $town = I('get.town');
         $voltage_degree = I('get.voltage_degree');
         $datail_danger_degree=I('get.datail_danger_degree');
         $tree_status=I('get.tree_status');
-        $star_tower=I('get.star_tower');
+     
         $accountability_group=I('get.accountability_group');
-        $end_tower=I('get.end_tower');
+    
         $village = I('get.village');
         $limit = 15;
         $group_id = I('get.group_id');
-        $source_type = I('get.source_type');
-        //确定班组线路
-        // $map['id'] = $group_id;
-        // $lienes = M("auth_rule")->where($map)->select();
-        // $map = null;
-        // $map['did'] = array('in', $lienes[0]['group_device']);
-       
-        // if($lienes[0]['group_device'][0]=="-")
-        // {
-        // 	$map=null;
-        // }
+    
 
         if(empty($accountability_group))
         {
@@ -89,13 +77,10 @@ class TreeController extends AdminBaseController {
         if (!empty($line_id)) 
         {
             $map['device_name'] = $line_id;
-           //  $orderBy = 'tid desc';
+          
         } else {
             $lines = array(-1);
-            // foreach ($device_lines as $d) {
-            //     array_push($lines, $d['did']);
-            // }
-            // $map['line_id'] = array('in', $lines);
+          
         }
 
         if (!empty($town)) {
@@ -127,14 +112,6 @@ class TreeController extends AdminBaseController {
         {
             $map['tree_status'] = $tree_status;
         }
-        if (!empty($star_tower)) 
-        {
-            $map['star_tower'] = array('EGT',$star_tower);
-        }
-        if (!empty($end_tower)) 
-        {
-            $map['end_tower'] = array('ELT',$end_tower);
-        }
         if (empty($orderBy)) {
        
           $orderBy = 'datail_danger_degree_num desc';
@@ -144,27 +121,18 @@ class TreeController extends AdminBaseController {
             
         }
 
-          if (!empty($source_type)) {
-
-             $map['detail_source'] = $source_type;
-            
-        }
+         
         
-
-
-        
-        // $data=D('TreeBase')->getPage(new TreeBaseModel(),$map,$order,$limit);
         $model = new TreeBaseModel();
         $map['datail_uptodate'] = 1;
         $count = $model->where($map)->alias('base')->join('__DEVICE_LINE__ dl ON base.line_id=dl.did', 'LEFT')->join('treesys_tree_detail detail ON base.tid=detail.detail_tid ', 'LEFT')
         ->count();
-    
         $page = new_page($count, $limit);
         $list = $model->where($map)->alias('base')->join('__DEVICE_LINE__ dl ON base.line_id=dl.did', 'LEFT')->join('treesys_tree_detail detail ON base.tid=detail.detail_tid ', 'LEFT')->order($orderBy)->limit($page->firstRow . ',' . $page->listRows)->select();
         $data = array('data' => $list, 'page' => $page->show());
        
         
-         //var_dump( $model->getLastSql());
+
         $this->assign('group_id', $group_id);
         $this->assign('querydata', $querydata);
         $this->assign('data', $data['data']);
