@@ -126,7 +126,7 @@
            
 
            
-             <a  style="width:8%" class="btn btn-sm btn-success" href="/ts/index.php/Admin/Tree/add/group_id/{$group_id}"  >增加树障</a>
+             <a  style="width:8%" class="btn btn-sm btn-success" href="/ts/index.php/Admin/TreeFly/fly_upload"  >导入飞行报告</a>
              
 
             </form>
@@ -150,34 +150,23 @@
         
            <th  id="t-device_name">线路名称</th>
            <th  id="t-star_tower" >起止杆号</th>
-     
+          <th  id="t-datail_mix_net_distance">距小号杆距离</th>  
            <th  id="t-danger_num">隐患序号</th>
-     
-          
-           <th  id="t-tree_status">当前状态</th>
-      
- 
-           <th  id="t-detail_last_time">更新时间</th>
-   
+           <th  id="t-tree_status">树障状态</th>
+           
            <th  id="t-datail_danger_degree">隐患级别</th>
-         
-
            <th  id="t-datail_tree_type">树种</th>
            <th  id="t-datail_tree_num">数量</th>
-        
            <th  id="t-datail_tree_area">面积</th>
-        
            <th  id="t-datail_tree_height">树高</th> 
            <th  id="">预测树高</th> 
            <th  id="t-datail_tree_horizontal">水平距离</th>
            <th  id="t-datail_tree_vertical">垂直距离</th>
-         
-           <th  id="t-datail_tree_over">高出导线</th> 
            <th  id="t-datail_mix_net_distance">净空距离</th> 
-           <th  id="t-datail_mix_lodging_distance">倒伏距离</th> 
-           <th  id="t-detail_run_deal">协议情况</th> 
-   
-           <th  id="t-detail_order_time">任务单发布时间</th>
+        
+           <th  id="t_run_deal">协议情况</th> 
+           <th  id="t_order_time">任务单发布时间</th>
+           <th  id="t-detail_last_time">更新时间</th>
          
 
         
@@ -194,18 +183,21 @@
              
               <td  >{$v['accountability_group']}</td>
         
-              <td  >{$v['county']|mb_substr=0,2}</td>
+              <td  >{$v['county']}</td>
               <td  >{$v['town']}</td>
             
               <td  >{$v['voltage_degree']}kV{$v['device_name']}</td>
               <td  >#{$v['star_tower']}-#{$v['end_tower']}</td>
+              <td  >{$v['tree_small_distance']}</td>
            <td  width="3%">{$v['danger_num']}</td>
+           
+
+         
            
            
               <td  >{$v['tree_status']}</td>
     
               
-                <td  >{$v['detail_last_time']|date='Y-m-d',###}</td> 
               
 
                 <if condition="$v['datail_danger_degree'] eq '重大'">
@@ -213,46 +205,32 @@
                 <else /> 
                 <td id="t-datail_danger_degree">{$v['datail_danger_degree']}</td>
                 </if>
-                 
+            
               
-                <td  style="display:none" id="t-datail_check_change_conclusion">{$v['datail_check_change_conclusion']}</td>
-                <td  style="display:none" id="t-datail_check_process_conclusion">{$v['datail_check_process_conclusion']}</td>                        
-             
                 <td  id="t-datail_tree_type">{$v['datail_tree_type']}</td>
                 <td  id="t-datail_tree_num">{$v['datail_tree_num']}{$v['datail_tree_num_unit']}</td>
-           
                 <td  id="t-datail_tree_area">{$v['datail_tree_area']}{$v['datail_tree_area_unit']}</td>
-            
                 <td  id="t-datail_tree_height">{$v['datail_tree_height']}</td>
 
+               
                 <td >
-              
                  
                   <script type="text/javascript">
-
                   // document.write(((Math.random()+{$v['datail_tree_height']}).toFixed(2)))
                 </script>
              
 
                 </td>
 
-
                 <td  id="t-datail_tree_horizontal">{$v['datail_tree_horizontal']}</td>
                 <td  id="t-datail_tree_vertical">{$v['datail_tree_vertical']}</td>
+                <td id="t-datail_mix_net_distance">{$v['datail_mix_net_distance']}</td>
               
-  
-                <td  id="t-datail_tree_over">
-                  <if condition="$v['datail_tree_over'] eq '1'">是
-                    <else /> 否
-                        </if></td>
-                </td> 
 
-              <td id="t-datail_mix_net_distance">{$v['datail_mix_net_distance']}</td>
-              <td id="t-datail_mix_lodging_distance">{$v['datail_mix_lodging_distance']}</td>
-
-                <td  >{$v['detail_run_deal']}</td>
+                <td  >{$v['run_deal']}</td>
         
-                <td  >{$v['detail_order_time']}</td>
+                <td  >{$v['order_time']}</td>
+                 <td  >{$v['detail_last_time']|date='Y-m-d',###}</td> 
               <td>
             
               <a href="/ts/index.php/Admin/Tree/base/tid/{$v['tid']}/line_id/{$v['line_id']}"   >详情</a> <!-- class="btn btn-info btn-sm" -->

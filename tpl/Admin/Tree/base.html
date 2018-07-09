@@ -29,8 +29,8 @@
               
                <input style="width:10%" id="edit_button" class="btn btn-sm btn-success"  type="button"   tid="{$tid}" line_id="{line_id}" onclick="edit_tree(this)" value="
                修改基本数据">
-               <input style="width:10%" id="update_button" class="btn btn-sm btn-success"  type="button"   tid="{$tid}" onclick="add_detail(this)" value="
-               更新巡检记录">
+              <!--  <input style="width:10%" id="update_button" class="btn btn-sm btn-success"  type="button"   tid="{$tid}" onclick="add_detail(this)" value="
+               更新巡检记录"> -->
             
             
                <input style="width:10%" class="btn btn-sm btn-danger" type="button" tid="{$tid}"  onclick="delete_tree(this)" onclick="" value="删除树障">
@@ -83,14 +83,15 @@
  <table class="table table-striped table-bordered table-hover table-condensed" >
             <foreach name="data" item="v">
               <tr>
-                <th  colspan="26"><font size="2" color="red">隐患基本信息</font></th>
+                <th  colspan="28"><font size="2" color="red">隐患基本信息</font></th>
               </tr>
 
             
                 <tr>
                     <th colspan="9">树障位置</th>
-                 
-                    <th colspan="9">树障总体量</th>
+                    <th colspan="4">具体位置</th>
+
+                    <th colspan="10">树障总体量</th>
                     <th colspan="5">树障属性</th>
                    
 
@@ -98,7 +99,6 @@
                 <tr>
                   
                     <th colspan="1">责任班组</th>
-                  
                     <th colspan="1">县</th>
                     <th colspan="1">镇</th>
                     <th colspan="1">村</th>
@@ -107,9 +107,20 @@
                     <th colspan="1">小号杆</th>
                     <th colspan="1">大号杆</th>
                     <th colspan="1">隐患序号</th>
+
+                    <th colspan="1">档距</th>
+                    <th colspan="1">距小号杆距离</th>
+                    <th colspan="1">经度</th>
+                    <th colspan="1">纬度</th>
+
+
+                  
                     <th colspan="1">首次调查人</th>
                     <th colspan="1">首次隐患调查日期</th>
-              
+
+
+
+                  
                     <th colspan="1">树障存在的状态</th>
                     <th colspan="1">树障种类</th>
                     <th colspan="1">保护区范围外是否有需要处理的树障</th>
@@ -137,14 +148,26 @@
                       <td  >{$v['town']}</td>  
 
                       <td  >{$v['village']}</td>
+                      
+
                       <td  >{$v['voltage_degree']}kV</td>                       
                       <td  >{$v['voltage_degree']}kV{$v['device_name']}</td> 
                       <td  >{$v['star_tower']}</td>
                       <td  >{$v['end_tower']}</td>
                       <td  >{$v['danger_num']}</td>
+
+                      <td  >{$v['tree_park_distance']}</td>
+                      <td  >{$v['tree_small_distance']}</td>
+
+                      <td  >{$v['tree_longitude']}</td>
+                      <td  >{$v['tree_latitude']}</td>
+
+
+
                       <td  >{$v['first_check_person']}</td>
                       <td  >{$v['first_check_time']|date='Y-m-d',###}</td>              
                            
+
                       <td  >{$v['tree_status']}</td>
                       <td  >{$v['tree_type']}</td>    
                       <td  ><if condition="$v['tree_danger'] eq '1'">是
@@ -158,11 +181,11 @@
                         <td  >{$v['average_radius']}</td>
                         <td  >{$v['average_height']}</td>
 
-                        <td  id="t-tree_property">{$v['tree_property']}</td>                        
-                        <td  id="t-new_plant">{$v['new_plant']}</td>
-                        <td  id="t-defect_type">{$v['defect_type']}</td>                        
-                        <td  id="t-survival">{$v['survival']}</td>
-                        <td  id="t-tree_age">{$v['tree_age']}</td>
+                        <td  >{$v['tree_property']}</td>                        
+                        <td  >{$v['new_plant']}</td>
+                        <td  >{$v['defect_type']}</td>                        
+                        <td  >{$v['survival']}</td>
+                        <td  >{$v['tree_age']}</td>
                        
                     </tr> 
 
@@ -188,11 +211,11 @@
                     <td  id="t-owner_phone">{$v['owner_phone']}</td>
                     <td  id="t-owner_address">{$v['owner_address']}</td>
 
-                        <td  >{$v['detail_compensation_condition']}</td> 
-                        <td  >{$v['detail_build_deal']}</td>
-                        <td  >{$v['detail_run_deal']}</td>
-                        <td  >{$v['detail_notice_number']}</td>
-                        <td  >{$v['detail_order_time']}</td>
+                        <td  >{$v['compensation_condition']}</td> 
+                        <td  >{$v['build_deal']}</td>
+                        <td  >{$v['run_deal']}</td>
+                        <td  >{$v['notice_number']}</td>
+                        <td  >{$v['order_time']}</td>
                     
 
                    </tr>
@@ -208,11 +231,11 @@
                    <table class="table table-striped table-bordered table-hover table-condensed" >
 
                     <tr>
-                        <th colspan="25"><font size="2" color="red">隐患最新信息</font></th>
+                        <th colspan="13"><font size="2" color="red">隐患最新信息</font></th>
                       </tr>    
                     <tr>
-                        <th colspan="6">隐患最新情况</th>
-                        <th colspan="5">隐患最新数据</th>
+                        <th colspan="4">隐患情况</th>
+                        <th colspan="6">隐患数据</th>
                       
                        
                       
@@ -221,38 +244,41 @@
                     </tr>
                     <tr>
                     <th colspan="1">最新隐患调查日期</th>
-                    <th colspan="1">最新隐患调查人</th>
+                   
                   
                     <th colspan="1">隐患级别</th>
+                    <th colspan="1">倒伏级别</th>
                     <th colspan="1">级别变化</th>
-                    <th colspan="1">处理结论</th>                
-                    <th colspan="1">位置结论</th>
-              
+
+           <th colspan="1" >飞行高度</th>
+           <th colspan="1">树高</th>
+           <th colspan="1">水平距离</th>
+           <th colspan="1">垂直距离</th>
+           <th colspan="1" >净空距离</th>
+           <th colspan="1">安全距离</th>
            
-                    <th colspan="1">最危急树障树高</th>
+                 <!--    <th colspan="1">最危急树障树高</th>
                     <th colspan="1">最危急树障导线对树木水平距离</th>
                     <th colspan="1">最危急树障导线对树木垂直距离</th>
                     <th colspan="1">最危急树障导线对地距离</th>
-                    <th colspan="1">是否高出导线</th>
+                    <th colspan="1">是否高出导线</th> -->
                  
                       
                 </tr>
                         <td  >{$v['detail_last_time']|date='Y-m-d',###}</td>                                                 
-                        <td  >{$v['datail_check_person']}</td> 
-                        <td  id="t-datail_danger_degree">{$v['datail_danger_degree']}</td>                        
-                        <td  id="t-datail_check_change_conclusion">{$v['datail_check_change_conclusion']}</td>
-                        <td  id="t-datail_check_process_conclusion">{$v['datail_check_process_conclusion']}</td>                        
-                        <td  id="t-datail_check_posistion_conclusion">{$v['datail_check_posistion_conclusion']}</td>
+                        
+                        <td  >{$v['datail_danger_degree']}</td>    
+                        <td  >{$v['datail_lodging_degree']}</td>                    
+                        <td  >{$v['datail_check_change_conclusion']}</td>
+                   
                       
-                        <td  id="t-datail_tree_height">{$v['datail_tree_height']}</td>                        
-                        <td  id="t-datail_tree_horizontal">{$v['datail_tree_horizontal']}</td>
-                        <td  id="t-datail_tree_vertical">{$v['datail_tree_vertical']}</td>
-                        <td  id="t-datail_tree_grand_height">{$v['datail_tree_grand_height']}</td>
-                        <td  id="t-datail_tree_over">
-                            <if condition="$v['datail_tree_over'] eq '1'">是
-                                <else /> 否
-                                    </if>
-                        </td>
+                        <td  >{$v['detail_fly_height']}</td>                        
+                        <td  >{$v['datail_tree_height']}</td>
+                        <td  >{$v['datail_tree_horizontal']}</td>
+                        <td  >{$v['datail_tree_vertical']}</td>
+                        <td  >{$v['datail_mix_net_distance']}</td>
+                        <td  >{$v['detail_safe_distance']}</td>
+                       
                       
 
                         

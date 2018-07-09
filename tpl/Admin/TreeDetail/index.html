@@ -24,10 +24,10 @@
                 <a href="" style="width:10%" id="list_button" class="btn btn-sm disabled" >巡查记录列表</a>
                <!--  <input style="width:10%" id="add_button" class="btn btn-sm btn-success" type="button" tid="{$tree_id}" onclick="add_detail(this)" value="添加新记录"> -->
 
-               <a href="javascript:;"  style="width:10%" id="list_file_button" class="btn btn-sm btn-success" type="button"  tid="{$tree_id}" onclick="file(this)">查看任务单</a>
+               <a href="javascript:;"  style="width:10%" id="list_file_button" class="btn btn-sm btn-success" type="button"  tid="{$tree_id}" onclick="file(this)">查看巡查文件</a>
         
        
-               <a href="javascript:;"  style="width:10%" id="add_file_button" class="btn btn-sm btn-success" type="button" tid="{$tree_id}" onclick="uploadfile(this)">上传任务单</a>
+               <a href="javascript:;"  style="width:10%" id="add_file_button" class="btn btn-sm btn-success" type="button" tid="{$tree_id}" onclick="uploadfile(this)">上传巡查文件</a>
               
           
 
@@ -37,7 +37,7 @@
       </table>
 
 
-    <div class="modal fade" id="bjy-edit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+   <!--  <div class="modal fade" id="bjy-edit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -84,7 +84,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 
 <!-- <ul class="nav nav-tabs padding-12 tab-color-blue background-blue" id="myTab">
         <li class="active">
@@ -97,125 +97,50 @@
         <div class="table-responsive">
         <table class="table table-striped table-bordered table-hover table-condensed " id="data-table">
 <tr>
-    <th colspan="3">隐患最新情况</th>    
-    <th colspan="3">隐患最新情况（程度）</th>
-    <th colspan="1">隐患最新情况（位置）</th>                    
-    <th colspan="14">隐患最新情况（表象）</th>
-    <th colspan="1">隐患最新情况（监测）</th>
-    <th colspan="1">隐患来源</th>
-    <th colspan="4">隐患权属人信息</th>
-    <th colspan="5">隐患处理与管控</th>
-    <th colspan="5">系统新增</th>                
+    <th colspan="4">树障总体情况</th>    
+    <th colspan="6">树障数据</th>
+    <th colspan="3">系统记录</th>
+    <th colspan="1">操作</th>                     
+          
     
 </tr>
           <tr> 
-          <th  id="t-detail_last_time">最新隐患调查日）</th>    
-           <th  id="t-datail_check_person">最新隐患调查）</th> 
-           <th  id="t-datail_check_time">测量时刻</th>      
-           <th  id="t-datail_danger_degree">隐患级别（最新隐患）</th>
-           <th  id="t-datail_check_change_conclusion">调缺陷级别变化</th>
-           <th  id="t-datail_check_process_conclusion">处理结论</th>
-           <th  id="t-datail_check_posistion_conclusion">位置结论(位置)</th>           
-           <th  id="t-datail_tree_type">最危急树障种类</th>
-           <th  id="t-datail_tree_num">最危急树障数量</th>
-           <th  id="t-datail_tree_num_unit">最危急树障数量单位</th>
-           <th  id="t-datail_tree_area">最危急树障面积</th>
-           <th  id="t-datail_tree_area_unit">最危急树障面积单位</th>
-           <th  id="t-datail_tree_height">最危急树障树高</th>           
-           <th  id="t-datail_tree_horizontal">最危急树障导线对树木水平距离</th>
-           <th  id="t-datail_tree_vertical">最危急树障导线对树木垂直距离</th>
-           <th  id="t-datail_tree_grand_height">最危急树障导线对地</th>
+          <th  >隐患调查时间</th>    
+          <th  >隐患等级</th>
+          <th  >倒伏等级</th>  
+          <th  >隐患等级变化</th>   
 
-           <th  id="t-datail_mix_net_distance">最小净空距离</th>
-           <th  id="t-datail_mix_lodging_distance">树木倒伏导线最小距离</th>
-           <th  id="t-datail_lodging_degree">倒伏判断隐患级别</th>
-
-           <th  id="t-datail_tree_over">是否高出导线</th>
-           <th  id="t-datail_final_danger">最终自然生长高度是否构成一般级别缺陷</th>           
-           <th  id="t-detail_check_method">测量方法</th>                      
-         <!--   <th  id="t-detail_temperature">气温（℃）</th>
-           <th  id="t-detail_load">负荷（A）</th> -->
-           <th  id="t-detail_retain">是否建设遗留</th>
-           <th  id="t-detail_address">种植物联系人地址</th>
-           <th  id="t-detail_owner">种植物联系人姓名</th>
-           <th  id="t-detail_phone">种植物联系人电话</th>
-           <th  id="t-detail_plant_time">种植时间</th>
-           <th  id="t-detail_compensation_condition">青赔情况</th>
-           <th  id="t-detail_build_deal">线路建设协议签定情况</th>
-           <th  id="t-detail_run_deal">运行过程中协议情况</th>
-           <th  id="t-detail_notice_number">隐患通知书编号、情况</th>
-            <th  id="t-detail_order_time">任务单发布时间</th>
+             <th  >飞行高度</th>
+           <th >树高</th>
+           <th >水平距离</th>
+           <th >垂直距离</th>
+           <th >净空距离</th>
+           <th >安全距离</th>   
          
-           <th id="t-datail_update_time">更新时间</th>
-           <th id="t-datail_update_person">更新人</th> 
-           <th  id="t-datail_update_group">更新班组</th>
-           <th  id="t-datail_uptodate">是否最新</th>
+         
+           <th >更新时间</th>
+           <th >更新人</th> 
+           <th >是否最新</th>
            
            <th>操作</th>  
           </tr>
           <foreach name="data" item="v">
             <tr>
-              <td id="t-detail_last_time">{$v['detail_last_time']|date='Y-m-d',###}</td>                 
-              <td id="t-datail_check_person">{$v['datail_check_person']}</td>              
-              <td id="t-datail_check_time">{$v['datail_check_time']|date='Y-m-d H:i:s',###}</td>
-              <td id="t-datail_danger_degree">{$v['datail_danger_degree']}</td>
-              <td id="t-datail_check_change_conclusion">{$v['datail_check_change_conclusion']}</td>
-              <td id="t-datail_check_process_conclusion">{$v['datail_check_process_conclusion']}</td>
-              <td id="t-datail_check_posistion_conclusion">{$v['datail_check_posistion_conclusion']}</td>
-              <td id="t-datail_tree_type">{$v['datail_tree_type']}</td>
-              <td id="t-datail_tree_num">{$v['datail_tree_num']}</td>
-              <td id="t-datail_tree_num_unit">{$v['datail_tree_num_unit']}</td>
-              <td id="t-datail_tree_area">{$v['datail_tree_area']}</td>
-              <td id="t-datail_tree_area_unit">{$v['datail_tree_area_unit']}</td>
-              <td id="t-datail_tree_height">{$v['datail_tree_height']}</td>              
-              <td id="t-datail_tree_horizontal">{$v['datail_tree_horizontal']}</td>
-              <td id="t-datail_tree_vertical">{$v['datail_tree_vertical']}</td>
-              <td id="t-datail_tree_grand_height">{$v['datail_tree_grand_height']}</td>
-              
-              <td id="t-datail_mix_net_distance">{$v['datail_mix_net_distance']}</td>
-              <td id="t-datail_mix_lodging_distance">{$v['datail_mix_lodging_distance']}</td>
-              <td id="t-datail_lodging_degree">{$v['datail_lodging_degree']}</td>
+              <td id="t-detail_last_time">{$v['detail_last_time']|date='Y-m-d',###}</td>
+              <td  >{$v['datail_danger_degree']}</td>    
+              <td  >{$v['datail_lodging_degree']}</td>                    
+              <td  >{$v['datail_check_change_conclusion']}</td>
 
-
-              <td id="t-datail_tree_over">
-                <if condition="$v['datail_tree_over'] eq 1">是
-              <else /> 否
-              </if></td>
-
-              <!-- <td id="t-datail_tree_over">
-                <if condition="$v['datail_tree_over'] eq 1">是
-              <else /> 否
-              </if></td>
-              </td>  -->
-              <!-- 不知道如何多了一个值，之前检查的时候是没有的 -->
-              <td id="t-datail_final_danger">
-                <if condition="$v['datail_final_danger'] eq 1">是
-               <else /> 否
-               </if></td>
-              <td id="t-detail_check_method">{$v['detail_check_method']}</td>              
-            <!--   <td id="t-detail_temperature">{$v['detail_temperature']}</td>
-              <td id="t-detail_load">{$v['detail_load']}</td> -->
-              <td id="t-detail_retain">
-                  <if condition="$v['detail_retain'] eq 1">是
-                <else /> 否
-                </if></td>
-                </td> 
-              <td id="t-detail_address">{$v['detail_address']}</td>
-              <td id="t-detail_owner">{$v['detail_owner']}</td>
-              <td id="t-detail_phone">{$v['detail_phone']}</td>
-              <td id="t-detail_plant_time">{$v['detail_plant_time']}</td>
-              <td id="t-detail_compensation_condition">{$v['detail_compensation_condition']}</td>
-              <td id="t-detail_build_deal">{$v['detail_build_deal']}</td>
-              <td id="t-detail_run_deal">{$v['detail_run_deal']}</td>
-              <td id="t-detail_notice_number">{$v['detail_notice_number']}</td>
-               <td id="t-detail_order_time">{$v['detail_order_time']}</td>
-
-              
-              
-
+              <td  >{$v['detail_fly_height']}</td>                        
+               <td  >{$v['datail_tree_height']}</td>
+              <td  >{$v['datail_tree_horizontal']}</td>
+              <td  >{$v['datail_tree_vertical']}</td>
+              <td  >{$v['datail_mix_net_distance']}</td>
+              <td  >{$v['detail_safe_distance']}</td>                 
+             
               <td  id="t-datail_update_time">{$v['datail_update_time']|date='Y-m-d',###}</td>
               <td  id="t-datail_update_person">{$v['datail_update_person']}</td> 
-              <td id="t-datail_update_group">{$v['datail_update_group']}</td>
+              
 
               <td id="t-datail_uptodate">
                 <if condition="$v['datail_uptodate'] eq '1'">是
