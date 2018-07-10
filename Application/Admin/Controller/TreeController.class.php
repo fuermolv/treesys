@@ -27,6 +27,7 @@ class TreeController extends AdminBaseController {
         $village = I('get.village');
         $limit = 15;
         $group_id = I('get.group_id');
+        $star_tower = I('get.star_tower');
     
 
         if(empty($accountability_group))
@@ -63,16 +64,16 @@ class TreeController extends AdminBaseController {
 
         // $map = null;
         //选出县镇乡
-        if (!empty($county)) {
-            $map['fid'] = $county;
-            $map['sid'] = 0;
-            $querydata['towns'] = M("areas")->where($map)->select();
-        }
-        $map = null;
-        if (!empty($town)) {
-            $map['sid'] = $town;
-            $querydata['villages'] = M("areas")->where($map)->select();
-        }
+        // if (!empty($county)) {
+        //     $map['fid'] = $county;
+        //     $map['sid'] = 0;
+        //     $querydata['towns'] = M("areas")->where($map)->select();
+        // }
+        // $map = null;
+        // if (!empty($town)) {
+        //     $map['sid'] = $town;
+        //     $querydata['villages'] = M("areas")->where($map)->select();
+        // }
         $map = null;
         if (!empty($line_id)) 
         {
@@ -83,23 +84,31 @@ class TreeController extends AdminBaseController {
           
         }
 
-        if (!empty($town)) {
-            $tamp_map['id']=$town;
-            $temp=M("areas")->where($tamp_map)->field('name')->select();
-            $map['town'] = $temp[0]['name'] ;
+        // if (!empty($town)) {
+        //     $tamp_map['id']=$town;
+        //     $temp=M("areas")->where($tamp_map)->field('name')->select();
+        //     $map['town'] = $temp[0]['name'] ;
             
-        }
-        if (!empty($county)) {
-            $tamp_map['id']=$county;
-            $temp=M("areas")->where($tamp_map)->field('name')->select();
-            $map['county'] =$temp[0]['name']  ;
+        // }
+        // if (!empty($county)) {
+        //     $tamp_map['id']=$county;
+        //     $temp=M("areas")->where($tamp_map)->field('name')->select();
+        //     $map['county'] =$temp[0]['name']  ;
             
+        // }
+        // if (!empty($village)) {
+        //     $tamp_map['id']=$village;
+        //     $temp=M("areas")->where($tamp_map)->field('name')->select();
+        //     $map['village'] = $temp[0]['name'] ;
+        // }
+
+
+         if (!empty($star_tower)and is_numeric($star_tower)) {
+            $map['star_tower'] = array("EGT",$star_tower);
         }
-        if (!empty($village)) {
-            $tamp_map['id']=$village;
-            $temp=M("areas")->where($tamp_map)->field('name')->select();
-            $map['village'] = $temp[0]['name'] ;
-        }
+
+
+
         if (!empty($voltage_degree)) {
             $map['voltage_degree'] = $voltage_degree;
         }
@@ -130,7 +139,23 @@ class TreeController extends AdminBaseController {
         $page = new_page($count, $limit);
         $list = $model->where($map)->alias('base')->join('__DEVICE_LINE__ dl ON base.line_id=dl.did', 'LEFT')->join('treesys_tree_detail detail ON base.tid=detail.detail_tid ', 'LEFT')->order($orderBy)->limit($page->firstRow . ',' . $page->listRows)->select();
         $data = array('data' => $list, 'page' => $page->show());
-       
+
+
+           
+        foreach ($data['data'] as &$d)
+        {
+     
+
+        if(!empty($d['start_tower_addtion']))
+        {   
+            $d['star_tower']=$d['star_tower']."+".$d['start_tower_addtion'];
+        }
+        if(!empty($d['end_tower_addtion']))
+        {
+            $d['end_tower']=$d['end_tower']."+".$d['end_tower_addtion'];
+        }
+        }
+     
         
 
         $this->assign('group_id', $group_id);
@@ -156,9 +181,17 @@ class TreeController extends AdminBaseController {
         $data=$model->where($map)->alias('base')->join('__DEVICE_LINE__ dl ON base.line_id=dl.did', 'LEFT')->join('treesys_tree_detail detail ON base.tid=detail.detail_tid ', 'LEFT')
         ->join('treesys_order od ON base.tid=od.order_tid ', 'LEFT')->select();
 
-        if(empty($data[0]['tree_div']))
+       
+        
+
+         if(!empty($data[0]['start_tower_addtion']))
         {
-            $data[0]['tree_div']='未设定';
+        
+            $data[0]['star_tower']=$data[0]['star_tower']."+".$data[0]['start_tower_addtion'];
+        }
+        if(!empty($data[0]['end_tower_addtion']))
+        {
+            $data[0]['end_tower']=$data[0]['end_tower']."+".$data[0]['end_tower_addtion'];
         }
 
       

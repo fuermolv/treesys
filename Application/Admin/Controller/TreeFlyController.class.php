@@ -260,9 +260,33 @@ class TreeFlyController extends AdminBaseController {
                     $line_id=$line_data[0]['did'];
               }
 
+              if(strpos($flydata['star_tower'],"+") !== false)
+              {
+                    $st=explode("+",$star_tower);
+                    $base_data['star_tower']=$st[0];
+                    $base_data['start_tower_addtion']=$st[1];
+
+              }else
+              {
+
+                  $base_data['star_tower']=$flydata['star_tower'];
+              }
+               if(strpos($flydata['end_tower'],"+") !== false)
+              {
+                 $st=explode("+",$star_tower);
+                 $base_data['end_tower']=$st[0];
+                    $base_data['end_tower_addtion']=$st[1];
+              }
+              else
+              {
+                $base_data['end_tower']=$flydata['end_tower'];
+              }
+
+
+
               $base_data['line_id']=$line_id;
               $base_data['tree_md5']=$md5;
-              $base_data['star_tower']=$flydata['star_tower'];
+              
               $base_data['end_tower']=$flydata['end_tower'];
               $base_data['tree_property']=$flydata['fly_tree_type'];
               $base_data['tree_park_distance']=$flydata['fly_p_distance'];
@@ -285,7 +309,10 @@ class TreeFlyController extends AdminBaseController {
         $map['detail_tid']=$tid;
         $data['datail_uptodate']=0;
         M("tree_detail")->where($map)->data($data)->save();
+         
 
+        
+       
        
 
         $detail_data['detail_tid']=$tid;
