@@ -94,8 +94,7 @@ class TreePlanController extends AdminBaseController {
   
         // $this->make_check_plan();
 
-        $model= M("plan_check");
-        $limit = 200;
+       $model= M("plan_check");
         $map['check_plan_time']=array("GT",NOW_TIME);
         $orderBy="danger_degree_serial desc,check_plan_time";
         $checkdata=$model->alias('plan')->join('__DEVICE_LINE__ dl ON plan.check_line_id=dl.did', 'LEFT')->where($map)->order($orderBy)->limit($limit)->select();

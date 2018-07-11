@@ -49,12 +49,10 @@
 
           <tr>
         
-           <th  >经度(度）</th>
-           <th  >经度(分）</th>
-           <th  >经度(秒）</th>
-           <th  >纬度(度）</th>
-           <th  >纬度(分）</th>
-           <th  >纬度(秒）</th>
+           <th  >经度</th>
+
+           <th  >纬度</th>
+    
            <th  >备注</th>
          
 
@@ -63,11 +61,8 @@
             <tr>
               <td ><input style="width:100px;" id="tower_longitude_d" type="text" value="{$data['tower_longitude_d']}" name="tower_longitude_d"></td>
               <td ><input style="width:100px;" id="tower_longitude_m" type="text" value="{$data['tower_longitude_m']}" name="tower_longitude_m"></td>
-              <td ><input style="width:100px;" id="tower_longitude_s" type="text" value="{$data['tower_longitude_s']}" name="tower_longitude_s"></td>
-              <td ><input style="width:100px;" id="tower_latitude_d" type="text" value="{$data['tower_latitude_d']}" name="tower_latitude_d"></td>
-              <td ><input style="width:100px;" id="tower_latitude_m" type="text" value="{$data['tower_latitude_m']}" name="tower_latitude_m"></td>
-              <td ><input style="width:100px;" id="tower_latitude_s" type="text" value="{$data['tower_latitude_s']}" name="tower_latitude_s"></td>
-              <td ><input style="width:100px;" id="tower_remark" type="text" value="{$data['tower_remark']}" name="tower_remark"></td>
+              <td ><input style="width:100px;" id="tower_longitude_m" type="text" value="{$data['tower_longitude_m']}" name="tower_longitude_m"></td>
+             
         
               
     
@@ -80,8 +75,6 @@
             
            <th  ></th>
            <th  >线路名称</th>
-           <th  >电压值</th>
-           <th  >杆塔序号(前一个杆塔的序号）</th>
            <th  >杆塔号</th> 
            </tr>
            <tr>
@@ -94,54 +87,11 @@
              </foreach>
              </datalist>
              </td>
-           <td ><input style="width:100px;" id="tower_line_degree1" type="text"  name="tower_line_degree1"></td>
-           <td ><input style="width:100px;" id="tower_serial1" type="text"  name="tower_serial1"></td>
+          
            <td ><input style="width:100px;" id="tower_number_old1" type="text" name="tower_number_old1"></td>
            </tr>
     
-           <tr id="tower_line_tr2" style="display: none">
-           <td ><font size="3" color="red">线路二</td>
-           <td >
-            <input  list="datalist" name="tower_line_name2" id="tower_line_name2" placeholder="线路名称" type="text" /> 
-             <datalist id="datalist">
-             <foreach name="querydata['device_lines']" item="v">
-             <option value ="{$v['device_name']}"></option>
-             </foreach>
-             </datalist>
-             </td>
-           <td ><input style="width:100px;" id="tower_line_degree2" type="text"  name="tower_line_degree2"></td>
-           <td ><input style="width:100px;" id="tower_serial2" type="text"  name="tower_serial2"></td>
-           <td ><input style="width:100px;" id="tower_number_old2" type="text" name="tower_number_old2"></td>
-           </tr>
-           <tr id="tower_line_tr3" style="display: none">
-            <td ><font size="3" color="red">线路三</td>
-            <td >
-             <input  list="datalist" name="tower_line_name3" id="tower_line_name3" placeholder="线路名称" type="text" /> 
-              <datalist id="datalist">
-              <foreach name="querydata['device_lines']" item="v">
-              <option value ="{$v['device_name']}"></option>
-              </foreach>
-              </datalist>
-              </td>
-            <td ><input style="width:100px;" id="tower_line_degree3" type="text"  name="tower_line_degree3"></td>
-            <td ><input style="width:100px;" id="tower_serial3" type="text"  name="tower_serial3"></td>
-            <td ><input style="width:100px;" id="tower_number_old3" type="text" name="tower_number_old3"></td>
-            </tr>
-            <tr id="tower_line_tr4" style="display: none">
-              <td ><font size="3" color="red">线路四</td>
-              <td >
-               <input  list="datalist" name="tower_line_name4" id="tower_line_name4" placeholder="线路名称" type="text" /> 
-                <datalist id="datalist">
-                <foreach name="querydata['device_lines']" item="v">
-                <option value ="{$v['device_name']}"></option>
-                </foreach>
-                </datalist>
-                </td>
-              <td ><input style="width:100px;" id="tower_line_degree4" type="text"  name="tower_line_degree4"></td>
-              <td ><input style="width:100px;" id="tower_serial4" type="text"  name="tower_serial4"></td>
-              <td ><input style="width:100px;" id="tower_number_old4" type="text" name="tower_number_old4"></td>
-              </tr>          
-
+         
                   
         </table>
 

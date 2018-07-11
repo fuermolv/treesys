@@ -1,0 +1,78 @@
+<extend name="Public:base"/>
+<block name="content">
+
+<div class="col-xs-12">
+    <div class="tabbable">
+    <table class="table table-striped table-bordered table-hover table-condensed">
+
+       <ul class="nav nav-tabs padding-12 tab-color-blue background-blue" id="myTab">
+        <li>
+          
+          
+       
+        <a href="/ts/index.php/Admin/Tower/index" >杆塔列表</a></li>
+
+        <li >  <a href="javascript:;"  class="btn disabled">增加杆塔</a></li>
+        <li >  <a href="javascript:;" class="btn disabled" >修改杆塔</a></li>
+
+        
+      
+        
+      </ul>
+        <tr>
+          <td>
+            
+          </td>
+        </tr>
+      </table>
+
+    
+  </div>
+
+  <div>
+
+<div class="box">
+     
+      <form id="upload-file-form" action="" method="post">
+        <webuploader  url="/ts/index.php/Admin/Tower/ajax_upload" id="upload-file" name="file" />
+        备注：
+        <input   style="width:300px" type="text" name="extend" value="">
+        <!-- <textarea style="width:300px ;height:100px;"  id="upload-extend" name="extend"></textarea>  -->
+        <div class="text-center">
+        <input style="width:6%" class="btn btn-sm btn-success"   type="submit"  value="保存">
+        </div>
+        </form>
+    
+</div>
+</br>
+</br>
+ <div class="text-center" style="color:red ">
+提示：先点击上传文件，再点击保存，否则会找不到文件
+</div>
+
+
+
+</div>
+
+
+   
+</block>
+
+
+
+</block>
+
+
+
+<block name="js">
+<script>
+  
+    
+    
+</script>
+
+    
+
+
+   
+</block>

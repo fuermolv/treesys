@@ -1318,7 +1318,7 @@ function create_csv($data,$header=null,$filename='simple.csv'){
  * @param  string $file excel文件路径
  * @return array        excel文件内容数组
  */
-function import_excel($file){
+function import_excel($file,$highestC="Z"){
     // 判断文件是什么格式
      $type = pathinfo($file); 
      $type = strtolower($type["extension"]);
@@ -1349,10 +1349,11 @@ function import_excel($file){
  
     // 取得总行数 
     $highestRow = $sheet->getHighestRow();  
+  
    
     // 取得总列数      
     $highestColumn = $sheet->getHighestColumn(); 
-    $highestColumn ='Z';
+    $highestColumn =$highestC;
    
 
 

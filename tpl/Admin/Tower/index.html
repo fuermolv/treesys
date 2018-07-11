@@ -28,13 +28,31 @@
              </foreach>
              </datalist> 
 
+              <select   name="accountability_group"  style="width: 8%;" id="accountability_group" ">
+          
+              <option value ="">全部班组</option>
+              <foreach name="querydata['device_groups']" item="gv">
+             <option value ="{$gv['group_name']}">{$gv['group_name']}</option>
+             </foreach>
+           
+            </select> 
+
       
 
 
             
 
-            <input style="width:8%" class="btn btn-sm btn-success" type="submit"  value="查找线路">
+            <input style="width:8%" class="btn btn-sm btn-success" type="submit"  value="查找">
             <a href="javascript:;" style="width:8%" class="btn btn-sm btn-success" onclick="add_line()" edit(this);">增加线路</a>
+
+
+            <a href="/ts/index.php/Admin/Tower/export_group" >
+            <input style="width:12%"  class="btn btn-sm btn-primary" type="button" value="导出班组权限模板">
+            </a>
+
+            <a href="/ts/index.php/Admin/Tower/import_group" >
+            <input style="width:12%"  class="btn btn-sm btn-primary" type="button" value="导入班组权限模板">
+            </a>
 
              
 
@@ -54,13 +72,13 @@
            <th  >所属线路名称</th>
            <th  >电压值</th>
            <th  >杆塔号</th>
-           <th  >经度(度）</th>
-           <th  >经度(分）</th>
-           <th  >经度(秒）</th>
-           <th  >纬度(度）</th>
-           <th  >纬度(分）</th>
-           <th  >纬度(秒）</th>
-          <th  >备注</th>
+           <th  >经度</th>
+           <th  >经度</th>
+           
+         
+           
+           <th  >所属班组</th>
+           <th  >备注</th>
            <th  >更新时间</th>
            <th  >更新人</th>
            
@@ -73,15 +91,12 @@
             <tr>
               <td >{$v['tower_serial']}</td>
               
-              <td >{$v['tower_line_name']}</td>
-              <td >{$v['tower_line_degree']}</td>
-              <td >{$v['tower_number_old']}</td>
-              <td >{$v['tower_longitude_d']}</td>
-              <td >{$v['tower_longitude_m']}</td>
-              <td >{$v['tower_longitude_s']}</td>
-              <td >{$v['tower_latitude_d']}</td>
-              <td >{$v['tower_latitude_m']}</td>
-              <td >{$v['tower_latitude_s']}</td>
+              <td >{$v['line_name']}</td>
+              <td >{$v['voltage_degree']}</td>
+              <td >{$v['tower_name']}</td>
+              <td >{$v['longitude']}</td>
+              <td >{$v['latitude']}</td>
+              <td >{$v['group_name']}</td>
               <td >{$v['tower_remark']}</td>
               <td >{$v['tower_update_time']|date='Y-m-d',###}</td>
               <td >{$v['tower_update_person']}</td>
@@ -89,7 +104,7 @@
         
 
               <td>
-              <a href="/ts/index.php/Admin/Tower/edit/tower_id/{$v['tower_id']}/line_name/{$line_name}">修改</a>
+              <a href="/ts/index.php/Admin/Tower/edit/tgid/{$v['tgid']}">修改</a>
               ||<a href="javascript:;" tower_id="{$v['tower_id']}" tower_serial="{$v['tower_serial']}" onclick="delete_tower(this);">删除</a>
 
           
@@ -159,24 +174,24 @@ function delete_tower(obj)
   var tower_serial=$(obj).attr('tower_serial');
   if(confirm('确定删除？'))
   {
-  $.ajax({
-          type:"POST",
-           url:"/ts/index.php/Admin/Tower/delete",
-           data:{
-             tower_id:tower_id,
-             tower_serial:tower_serial,
+  // $.ajax({
+  //         type:"POST",
+  //          url:"/ts/index.php/Admin/Tower/delete",
+  //          data:{
+  //            tower_id:tower_id,
+  //            tower_serial:tower_serial,
              
 
 
-             },
-             success:function(msg)
-            {
+  //            },
+  //            success:function(msg)
+  //           {
     
-             location.reload();
+  //            location.reload();
             
-            },
-            error:function(XMLHttpRequest, textStatus, thrownError){}
-          })
+  //           },
+  //           error:function(XMLHttpRequest, textStatus, thrownError){}
+  //         })
 
 }
 }
