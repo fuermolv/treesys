@@ -281,13 +281,25 @@ class TreeFlyController extends AdminBaseController {
               {
                 $base_data['end_tower']=$flydata['end_tower'];
               }
+             
+              //查班组数据
+              $gmap['tower_serial']=$base_data['star_tower']
+              if (!empty($base_data['start_tower_addtion']))
+              {
+              	   $gmap['tower_addtion']=$base_data['start_tower_addtion']
+              }
+              $gmap['line_id']=$line_id;
+              $gdata=M("tower_group")->where($gmap)->find();
+              $base_data['accountability_group']=$gdata['group_name'];
+
+
 
 
 
               $base_data['line_id']=$line_id;
               $base_data['tree_md5']=$md5;
               
-              $base_data['end_tower']=$flydata['end_tower'];
+              // $base_data['end_tower']=$flydata['end_tower'];
               $base_data['tree_property']=$flydata['fly_tree_type'];
               $base_data['tree_park_distance']=$flydata['fly_p_distance'];
               $base_data['tree_longitude']=$flydata['fly_longitude'];
