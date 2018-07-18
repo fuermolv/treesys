@@ -1,20 +1,6 @@
 {
-    "name": "fuermolv/treesys",
-    "description": "treesys",
-    "type": "framework",
-    "keywords": ["treesys","treesys","treesys"],
-    "homepage": "http://www.treesys.com",
-    "license": "Apache2",
-    "authors": [
-        {
-            "name": "treesys",
-            "email": "treesys@treesys.com"
-        }
-    ],
-    "require": {
-        "php": ">=5.3.0",
-        "league/geotools": "@stable"
-    },
+  
+  
     "minimum-stability": "dev",
     "repositories": [
         {"type": "composer", "url": "http://packagist.phpcomposer.com"},
@@ -22,5 +8,8 @@
     ],
     "config": {
         "secure-http": false
+    },
+    "require": {
+        "league/geotools": "^0.7.0"
     }
 }

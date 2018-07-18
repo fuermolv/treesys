@@ -298,6 +298,8 @@ class TreeFlyController extends AdminBaseController {
 
               $base_data['line_id']=$line_id;
               $base_data['tree_md5']=$md5;
+              $base_data['first_upload_time']=$flydata['fly_time'];;
+          
               
               // $base_data['end_tower']=$flydata['end_tower'];
               $base_data['tree_property']=$flydata['fly_tree_type'];
@@ -305,6 +307,8 @@ class TreeFlyController extends AdminBaseController {
               $base_data['tree_longitude']=$flydata['fly_longitude'];
               $base_data['tree_latitude']=$flydata['fly_latitude'];
               $base_data['tree_small_distance']=$flydata['fly_tower_distance'];
+              $base_data['last_update_time']=NOW_TIME;
+              $base_data['last_update_person']=$_SESSION['user']['true_name'];
 
               
              
@@ -338,6 +342,8 @@ class TreeFlyController extends AdminBaseController {
         $detail_data['detail_last_time']=$flydata['fly_time'];
         $detail_data['detail_safe_distance']=$flydata['fly_safe_distance'];
         $detail_data['detail_source']="飞行报告";
+       
+    
        
 
         

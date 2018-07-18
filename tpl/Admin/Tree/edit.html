@@ -1,340 +1,79 @@
-<div class="table-responsive">
-    <form class="form-inline" action="" id="my_edit_form"> 
-        <table class="table table-striped table-bordered table-hover table-condensed">
-                    
-        <tr>
-          <th>线路名称： </th>
-          <td>          
-        <select   style="width:80%"  name="edit_line_id" id="edit_line_id" onchange="editSubmitForm(this);">
-        <option value ={$editTidData['line_id']}  checked> {$editTidData['line_name']}</option>
-        <foreach name="querydata['device_lines']" item="v">
-         <option value ="{$v['did']}">{$v['voltage_degree']}kV{$v['device_name']}</option>
-        </foreach>
-        </select width=400px ></td></tr>
-        <tr>
-          <th>电压等级: </th>
-          <td> 
-        <select  style="width:80%" name="edit_voltage_degree" id="edit_voltage_degree" onchange="editSubmitForm(this);">
-                <option value ={$editTidData['voltage_degree']}  checked>{$editTidData['voltage_degree']}kV</option>
-                <option value ="500">500kV</option>
-                <option value ="220" >220kV</option>
-                <option value="110" >110kV</option>
-                <option value="35"  >35kV</option>
-                </select>
-              </td></tr>
+<extend name="Public:base"/><block name="title">修改树障</block>
+<block name="content">
+    <div class="col-xs-12">
+        <div class="tabbable">
+            <table class="table table-striped table-bordered table-hover table-condensed">
 
-        <tr>
-            <th>县区： </th>
-          <td> 
-        <select style="width:80%"  name="edit_county"  id="edit_county" onchange="editSubmitForm(this);">
-        <option value ={$editTidData['county']} checked>{$editTidData['county']}</option>
-        <option value ="1">清城区</option>
-        <option value ="2">清新区</option>
-        <option value="3">佛冈县</option>
-        <option value="4">英德市</option>
-        <option value ="5">阳山县</option>
-        <option value ="6">连州市</option>
-        <option value ="7">连南县</option>
-        <option value="8">连山县</option>
-        </select></td></tr>
+                <ul class="nav nav-tabs padding-12 tab-color-blue background-blue" id="myTab">
+                 <li >
+                     <a href="/ts/index.php/Admin/Tree/index/group_id/{$group_id}" >树障列表</a></li>
 
-        <tr><th>镇： </th><td> 
-        <select  style="width:80%" name="edit_town"   id="edit_town" onchange="editSubmitForm(this);">
-        <option value ={$editTidData['town']} checked>{$editTidData['town']}</option>
-        <foreach name="querydata['towns']" item="v">
-         <option value ="{$v['id']}">{$v['name']}</option>
-        </foreach>
-        </select></td></tr>
+                     <li >  <a href="/ts/index.php/Admin/Tree/base/tid/{$tid}">树障详情</a></li>
+                     <li >  <a href="/ts/index.php/Admin/TreeDetail/index/tid/{$tid}" >巡检记录</a></li>
+                     <li>  <a href="/ts/index.php/Admin/TreeProcess/index/tid/{$tid}" >处理记录</a></li>
 
-        <tr><th>村： </th><td> 
-        <select style="width:80%"  name="edit_village"  id="edit_village" onchange="editSubmitForm(this);">
-        <option value ={$editTidData['village']} checked>{$editTidData['village']}</option>
-        <foreach name="querydata['villages']" item="v">
-         <option value ="{$v['id']}">{$v['name']}</option>
-         </foreach>
-        </select></td></tr> 
-    </table> 
-    
-</form>
-  <form id="tree_form" class="form-inline" action=""  method="post">
-    <input type="hidden" name="tid">
-    <table class="table table-striped table-bordered table-hover table-condensed">
-        <input type="hidden" name="data_county">
-        <input  type="hidden" name="data_town">
-        <input type="hidden" name="data_village">
-        <tr>
-            <td>运行单位</td><td><input style="width:80%" type="text" name="edit_accountability_department" id="edit_accountability_department" value={$editTidData['accountability_department']}></td>
-        </tr>
-        <tr>
-            <td>序号</td><td><input style="width:80%" type="text" name="edit_accountability_number" id="edit_accountability_number" value={$editTidData['accountability_number']}></td>
-        </tr>
-        <tr>
-            <td>责任班组</td><td>
+                 </ul>
+                 <tr>
+                  <td>
 
-              <select style="width:80%;"  name="edit_accountability_group"  id="edit_accountability_group" >
-          
-                            
-                              <foreach name="querydata['device_groups']" item="gv">
-                                <option value ="{$gv['group_id']}">{$gv['group_name']}</option>
-                              </foreach>
-           
-                     </select>
-                <!-- <select style="width:80%"  name="edit_accountability_group"  id="edit_accountability_group" >
-                <option value ={$editTidData['accountability_group']} checked>{$editTidData['accountability_group']}</option>    
-                <option value ="输电线路1班">输电线路1班</option>
-                <option value ="输电线路2班">输电线路2班</option>
-                <option value ="输电线路3班县">输电线路3班</option>
-                <option value="输电线路4班">输电线路4班</option>
-                <option value="输电线路5班市4">输电线路5班</option>
-                <option value ="输电线路6班">输电线路6班</option>
-                <option value ="输电线路7班">输电线路7班</option>
-                <option value ="输电线路8班县">输电线路8班</option>
-                <option value="输电线路9班">输电线路9班</option>
-                <option value="输电电缆班">输电电缆班</option>
-                
-                <option value="连南组">连南组</option>
-                <option value="英德组输电一班">英德组输电一班</option>
-                <option value="英德组输电二班">英德组输电二班</option>
-                <option value="英德组输电三班">英德组输电三班</option>
-                </select> --></td>
-        </tr>
-        <tr>
-            <td>巡视段责任人</td><td><input style="width:80%" type="text" name="edit_accountability_person" id="edit_accountability_person" value={$editTidData['accountability_person']}></td>
-          </tr>
-        <tr>
-            <td>小号杆（塔周围时大小号杆相同）</td><td><input style="width:80%" type="text" name="edit_star_tower" id="edit_star_tower" value={$editTidData['star_tower']}></td>
-          </tr>
-          <tr>
-              <td>大号杆（塔周围时大小号杆相同）</td><td><input style="width:80%" type="text" name="edit_end_tower" id="edit_end_tower" value={$editTidData['end_tower']}></td>
-            </tr>
-          <tr>
-              <td>隐患编号</td><td><input style="width:80%" type="text" name="edit_danger_num" id="edit_danger_num" value={$editTidData['danger_num']}></td>
-          </tr>
-          <tr>
-            <td>首次调查人</td><td><input style="width:80%" type="text" name="edit_first_check_person" id="edit_first_check_person" value={$editTidData['first_check_person']}></td>
-        </tr>
-        <tr>
-            <td>首次隐患调查日期</td><td><input style="width:80%"  type="date" name="edit_first_check_time" id="edit_first_check_time" value={$editTidData['first_check_time']|date='Y-m-d',###}></td>
-        </tr>
-        <tr>
-            <td>首次上报时间</td><td><input style="width:80%" type="date" name="edit_first_upload_time" id="edit_first_upload_time" value={$editTidData['first_upload_time']|date='Y-m-d',###}></td>
-        </tr>
-        <tr>
-            <td>树障存在的状态</td><td>
+                  </td>
+              </tr>
+          </table>
 
-            
-             <select  style="width:80%" name="edit_tree_status" id="edit_tree_status">
-                <option value ={$editTidData['tree_status']}  checked>{$editTidData['tree_status']}</option>
-                <option value ="未处理">未处理</option>
-                <option value ="翻生" >翻生</option>
-                <option value="已彻底处理(含树桩)" >已彻底处理(含树桩)</option>
-                <option value="一直无树竹"  >一直无树竹</option>
-                </select>
 
-            </td>
-        </tr>
-        <tr>
-            <td>树障种类</td><td><input style="width:80%" type="text" name="edit_tree_type" id="edit_tree_type" value={$editTidData['tree_type']}>
-            </td>
-        </tr>
-        <tr>
-            <td>保护区范围外(如超高树木、上山侧等)是否有需要处理的树障</td><td><select style="width:80%"   id="edit_tree_danger" name="edit_tree_danger" >
-                <option value ={$editTidData['tree_danger']} checked>
-                    <if condition="$editTidData['tree_danger'] eq '1'">是
-                    <else /> 否
-                    </if></option>                    
-                <option value ="0">否</option>     
-                <option value ="1" >是</option>     
-                   </select></td>
-        </tr>
-        <tr>
-            <td>结合地形砍够保护区及保护区附近需处理的隐患树障数量（棵、墩数）</td><td><input style="width:80%" type="text" name="edit_tree_danger_num" id="edit_tree_danger_num" value={$editTidData['tree_danger_num']}></td>
-        </tr>
-        <tr>
-            <td>结合地形砍够保护区及保护区附近需处理的隐患树障数量单位（棵、墩）</td><td><input style="width:80%" type="text" name="edit_tree_danger_num_unit" id="edit_tree_danger_num_unit" value={$editTidData['tree_danger_num_unit']}></td>
-        </tr>
-        <tr>
-            <td>结合地形砍够保护区及保护区附近需处理的隐患树障数量(亩数)</td><td><input style="width:80%" type="text" name="edit_tree_danger_area" id="edit_tree_danger_area" value={$editTidData['tree_danger_area']}></td>
-        </tr>
-        <tr>
-            <td>结合地形砍够保护区及保护区附近需处理的隐患树障数量单位（亩）</td><td><input style="width:80%" type="text" name="edit_tree_danger_area_unit" id="edit_tree_danger_area_unit" value={$editTidData['tree_danger_area_unit']}></td>
-        </tr>
-        <tr>
-            <td>结合地形砍够保护区及保护区附近需处理的隐患树障树高（m）</td><td><input style="width:80%" type="text" name="edit_tree_danger_height" id="edit_tree_danger_height" value={$editTidData['tree_danger_height']}></td>
-        </tr>
+          <div id="tree-edit-content">
 
-          <tr>
-              <td>结合地形砍够保护区及保护区附近需处理的隐患树木胸径范围(cm)</td><td><input style="width:80%" type="text" name="edit_average_radius" id="edit_average_radius" value={$editTidData['average_radius']}></td>
-          </tr>
-          <tr>
-            <td>树木平均高度(m)</td><td><input style="width:80%" type="text" name="edit_average_height" id="edit_average_height" value={$editTidData['average_heightr']}></td>
-        </tr>
-        <tr>
-            <td>树木按地点属性</td><td>
-                <select style="width:80%"    name="edit_tree_property" id="edit_tree_property">
-                        <option value ={$editTidData['tree_property']}  checked>{$editTidData['tree_property']}</option>                        
-                        <option value ="山地树" >山地树</option>
-                        <option value ="公路树">公路树</option>  
-                        <option value ="苗圃场">苗圃场</option> 
-                        <option value ="村庄水泥路树">村庄水泥路树</option> 
-                        <option value ="村庄土路树">村庄土路树</option> 
-                        <option value ="近村屋树">近村屋树</option> 
-                        <option value ="河岸树">河岸树</option> 
-                        <option value ="河床树">河床树</option> 
-                        <option value ="公园树">公园树</option> 
-                        <option value ="塘(池、库)边树">塘(池、库)边树</option> 
-                        <option value ="水田树">水田树</option> 
-                        <option value ="旱地">旱地</option> 
-                        <option value ="" ></option>
-                       </select></td>       
-        </tr>
-        <tr>
-            <td>是否新种、新移栽</td><td>
-                <select style="width:80%"    name="edit_new_plant" id="edit_new_plant">
-                        <option value ={$editTidData['new_plant']}  checked>{$editTidData['new_plant']}</option>                        
-                        <option value ="是" >是</option>
-                        <option value ="否">否</option>
-                        <option value ="" ></option>  
-                       </select></td>       
-        </tr>
 
-        <tr>
-            <td>是否临近重大、一般缺陷</td><td>
-                <select style="width:80%"    name="edit_defect_type" id="edit_defect_type">
-                        <option value ={$editTidData['defect_type']}  checked>{$editTidData['defect_type']}</option>                        
-                        <option value ="重大">重大</option>  
-                        <option value ="即将生长出重大">即将生长出重大</option>                          
-                        <option value ="一般" >一般</option>
-                        <option value ="" ></option>
-                                                
-                       </select></td>       
-        </tr>
-        <tr>
-            <td>是否会翻生</td><td>
-                <select style="width:80%"    name="edit_survival" id="edit_survival">
-                        <option value ={$editTidData['survival']}  checked>{$editTidData['survival']}</option>                        
-                        <option value ="会翻生" >会翻生</option>
-                        <option value ="不会翻生">不会翻生</option> 
-                        <option value ="" ></option> 
-                       </select></td>       
-        </tr>
+            <div class="table-responsive">
+                <form class="form-inline" action="" id="my_edit_form"> 
+                    <table class="table table-striped table-bordered table-hover table-condensed">
 
-          <tr>
-              <td>截止时间</td><td><input style="width:80%" type="date" name="edit_dead_line_time" id="edit_dead_line_time" value={$editTidData['dead_line_time']|date='Y-m-d',###}></td>
-          </tr>
-          <tr>
-              <td>是否处理</td><td>
-                  <select style="width:80%"    name="edit_processed" id="edit_processed">
-                        <option value ={$editTidData['processed']} checked >
-                                <if condition="$editTidData['processed'] eq '1'">是
-                                        <else /> 否
-                                        </if></option>
-                          <option value ="1" >是</option>
-                          <option value ="0">否</option>  
-                         </select></td>       
-          </tr>
-          <tr>
-              <td colspan="4" align="center">
-          <!-- <input  class="btn btn-sm btn-success "  type="submit"  value="确定"> -->
-          <input  class="btn btn-sm btn-success "   type="button" onclick="edit_tree_submit()"  value="确定">
-          
-        </td>
-        </tr>
-    </table>
-  </form>
-</div> 
+
+
+                    </form>
+                    <form id="tree_form" class="form-inline" action=""  method="post">
+                        <input type="hidden" name="tid">
+
+                        <table class="table table-striped table-bordered table-hover table-condensed">
+
+                            <tr>
+                              <td>电压等级: </td>
+                              <td> 
+                                <select  style="width:80%" name="edit_voltage_degree" id="edit_voltage_degree" onchange="editSubmitForm(this);">
+                                    <option value ={$editTidData['voltage_degree']}  checked>{$editTidData['voltage_degree']}kV</option>
+                                    <option value ="500">500kV</option>
+                                    <option value ="220" >220kV</option>
+                                    <option value="110" >110kV</option>
+                                    <option value="35"  >35kV</option>
+                                </select>
+                            </td>
+                           </tr>
+                            <tr>
+                                <td>运行单位</td><td><input style="width:80%" type="text" name="edit_accountability_department" id="edit_accountability_department" value={$editTidData['accountability_department']}></td>
+                            </tr>
+
+                            <tr>
+                                <td>树木平均高度(m)</td>
+                                <td>
+                                 <input style="width:80%" type="text" name="edit_average_height" id="edit_average_height" value={$editTidData['average_heightr']}>
+                             </td>
+                         </tr>
+
+                         <td colspan="4" align="center">
+                          <input  class="btn btn-sm btn-success "   type="submit"  value="确定">
+
+                      </td>
+                  </tr>
+              </table>
+          </form>
+      </div> 
+  </div> 
+
+</block>
+
+
+
+</block>
 <script type="text/javascript">
-    function edit_tree_submit(obj)
-    {
-         
-          $.ajax({
-             type:"POST",
-              url:"/ts/index.php/Admin/Tree/edit",
-              data:{
-              
-                tid:{$edit_tid},
-                accountability_department:document.getElementById("edit_accountability_department").value,
-                accountability_number:document.getElementById("edit_accountability_number").value,
-                accountability_group:document.getElementById("edit_accountability_group").value,
-                accountability_person:document.getElementById("edit_accountability_person").value,
-                county:document.getElementById("edit_county").options[document.getElementById("edit_county").selectedIndex].text,
-                town:document.getElementById("edit_town").options[document.getElementById("edit_town").selectedIndex].text,
-                village:document.getElementById("edit_village").options[document.getElementById("edit_village").selectedIndex].text,
-                line_id:document.getElementById("edit_line_id").value,
-                voltage_degree:document.getElementById("edit_voltage_degree").options[document.getElementById("edit_voltage_degree").selectedIndex].text,
-                star_tower:document.getElementById("edit_star_tower").value,
-                end_tower:document.getElementById("edit_end_tower").value,
-                danger_num:document.getElementById("edit_danger_num").value,
-                first_check_person:document.getElementById("edit_first_check_person").value,
-                first_check_time:document.getElementById("edit_first_check_time").value,
-                first_upload_time:document.getElementById("edit_first_upload_time").value,
-                tree_status:document.getElementById("edit_tree_status").value,
-                tree_type:document.getElementById("edit_tree_type").value,
-                tree_danger:document.getElementById("edit_tree_danger").value,
-                tree_danger_num:document.getElementById("edit_tree_danger_num").value,
-                tree_danger_num_unit:document.getElementById("edit_tree_danger_num_unit").value,
-                tree_danger_area:document.getElementById("edit_tree_danger_area").value,
-                tree_danger_area_unit:document.getElementById("edit_tree_danger_area_unit").value,
-                tree_danger_height:document.getElementById("edit_tree_danger_height").value,
-                average_radius:document.getElementById("edit_average_radius").value,
-                average_height:document.getElementById("edit_average_height").value,
-                
-                tree_property:document.getElementById("edit_tree_property").value,
-                new_plant:document.getElementById("edit_new_plant").value,
-                defect_type:document.getElementById("edit_defect_type").value,
-                survival:document.getElementById("edit_survival").value,
 
-                dead_line_time:document.getElementById("edit_dead_line_time").value,
-                // first_check_method:document.getElementById("edit_first_check_method").value,
-                processed:document.getElementById("edit_processed").value
-                },
-                success:function(msg){
-                console.log(msg);
-                if(msg.status==0)
-                {
-                 alert(msg.info);
-                }else
-                {
-                 alert("修改成功"); }},
-                error:function(XMLHttpRequest, textStatus, thrownError){}
-             });
-             $('#tree-edit-modal').modal('hide');
-             window.location.href="/ts/index.php/Admin/Tree/index/group_id/{$group_id}";
-    }
-    function editSubmitForm()
-     { 
-        sessionStorage.setItem("edit_voltage_degree",document.getElementById("edit_voltage_degree").value);
-        sessionStorage.setItem("edit_line_id",document.getElementById("edit_line_id").value); 
-        sessionStorage.setItem("edit_county",document.getElementById("edit_county").value); 
-        sessionStorage.setItem("edit_town",document.getElementById("edit_town").value); 
-        sessionStorage.setItem("edit_village",document.getElementById("edit_village").value); 
-      $.ajax({
-      type:"GET",
-      url:"/ts/index.php/Admin/TreeCommon/freshForm",
-      data:{
-        edit_voltage_degree:document.getElementById("edit_voltage_degree").value,
-        edit_town:document.getElementById("edit_town").value,
-        edit_county:document.getElementById("edit_county").value,
-        edit_village:document.getElementById("edit_village").value,
-        edit_line_id:document.getElementById("edit_line_id").value,
-        // group_id:{$group_id},
-        edit_tid:{$edit_tid}
-          },
-        success:function(msg){
-        $("#my_edit_form").html(msg);
-        },
-        error:function(XMLHttpRequest, textStatus, thrownError)
-        {
-
-        }
-         });
-
-        }
-   
-    </script>
-    <script type="text/javascript">
-        $(document).ready(function()
-        {
-          
-        });   
-      </script>
+</script>
