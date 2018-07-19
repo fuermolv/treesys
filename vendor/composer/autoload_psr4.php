@@ -6,6 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'Zend\\Diactoros\\' => array($vendorDir . '/zendframework/zend-diactoros/src'),
     'Symfony\\Polyfill\\Php70\\' => array($vendorDir . '/symfony/polyfill-php70'),
     'Symfony\\Polyfill\\Mbstring\\' => array($vendorDir . '/symfony/polyfill-mbstring'),
     'Symfony\\Polyfill\\Ctype\\' => array($vendorDir . '/symfony/polyfill-ctype'),
@@ -16,15 +17,9 @@ return array(
     'Symfony\\Component\\Console\\' => array($vendorDir . '/symfony/console'),
     'React\\Promise\\' => array($vendorDir . '/react/promise/src'),
     'React\\EventLoop\\' => array($vendorDir . '/react/event-loop/src'),
-    'Psr\\SimpleCache\\' => array($vendorDir . '/psr/simple-cache/src'),
     'Psr\\Log\\' => array($vendorDir . '/psr/log/Psr/Log'),
-    'Psr\\Cache\\' => array($vendorDir . '/psr/cache/src'),
+    'Psr\\Http\\Message\\' => array($vendorDir . '/psr/http-message/src'),
     'League\\Geotools\\Tests\\' => array($vendorDir . '/league/geotools/tests'),
     'League\\Geotools\\' => array($vendorDir . '/league/geotools/src'),
-    'Http\\Discovery\\' => array($vendorDir . '/php-http/discovery/src'),
-    'Geocoder\\' => array($vendorDir . '/willdurand/geocoder'),
-    'Cache\\TagInterop\\' => array($vendorDir . '/cache/tag-interop'),
-    'Cache\\Hierarchy\\' => array($vendorDir . '/cache/hierarchical-cache'),
-    'Cache\\Adapter\\PHPArray\\' => array($vendorDir . '/cache/array-adapter'),
-    'Cache\\Adapter\\Common\\' => array($vendorDir . '/cache/adapter-common'),
+    'Ivory\\HttpAdapter\\' => array($vendorDir . '/egeloen/http-adapter/src'),
 );

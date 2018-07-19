@@ -180,10 +180,20 @@
               <td  >{$v['average_radius']}</td>
               <td  >{$v['average_height']}</td>
 
-              <td  >{$v['tree_property']}</td>                        
-              <td  >{$v['new_plant']}</td>
+              <td  >{$v['tree_property']}</td> 
+
+               <td  ><if condition="$v['new_plant'] eq '1'">是
+                <else /> 否
+              </if></td>  
+               <td  ><if condition="$v['defect_type'] eq '1'">是
+                <else /> 否
+              </if></td>  
+               <td  ><if condition="$v['survival'] eq '1'">是
+                <else /> 否
+              </if></td>                         
+              <!-- <td  >{$v['new_plant']}</td>
               <td  >{$v['defect_type']}</td>                        
-              <td  >{$v['survival']}</td>
+              <td  >{$v['survival']}</td> -->
               <td  >{$v['tree_age']}</td>
 
             </tr> 

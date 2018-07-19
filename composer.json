@@ -10,6 +10,6 @@
         "secure-http": false
     },
     "require": {
-        "league/geotools": "^0.7.0@dev"
+        "league/geotools": "0.7.0"
     }
 }

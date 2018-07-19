@@ -187,6 +187,7 @@ class TreeFlyController extends AdminBaseController {
 
 
 
+
           $dd=$flydata['fly_danger_degree'];
           if($dd=='重大')
           {
@@ -283,10 +284,10 @@ class TreeFlyController extends AdminBaseController {
               }
              
               //查班组数据
-              $gmap['tower_serial']=$base_data['star_tower']
+              $gmap['tower_serial']=$base_data['star_tower'];
               if (!empty($base_data['start_tower_addtion']))
               {
-              	   $gmap['tower_addtion']=$base_data['start_tower_addtion']
+              	   $gmap['tower_addtion']=$base_data['start_tower_addtion'];
               }
               $gmap['line_id']=$line_id;
               $gdata=M("tower_group")->where($gmap)->find();
@@ -322,7 +323,21 @@ class TreeFlyController extends AdminBaseController {
 
 
 
+        
         $map['detail_tid']=$tid;
+
+        //级别变化
+        $lastest_deatil_data= M("tree_detail")->where($map)->find();
+
+        if ($lastest_deatil_data['datail_danger_degree']!=$flydata['fly_danger_degree'])
+        {
+            $detail_data['datail_check_change_conclusion']=$lastest_deatil_data['datail_danger_degree']."变".$flydata['fly_danger_degree'];
+        }
+        else{
+        	$detail_data['datail_check_change_conclusion']="维持不变";
+        }
+
+
         $data['datail_uptodate']=0;
         M("tree_detail")->where($map)->data($data)->save();
          
@@ -334,7 +349,6 @@ class TreeFlyController extends AdminBaseController {
         $detail_data['detail_tid']=$tid;
         $detail_data['datail_danger_degree']=$flydata['fly_danger_degree'];
         $detail_data['datail_danger_degree_num']=$flydata['fly_danger_serial'];
-      
         $detail_data['datail_tree_horizontal']=$flydata['fly_horizontal_distance'];
         $detail_data['datail_tree_vertical']=$flydata['fly_vertical_distance'];
         $detail_data['datail_mix_net_distance']=$flydata['fly_air_distance'];
@@ -342,6 +356,11 @@ class TreeFlyController extends AdminBaseController {
         $detail_data['detail_last_time']=$flydata['fly_time'];
         $detail_data['detail_safe_distance']=$flydata['fly_safe_distance'];
         $detail_data['detail_source']="飞行报告";
+
+
+
+
+        
        
     
        

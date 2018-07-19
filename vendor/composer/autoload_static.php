@@ -4,17 +4,30 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit29da72657ca327c1c56e1544ca023961
+class ComposerStaticInit5e0b55e824cbb043b331ef6bc1cf69ab
 {
     public static $files = array (
         '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
         '5255c38a0faeba867671b61dfda6d864' => __DIR__ . '/..' . '/paragonie/random_compat/lib/random.php',
         '023d27dca8066ef29e6739335ea73bad' => __DIR__ . '/..' . '/symfony/polyfill-php70/bootstrap.php',
+        'cf97c57bfe0f23854afd2f3818abb7a0' => __DIR__ . '/..' . '/zendframework/zend-diactoros/src/functions/create_uploaded_file.php',
+        '9bf37a3d0dad93e29cb4e1b1bfab04e9' => __DIR__ . '/..' . '/zendframework/zend-diactoros/src/functions/marshal_headers_from_sapi.php',
+        'ce70dccb4bcc2efc6e94d2ee526e6972' => __DIR__ . '/..' . '/zendframework/zend-diactoros/src/functions/marshal_method_from_sapi.php',
+        'f86420df471f14d568bfcb71e271b523' => __DIR__ . '/..' . '/zendframework/zend-diactoros/src/functions/marshal_protocol_version_from_sapi.php',
+        'b87481e008a3700344428ae089e7f9e5' => __DIR__ . '/..' . '/zendframework/zend-diactoros/src/functions/marshal_uri_from_sapi.php',
+        '0b0974a5566a1077e4f2e111341112c1' => __DIR__ . '/..' . '/zendframework/zend-diactoros/src/functions/normalize_server.php',
+        '1ca3bc274755662169f9629d5412a1da' => __DIR__ . '/..' . '/zendframework/zend-diactoros/src/functions/normalize_uploaded_files.php',
+        '40360c0b9b437e69bcbb7f1349ce029e' => __DIR__ . '/..' . '/zendframework/zend-diactoros/src/functions/parse_cookie_header.php',
+        'a16312f9300fed4a097923eacb0ba814' => __DIR__ . '/..' . '/igorw/get-in/src/get_in.php',
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
         'ad155f8f1cf0d418fe49e248db8c661b' => __DIR__ . '/..' . '/react/promise/src/functions_include.php',
     );
 
     public static $prefixLengthsPsr4 = array (
+        'Z' => 
+        array (
+            'Zend\\Diactoros\\' => 15,
+        ),
         'S' => 
         array (
             'Symfony\\Polyfill\\Php70\\' => 23,
@@ -33,33 +46,25 @@ class ComposerStaticInit29da72657ca327c1c56e1544ca023961
         ),
         'P' => 
         array (
-            'Psr\\SimpleCache\\' => 16,
             'Psr\\Log\\' => 8,
-            'Psr\\Cache\\' => 10,
+            'Psr\\Http\\Message\\' => 17,
         ),
         'L' => 
         array (
             'League\\Geotools\\Tests\\' => 22,
             'League\\Geotools\\' => 16,
         ),
-        'H' => 
+        'I' => 
         array (
-            'Http\\Discovery\\' => 15,
-        ),
-        'G' => 
-        array (
-            'Geocoder\\' => 9,
-        ),
-        'C' => 
-        array (
-            'Cache\\TagInterop\\' => 17,
-            'Cache\\Hierarchy\\' => 16,
-            'Cache\\Adapter\\PHPArray\\' => 23,
-            'Cache\\Adapter\\Common\\' => 21,
+            'Ivory\\HttpAdapter\\' => 18,
         ),
     );
 
     public static $prefixDirsPsr4 = array (
+        'Zend\\Diactoros\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/zendframework/zend-diactoros/src',
+        ),
         'Symfony\\Polyfill\\Php70\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/polyfill-php70',
@@ -100,17 +105,13 @@ class ComposerStaticInit29da72657ca327c1c56e1544ca023961
         array (
             0 => __DIR__ . '/..' . '/react/event-loop/src',
         ),
-        'Psr\\SimpleCache\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/psr/simple-cache/src',
-        ),
         'Psr\\Log\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/log/Psr/Log',
         ),
-        'Psr\\Cache\\' => 
+        'Psr\\Http\\Message\\' => 
         array (
-            0 => __DIR__ . '/..' . '/psr/cache/src',
+            0 => __DIR__ . '/..' . '/psr/http-message/src',
         ),
         'League\\Geotools\\Tests\\' => 
         array (
@@ -120,29 +121,19 @@ class ComposerStaticInit29da72657ca327c1c56e1544ca023961
         array (
             0 => __DIR__ . '/..' . '/league/geotools/src',
         ),
-        'Http\\Discovery\\' => 
+        'Ivory\\HttpAdapter\\' => 
         array (
-            0 => __DIR__ . '/..' . '/php-http/discovery/src',
+            0 => __DIR__ . '/..' . '/egeloen/http-adapter/src',
         ),
-        'Geocoder\\' => 
+    );
+
+    public static $prefixesPsr0 = array (
+        'G' => 
         array (
-            0 => __DIR__ . '/..' . '/willdurand/geocoder',
-        ),
-        'Cache\\TagInterop\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/cache/tag-interop',
-        ),
-        'Cache\\Hierarchy\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/cache/hierarchical-cache',
-        ),
-        'Cache\\Adapter\\PHPArray\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/cache/array-adapter',
-        ),
-        'Cache\\Adapter\\Common\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/cache/adapter-common',
+            'Geocoder' => 
+            array (
+                0 => __DIR__ . '/..' . '/willdurand/geocoder/src',
+            ),
         ),
     );
 
@@ -159,9 +150,10 @@ class ComposerStaticInit29da72657ca327c1c56e1544ca023961
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit29da72657ca327c1c56e1544ca023961::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit29da72657ca327c1c56e1544ca023961::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInit29da72657ca327c1c56e1544ca023961::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit5e0b55e824cbb043b331ef6bc1cf69ab::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit5e0b55e824cbb043b331ef6bc1cf69ab::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit5e0b55e824cbb043b331ef6bc1cf69ab::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInit5e0b55e824cbb043b331ef6bc1cf69ab::$classMap;
 
         }, null, ClassLoader::class);
     }

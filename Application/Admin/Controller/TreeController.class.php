@@ -398,10 +398,14 @@ class TreeController extends AdminBaseController {
     			$tid = I('get.tid'); 
     			$map=null;
     			$map['tid']=$tid;
-    			$edit_tid_data=D("TreeBase")->where($map)->select() ;
+                $model = new TreeBaseModel();
+
+                $data=$model->where($map)->alias('base')->join('__DEVICE_LINE__ dl ON base.line_id=dl.did', 'LEFT')->find();
+           
+    			
     			$this->assign('tid', $tid);
     	
-    			$this->assign('editTidData', $editTidData);
+    			$this->assign('editTidData', $data);
     			$this->display(); 
     			
     		}
@@ -425,10 +429,10 @@ class TreeController extends AdminBaseController {
     			
     			$result = D("TreeBase")->editData($map,$ar);
     			if($result){
-    				$this->success("成功修改树片",U("Admin/Tree/base/tid/{$tid}"));
+    				$this->success("成功修改树障",U("Admin/Tree/base/tid/{$tid}"));
     			}
     			else{   
-    				$this->error('修改树片失败');}
+    				$this->error('修改树障失败');}
     				
     			}
     		} 
