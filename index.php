@@ -37,7 +37,7 @@ define("TMPL_PATH","./tpl/");
 // 定义oss的url
 define("OSS_URL","");
 //引用自动加载
-// require './vendor/autoload.php';
+require './vendor/autoload.php';
 
 // 引入ThinkPHP入口文件
 require './ThinkPHP/ThinkPHP.php';

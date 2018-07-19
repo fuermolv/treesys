@@ -124,24 +124,26 @@ class IndexController extends HomeBaseController{
 
 
     
-//     public function test(){
-//         echo phpinfo();
+    public function test(){
+        
 
-//     $polygon = new \League\Geotools\Polygon\Polygon([
-//     [48.9675969, 1.7440796],
-//     [48.4711003, 2.5268555],
-//     [48.9279131, 3.1448364],
-//     [49.3895245, 2.6119995],
-// ]);
+    $polygon = new \League\Geotools\Polygon\Polygon([
+    [48.9675969, 1.7440796],
+    [48.4711003, 2.5268555],
+    [48.9279131, 3.1448364],
+    [49.3895245, 2.6119995],
+]);
 
-// $polygon->setPrecision(5); // set the comparision precision
-// $polygon->pointInPolygon(new \League\Geotools\Coordinate\Coordinate([49.1785607, 2.4444580])); // true
-// $polygon->pointInPolygon(new \League\Geotools\Coordinate\Coordinate([49.1785607, 5])); // false
-// $polygon->pointOnBoundary(new \League\Geotools\Coordinate\Coordinate([48.7193486, 2.13546755])); // true
-// $polygon->pointOnBoundary(new \League\Geotools\Coordinate\Coordinate([47.1587188, 2.87841795])); // false
-// $polygon->pointOnVertex(new \League\Geotools\Coordinate\Coordinate([48.4711003, 2.5268555])); // true
-// $polygon->pointOnVertex(new \League\Geotools\Coordinate\Coordinate([49.1785607, 2.4444580])); // false
-// $polygon->getBoundingBox(); // return the BoundingBox object
+$polygon->setPrecision(5); // set the comparision precision
+var_dump($polygon->pointInPolygon(new \League\Geotools\Coordinate\Coordinate([49.1785607, 2.4444580]))); // true
+$polygon->pointInPolygon(new \League\Geotools\Coordinate\Coordinate([49.1785607, 5])); // false
+$polygon->pointOnBoundary(new \League\Geotools\Coordinate\Coordinate([48.7193486, 2.13546755])); // true
+$polygon->pointOnBoundary(new \League\Geotools\Coordinate\Coordinate([47.1587188, 2.87841795])); // false
+$polygon->pointOnVertex(new \League\Geotools\Coordinate\Coordinate([48.4711003, 2.5268555])); // true
+$polygon->pointOnVertex(new \League\Geotools\Coordinate\Coordinate([49.1785607, 2.4444580])); // false
+$polygon->getBoundingBox(); // return the BoundingBox object
+
+}
 
 
 
