@@ -292,6 +292,8 @@ class TreeFlyController extends AdminBaseController {
               $gmap['line_id']=$line_id;
               $gdata=M("tower_group")->where($gmap)->find();
               $base_data['accountability_group']=$gdata['group_name'];
+              $base_data['county']=$gdata['county'];
+              $base_data['town']=$gdata['town'];
 
 
 
@@ -325,6 +327,8 @@ class TreeFlyController extends AdminBaseController {
 
         
         $map['detail_tid']=$tid;
+         $data['datail_uptodate']=0;
+        M("tree_detail")->where($map)->data($data)->save();
 
         //级别变化
         $lastest_deatil_data= M("tree_detail")->where($map)->find();
@@ -338,8 +342,7 @@ class TreeFlyController extends AdminBaseController {
         }
 
 
-        $data['datail_uptodate']=0;
-        M("tree_detail")->where($map)->data($data)->save();
+      
          
 
         
@@ -356,6 +359,9 @@ class TreeFlyController extends AdminBaseController {
         $detail_data['detail_last_time']=$flydata['fly_time'];
         $detail_data['detail_safe_distance']=$flydata['fly_safe_distance'];
         $detail_data['detail_source']="飞行报告";
+        $detail_data['datail_update_time']=NOW_TIME;
+        $detail_data['datail_update_person']=$_SESSION['user']['true_name'];
+       // $detail_data['datail_update_group']=$_SESSION['user']['true_name'];
 
 
 

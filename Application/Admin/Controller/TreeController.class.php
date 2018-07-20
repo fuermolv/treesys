@@ -401,42 +401,52 @@ class TreeController extends AdminBaseController {
                 $model = new TreeBaseModel();
 
                 $data=$model->where($map)->alias('base')->join('__DEVICE_LINE__ dl ON base.line_id=dl.did', 'LEFT')->find();
-           
-    			
-    			$this->assign('tid', $tid);
-    	
-    			$this->assign('editTidData', $data);
-    			$this->display(); 
-    			
-    		}
 
-    		if(IS_POST)
-    		{
-    			$tid = I('post.tid');
+                if(!empty($data[0]['start_tower_addtion']))
+                {
+                    
+                    $data[0]['star_tower']=$data[0]['star_tower']."+".$data[0]['start_tower_addtion'];
+                }
+                if(!empty($data[0]['end_tower_addtion']))
+                {
+                    $data[0]['end_tower']=$data[0]['end_tower']."+".$data[0]['end_tower_addtion'];
+                }
+                
+                
+                $this->assign('tid', $tid);
+                
+                $this->assign('editTidData', $data);
+                $this->display(); 
+                
+            }
 
-    			$ar=$_POST;
-    			$map=array(
-    				'tid'=>$ar['tid']
-    			);
-    			
-    			unset($ar['group_id']); 
-    			unset($ar['tid']); 
-    			
-    			$ar['last_update_time']=NOW_TIME;
-    			$ar['last_update_person']=$_SESSION['user']['true_name'];
-    			
-    			
-    			
-    			$result = D("TreeBase")->editData($map,$ar);
-    			if($result){
-    				$this->success("成功修改树障",U("Admin/Tree/base/tid/{$tid}"));
-    			}
-    			else{   
-    				$this->error('修改树障失败');}
-    				
-    			}
-    		} 
+            if(IS_POST)
+            {
+             $tid = I('post.tid');
+
+             $ar=$_POST;
+             $map=array(
+                'tid'=>$ar['tid']
+            );
+             
+             unset($ar['group_id']); 
+             unset($ar['tid']); 
+             
+             $ar['last_update_time']=NOW_TIME;
+             $ar['last_update_person']=$_SESSION['user']['true_name'];
+             
+             
+             
+             $result = D("TreeBase")->editData($map,$ar);
+             if($result){
+                $this->success("成功修改树障",U("Admin/Tree/base/tid/{$tid}"));
+            }
+            else{   
+                $this->error('修改树障失败');}
+                
+            }
+        } 
 
 
-    		
-    	}
+        
+    }
