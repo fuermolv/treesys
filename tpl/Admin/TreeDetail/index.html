@@ -9,7 +9,8 @@
          <a href="/ts/index.php/Admin/Tree/index" >树障列表</a></li>
 
         <li>  <a href="/ts/index.php/Admin/Tree/base/tid/{$tree_id}" >树障详情</a></li>
-        <li class="active">  <a href="javascript:;"    data-toggle="tab">巡检记录</a></li>
+        <li class="active">  <a href="javascript:;"    data-toggle="tab">机巡历史记录</a></li>
+        <li>  <a href="/ts/index.php/Admin/TreeDegrade/history/tid/{$tree_id}" >降级历史记录</a></li>
         <li>  <a href="/ts/index.php/Admin/TreeProcess/index/tid/{$tree_id}" >处理记录</a></li>
         <!-- <li>  <a href="/ts/index.php/Admin/TreeFly/index/group_id/{$group_id}/tid/{$tree_id}">飞行记录</a></li> -->
         
@@ -21,7 +22,7 @@
             
             
                
-                <a href="" style="width:10%" id="list_button" class="btn btn-sm disabled" >巡查记录列表</a>
+                <a href="" style="width:10%" id="list_button" class="btn btn-sm disabled" >历史记录列表</a>
                <!--  <input style="width:10%" id="add_button" class="btn btn-sm btn-success" type="button" tid="{$tree_id}" onclick="add_detail(this)" value="添加新记录"> -->
 
                <a href="javascript:;"  style="width:10%" id="list_file_button" class="btn btn-sm btn-success" type="button"  tid="{$tree_id}" onclick="file(this)">查看巡查文件</a>

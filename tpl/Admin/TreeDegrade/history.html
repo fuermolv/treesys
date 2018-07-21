@@ -1,0 +1,219 @@
+<extend name="Public:base"/><block name="title">树障巡检记录</block>
+<block name="content">
+<div class="col-xs-12">
+    <div class="tabbable">
+    <table class="table table-striped table-bordered table-hover table-condensed">
+
+        <ul class="nav nav-tabs padding-12 tab-color-blue background-blue" id="myTab">
+         <li >
+         <a href="/ts/index.php/Admin/Tree/index" >树障列表</a></li>
+
+        <li>  <a href="/ts/index.php/Admin/Tree/base/tid/{$tree_id}" >树障详情</a></li>
+        
+        <li>  <a href="/ts/index.php/Admin/TreeDetail/index/tid/{$tree_id}">机巡历史记录</a></li>
+       <li class="active">  <a href="javascript:;"    data-toggle="tab">降级历史记录</a></li>
+        <li>  <a href="/ts/index.php/Admin/TreeProcess/index/tid/{$tree_id}" >处理记录</a></li>
+       
+      </ul>
+        <tr>
+          <td>
+            
+            
+               
+                <a href="" style="width:10%" id="list_button" class="btn btn-sm disabled" >历史记录列表</a>
+               <!--  <input style="width:10%" id="add_button" class="btn btn-sm btn-success" type="button" tid="{$tree_id}" onclick="add_detail(this)" value="添加新记录"> -->
+
+               <a href="javascript:;"  style="width:10%" id="list_file_button" class="btn btn-sm btn-success" type="button"  tid="{$tree_id}" onclick="file(this)">查看巡查文件</a>
+        
+       
+               <a href="javascript:;"  style="width:10%" id="add_file_button" class="btn btn-sm btn-success" type="button" tid="{$tree_id}" onclick="uploadfile(this)">上传巡查文件</a>
+              
+          
+
+        
+          </td>
+        </tr>
+      </table>
+
+
+       </ul> -->
+
+  <div class="tab-content" id="tree-deatil-record">
+        <div class="table-responsive">
+        <table class="table table-striped table-bordered table-hover table-condensed " id="data-table">
+<tr>
+    <th colspan="3">降级数据</th>    
+    <th colspan="4">处理数据</th>
+ 
+    <th colspan="1">操作</th>                     
+          
+    
+</tr>
+          <tr> 
+          <th  >处理后等级</th>    
+          <th  >处理前树高</th>
+          <th  >处理后树高</th>  
+        
+
+           <th  >处理时间</th>
+           <th >处理人</th>
+           <th >记录时间</th>
+           <th >记录人</th>
+          
+         
+          
+           
+           <th>操作</th>  
+          </tr>
+          <foreach name="data" item="v">
+            <tr>
+              
+              <td  >{$v['process_danger_degree']}</td>
+              <td  >{$v['tree_height_before']}</td>
+              <td  >{$v['tree_height_after']}</td>    
+
+              <td  >{$v['process_time']|date='Y-m-d',###}</td>
+              <td  >{$v['process_person']}</td>              
+             
+              <td  >{$v['update_time']|date='Y-m-d',###}</td>
+              <td  >{$v['update_person']}</td> 
+              
+
+           
+        
+
+              <td>
+              <a href="javascript:;" tid="{$tree_id}" degrade_tid="{$v['detail_id']}" onclick="delete_dg(this);">删除</a>
+            
+              </td>
+            </tr>
+          </foreach>
+        </table>
+        <div align="center"> {$pagehtml}</div>
+      </div>
+       </div>
+    </div>
+  </div>
+
+
+ <script type="text/javascript">
+  function delete_dg(obj)
+     {
+       if(confirm('确定删除？'))
+       {
+           var degrade_tid=$(obj).attr('detail_id');
+           var tid=$(obj).attr('tid');
+          
+           $.ajax({
+           url:'/ts/index.php/Admin/TreeDegrade/delete',
+           type:'GET', 
+           async:true,    
+           data:{
+              detail_id:detail_id,
+              tid:tid
+           },
+            success:function(msg)
+           {
+             //alert(msg);          
+            }
+         })
+
+          $.ajax({
+          type:"GET",
+           url:"/ts/index.php/Admin/TreeDegrade/history",
+           data:{
+             tid:tid
+             },
+             success:function(msg){
+            // $("#tree-deatil-record").html(msg);
+             window.location.reload();
+
+            },
+           error:function(XMLHttpRequest, textStatus, thrownError){}
+          })
+       }
+
+     }
+   
+
+    function uploadfile(obj)
+    {
+       var tid=$(obj).attr('tid');
+        $.ajax({
+          type:"GET",
+           url:"/ts/index.php/Admin/TreeDetail/uploadfile",
+           data:{
+              tid:tid
+             },
+             success:function(msg){
+
+    
+     
+          $("#tree-deatil-record").html(msg);
+              
+          $("#list_button").removeClass("disabled");
+          $("#list_button").addClass("btn-success");
+
+          $("#add_button").removeClass("disabled");
+          $("#add_button").addClass("btn-success");
+
+          $("#list_file_button").removeClass("disabled");
+          $("#list_file_button").addClass("btn-success");
+
+          $("#add_file_button").removeClass("btn-success");
+          $("#add_file_button").addClass("disabled");
+       
+            },
+            error:function(XMLHttpRequest, textStatus, thrownError){}
+          })
+    }
+
+     function file(obj)
+    {
+       var tid=$(obj).attr('tid');
+        $.ajax({
+          type:"GET",
+           url:"/ts/index.php/Admin/TreeDetail/file",
+           data:{
+              tid:tid
+             },
+             success:function(msg){
+    
+         
+         
+          $("#tree-deatil-record").html(msg);
+          $("#list_button").removeClass("disabled");
+          $("#list_button").addClass("btn-success");
+
+          $("#add_button").removeClass("disabled");
+          $("#add_button").addClass("btn-success");
+
+          $("#list_file_button").removeClass("btn-success");
+          $("#list_file_button").addClass("disabled");
+
+          $("#add_file_button").removeClass("disabled");
+          $("#add_file_button").addClass("btn-success");
+            },
+            error:function(XMLHttpRequest, textStatus, thrownError){
+              
+            }
+
+          })
+    }
+
+     function init_order(obj)
+ {
+      var file_id = $(obj).attr('file_id');
+      var tid = $(obj).attr('tid');
+
+
+    
+      $("input[name='order_file_id']").val(file_id);
+      $("input[name='tid']").val(tid);
+    
+      $('#bjy-edit').modal('show');
+ }
+
+
+</script>
+</block>

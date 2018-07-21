@@ -2,7 +2,7 @@
 return array(
 	//'配置项'=>'配置值'
     /* 调试设定 */
-    	'SHOW_PAGE_TRACE'        =>true,   // 显示页面Trace信息
+    	'SHOW_PAGE_TRACE'        =>false,   // 显示页面Trace信息
 //	'SHOW_RUN_TIME'=>true,          // 运行时间显示
 //	'SHOW_ADV_TIME'=>true,          // 显示详细的运行时间
 //	'SHOW_DB_TIMES'=>true,          // 显示数据库查询和写入次数

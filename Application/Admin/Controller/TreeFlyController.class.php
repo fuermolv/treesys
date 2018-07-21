@@ -283,6 +283,9 @@ class TreeFlyController extends AdminBaseController {
                 $base_data['end_tower']=$flydata['end_tower'];
               }
              
+
+
+
               //查班组数据
               $gmap['tower_serial']=$base_data['star_tower'];
               if (!empty($base_data['start_tower_addtion']))
@@ -291,9 +294,13 @@ class TreeFlyController extends AdminBaseController {
               }
               $gmap['line_id']=$line_id;
               $gdata=M("tower_group")->where($gmap)->find();
-              $base_data['accountability_group']=$gdata['group_name'];
-              $base_data['county']=$gdata['county'];
-              $base_data['town']=$gdata['town'];
+              if (!empty($gdata))
+              {
+                $base_data['accountability_group']=$gdata['group_name'];
+                $base_data['county']=$gdata['county'];
+                $base_data['town']=$gdata['town'];
+              }
+             
 
 
 
@@ -301,7 +308,7 @@ class TreeFlyController extends AdminBaseController {
 
               $base_data['line_id']=$line_id;
               $base_data['tree_md5']=$md5;
-              $base_data['first_upload_time']=$flydata['fly_time'];;
+              $base_data['first_check_time']=$flydata['fly_time'];;
           
               
               // $base_data['end_tower']=$flydata['end_tower'];
@@ -326,13 +333,15 @@ class TreeFlyController extends AdminBaseController {
 
 
         
-        $map['detail_tid']=$tid;
+         $map['detail_tid']=$tid;
          $data['datail_uptodate']=0;
         M("tree_detail")->where($map)->data($data)->save();
 
         //级别变化
         $lastest_deatil_data= M("tree_detail")->where($map)->find();
 
+        if (!empty($lastest_deatil_data))
+        {
         if ($lastest_deatil_data['datail_danger_degree']!=$flydata['fly_danger_degree'])
         {
             $detail_data['datail_check_change_conclusion']=$lastest_deatil_data['datail_danger_degree']."变".$flydata['fly_danger_degree'];
@@ -340,6 +349,10 @@ class TreeFlyController extends AdminBaseController {
         else{
         	$detail_data['datail_check_change_conclusion']="维持不变";
         }
+
+        }
+
+       
 
 
       
@@ -361,7 +374,7 @@ class TreeFlyController extends AdminBaseController {
         $detail_data['detail_source']="飞行报告";
         $detail_data['datail_update_time']=NOW_TIME;
         $detail_data['datail_update_person']=$_SESSION['user']['true_name'];
-       // $detail_data['datail_update_group']=$_SESSION['user']['true_name'];
+      
 
 
 

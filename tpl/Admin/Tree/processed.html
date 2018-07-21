@@ -7,10 +7,10 @@
        <ul class="nav nav-tabs padding-12 tab-color-blue background-blue" id="myTab">
         <li class="active">
           <a href="javascript:;" data-toggle="tab">树障列表</a></li>
-
+<!-- 
         <li>  <a href="javascript:;"   class="btn disabled" data-toggle="tab">树障详情</a></li>
         <li>  <a href="javascript:;"   class="btn disabled" data-toggle="tab">历史记录</a></li>
-        <li>  <a href="javascript:;"   class="btn disabled" data-toggle="tab">处理记录</a></li>
+        <li>  <a href="javascript:;"   class="btn disabled" data-toggle="tab">处理记录</a></li> -->
         <!-- <li>  <a href="javascript:;"   class="btn disabled" data-toggle="tab">飞行记录</a></li> -->
         
         <!--   <li>
@@ -67,45 +67,7 @@
             <option value="35"  >35kV</option>
             </select>
 
-          
-
-          <!--   </select>
-            <select style="width:8%" name="county"  id="county" onchange="submitForm();">
-            <option value ="">县区</option>
-            <option value ="1">清城区</option>
-            <option value ="2">清新区</option>
-            <option value="3">佛冈县</option>
-            <option value="4">英德市</option>
-            <option value ="5">阳山县</option>
-            <option value ="6">连州市</option>
-            <option value ="7">连南县</option>
-            <option value="8">连山县</option>
-            </select>
- -->
-            
-<!-- 
-            <select style="width:8%" name="town"   id="town" onchange="submitForm();">
-            <option value ="">镇</option>
-            <foreach name="querydata['towns']" item="v">
-             <option value ="{$v['id']}">{$v['name']}</option>
-            </foreach>
-            </select>
-
-            <select style="width:8%" name="village"  id="village" onchange="submitForm();">
-            <option value ="">村</option>
-            <foreach name="querydata['villages']" item="v">
-             <option value ="{$v['id']}">{$v['name']}</option>
-             </foreach>
-            </select> -->
-
-          <!--   <select style="width:8%" name="tree_status"  id="tree_status" onchange="submitForm();">
-            <option value ="">树木状态</option>
-            <option value ="未处理">未处理</option>
-            <option value ="翻生" >翻生</option>
-            <option value="已彻底处理(含树桩)" >已彻底处理(含树桩)</option>
-            <option value="一直无树竹"  >一直无树竹</option>
-            </select> -->
-
+ 
             <select style="width:8%" name="datail_danger_degree"  id="datail_danger_degree" onchange="submitForm();">
             <option value ="">隐患级别</option>
             <option value ="重大">重大</option>
@@ -127,7 +89,7 @@
            
 
            
-             <a  style="width:8%" class="btn btn-sm btn-success" href="/ts/index.php/Admin/TreeFly/fly_upload"  >导入飞行报告</a>
+            <!--  <a  style="width:8%" class="btn btn-sm btn-success" href="/ts/index.php/Admin/TreeFly/fly_upload"  >导入飞行报告</a> -->
              
 
             </form>
@@ -190,7 +152,7 @@
               <td  >{$v['voltage_degree']}kV{$v['device_name']}</td>
               <td  >#{$v['star_tower']}-#{$v['end_tower']}</td>
               <td  >{$v['tree_small_distance']}</td>
-           <td  width="3%">{$v['danger_num']}</td>
+              <td  width="3%">{$v['danger_num']}</td>
            
 
          
@@ -208,7 +170,7 @@
                 </if>
             
               
-               
+                
                 <td  >{$v['tree_type']}</td>
                 <td  >{$v['tree_danger_num']}</td>
                 <td  >{$v['tree_danger_area']}</td>
@@ -276,7 +238,7 @@
       // sessionStorage.setItem("town",document.getElementById("town").value); 
       // sessionStorage.setItem("village",document.getElementById("village").value);  
       sessionStorage.setItem("datail_danger_degree",document.getElementById("datail_danger_degree").value);  
-    
+     
       sessionStorage.setItem("orderBy",document.getElementById("orderBy").value); 
       sessionStorage.setItem("star_tower",document.getElementById("star_tower").value); 
 
@@ -314,7 +276,7 @@
 
 
       // $("#village").val(sessionStorage.getItem("village"))
-     // $("#tree_status").val(sessionStorage.getItem("tree_status"))
+     
 
       $("#datail_danger_degree").val(sessionStorage.getItem("datail_danger_degree"))
       $("#orderBy").val(sessionStorage.getItem("orderBy"))

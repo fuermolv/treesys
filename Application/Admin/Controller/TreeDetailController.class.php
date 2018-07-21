@@ -33,8 +33,6 @@ class TreeDetailController extends AdminBaseController
        $this->assign('tree_id',$tree_id);
        $this->display();
 
-      /* $content=$this->fetch();
-       $this->ajaxReturn($content);*/
    }
    public function delete() 
    {
