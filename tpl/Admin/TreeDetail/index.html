@@ -9,8 +9,8 @@
          <a href="/ts/index.php/Admin/Tree/index" >树障列表</a></li>
 
         <li>  <a href="/ts/index.php/Admin/Tree/base/tid/{$tree_id}" >树障详情</a></li>
-        <li class="active">  <a href="javascript:;"    data-toggle="tab">机巡历史记录</a></li>
-        <li>  <a href="/ts/index.php/Admin/TreeDegrade/history/tid/{$tree_id}" >降级历史记录</a></li>
+        <li class="active">  <a href="javascript:;"    data-toggle="tab">历史记录</a></li>
+      <!--   <li>  <a href="/ts/index.php/Admin/TreeDegrade/history/tid/{$tree_id}" >降级历史记录</a></li> -->
         <li>  <a href="/ts/index.php/Admin/TreeProcess/index/tid/{$tree_id}" >处理记录</a></li>
         <!-- <li>  <a href="/ts/index.php/Admin/TreeFly/index/group_id/{$group_id}/tid/{$tree_id}">飞行记录</a></li> -->
         
@@ -98,62 +98,64 @@
         <div class="table-responsive">
         <table class="table table-striped table-bordered table-hover table-condensed " id="data-table">
 <tr>
-    <th colspan="4">树障总体情况</th>    
-    <th colspan="6">树障数据</th>
-    <th colspan="3">系统记录</th>
-    <th colspan="1">操作</th>                     
+    <th colspan="2">基础数据</th>  
+    <th colspan="5">飞行数据</th>  
+    <th colspan="2">降级数据</th>  
+    
+    <th colspan="2">系统记录</th>
+  <!--   <th colspan="1">操作</th> -->                     
           
     
 </tr>
           <tr> 
-          <th  >隐患调查时间</th>    
-          <th  >隐患等级</th>
-          <th  >倒伏等级</th>  
-          <th  >隐患等级变化</th>   
-
-            <th  >飞行高度</th>
-           <th >树高</th>
+           <th >记录类型</th>
+           <th >隐患等级</th>
+           <th >倒伏等级</th> 
            <th >水平距离</th>
            <th >垂直距离</th>
            <th >净空距离</th>
-           <th >安全距离</th>   
+           <th >安全距离</th>  
+
+          <th >降级前树高</th>   
+          <th >降级后树高</th>   
+
          
          
-           <th >更新时间</th>
-           <th >更新人</th> 
-           <th >是否最新</th>
-           
-           <th>操作</th>  
+           <th >调查/处理时间</th>
+           <th >更新人/处理人</th> 
+       
+         <!--   
+           <th>操作</th>   -->
           </tr>
           <foreach name="data" item="v">
             <tr>
-              <td id="t-detail_last_time">{$v['detail_last_time']|date='Y-m-d',###}</td>
-              <td  >{$v['datail_danger_degree']}</td>    
+              <!-- <td id="t-detail_last_time">{$v['detail_last_time']|date='Y-m-d',###}</td> -->
+              <td  ><strong> {$v['record_type']}</strong></td> 
+              <td  >{$v['danger_degree']}</td>    
               <td  >{$v['datail_lodging_degree']}</td>                    
-              <td  >{$v['datail_check_change_conclusion']}</td>
+           
 
-              <td  >{$v['detail_fly_height']}</td>                        
-               <td  >{$v['datail_tree_height']}</td>
+                                   
+           
               <td  >{$v['datail_tree_horizontal']}</td>
               <td  >{$v['datail_tree_vertical']}</td>
               <td  >{$v['datail_mix_net_distance']}</td>
-              <td  >{$v['detail_safe_distance']}</td>                 
+              <td  >{$v['detail_safe_distance']}</td>   
+
+              <td  >{$v['tree_height_before']}</td>
+              <td  >{$v['tree_height_after']}</td>                
              
-              <td  id="t-datail_update_time">{$v['datail_update_time']|date='Y-m-d',###}</td>
-              <td  id="t-datail_update_person">{$v['datail_update_person']}</td> 
+              <td  >{$v['u_time']|date='Y-m-d',###}</td>
+              <td  >{$v['u_person']}</td> 
               
 
-              <td id="t-datail_uptodate">
-                <if condition="$v['datail_uptodate'] eq '1'">是
-              <else /> 否
-              </if></td>
-              </td>       
+             
         
 
-              <td>
+            <!--   <td>
               <a href="javascript:;" tid="{$tree_id}" detail_id="{$v['detail_id']}" onclick="delete_detail(this);">删除</a>
             
-              </td>
+              </td> -->
             </tr>
           </foreach>
         </table>
@@ -168,7 +170,9 @@
   function delete_detail(obj)
      {
        if(confirm('确定删除？'))
-       {
+       { 
+
+           var detail_id=$(obj).attr('tdgid');
            var detail_id=$(obj).attr('detail_id');
            var tid=$(obj).attr('tid');
           

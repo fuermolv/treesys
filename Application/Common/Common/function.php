@@ -6,6 +6,23 @@ header("Content-type:text/html;charset=utf-8");
 
 //传递数据以易于阅读的样式格式化后输出
 
+function array_sort($arr,$keys,$orderby='asc'){
+  $keysvalue = $new_array = array();
+  foreach ($arr as $k=>$v){
+    $keysvalue[$k] = $v[$keys];
+  }
+  if($orderby== 'asc'){
+    asort($keysvalue);
+  }else{
+    arsort($keysvalue);
+  }
+  reset($keysvalue);
+  foreach ($keysvalue as $k=>$v){
+    $new_array[] = $arr[$k];
+  }
+  return $new_array;
+}
+
 
 
  function convTime($data)

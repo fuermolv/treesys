@@ -24,16 +24,69 @@ class TreeDegradeController extends AdminBaseController{
            $data['degrade_up_to_date']=0;
            M("degrade")->where($map)->data($data)->save();
 
-           $bmap['tid']=$tid;
+
+
+
+
+
+        //更新基础数据
+        $bmap['tid']=$tid;
+        $lastest_data= M("tree_base")->where($basemap)->find();
+        $dd=$ar['process_danger_degree'];
+        $ar['tree_height_before']=$lastest_data['average_height'];
+       
+
+        if (!empty($lastest_data['base_danger_degree']))
+        {
+        if ($lastest_data['base_danger_degree']!=$dd)
+        {
+            $bdata['base_danger_degree_change']=$lastest_data['base_danger_degree']."变".$dd;
+        }
+        else{
+            $bdata['base_danger_degree_change']="维持不变";
+        }
+
+        }
+
+
+      
+          $bdata['base_danger_degree']=$dd;
+          if($dd=='重大')
+          {
+            $bdata['base_danger_degree_num']=6;
+          }
+          if($dd=='一般')
+          {
+            $bdata['base_danger_degree_num']=5;
+          }
+          if($dd=='其他')
+          {
+            $bdata['base_danger_degree_num']=4;
+          }
+          if($dd=='不构成其他')
+          {
+            $bdata['base_danger_degree_num']=3;
+          }
+          if($dd=='处理后无树竹')
+          {
+            $bdata['base_danger_degree_num']=2;
+          }
+          if($dd=='一直无树竹')
+          {
+            $bdata['base_danger_degree_num']=1;
+          }
+
            $bdata['tree_status']="降级";
-           M("tree_base")->where($bmap)->data($bdata)->save();
+           $tree_base_model= M("tree_base");
+           $tree_base_model->where($bmap)->data($bdata)->save();
+         
 
 
-
+           
 
            $result=M("degrade")->data($ar)->add();
            if($result){
-                $this->success("树障降级功",U("Admin/Tree/base/tid/{$tid}"));
+                $this->success("树障降级成功",U("Admin/Tree/base/tid/{$tid}"));
             }
             else{   
                 $this->error('树障降级失败');

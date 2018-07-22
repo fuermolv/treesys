@@ -19,17 +19,44 @@ class TreeDetailController extends AdminBaseController
     public function index() {
 
         $tree_id = I('get.tid');
-        $group_id = I('get.group_id');
-        $model = new TreeDetailModel();
-        $map['detail_tid'] = $tree_id;
-        $orderBy = 'detail_id desc';
-    
-        $data=$model->where($map)->order($orderBy)->select();
-        $local_department = M("local_department")->select();
-         $this->assign('local_department',$local_department);
+
+
+
+        
+        $detailmap['detail_tid'] = $tree_id;
+        $detailorderBy = 'detail_id desc';
+        $detail_data=M("tree_detail")->where($detailmap)->order($orderBy)->select();
+
+        foreach ($detail_data as &$dd)
+        {
+          $dd['u_time']=$dd['detail_last_time'];
+          $dd['u_person']=$dd['datail_update_person'];
+          $dd['danger_degree']=$dd['datail_danger_degree'];
+          $dd['record_type']="飞行报告";
+        }
+
+
+
+
+        $degmap['degrade_tid'] = $tree_id;
+        $degorderBy = 'process_time desc';
+        $deg_data=M("degrade")->where($degmap)->order($orderBy)->select();
+
+        foreach ($deg_data as &$dg)
+        {
+          $dg['u_time']=$dg['process_time'];
+          $dg['u_person']=$dg['process_person'];
+          $dg['danger_degree']=$dg['process_danger_degree'];
+          $dg['record_type']="降级处理";
+        }
+
+
+        $data=array_merge($detail_data,$deg_data);
+        $data=array_sort($data,"u_time","desc");
+ 
+
         
        $this->assign('data', $data);
-       $this->assign('group_id',$group_id);
        $this->assign('tree_id',$tree_id);
        $this->display();
 

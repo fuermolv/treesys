@@ -13,7 +13,7 @@ class TreeController extends AdminBaseController {
      */
     public function index() {
     	
-        //$device_lines = session('device_li
+    
     	$orderBy = I('get.orderBy');
     	$line_id = I('get.line_id');
     	$county = I('get.county');
@@ -91,17 +91,19 @@ class TreeController extends AdminBaseController {
     	if (!empty($tree_status)) 
     	{
     		$map['tree_status'] = $tree_status;
-    	}
+    	}else{
+            $map['tree_status'] = array("NEQ","已处理");
+        }
     	if (empty($orderBy)) {
     		
-    		$orderBy = 'datail_danger_degree_num desc';
+    		$orderBy = 'base_danger_degree_num desc';
     	}
     	if (!empty($accountability_group)) {
     		$map['accountability_group'] = $accountability_group;
     		
     	}
 
-    	$map['tree_status'] = "未处理";
+    	
 
     	
     	
@@ -256,6 +258,8 @@ class TreeController extends AdminBaseController {
     			$d['end_tower']=$d['end_tower']."+".$d['end_tower_addtion'];
     		}
     	}
+
+        
     	
     	
 
