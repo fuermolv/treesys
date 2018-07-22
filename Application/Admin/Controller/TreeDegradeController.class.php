@@ -76,6 +76,8 @@ class TreeDegradeController extends AdminBaseController{
             $bdata['base_danger_degree_num']=1;
           }
 
+           $bdata['average_height']=$ar['tree_height_after'];
+
            $bdata['tree_status']="降级";
            $tree_base_model= M("tree_base");
            $tree_base_model->where($bmap)->data($bdata)->save();
