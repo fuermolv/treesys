@@ -153,7 +153,121 @@ public function fly_file()
   }
 
 
-  public function process_fly_doc(){
+  public function process_fly_doc($path){
+
+     $temp=explode("/",$path);
+          $name_t=$temp[count($temp)-1];
+          $name_list=explode("-",$name_t,-1);
+          foreach ($name_list as $n){
+              if (!empty($name))
+              {
+                 $name=$name."-".$n;
+              }
+              else
+              {
+                 $name=$n;
+              }
+              
+          }
+          $name=$name.".doc";
+
+
+
+          // var_dump($name);
+         
+          $line_tower_pattern="((220|110|35|500|#).*?\.)";
+
+          $ok1=preg_match_all($line_tower_pattern, $name,$matches);
+          // var_dump($matchestest);
+
+
+
+
+        
+         // $line_tower_pattern="((220|110|35|500|#).*?(、|（))";
+         // $addtion_year_pattern="(（.*\.)";
+         // $ok=preg_match_all($addtion_year_pattern, $name,$matches);
+         // if($ok)
+         // {
+             
+         //     $name_year_temp=$matches[0];
+
+         //     $name_year_temp=str_replace(".","",$name_year_temp);
+
+         //     $name_year_temp=str_replace("（","",$name_year_temp);
+
+         //     // $data['ff_addtion']=explode("）",$name_year_temp[0])[0];
+         //     // $data['ff_year']=explode("）",$name_year_temp[0])[1];
+         //     $data['ff_upload_time']=NOW_TIME;
+
+         // }else{
+         //     return 0
+         // }  
+
+         // $ok1=preg_match_all($line_tower_pattern, $name,$matches1);
+         
+
+         if($ok1)
+         {
+             
+             $line_tower_data=$matches[0];
+           
+             $voltage=0;
+             $line_name=""; 
+             foreach ($line_tower_data as $lt_data){
+
+             $lt_data=str_replace("（","",$lt_data);
+             $lt_data=str_replace("、","",$lt_data);
+             $lt_data=str_replace("#","",$lt_data);
+             $lt_data=str_replace("+1","",$lt_data);
+             $lt_data=str_replace("+2","",$lt_data);
+             $lt_data=str_replace("+3","",$lt_data);
+             $lt_data=str_replace("+4","",$lt_data);
+             $lt_data=str_replace("+5","",$lt_data);
+             $lt_data=str_replace("+6","",$lt_data);
+             $lt_data=str_replace("+","",$lt_data);
+             $lt_data=str_replace(".","",$lt_data);
+             $tower_data=$lt_data;
+            
+             //是否带有线路数据
+             if(strpos($lt_data,'kV') !==false){
+               
+               $line_data=explode("线",$lt_data)[0];
+
+               $v_data=explode("kV",$line_data)[0];
+               $line_name=explode("kV",$line_data)[1];
+                
+               $voltage= $v_data;
+               $line_name=$line_name."线";
+               $tower_data=explode("线",$lt_data)[1];
+          
+
+             }
+
+             $data['ff_voltage_degree']=$voltage;
+             $data['ff_line_name']=$line_name;
+          
+             $data['ff_start_tower']=explode("-",$tower_data)[0];
+             $data['ff_end_tower']=explode("-",$tower_data)[1];
+             $data['ff_upload_time']=NOW_TIME;
+             $data['ff_file_path']=$path;
+
+             
+            
+
+             M("fly_file")->data($data)->add();
+
+
+           
+
+         
+             
+         }
+       }
+        else{
+             return 1;
+           }
+         return 0;
 
   }
 
@@ -168,38 +282,45 @@ public function fly_file()
 
       $filelist = I('post.file');
       $extend = I('post.extend');
+
+
       foreach ($filelist as $file) 
       {
+
+
+          $path=$file;
+
+        
 
         //导入的是csv文件
        if(strpos($path,'csv') !=false)
        {
-        $data=null;
-        $path=$file;
+      
+       
         $flag=$this->ReadFlyData($path);
         if ($flag==1){
          break;
         }
-       if($flag==1){
+      
+
+      }
+      elseif(strpos($path,'doc') !=false)
+       {
+        $flag=$this-> process_fly_doc($path);
+
+
+       }else{
+           $this->error('只能导入doc,docx,csv文件','',5);
+
+       }
+
+      if($flag==1){
          $this->error('导入失败','',5);
        }else{
         $this->success('导入成功','',5);
       }
 
-      }
-      //导入的是doc或docx
-        if(strpos($path,'doc') !=false)
-       {
-        $flag=$this-> process_fly_doc($path);
-         if($flag==1){
-         $this->error('导入失败','',5);
-        }else{
-          $this->success('导入成功','',5);
-      }
-
-
-       }
-      $this->error('只能导入doc,docx,csv文件','',5);
+   
 
 
 

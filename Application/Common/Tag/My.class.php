@@ -328,7 +328,7 @@ php;
     public function _webuploader($tag){
         $url=isset($tag['url'])?$tag['url']:U('Home/Index/ajax_upload');
         $name=isset($tag['name'])?$tag['name']:'file_name';
-        $word=isset($tag['word'])?$tag['word']:'或将照片拖到这里，单次最多可选300张';
+        $word=isset($tag['word'])?$tag['word']:'建议一次选择的文件不要太多';
         $id_name='upload-'.uniqid();
             $str=<<<php
 <div id="$id_name" class="xb-uploader">
