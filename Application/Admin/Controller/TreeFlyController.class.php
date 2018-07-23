@@ -12,184 +12,184 @@ class TreeFlyController extends AdminBaseController {
      * 首页
      */
 
-public function fly_file() 
-{
-   
-        $device_lines = M("device_line")->select();
-        $querydata['device_lines'] = $device_lines;
-
-        $line_name = I('get.line_name');
-        $start_tower = I('get.start_tower');
-        $voltage_degree = I('get.voltage_degree');
-       
-        if (!empty($voltage_degree))
-        {
-             $map['ff_voltage_degree']=$voltage_degree;
-            
-        }
-
-
-         if (!empty( $line_name))
-        {
-             $map['ff_line_name']=$line_name;
-            
-        }
-          if (!empty($start_tower))
-        {
-             
-        $start_tower_int=intval($start_tower);
-        $end_tower_int=$start_tower_int+1;
-
-        $map['ff_start_tower']=array('ELT',$start_tower_int);
-        $map['ff_end_tower']=array('EGT',$end_tower_int);
-        }
-
-
-      
-
-
-        $model= M("fly_file");
-
-        $count =$model->where($map)->count();
-    
-      
-
-        $limit = 20;
-        $orderBy='ffid desc';
-        $page = new_page($count, $limit);
-        $list = $model->where($map)->order($orderBy)->limit($page->firstRow . ',' . $page->listRows)->select();
-        $data = array('data' => $list, 'page' => $page->show());
-
-        foreach ($data['data'] as &$d)
-        {
-          $path=$d['ff_file_path'];
-
-          $path=str_replace("#","%23",$path);
-          $path=str_replace("+","%2B",$path);
-          $d['ff_file_path']=$path;
-
-        }
-
-
-         
-        $this->assign('data', $data['data']);
-        $this->assign('pagehtml', $data['page']);
-        $this->assign('querydata', $querydata);
-     
-
-        $this->display();
-}
-    
-
-    public function fly() 
+    public function fly_file() 
     {
 
+      $device_lines = M("device_line")->select();
+      $querydata['device_lines'] = $device_lines;
 
+      $line_name = I('get.line_name');
+      $start_tower = I('get.start_tower');
+      $voltage_degree = I('get.voltage_degree');
 
-     $device_lines = M("device_line")->select();
-     $querydata['device_lines'] = $device_lines;
-     $line_name = I('get.line_name');
-     $start_tower = I('get.start_tower');
-     $voltage_degree = I('get.voltage_degree');
-
-
-     if (!empty( $voltage_degree))
-     {
-       $map['voltage_degree']=$voltage_degree;
+      if (!empty($voltage_degree))
+      {
+       $map['ff_voltage_degree']=$voltage_degree;
 
      }
+
+
      if (!empty( $line_name))
      {
-       $map['fly_line_name']=$line_name;
+       $map['ff_line_name']=$line_name;
 
      }
      if (!empty($start_tower))
      {
 
-       $map['star_tower']=$start_tower;
-     }
+      $start_tower_int=intval($start_tower);
+      $end_tower_int=$start_tower_int+1;
 
-
-     if(!empty($start_s_time) and !empty($end_s_time))
-     {
-      $smap['fly_time']= array('between',array(convTime($start_s_time),convTime($end_s_time)));
-
-    }
-    if(!empty($start_s_time) and empty($end_s_time))
-    {
-      $smap['fly_time']= array('EGT',convTime($start_s_time));
-
-    }
-
-    if(empty($start_s_time) and !empty($end_s_time))
-    {
-      $smap['fly_time']= array('ELT',convTime($end_s_time));
-
+      $map['ff_start_tower']=array('ELT',$start_tower_int);
+      $map['ff_end_tower']=array('EGT',$end_tower_int);
     }
 
 
 
-    $model= M("fly");
 
-    $count =$model->alias('fly')->join('__DEVICE_LINE__ dl ON fly.fly_line_name=dl.device_name', 'LEFT')->where($map)->count();
+
+    $model= M("fly_file");
+
+    $count =$model->where($map)->count();
+    
 
 
     $limit = 20;
-    $orderBy='fly_time desc,fly_serial desc';
+    $orderBy='ffid desc';
     $page = new_page($count, $limit);
-    $list =M("fly")->alias('fly')->join('__DEVICE_LINE__ dl ON fly.fly_line_name=dl.device_name', 'LEFT')->where($map)->order($orderBy)->limit($page->firstRow . ',' . $page->listRows)->select();
+    $list = $model->where($map)->order($orderBy)->limit($page->firstRow . ',' . $page->listRows)->select();
     $data = array('data' => $list, 'page' => $page->show());
+
+    foreach ($data['data'] as &$d)
+    {
+      $path=$d['ff_file_path'];
+
+      $path=str_replace("#","%23",$path);
+      $path=str_replace("+","%2B",$path);
+      $d['ff_file_path']=$path;
+
+    }
 
 
 
     $this->assign('data', $data['data']);
     $this->assign('pagehtml', $data['page']);
-    $this->assign('star_tower',  $start_tower);
-    $this->assign('line_name', $line_name);
     $this->assign('querydata', $querydata);
 
+
     $this->display();
+  }
+
+
+  public function fly() 
+  {
+
+
+
+   $device_lines = M("device_line")->select();
+   $querydata['device_lines'] = $device_lines;
+   $line_name = I('get.line_name');
+   $start_tower = I('get.start_tower');
+   $voltage_degree = I('get.voltage_degree');
+
+
+   if (!empty( $voltage_degree))
+   {
+     $map['voltage_degree']=$voltage_degree;
+
+   }
+   if (!empty( $line_name))
+   {
+     $map['fly_line_name']=$line_name;
+
+   }
+   if (!empty($start_tower))
+   {
+
+     $map['star_tower']=$start_tower;
+   }
+
+
+   if(!empty($start_s_time) and !empty($end_s_time))
+   {
+    $smap['fly_time']= array('between',array(convTime($start_s_time),convTime($end_s_time)));
+
+  }
+  if(!empty($start_s_time) and empty($end_s_time))
+  {
+    $smap['fly_time']= array('EGT',convTime($start_s_time));
+
+  }
+
+  if(empty($start_s_time) and !empty($end_s_time))
+  {
+    $smap['fly_time']= array('ELT',convTime($end_s_time));
 
   }
 
 
-  public function process_fly_doc($path){
 
-     $temp=explode("/",$path);
-          $name_t=$temp[count($temp)-1];
-          $name_list=explode("-",$name_t,-1);
-          foreach ($name_list as $n){
-              if (!empty($name))
-              {
-                 $name=$name."-".$n;
-              }
-              else
-              {
-                 $name=$n;
-              }
-              
-          }
-          $name=$name.".doc";
+  $model= M("fly");
+
+  $count =$model->alias('fly')->join('__DEVICE_LINE__ dl ON fly.fly_line_name=dl.device_name', 'LEFT')->where($map)->count();
+
+
+  $limit = 20;
+  $orderBy='fly_time desc,fly_serial desc';
+  $page = new_page($count, $limit);
+  $list =M("fly")->alias('fly')->join('__DEVICE_LINE__ dl ON fly.fly_line_name=dl.device_name', 'LEFT')->where($map)->order($orderBy)->limit($page->firstRow . ',' . $page->listRows)->select();
+  $data = array('data' => $list, 'page' => $page->show());
+
+
+
+  $this->assign('data', $data['data']);
+  $this->assign('pagehtml', $data['page']);
+  $this->assign('star_tower',  $start_tower);
+  $this->assign('line_name', $line_name);
+  $this->assign('querydata', $querydata);
+
+  $this->display();
+
+}
+
+
+public function process_fly_doc($path){
+
+ $temp=explode("/",$path);
+ $name_t=$temp[count($temp)-1];
+ $name_list=explode("-",$name_t,-1);
+ foreach ($name_list as $n){
+  if (!empty($name))
+  {
+   $name=$name."-".$n;
+ }
+ else
+ {
+   $name=$n;
+ }
+
+}
+$name=$name.".doc";
 
 
 
           // var_dump($name);
-         
-          $line_tower_pattern="((220|110|35|500|#).*?\.)";
 
-          $ok1=preg_match_all($line_tower_pattern, $name,$matches);
+$line_tower_pattern="((220|110|35|500|#).*?\.)";
+
+$ok1=preg_match_all($line_tower_pattern, $name,$matches);
           // var_dump($matchestest);
 
 
 
 
-        
+
          // $line_tower_pattern="((220|110|35|500|#).*?(、|（))";
          // $addtion_year_pattern="(（.*\.)";
          // $ok=preg_match_all($addtion_year_pattern, $name,$matches);
          // if($ok)
          // {
-             
+
          //     $name_year_temp=$matches[0];
 
          //     $name_year_temp=str_replace(".","",$name_year_temp);
@@ -205,126 +205,126 @@ public function fly_file()
          // }  
 
          // $ok1=preg_match_all($line_tower_pattern, $name,$matches1);
-         
 
-         if($ok1)
-         {
-             
-             $line_tower_data=$matches[0];
-           
-             $voltage=0;
-             $line_name=""; 
-             foreach ($line_tower_data as $lt_data){
 
-             $lt_data=str_replace("（","",$lt_data);
-             $lt_data=str_replace("、","",$lt_data);
-             $lt_data=str_replace("#","",$lt_data);
-             $lt_data=str_replace("+1","",$lt_data);
-             $lt_data=str_replace("+2","",$lt_data);
-             $lt_data=str_replace("+3","",$lt_data);
-             $lt_data=str_replace("+4","",$lt_data);
-             $lt_data=str_replace("+5","",$lt_data);
-             $lt_data=str_replace("+6","",$lt_data);
-             $lt_data=str_replace("+","",$lt_data);
-             $lt_data=str_replace(".","",$lt_data);
-             $tower_data=$lt_data;
-            
+if($ok1)
+{
+
+ $line_tower_data=$matches[0];
+
+ $voltage=0;
+ $line_name=""; 
+ foreach ($line_tower_data as $lt_data){
+
+   $lt_data=str_replace("（","",$lt_data);
+   $lt_data=str_replace("、","",$lt_data);
+   $lt_data=str_replace("#","",$lt_data);
+   $lt_data=str_replace("+1","",$lt_data);
+   $lt_data=str_replace("+2","",$lt_data);
+   $lt_data=str_replace("+3","",$lt_data);
+   $lt_data=str_replace("+4","",$lt_data);
+   $lt_data=str_replace("+5","",$lt_data);
+   $lt_data=str_replace("+6","",$lt_data);
+   $lt_data=str_replace("+","",$lt_data);
+   $lt_data=str_replace(".","",$lt_data);
+   $tower_data=$lt_data;
+
              //是否带有线路数据
-             if(strpos($lt_data,'kV') !==false){
-               
-               $line_data=explode("线",$lt_data)[0];
+   if(strpos($lt_data,'kV') !==false){
 
-               $v_data=explode("kV",$line_data)[0];
-               $line_name=explode("kV",$line_data)[1];
-                
-               $voltage= $v_data;
-               $line_name=$line_name."线";
-               $tower_data=explode("线",$lt_data)[1];
-          
+     $line_data=explode("线",$lt_data)[0];
 
-             }
+     $v_data=explode("kV",$line_data)[0];
+     $line_name=explode("kV",$line_data)[1];
 
-             $data['ff_voltage_degree']=$voltage;
-             $data['ff_line_name']=$line_name;
-          
-             $data['ff_start_tower']=explode("-",$tower_data)[0];
-             $data['ff_end_tower']=explode("-",$tower_data)[1];
-             $data['ff_upload_time']=NOW_TIME;
-             $data['ff_file_path']=$path;
-
-             
-            
-
-             M("fly_file")->data($data)->add();
+     $voltage= $v_data;
+     $line_name=$line_name."线";
+     $tower_data=explode("线",$lt_data)[1];
 
 
-           
+   }
 
-         
-             
-         }
-       }
-        else{
-             return 1;
-           }
-         return 0;
+   $data['ff_voltage_degree']=$voltage;
+   $data['ff_line_name']=$line_name;
 
-  }
+   $data['ff_start_tower']=explode("-",$tower_data)[0];
+   $data['ff_end_tower']=explode("-",$tower_data)[1];
+   $data['ff_upload_time']=NOW_TIME;
+   $data['ff_file_path']=$path;
 
 
 
-  public function fly_upload()
+
+   M("fly_file")->data($data)->add();
+
+
+
+
+
+
+ }
+}
+else{
+ return 1;
+}
+return 0;
+
+}
+
+
+
+public function fly_upload()
+{
+
+  if(IS_POST)
   {
 
-    if(IS_POST)
+
+    $filelist = I('post.file');
+    $extend = I('post.extend');
+
+
+    foreach ($filelist as $file) 
     {
 
 
-      $filelist = I('post.file');
-      $extend = I('post.extend');
+      $path=$file;
 
 
-      foreach ($filelist as $file) 
+
+        //导入的是csv文件
+      if(strpos($path,'csv') !=false)
       {
 
 
-          $path=$file;
-
-        
-
-        //导入的是csv文件
-       if(strpos($path,'csv') !=false)
-       {
-      
-       
         $flag=$this->ReadFlyData($path);
         if ($flag==1){
          break;
-        }
-      
-
-      }
-      elseif(strpos($path,'doc') !=false)
-       {
-        $flag=$this-> process_fly_doc($path);
-
-
-       }else{
-           $this->error('只能导入doc,docx,csv文件','',5);
-
        }
 
-      if($flag==1){
-         $this->error('导入失败','',5);
-       }else{
-        $this->success('导入成功','',5);
-      }
 
-   
+     }
+     elseif(strpos($path,'doc') !=false)
+     {
+      $flag=$this-> process_fly_doc($path);
 
 
+    }else{
+     $this->error('只能导入doc,docx,csv文件','',5);
 
+   }
+
+   if($flag==1){
+     $this->error('导入失败','',5);
+   }else{
+    $this->success('导入成功','',5);
   }
+
+
+
+
+
+}
 
 
 
@@ -531,8 +531,8 @@ $base_data['tree_park_distance']=$flydata['fly_p_distance'];
 $base_data['tree_longitude']=$flydata['fly_longitude'];
 $base_data['tree_latitude']=$flydata['fly_latitude'];
 $base_data['tree_small_distance']=$flydata['fly_tower_distance'];
-$base_data['last_update_time']=NOW_TIME;
-$base_data['last_update_person']=$_SESSION['user']['true_name'];
+// $base_data['last_update_time']=NOW_TIME;
+// $base_data['last_update_person']=$_SESSION['user']['true_name'];
 
 
 
@@ -548,30 +548,34 @@ $tid=$base->data($base_data)->add();
 
 
 $map['detail_tid']=$tid;
+$map['datail_uptodate']=1;
+
+$lastest_data= M("tree_detail")->where($map)->find();
+
+
 $data['datail_uptodate']=0;
 M("tree_detail")->where($map)->data($data)->save();
 
-$basemap['tid']=$tid;
 
-        //更新基础数据
-$lastest_data= M("tree_base")->where($basemap)->find();
 
-if (!empty($lastest_data['base_danger_degree']))
-{
-  if ($lastest_data['base_danger_degree']!=$flydata['fly_danger_degree'])
-  {
-    $update_base_data['base_danger_degree_change']=$lastest_data['base_danger_degree']."变".$flydata['fly_danger_degree'];
-  }
-  else{
-   $update_base_data['base_danger_degree_change']="维持不变";
- }
+   
 
-}
 
-$update_base_data['base_danger_degree_num']=$flydata['fly_danger_serial'];
-$update_base_data['base_danger_degree']=$flydata['fly_danger_degree'];
-M("tree_base")->where($basemap)->save($update_base_data);
+// if (!empty($lastest_data['base_danger_degree']))
+// {
+//   if ($lastest_data['base_danger_degree']!=$flydata['fly_danger_degree'])
+//   {
+//     $update_base_data['base_danger_degree_change']=$lastest_data['base_danger_degree']."变".$flydata['fly_danger_degree'];
+//   }
+//   else{
+//    $update_base_data['base_danger_degree_change']="维持不变";
+//  }
 
+// }
+
+// $update_base_data['base_danger_degree_num']=$flydata['fly_danger_serial'];
+// $update_base_data['base_danger_degree']=$flydata['fly_danger_degree'];
+// M("tree_base")->where($basemap)->save($update_base_data);
 
 
 
@@ -591,9 +595,30 @@ $detail_data['datail_mix_net_distance']=$flydata['fly_air_distance'];
 $detail_data['detail_fly_height']=$flydata['fly_height'];
 $detail_data['detail_last_time']=$flydata['fly_time'];
 $detail_data['detail_safe_distance']=$flydata['fly_safe_distance'];
-$detail_data['detail_source']="飞行报告";
+$detail_data['detail_source']="机巡报告";
 $detail_data['datail_update_time']=NOW_TIME;
 $detail_data['datail_update_person']=$_SESSION['user']['true_name'];
+
+if (strpos($detail_data['datail_tree_vertical'],"-") !== false){
+    $detail_data['datail_tree_over']=1;
+}else{
+    $detail_data['datail_tree_over']=0;
+}
+
+if (!empty($found['0']['tree_height'])){
+
+
+
+  $tree_h=(double)$found['0']['tree_height'];
+  $tree_hd=(double)$detail_data['datail_tree_horizontal'];
+  $tree_vd=(double)$detail_data['datail_tree_vertical'];
+  
+  $result=sqrt(pow($tree_h+$tree_vd)+pow($tree_hd))-$tree_h;
+ 
+    $detail_data['datail_mix_lodging_distance']=$result;
+
+}
+
 
 
 

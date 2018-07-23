@@ -96,7 +96,7 @@ class TreeController extends AdminBaseController {
         }
     	if (empty($orderBy)) {
     		
-    		$orderBy = 'base_danger_degree_num desc';
+    		$orderBy = 'datail_danger_degree_num desc';
     	}
     	if (!empty($accountability_group)) {
     		$map['accountability_group'] = $accountability_group;
@@ -288,20 +288,12 @@ class TreeController extends AdminBaseController {
     	
     	$map['datail_uptodate'] = 1;
     	$map['tid']= $tree_id;
+
       
 
-        $degmap['degrade_tid']= $tree_id;
- 
-        $degdata=M("degrade")->where($degmap)->find();
-        if (!empty($degdata))
-        {
-        	$map['degrade_up_to_date']= 1;
-         $data=$model->where($map)->alias('base')->join('__DEVICE_LINE__ dl ON base.line_id=dl.did', 'LEFT')->join('treesys_tree_detail detail ON base.tid=detail.detail_tid ', 'LEFT')->join('treesys_degrade degrade ON base.tid=degrade.degrade_tid ', 'LEFT')
-    	->select();
-        }else{
+   
 
-        	  $data=$model->where($map)->alias('base')->join('__DEVICE_LINE__ dl ON base.line_id=dl.did', 'LEFT')->join('treesys_tree_detail detail ON base.tid=detail.detail_tid ', 'LEFT')->select();
-        }
+         $data=$model->where($map)->alias('base')->join('__DEVICE_LINE__ dl ON base.line_id=dl.did', 'LEFT')->join('treesys_tree_detail detail ON base.tid=detail.detail_tid ', 'LEFT')->select();
 
 
 
@@ -378,9 +370,11 @@ class TreeController extends AdminBaseController {
     			$tid = I('get.tid'); 
     			$map=null;
     			$map['tid']=$tid;
+                $map['datail_uptodate'] = 1;
+               
                 $model = new TreeBaseModel();
 
-                $data=$model->where($map)->alias('base')->join('__DEVICE_LINE__ dl ON base.line_id=dl.did', 'LEFT')->find();
+                $data=$model->where($map)->alias('base')->join('__DEVICE_LINE__ dl ON base.line_id=dl.did', 'LEFT')->join('treesys_tree_detail detail ON base.tid=detail.detail_tid ', 'LEFT')->find();
 
                 if(!empty($data[0]['start_tower_addtion']))
                 {
@@ -417,11 +411,74 @@ class TreeController extends AdminBaseController {
 
 
              $result = D("TreeBase")->editData($map,$ar);
+
+         
+           //留下历史记录
+           $map=null;
+           $map['detail_tid']=$tid;
+           $map['datail_uptodate']=1;
+           $data['datail_uptodate']=0;
+
+          
+           M("tree_detail")->where($map)->data($data)->save();
+
+            $detail_data['detail_tid']=$tid;  
+
+            $detail_data['datail_check_time']=NOW_TIME;
+            $detail_data['datail_check_person']=$_SESSION['user']['true_name'];
+
+
+            $detail_data['datail_update_time']=NOW_TIME;
+            $detail_data['datail_update_person']=$_SESSION['user']['true_name'];
+            $detail_data['datail_tree_num']=$ar['tree_num'];
+            $detail_data['datail_tree_height']=$ar['tree_height'];
+            $detail_data['datail_tree_area']=$ar['tree_area'];
+            $detail_data['datail_danger_degree']=$ar['danger_degree'];
+            $detail_data['detail_source']="数据修改";
+
+
+            $dd=$ar['danger_degree'];
+    if($dd=='重大')
+    {
+      $detail_data['datail_danger_degree_num']=6;
+    }
+    if($dd=='一般')
+    {
+      $detail_data['datail_danger_degree_num']=5;
+    }
+    if($dd=='其他')
+    {
+      $detail_data['datail_danger_degree_num']=4;
+    }
+    if($detail_data=='不构成其他')
+    {
+      $ar['datail_danger_degree_num']=3;
+    }
+    if($detail_data=='处理后无树竹')
+    {
+      $ar['datail_danger_degree_num']=2;
+    }
+    if($detail_data=='一直无树竹')
+    {
+      $detail_data['datail_danger_degree_num']=1;
+    }
+
+    M("tree_detail")->data($detail_data)->add();  
+         
+              
+
+
+
+
+
+
+
              if($result){
                 $this->success("成功修改树障",U("Admin/Tree/base/tid/{$tid}"));
             }
             else{   
-                $this->error('修改树障失败');}
+                $this->error('修改树障失败');
+            }
              
              }
              

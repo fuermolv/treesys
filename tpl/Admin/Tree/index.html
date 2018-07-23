@@ -1,380 +1,492 @@
 <extend name="Public:base"/><block name="title">树障列表</block>
 <block name="content">
-<div class="col-xs-12">
-    <div class="tabbable">
-    <table class="table table-striped table-bordered table-hover table-condensed">
+	<div class="col-xs-12">
+		<div class="tabbable">
+			<table class="table table-striped table-bordered table-hover table-condensed">
 
-       <ul class="nav nav-tabs padding-12 tab-color-blue background-blue" id="myTab">
-        <li class="active">
-          <a href="javascript:;" data-toggle="tab">树障列表</a></li>
-
-     
-
-      </ul>
-         <form class="form-inline"    action="" id="my_form">
-       
-        <tr>
-          <td>
-          
-            
-
-             </select>
-            <select style="width:8%; background-color:#6495ED; color:#FFF;"  name="accountability_group"  id="accountability_group" onchange="submitForm();">
-          
-               <option value ="">全部班组</option>
-              <foreach name="querydata['device_groups']" item="gv">
-             <option value ="{$gv['group_name']}">{$gv['group_name']}</option>
-             </foreach>
-           
-            </select> 
-     
-             
-
-        
-          </td>
-        </tr>
-
-        <tr>
-          <td>
-         
-
-
- 
-
-              <input  list="datalist" placeholder="线路名称" type="text" style="width: 8%;" name="line_id" id="line_id"  onblur="submitForm()"/> 
-             <datalist id="datalist">
-             <foreach name="querydata['device_lines']" item="v">
-             <option value ="{$v['device_name']}"></option>
-             </foreach>
-           
-             </datalist> 
-
-    
-            <input placeholder="起始杆塔" type="text" style="width: 8%;" name="star_tower" id="star_tower"  onchange="submitForm()"/> 
- 
-
-
-            <select style="width:8%" name="voltage_degree" id="voltage_degree" onchange="submitForm();">
-            <option value ="" >电压等级</option>
-            <option value ="500">500kV</option>
-            <option value ="220" >220kV</option>
-            <option value="110" >110kV</option>
-            <option value="35"  >35kV</option>
-            </select>
+				<ul class="nav nav-tabs padding-12 tab-color-blue background-blue" id="myTab">
+					<li class="active">
+						<a href="javascript:;" data-toggle="tab">树障列表</a></li>
 
 
 
-            <select style="width:8%" name="tree_status" id="tree_status" onchange="submitForm();">
-            <option value ="">全部</option>
-            <option value ="未处理">未处理</option>
-            <option value ="降级" >降级</option>
-            </select>
+					</ul>
+					<form class="form-inline"    action="" id="my_form">
 
-          
-
-
-            <select style="width:8%" name="base_danger_degree"  id="base_danger_degree" onchange="submitForm();">
-            <option value ="">隐患级别</option>
-            <option value ="重大">重大</option>
-            <option value ="一般" >一般</option>
-            <option value="其他" >其他</option>
-            <option value="不构成其他">不构成其他</option>
-            <option value="处理后无树竹" >处理后无树竹</option>
-            <option value="一直无树竹" >一直无树竹</option>
-            </select>
-         
-            <select style="width:8%" name="orderBy" id="orderBy" onchange="submitForm();">
-            <option value ="">排序方式</option>
-            <option value ="base_danger_degree_num desc">隐患等级降序</option>
-            <option value ="datail_update_time desc">更新时间降序</option>   
-            <option value ="tree_small_distance,star_tower,line_id">档内小号塔距离</option>  
-            <option value ="base_danger_degree_num desc,star_tower,line_id">档内隐患等级</option>    
-
-            </select>
-           
-
-           
-             <a  style="width:8%" class="btn btn-sm btn-success" href="/ts/index.php/Admin/TreeFly/fly_upload"  >导入飞行报告</a>
-             
-
-            </form>
-          </td>
-        </tr>
-      </table>
-     
-      
-      
-      <div class="tab-content">
-       
-        <div class="table-responsive">
-        <table class="table table-striped table-bordered table-hover table-condensed " id="data-table">
-          <tr>
-       
-           
-            <th  id="t-accountability_group">班组</th>                     
-         
-            <th  id="t-county">县</th>
-            <th  id="t-town">镇</th>
-        
-           <th  id="t-device_name">线路名称</th>
-           <th  id="t-star_tower" >起止杆号</th>
-           <th  id="t-datail_mix_net_distance">距小号杆距离</th>  
-           <th  id="t-danger_num">隐患序号</th>
-           <th  id="t-tree_status">树障状态</th>
-           
-           <th  id="t-datail_danger_degree">隐患级别</th>
-           <th  id="t-datail_tree_type">树种</th>
-           <th  id="t-datail_tree_num">数量</th>
-           <th  id="t-datail_tree_area">面积</th>
-           <th  id="t-datail_tree_height">树高</th> 
-           <th  id="">预测树高</th> 
-           <th  id="t-datail_tree_horizontal">水平距离</th>
-           <th  id="t-datail_tree_vertical">垂直距离</th>
-           <th  id="t-datail_mix_net_distance">净空距离</th> 
-        
-           <th  id="t_run_deal">协议情况</th> 
-           <th  id="t_order_time">任务单发布时间</th>
-           <th  id="t-detail_last_time">更新时间</th>
-         
-
-        
+						<tr>
+							<td>
 
 
 
-            <th width="100px">操作</th>
+							</select>
+							<select style="width:8%; background-color:#6495ED; color:#FFF;"  name="accountability_group"  id="accountability_group" onchange="submitForm();">
 
-                   
-            </tr>
-          <foreach name="data" item="v">
-            <tr>
-         
-             
-              <td  >{$v['accountability_group']}</td>
-        
-              <td  >{$v['county']}</td>
-              <td  >{$v['town']}</td>
-            
-              <td  >{$v['voltage_degree']}kV{$v['device_name']}</td>
-              <td  >#{$v['star_tower']}-#{$v['end_tower']}</td>
-              <td  >{$v['tree_small_distance']}</td>
-           <td  width="3%">{$v['danger_num']}</td>
-           
+								<option value ="">全部班组</option>
+								<foreach name="querydata['device_groups']" item="gv">
+									<option value ="{$gv['group_name']}">{$gv['group_name']}</option>
+								</foreach>
 
-         
-           
-           
-              <td  >{$v['tree_status']}</td>
-    
-              
-              
-
-                <if condition="$v['base_danger_degree'] eq '重大'">
-                <td id="t-base_danger_degree"><font color="red">重大</font></td>
-                <else /> 
-                <td id="t-base_danger_degree">{$v['base_danger_degree']}</td>
-                </if>
-            
-              
-               
-                <td  >{$v['tree_type']}</td>
-                <td  >{$v['tree_danger_num']}</td>
-                <td  >{$v['tree_danger_area']}</td>
-                <td  >{$v['tree_danger_height']}</td>
-
-               
-                <td >
-                 
-                  <script type="text/javascript">
-                 
-                </script>
-             
-
-                </td>
-
-                <td  id="t-datail_tree_horizontal">{$v['datail_tree_horizontal']}</td>
-                <td  id="t-datail_tree_vertical">{$v['datail_tree_vertical']}</td>
-                <td id="t-datail_mix_net_distance">{$v['datail_mix_net_distance']}</td>
-              
-
-                <td  >{$v['run_deal']}</td>
-        
-                <td  >{$v['order_time']}</td>
-                 <td  >{$v['detail_last_time']|date='Y-m-d',###}</td> 
-
-              <td>
-                <li class="dropdown" >
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                    操作
-                  <b class="caret"></b>
-                </a>
-              
-                <ul class="dropdown-menu" >
-                  
-                    <li class="divider"></li>
-                    <li> <a href="/ts/index.php/Admin/Tree/base/tid/{$v['tid']}/line_id/{$v['line_id']}" >详情</a></li>
-                    <li> <a href="javascript:;" tid="{$tid}"  onclick="tree_degrade(this)"" >降级</a></li>
-                    <li> <a href="/ts/index.php/Admin/TreeFly/fly_file/line_name/{$v['device_name']}/start_tower/{$v['star_tower']}" ">查看报告</a></li>
-                  
-                 
-
-                </ul>
-            
-
-              </td>
-            </tr>
-          </foreach>
-        </table>
-        <div align="center"> {$pagehtml}</div>
-      </div>
-       </div>
-     
-    </div>
-  
-  </div>
-
-  <div class="modal fade" id="bjy-edit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h4 class="modal-title" id="myModalLabel">降级处理</h4></div>
-            <div class="modal-body">
-              <form id="bjy-form" class="form-inline" action="{:U('Admin/TreeDegrade/add')}" method="post">
-                
-                <table class="table table-striped table-bordered table-hover table-condensed">
-
-                  <input style="width:80%;" type="hidden" name="tid" value="{$v['tid']}" />
-                <!--   <tr>
-                    <th width="12%">砍前树高</th>
-                    <td>
-                      <input style="width:80%;" type="text" name="tree_height_before" />
-                    </td>
-                  </tr> -->
-
-                  <tr>
-                    <th width="12%">砍后树高</th>
-                    <td>
-                      <input style="width:80%;" type="text" name="tree_height_after"  />
-                    </td>
-                  </tr>
-                  <tr>
-                    <th width="12%">处理人</th>
-                    <td>
-                      <input style="width:80%;" type="text" name="process_person"  />
-                    </td>
-                  </tr>
-                  
-                  <tr>
-                    <th width="12%">处理时间</th>
-                    <td>
-                      <input style="width:80%;" type="date" name="process_time" />
-                    </td>
-                  </tr>
-                  
-                  <tr>
-                    <th width="12%">降级后隐患级别</th>
-                    <td>
-                      
-                      <select style="width:80%"   name="process_danger_degree">
-                        <option value ='重大' >重大</option>
-                        <option value ='一般'>一般</option>  
-                        <option value ='其他' >其他</option>
-                        <option value ='不构成其他'>不构成其他</option>  
-                      </select>
-                    </td>
-                  </tr>
-                  
-                  
-                  <tr>
-                    <th></th>
-                    <td>
-                      <input class="btn btn-success" type="submit" value="确定"></td>
-                    </tr>
-                  </table>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-  
- 
+							</select> 
 
 
 
 
-</block>
+						</td>
+					</tr>
+
+					<tr>
+						<td>
 
 
 
-</block>
+
+
+							<input  list="datalist" placeholder="线路名称" type="text" style="width: 8%;" name="line_id" id="line_id"  onblur="submitForm()"/> 
+							<datalist id="datalist">
+								<foreach name="querydata['device_lines']" item="v">
+									<option value ="{$v['device_name']}"></option>
+								</foreach>
+
+							</datalist> 
+
+
+							<input placeholder="起始杆塔" type="text" style="width: 8%;" name="star_tower" id="star_tower"  onchange="submitForm()"/> 
 
 
 
-<block name="js">
-    <script>
+							<select style="width:8%" name="voltage_degree" id="voltage_degree" onchange="submitForm();">
+								<option value ="" >电压等级</option>
+								<option value ="500">500kV</option>
+								<option value ="220" >220kV</option>
+								<option value="110" >110kV</option>
+								<option value="35"  >35kV</option>
+							</select>
 
-   
-    function submitForm()
-     {
-      sessionStorage.setItem("voltage_degree",document.getElementById("voltage_degree").value);
-      sessionStorage.setItem("accountability_group",document.getElementById("accountability_group").value);
-     
-      sessionStorage.setItem("line_id",document.getElementById("line_id").value); 
+
+
+							<select style="width:8%" name="tree_status" id="tree_status" onchange="submitForm();">
+								<option value ="">全部</option>
+								<option value ="未处理">未处理</option>
+								<option value ="降级" >降级</option>
+							</select>
+
+
+
+
+							<select style="width:8%" name="base_danger_degree"  id="base_danger_degree" onchange="submitForm();">
+								<option value ="">隐患级别</option>
+								<option value ="重大">重大</option>
+								<option value ="一般" >一般</option>
+								<option value="其他" >其他</option>
+								<option value="不构成其他">不构成其他</option>
+								<option value="处理后无树竹" >处理后无树竹</option>
+								<option value="一直无树竹" >一直无树竹</option>
+							</select>
+
+							<select style="width:8%" name="orderBy" id="orderBy" onchange="submitForm();">
+								<option value ="">排序方式</option>
+								<option value ="datail_danger_degree_num desc">隐患等级降序</option>
+								<option value ="detail_last_time desc">更新时间降序</option>   
+								<option value ="tree_small_distance,star_tower,line_id">档内小号塔距离</option>  
+								<option value ="datail_danger_degree_num desc,star_tower,line_id">档内隐患等级</option>    
+
+							</select>
+
+
+
+							<a  style="width:8%" class="btn btn-sm btn-success" href="/ts/index.php/Admin/TreeFly/fly_upload"  >导入飞行报告</a>
+
+
+						</form>
+					</td>
+				</tr>
+			</table>
+
+
+
+			<div class="tab-content">
+
+				<div class="table-responsive">
+					<table class="table table-striped table-bordered table-hover table-condensed " id="data-table">
+						<tr>
+
+
+							<th  id="t-accountability_group">班组</th>    
+							<th  id="t-accountability_person">责任人</th>                   
+
+							<th  id="t-county">县</th>
+							<th  id="t-town">镇</th>
+
+							<th  id="t-device_name">线路名称</th>
+							<th  id="t-star_tower" >起止杆号</th>
+							<th  id="t-datail_mix_net_distance">距小号杆距离</th>  
+							<th  id="t-danger_num">隐患序号</th>
+							<th  id="t-tree_status">树障状态</th>
+
+							<th  id="t-datail_danger_degree">隐患级别</th>
+							<th  id="t-datail_tree_type">树种</th>
+							<th  id="t-datail_tree_num">数量</th>
+							<th  id="t-datail_tree_area">面积</th>
+							<th  id="t-datail_tree_height">树高</th> 
+
+
+							<th  id="t-datail_tree_horizontal">倒伏距离</th>
+
+							<th  id="t-datail_tree_horizontal">水平距离</th>
+							<th  id="t-datail_tree_vertical">垂直距离</th>
+							<th  id="t-datail_mix_net_distance">净空距离</th> 
+
+
+							<th  id="t-detail_last_time">更新时间</th>
+
+
+
+
+
+
+
+							<th width="100px">操作</th>
+
+
+						</tr>
+						<foreach name="data" item="v">
+							<tr>
+
+
+								<td  >{$v['accountability_group']}</td>
+								<td  >{$v['accountability_person']}</td>
+								<td  >{$v['county']}</td>
+								<td  >{$v['town']}</td>
+
+								<td  >{$v['voltage_degree']}kV{$v['device_name']}</td>
+								<td  >#{$v['star_tower']}-#{$v['end_tower']}</td>
+								<td  >{$v['tree_small_distance']}</td>
+								<td  width="3%">{$v['danger_num']}</td>
+
+
+
+
+
+								<td  >{$v['tree_status']}</td>
+
+
+
+
+								<if condition="$v['datail_danger_degree'] eq '重大'">
+									<td id="t-datail_danger_degree"><font color="red">重大</font></td>
+									<else /> 
+									<td id="t-datail_danger_degree">{$v['datail_danger_degree']}</td>
+								</if>
+
+
+
+								<td  >{$v['tree_type']}</td>
+								<td  >{$v['tree_num']}</td>
+								<td  >{$v['tree_area']}</td>
+								<td  >{$v['tree_height']}</td>
+
+
+
+                                <td  id="t-datail_mix_net_distance">{$v['datail_mix_lodging_distance']}</td>
+								<td  id="t-datail_tree_horizontal">{$v['datail_tree_horizontal']}</td>
+								<td  id="t-datail_tree_vertical">{$v['datail_tree_vertical']}</td>
+								<td id="t-datail_mix_net_distance">{$v['datail_mix_net_distance']}</td>
+
+
+
+								<td  >{$v['datail_update_time']|date='Y-m-d',###}</td> 
+
+
+
+								<td>
+									<li class="dropdown" >
+										<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+											操作
+											<b class="caret"></b>
+										</a>
+
+										<ul class="dropdown-menu" >
+
+
+											<li> <a href="/ts/index.php/Admin/Tree/base/tid/{$v['tid']}/line_id/{$v['line_id']}" >详情</a></li>
+											<li> <a href="javascript:;" tid="{$v['tid']}"  dsec="树障降级" onclick="tree_degrade(this)" >降级</a></li>
+											<li> <a href="javascrip:;"  tid="{$v['tid']}"   dsec="树障处理" onclick="tree_process(this)">处理(闭环)</a></li>
+
+
+
+										</ul>
+
+
+									</td>
+								</tr>
+							</foreach>
+						</table>
+						<div align="center"> {$pagehtml}</div>
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+
+		<div class="modal fade" id="tree_degrade_form" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h3 class="modal-title" id="myModalLabel"><font color="red">树障降级</font></h3></div>
+						<div class="modal-body">
+							<form id="bjy-form" class="form-inline" action="{:U('Admin/TreeDegrade/add')}" method="post">
+
+								<table class="table table-striped table-bordered table-hover table-condensed">
+
+									<input style="width:80%;" type="hidden" id="deg_tid" name="tid" value="" />
+									<input style="width:80%;" type="hidden" name="deg_type" value="degrade" />
+
+
+									<tr>
+										<th width="12%">树高</th>
+										<td>
+											<input style="width:80%;" type="text" name="datail_tree_height"  />
+										</td>
+									</tr>
+									<tr>
+										<th width="12%">面积</th>
+										<td>
+											<input style="width:80%;" type="text" name="datail_tree_num"  />
+										</td>
+									</tr>
+									<tr>
+										<th width="12%">数量</th>
+										<td>
+											<input style="width:80%;" type="text" name="datail_tree_area"  />
+										</td>
+									</tr>
+									<tr>
+										<th width="12%">树种</th>
+										<td>
+											<input style="width:80%;" type="text" name="datail_tree_type"  />
+										</td>
+									</tr>
+
+									<tr>
+										<th width="12%">处理人</th>
+										<td>
+											<input style="width:80%;" type="text" name="datail_check_person"  />
+										</td>
+									</tr>
+
+									<tr>
+										<th width="12%">处理时间</th>
+										<td>
+											<input style="width:80%;" type="date" name="detail_last_time" />
+										</td>
+									</tr>
+
+									<tr>
+										<th width="12%">隐患级别</th>
+										<td>
+
+											<select style="width:80%"   name="datail_danger_degree">
+												<option value ="重大">重大</option>
+												<option value ="一般" >一般</option>
+												<option value="其他" >其他</option>
+												<option value="不构成其他" >不构成其他</option>
+												<option value="处理后无树竹" >处理后无树竹</option>
+												<option value="一直无树竹" >一直无树竹</option>
+											</select>
+										</td>
+									</tr>
+
+
+
+									<tr>
+										<th></th>
+										<td>
+											<input class="btn btn-success" type="submit" value="确定"></td>
+										</tr>
+									</table>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+				<div class="modal fade" id="tree_process_form" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+								<h3 class="modal-title" id="myModalLabel"><font color="red">树障处理</font></h3></div>
+								<div class="modal-body">
+									<form id="bjy-form" class="form-inline" action="{:U('Admin/TreeDegrade/add')}" method="post">
+
+										<table class="table table-striped table-bordered table-hover table-condensed">
+
+											<input style="width:80%;" type="hidden" id="p_tid" name="tid" value="" />
+											<input style="width:80%;" type="hidden" name="deg_type" value="process" />
+
+
+											<tr>
+												<th width="12%">树高</th>
+												<td>
+													<input style="width:80%;" type="text" name="datail_tree_height"  />
+												</td>
+											</tr>
+											<tr>
+												<th width="12%">面积</th>
+												<td>
+													<input style="width:80%;" type="text" name="datail_tree_num"  />
+												</td>
+											</tr>
+											<tr>
+												<th width="12%">数量</th>
+												<td>
+													<input style="width:80%;" type="text" name="datail_tree_area"  />
+												</td>
+											</tr>
+											<tr>
+												<th width="12%">树种</th>
+												<td>
+													<input style="width:80%;" type="text" name="datail_tree_type"  />
+												</td>
+											</tr>
+
+											<tr>
+												<th width="12%">处理人</th>
+												<td>
+													<input style="width:80%;" type="text" name="datail_check_person"  />
+												</td>
+											</tr>
+
+											<tr>
+												<th width="12%">处理时间</th>
+												<td>
+													<input style="width:80%;" type="date" name="detail_last_time" />
+												</td>
+											</tr>
+
+											<tr>
+												<th width="12%">隐患级别</th>
+												<td>
+
+													<select style="width:80%"   name="datail_danger_degree">
+														<option value ="重大">重大</option>
+                                          <option value ="一般" >一般</option>
+                                          <option value="其他" >其他</option>
+                                          <option value="不构成其他" >不构成其他</option>
+                                          <option value="处理后无树竹" >处理后无树竹</option>
+                                          <option value="一直无树竹" >一直无树竹</option>
+													</select>
+												</td>
+											</tr>
+
+
+
+											<tr>
+												<th></th>
+												<td>
+													<input class="btn btn-success" type="submit" value="确定"></td>
+												</tr>
+											</table>
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
+
+
+
+
+
+
+
+					</block>
+
+
+
+				</block>
+
+
+
+				<block name="js">
+					<script>
+
+
+						function submitForm()
+						{
+							sessionStorage.setItem("voltage_degree",document.getElementById("voltage_degree").value);
+							sessionStorage.setItem("accountability_group",document.getElementById("accountability_group").value);
+
+							sessionStorage.setItem("line_id",document.getElementById("line_id").value); 
       // sessionStorage.setItem("county",document.getElementById("county").value); 
       // sessionStorage.setItem("town",document.getElementById("town").value); 
       sessionStorage.setItem("village",document.getElementById("tree_status").value);  
       sessionStorage.setItem("datail_danger_degree",document.getElementById("base_danger_degree").value);  
-    
+
       sessionStorage.setItem("orderBy",document.getElementById("orderBy").value); 
       sessionStorage.setItem("star_tower",document.getElementById("star_tower").value); 
 
-    
+
 
       var form = document.getElementById("my_form");//获取form表单对象
       form.submit();//form表单提交
-     }
-    
-    
-
-    
-    
-     </script>
-     <script type="text/javascript">
-        function tree_degrade(obj) {
-
-          
-          $('#bjy-edit').modal('show');
-        }
-      </script>
-
-    
+  }
 
 
 
 
-    <script type="text/javascript">
-    $(document).ready(function()
-    {
 
- 
-   
+</script>
+<script type="text/javascript">
+	function tree_degrade(obj) {
+		var tid=$(obj).attr('tid');
 
-      $("#voltage_degree").val(sessionStorage.getItem("voltage_degree"))
-      $("#line_id").val(sessionStorage.getItem("line_id"))
-      $("#star_tower").val(sessionStorage.getItem("star_tower"))
+
+		document.getElementById("deg_tid").value=tid;
+
+
+		$('#tree_degrade_form').modal('show');
+	}
+	function tree_process(obj) {
+
+		var tid=$(obj).attr('tid');
+
+		document.getElementById("p_tid").value=tid;
+
+		$('#tree_process_form').modal('show');
+	}
+</script>
+
+
+
+
+
+
+<script type="text/javascript">
+	$(document).ready(function()
+	{
+
+
+
+
+		$("#voltage_degree").val(sessionStorage.getItem("voltage_degree"))
+		$("#line_id").val(sessionStorage.getItem("line_id"))
+		$("#star_tower").val(sessionStorage.getItem("star_tower"))
       // $("#county").val(sessionStorage.getItem("county"))
       // $("#town").val(sessionStorage.getItem("town"))
       $("#accountability_group").val(sessionStorage.getItem("accountability_group"))
-   
+
 
 
       // $("#village").val(sessionStorage.getItem("village"))
-     $("#tree_status").val(sessionStorage.getItem("tree_status"))
+      $("#tree_status").val(sessionStorage.getItem("tree_status"))
 
       $("#datail_danger_degree").val(sessionStorage.getItem("base_danger_degree"))
       $("#orderBy").val(sessionStorage.getItem("orderBy"))
-   
+
       
-    });   
-  </script>
+  });   
+</script>
 </block>

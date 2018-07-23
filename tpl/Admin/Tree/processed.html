@@ -81,7 +81,7 @@
             <select style="width:8%" name="orderBy" id="orderBy" onchange="submitForm();">
             <option value ="">排序方式</option>
             <option value ="datail_danger_degree_num desc">隐患等级降序</option>
-            <option value ="datail_update_time desc">更新时间降序</option>   
+            <option value ="detail_last_time desc">更新时间降序</option>   
             <option value ="tree_small_distance,star_tower,line_id">档内小号塔距离</option>  
             <option value ="datail_danger_degree_num desc,star_tower,line_id">档内隐患等级</option>    
 
@@ -106,14 +106,14 @@
           <tr>
        
            
-            <th  id="t-accountability_group">班组</th>                     
+           <th  id="t-accountability_group">班组</th>                     
          
             <th  id="t-county">县</th>
             <th  id="t-town">镇</th>
         
            <th  id="t-device_name">线路名称</th>
            <th  id="t-star_tower" >起止杆号</th>
-          <th  id="t-datail_mix_net_distance">距小号杆距离</th>  
+           <th  id="t-datail_mix_net_distance">距小号杆距离</th>  
            <th  id="t-danger_num">隐患序号</th>
            <th  id="t-tree_status">树障状态</th>
            
@@ -127,8 +127,7 @@
            <th  id="t-datail_tree_vertical">垂直距离</th>
            <th  id="t-datail_mix_net_distance">净空距离</th> 
         
-           <th  id="t_run_deal">协议情况</th> 
-           <th  id="t_order_time">任务单发布时间</th>
+          
            <th  id="t-detail_last_time">更新时间</th>
          
 
@@ -136,12 +135,13 @@
 
 
 
-            <th width="50px">操作</th>
+            <th width="100px">操作</th>
+
 
                    
             </tr>
           <foreach name="data" item="v">
-            <tr>
+                   <tr>
          
              
               <td  >{$v['accountability_group']}</td>
@@ -152,7 +152,7 @@
               <td  >{$v['voltage_degree']}kV{$v['device_name']}</td>
               <td  >#{$v['star_tower']}-#{$v['end_tower']}</td>
               <td  >{$v['tree_small_distance']}</td>
-              <td  width="3%">{$v['danger_num']}</td>
+           <td  width="3%">{$v['danger_num']}</td>
            
 
          
@@ -170,17 +170,18 @@
                 </if>
             
               
-                
+               
+                    
                 <td  >{$v['tree_type']}</td>
-                <td  >{$v['tree_danger_num']}</td>
-                <td  >{$v['tree_danger_area']}</td>
-                <td  >{$v['tree_danger_height']}</td>
+                <td  >{$v['tree_num']}</td>
+                <td  >{$v['tree_area']}</td>
+                <td  >{$v['tree_height']}</td>
 
                
                 <td >
                  
                   <script type="text/javascript">
-                  // document.write(((Math.random()+{$v['datail_tree_height']}).toFixed(2)))
+                 
                 </script>
              
 
@@ -191,13 +192,25 @@
                 <td id="t-datail_mix_net_distance">{$v['datail_mix_net_distance']}</td>
               
 
-                <td  >{$v['run_deal']}</td>
-        
-                <td  >{$v['order_time']}</td>
+               
                  <td  >{$v['detail_last_time']|date='Y-m-d',###}</td> 
+
               <td>
+                <li class="dropdown" >
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    操作
+                  <b class="caret"></b>
+                </a>
+              
+                <ul class="dropdown-menu" >
+                  
+                   
+                    <li> <a href="/ts/index.php/Admin/Tree/base/tid/{$v['tid']}/line_id/{$v['line_id']}" >详情</a></li>
+                   
+                 
+
+                </ul>
             
-              <a href="/ts/index.php/Admin/Tree/base/tid/{$v['tid']}/line_id/{$v['line_id']}"   >详情</a> <!-- class="btn btn-info btn-sm" -->
 
               </td>
             </tr>

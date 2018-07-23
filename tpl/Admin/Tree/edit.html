@@ -37,13 +37,19 @@
 								<table class="table table-striped table-bordered table-hover table-condensed">
 
 
-									<th colspan="4"  style="text-align:center;"> <font size="4" color="red">修改树障信息  </font></th>
+									<th colspan="5"  style="text-align:center;"> <font size="4" color="red">修改树障信息  </font></th>
 									<tr>
-										<td rowspan="9"  align="center"  style="vertical-align:middle;width:10%"> <font size="3">树障位置</font> </td>
+										<td rowspan="10"  align="center"  style="vertical-align:middle;width:10%"> <font size="3">树障位置</font> </td>
 										<td style="width:30%;" align="center" >责任班组</td>                             
 										<td>{$editTidData['accountability_group']}</td>
 										
 									</tr>
+                                                      <tr>
+
+                                                            <td  align="center" >责任人</td>  
+                                                            <td><input type="text" style="width:80%" name="accountability_department" value={$editTidData['accountability_department']}></td>                       
+                                                            
+                                                      </tr>
 									<tr>
 
 										<td  align="center" >县</td>                             
@@ -125,151 +131,58 @@
 
 
 
+                     
                         <tr>
-                        	<td rowspan="10"  align="center"  style="vertical-align:middle;width:10%"> <font size="3">树障总体量</font> </td>
-                        	<td align="center" >首次调查人</td>                             
-                        	<td><input type="text" style="width:80%" name="first_check_person" value={$editTidData['first_check_person']}></td>
-                        </tr>
-                        <tr>
-                        	<td align="center" >首次隐患调查日期</td>                             
-                        	<td>{$editTidData['first_check_time']|date='Y-m-d',###}</td>
-                        </tr>
-                        <tr>
+                              <td rowspan="6"  align="center"  style="vertical-align:middle;width:10%"> <font size="3">树障总体量</font> </td>
                         	<td align="center" >树障存在的状态</td> 
                         	<td>                            
-                        		<select  style="width:80%" name="tree_status" >
-                        			<option value ={$editTidData['tree_status']}  checked>{$editTidData['tree_status']}</option>
-                        			<option value ="未处理">未处理</option>
-                        			<option value ="降级" >降级</option>
-                        			<option value="已处理" >已处理</option>
-                        		</select>
+                        		{$editTidData['tree_status']}
                         	</td> 
 
                         </tr>
+                          <tr>
+                              
+                              <td align="center" >隐患等级</td> 
+                              <td>                            
+                                    <select  style="width:80%" name="danger_degree" >
+                                          <option value ={$editTidData['datail_danger_degree']}  checked>{$editTidData['datail_danger_degree']}</option>
+                                          <option value ="重大">重大</option>
+                                          <option value ="一般" >一般</option>
+                                          <option value="其他" >其他</option>
+                                          <option value="不构成其他" >不构成其他</option>
+                                          <option value="处理后无树竹" >处理后无树竹</option>
+                                          <option value="一直无树竹" >一直无树竹</option>
+                                    </select>
+                                 
+                              </td> 
+
+                        </tr>
+                       
                         <tr>
                         	<td align="center" >树障种类</td>                             
 
                         	<td><input type="text" style="width:80%" name="tree_type" value={$editTidData['tree_type']}></td>
                         </tr>
-                        <tr>
-                        	<td align="center" >保护区范围外是否有需要处理的树障</td>                             
-                        	<td><select style="width:80%"   name="edit_tree_danger" >
-                        		<option value ={$editTidData['tree_danger']} checked>
-                        			<if condition="$editTidData['tree_danger'] eq '1'">是
-                        				<else /> 否
-                        			</if></option>                    
-                        			<option value ="0">否</option>     
-                        			<option value ="1" >是</option>     
-                        		</select>
-                        	</td>
-                        </tr>
+                       
                         <tr>
                         	<td align="center" >树障数量</td>                             
-                        	<td><input type="text" style="width:80%" name="tree_danger_num" value={$editTidData['tree_danger_num']}></td>
+                        	<td><input type="text" style="width:80%" name="tree_num" value={$editTidData['tree_num']}></td>
                         </tr>
                         <tr>
                         	<td align="center" >树障面积</td>                             
-                        	<td><input type="text" style="width:80%" name="tree_danger_area" value={$editTidData['tree_danger_area']}></td>
+                        	<td><input type="text" style="width:80%" name="tree_area" value={$editTidData['tree_area']}></td>
                         </tr>
+                      
                         <tr>
-                        	<td align="center" >树障胸径范围</td>                             
-                        	<<td><input type="text" style="width:80%" name="average_height" value={$editTidData['average_radius']}></td>
+                        	<td align="center" >树障高度</td>                             
+                        	<td><input type="text" style="width:80%" name="tree_height" value={$editTidData['tree_height']}></td>
                         </tr>
-                        <tr>
-                        	<td align="center" >树障平均高度</td>                             
-                        	<td><input type="text" style="width:80%" name="average_height" value={$editTidData['average_height']}></td>
-                        </tr>
-                        <tr>
-                        	<td align="center" >树木按地点属性</td>                             
-                        	<td><input type="text" style="width:80%" name="tree_property" value={$editTidData['tree_property']}></td>
-                        </tr>
+                        
 
 
 
 
-                        <tr>
-                        	<td rowspan="4"  align="center"  style="vertical-align:middle;width:10%"> <font size="3">树障属性</font> </td>
-                        	<td align="center">是否新种、新移栽</td>                             
-                        	<td><select style="width:80%"   name="new_plant" >
-                        		<option value ={$editTidData['new_plant']} checked>
-                        			<if condition="$editTidData['new_plant'] eq '1'">是
-                        				<else /> 否
-                        			</if></option>                    
-                        			<option value ="0">否</option>     
-                        			<option value ="1" >是</option>     
-                        		</select>
-                        	</td>
-                        </tr>
-                        <tr>
-                        	<td align="center">是否临近重大、一般缺陷</td>                             
-                        	<td><select style="width:80%"   name="defect_type" >
-                        		<option value ={$editTidData['defect_type']} checked>
-                        			<if condition="$editTidData['defect_type'] eq '1'">是
-                        				<else /> 否
-                        			</if></option>                    
-                        			<option value ="0">否</option>     
-                        			<option value ="1" >是</option>     
-                        		</select>
-                        	</td>
-                        </tr>
-                        <tr>
-                        	<td align="center">是否会翻生</td>                             
-                        	<td><select style="width:80%"   name="survival" >
-                        		<option value ={$editTidData['survival']} checked>
-                        			<if condition="$editTidData['survival'] eq '1'">是
-                        				<else /> 否
-                        			</if></option>                    
-                        			<option value ="0">否</option>     
-                        			<option value ="1" >是</option>     
-                        		</select>
-                        	</td>
-                        </tr>
-                        <tr>
-                        	<td align="center">树龄</td>                             
-                        	<td><input type="text" style="width:80%" name="tree_age" value={$editTidData['tree_age']}></td>
-                        </tr>
-
-                        <tr>
-
-                        	<td rowspan="3"  align="center"  style="vertical-align:middle;width:10%"> <font size="3">树障权属方</font> </td>
-                        	<td align="center">权属方姓名</td>                             
-                        	<td><input type="text" style="width:80%" name="owner" value={$editTidData['owner']}></td>
-                        </tr>
-                        <tr>
-                        	<td align="center">权属方联系方式</td>                             
-                        	<td><input type="text" style="width:80%" name="owner_phone" value={$editTidData['owner_phone']}></td>
-                        </tr>
-                        <tr>
-                        	<td align="center">权属方地址</td>                             
-                        	<td><input type="text" style="width:80%" name="owner_address" value={$editTidData['owner_address']}></td>
-                        </tr>
-
-
-
-                        <tr>
-                        	<td rowspan="5"  align="center"  style="vertical-align:middle;width:10%"> <font size="3">隐患处理与管控</font> </td>
-
-                        	<td align="center">青赔情况</td>                             
-                        	<td><input type="text" style="width:80%" name="compensation_condition" value={$editTidData['compensation_condition']}></td>
-                        </tr>
-                        <tr>
-                        	<td align="center">协议签定情况</td>                             
-                        	<td><input type="text" style="width:80%" name="build_deal" value={$editTidData['build_deal']}></td>
-                        </tr>
-                        <tr>
-                        	<td align="center">运行过程中协议情况</td>                             
-                        	<td><input type="text" style="width:80%" name="run_deal" value={$editTidData['run_deal']}></td>
-                        </tr>
-                        <tr>
-                        	<td align="center">隐患通知书编号、情况</td>                             
-                        	<td><input type="text" style="width:80%" name="notice_number" value={$editTidData['notice_number']}></td>
-                        </tr>
-                        <tr>
-                        	<td align="center">任务单发布时间</td>                             
-                        	<td><input type="text" style="width:80%" name="order_time" value={$editTidData['order_time']}></td>
-                        </tr>
-
-
+                       
 
 
 

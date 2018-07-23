@@ -99,8 +99,8 @@
         <table class="table table-striped table-bordered table-hover table-condensed " id="data-table">
 <tr>
     <th colspan="2">基础数据</th>  
-    <th colspan="5">飞行数据</th>  
-    <th colspan="2">降级数据</th>  
+    <th colspan="6">飞行数据</th>  
+    <th colspan="3">降级数据</th>  
     
     <th colspan="2">系统记录</th>
   <!--   <th colspan="1">操作</th> -->                     
@@ -110,40 +110,53 @@
           <tr> 
            <th >记录类型</th>
            <th >隐患等级</th>
-           <th >倒伏等级</th> 
+
+           <th >倒伏距离</th> 
            <th >水平距离</th>
            <th >垂直距离</th>
            <th >净空距离</th>
            <th >安全距离</th>  
+           <th >是否高出导线</th>  
+           
 
-          <th >降级前树高</th>   
-          <th >降级后树高</th>   
+          <th >树高</th>   
+          <th >面积</th>   
+          <th >数量</th>   
 
          
          
            <th >调查/处理时间</th>
            <th >更新人/处理人</th> 
        
-         <!--   
-           <th>操作</th>   -->
+     
           </tr>
           <foreach name="data" item="v">
             <tr>
-              <!-- <td id="t-detail_last_time">{$v['detail_last_time']|date='Y-m-d',###}</td> -->
-              <td  ><strong> {$v['record_type']}</strong></td> 
-              <td  >{$v['danger_degree']}</td>    
-              <td  >{$v['datail_lodging_degree']}</td>                    
+              
+              <td  ><strong> {$v['detail_source']}</strong></td> 
+              <td  >{$v['datail_danger_degree']}</td>    
+            
+
            
 
                                    
-           
+              <td  >{$v['datail_mix_lodging_distance']}</td>  
               <td  >{$v['datail_tree_horizontal']}</td>
               <td  >{$v['datail_tree_vertical']}</td>
               <td  >{$v['datail_mix_net_distance']}</td>
-              <td  >{$v['detail_safe_distance']}</td>   
+              <td  >{$v['detail_safe_distance']}</td>  
+              
+              <td>
+              <if condition="$v['datail_tree_over'] eq '1'">是
+              </if> 
+              <if condition="$v['datail_tree_over'] eq '0'">否
+              </if>                      
+                              
+              </td> 
 
-              <td  >{$v['tree_height_before']}</td>
-              <td  >{$v['tree_height_after']}</td>                
+              <td  >{$v['datail_tree_height']}</td>
+              <td  >{$v['datail_tree_area']}</td> 
+              <td  >{$v['datail_tree_num']}</td>                  
              
               <td  >{$v['u_time']|date='Y-m-d',###}</td>
               <td  >{$v['u_person']}</td> 

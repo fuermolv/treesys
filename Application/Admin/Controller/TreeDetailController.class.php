@@ -25,38 +25,49 @@ class TreeDetailController extends AdminBaseController
         
         $detailmap['detail_tid'] = $tree_id;
         $detailorderBy = 'detail_id desc';
-        $detail_data=M("tree_detail")->where($detailmap)->order($orderBy)->select();
+        $detail_data=M("tree_detail")->where($detailmap)->order($detailorderBy)->select();
+       
 
         foreach ($detail_data as &$dd)
         {
-          $dd['u_time']=$dd['detail_last_time'];
-          $dd['u_person']=$dd['datail_update_person'];
-          $dd['danger_degree']=$dd['datail_danger_degree'];
-          $dd['record_type']="飞行报告";
+
+          if ($dd['detail_source']=="机巡报告" or $dd['detail_source']=="飞行报告")
+          {
+             $dd['u_time']=$dd['detail_last_time'];
+             $dd['u_person']=$dd['datail_update_person'];
+
+          }else{
+            $dd['u_time']=$dd['datail_update_time'];
+            $dd['u_person']=$dd['datail_update_person'];
+            $dd['datail_tree_over']=3;
+
+          }
+         
+         
         }
 
 
 
 
-        $degmap['degrade_tid'] = $tree_id;
-        $degorderBy = 'process_time desc';
-        $deg_data=M("degrade")->where($degmap)->order($orderBy)->select();
+        // $degmap['degrade_tid'] = $tree_id;
+        // $degorderBy = 'process_time desc';
+        // $deg_data=M("degrade")->where($degmap)->order($orderBy)->select();
 
-        foreach ($deg_data as &$dg)
-        {
-          $dg['u_time']=$dg['process_time'];
-          $dg['u_person']=$dg['process_person'];
-          $dg['danger_degree']=$dg['process_danger_degree'];
-          $dg['record_type']="降级处理";
-        }
+        // foreach ($deg_data as &$dg)
+        // {
+        //   $dg['u_time']=$dg['process_time'];
+        //   $dg['u_person']=$dg['process_person'];
+        //   $dg['danger_degree']=$dg['process_danger_degree'];
+        //   $dg['record_type']="降级处理";
+        // }
 
 
-        $data=array_merge($detail_data,$deg_data);
-        $data=array_sort($data,"u_time","desc");
+        // $data=array_merge($detail_data,$deg_data);
+        // $data=array_sort($data,"u_time","desc");
  
 
         
-       $this->assign('data', $data);
+       $this->assign('data', $detail_data);
        $this->assign('tree_id',$tree_id);
        $this->display();
 

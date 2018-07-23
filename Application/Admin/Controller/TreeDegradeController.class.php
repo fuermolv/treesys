@@ -7,91 +7,97 @@ use Common\Model\TreeDetailModel;
 
 
 class TreeDegradeController extends AdminBaseController{
+
 	public function add(){
 		if(IS_GET){
 			 $this->error('树障降级失败');
 
 		}else{
+
 			 $tid = I('post.tid');
 			 $ar=$_POST;
-			 $ar['process_time']=strtotime($ar['process_time']);
-			 $ar['update_time']=NOW_TIME;
-             $ar['update_person']=$_SESSION['user']['true_name'];
-             $ar['degrade_tid']=$tid;
 
 
-           $map['degrade_tid']=$tid;
-           $data['degrade_up_to_date']=0;
-           M("degrade")->where($map)->data($data)->save();
+       if (count($ar)!=9){
+          $this->error('树障降级/处理失败,表单所有项为必填');
+          return ;
+       }
 
 
 
+			 $ar['detail_last_time']=strtotime($ar['detail_last_time']);
+			 $ar['datail_update_time']=NOW_TIME;
+       $ar['datail_update_person']=$_SESSION['user']['true_name'];
+       $ar['detail_tid']=$tid;
 
 
-
-        //更新基础数据
-        $bmap['tid']=$tid;
-        $lastest_data= M("tree_base")->where($basemap)->find();
-        $dd=$ar['process_danger_degree'];
-        $ar['tree_height_before']=$lastest_data['average_height'];
-       
-
-        if (!empty($lastest_data['base_danger_degree']))
-        {
-        if ($lastest_data['base_danger_degree']!=$dd)
-        {
-            $bdata['base_danger_degree_change']=$lastest_data['base_danger_degree']."变".$dd;
-        }
-        else{
-            $bdata['base_danger_degree_change']="维持不变";
-        }
-
-        }
-
+           $map['detail_tid']=$tid;
+           $map['datail_uptodate']=1;
+           $data['datail_uptodate']=0;
+           // $lastest_data= M("tree_detail")->where($map)->find();
+           M("tree_detail")->where($map)->data($data)->save();
+     
 
       
-          $bdata['base_danger_degree']=$dd;
-          if($dd=='重大')
-          {
-            $bdata['base_danger_degree_num']=6;
-          }
-          if($dd=='一般')
-          {
-            $bdata['base_danger_degree_num']=5;
-          }
-          if($dd=='其他')
-          {
-            $bdata['base_danger_degree_num']=4;
-          }
-          if($dd=='不构成其他')
-          {
-            $bdata['base_danger_degree_num']=3;
-          }
-          if($dd=='处理后无树竹')
-          {
-            $bdata['base_danger_degree_num']=2;
-          }
-          if($dd=='一直无树竹')
-          {
-            $bdata['base_danger_degree_num']=1;
-          }
+    $dd=$ar['datail_danger_degree'];
+    if($dd=='重大')
+    {
+      $ar['datail_danger_degree_num']=6;
+    }
+    if($dd=='一般')
+    {
+      $ar['datail_danger_degree_num']=5;
+    }
+    if($dd=='其他')
+    {
+      $ar['datail_danger_degree_num']=4;
+    }
+    if($dd=='不构成其他')
+    {
+      $ar['datail_danger_degree_num']=3;
+    }
+    if($dd=='处理后无树竹')
+    {
+      $ar['datail_danger_degree_num']=2;
+    }
+    if($dd=='一直无树竹')
+    {
+      $ar['datail_danger_degree_num']=1;
+    }
+          
+          $bmap['tid']=$tid;
 
-           $bdata['average_height']=$ar['tree_height_after'];
+          $bdata['tree_type']=$ar['datail_tree_type'];
+          $bdata['tree_height']=$ar['datail_tree_height'];
+          $bdata['tree_area']=$ar['datail_tree_area'];
+          $bdata['tree_num']=$ar['datail_tree_num'];
+          $bdata['tree_cut']=1;
+           if ($ar['deg_type']=="degrade"){
 
-           $bdata['tree_status']="降级";
+           
+
+            $bdata['tree_status']="降级";
+            $ar['detail_source']="树障降级";
+           }else{
+
+             
+
+             $bdata['tree_status']="已处理";
+             $ar['detail_source']="闭环";
+
+           }
+           
            $tree_base_model= M("tree_base");
            $tree_base_model->where($bmap)->data($bdata)->save();
          
 
-
-           
-
-           $result=M("degrade")->data($ar)->add();
+    
+           $result=M("tree_detail")->data($ar)->add();
            if($result){
-                $this->success("树障降级成功",U("Admin/Tree/base/tid/{$tid}"));
+                $this->success("树障降级/处理成功",U("Admin/Tree/base/tid/{$tid}"));
             }
             else{   
-                $this->error('树障降级失败');
+                $this->error('树障降级/处理失败');
                 
             }
 
