@@ -496,9 +496,13 @@ public function save_to_base_data($flydata){
     $line_id=$line_data[0]['did'];
   }
 
+
+
   if(strpos($flydata['star_tower'],"+") !== false)
   {
-    $st=explode("+",$star_tower);
+
+     
+    $st=explode("+",$flydata['star_tower']);
     $base_data['star_tower']=$st[0];
     $base_data['start_tower_addtion']=$st[1];
 
@@ -507,9 +511,11 @@ public function save_to_base_data($flydata){
 
     $base_data['star_tower']=$flydata['star_tower'];
   }
+
   if(strpos($flydata['end_tower'],"+") !== false)
   {
-   $st=explode("+",$star_tower);
+  	
+   $st=explode("+",$flydata['end_tower']);
    $base_data['end_tower']=$st[0];
    $base_data['end_tower_addtion']=$st[1];
  }
