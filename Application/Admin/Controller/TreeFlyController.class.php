@@ -656,8 +656,24 @@ if (!empty($found['0']['tree_height'])){
   $tree_h=(double)$found['0']['tree_height'];
   $tree_hd=(double)$detail_data['datail_tree_horizontal'];
   $tree_vd=(double)$detail_data['datail_tree_vertical'];
+
+
+  var_dump($tree_h);
+  var_dump($tree_hd);
+  var_dump($tree_vd);
+
+
+
+
   
-  $result=sqrt(pow($tree_h+$tree_vd)+pow($tree_hd))-$tree_h;
+  $result=sqrt(pow($tree_h+$tree_vd,2)+pow($tree_hd,2))-$tree_h;
+
+
+  $result = sprintf("%.2f",$result);
+ 
+    
+
+
  
     $detail_data['datail_mix_lodging_distance']=$result;
 
