@@ -131,7 +131,6 @@ class TreeController extends AdminBaseController {
     		}
     	}
     	
-    	
 
     	$this->assign('group_id', $group_id);
     	$this->assign('querydata', $querydata);

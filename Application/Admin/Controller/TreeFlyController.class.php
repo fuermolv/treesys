@@ -253,6 +253,27 @@ if($ok1)
    $data['ff_file_path']=$path;
 
 
+    //上传时更新一下base的数据
+             $lmap['device_name']=$data['ff_line_name'];
+      
+             $line_data=M("device_line")->where($lmap)->find();
+
+             if (!empty($line_data))
+             {
+                 $base_map['line_id']=$line_data['did'];
+                 $base_map['star_tower']=array('EGT',$data['ff_start_tower']);
+                 $base_map['end_tower']=array('ELT',$data['ff_end_tower']);
+                 $base_data['tree_have_report']=1;
+
+
+
+                 $base_model= M("tree_base");
+                 $base_model->where($base_map)->save($base_data);
+           
+
+             }
+
+
 
 
    M("fly_file")->data($data)->add();
@@ -531,14 +552,37 @@ $base_data['tree_park_distance']=$flydata['fly_p_distance'];
 $base_data['tree_longitude']=$flydata['fly_longitude'];
 $base_data['tree_latitude']=$flydata['fly_latitude'];
 $base_data['tree_small_distance']=$flydata['fly_tower_distance'];
-// $base_data['last_update_time']=NOW_TIME;
-// $base_data['last_update_person']=$_SESSION['user']['true_name'];
+$base_data['danger_num']=explode(".",$base_data['tree_small_distance'])[0];
 
+
+        //查请赔协议和飞行报告 wtf
+        $start_tower_int=intval($base_data['start_tower']);
+        $end_tower_int=$start_tower_int+1;
+
+        $aggmap['ag_start_tower']=array('ELT',$start_tower_int);
+        $aggmap['ag_end_tower']=array('EGT',$end_tower_int);
+        $aggmap['ag_line_name']=$flydata['fly_line_name'];
+
+        $aggnum=M("agreement")->where($aggmap)->count();
+
+        if ($aggnum>0){
+	       $base_data['tree_have_agg']=1;
+         }
+
+
+        $ffmap['ff_start_tower']=array('ELT',$start_tower_int);
+        $ffmap['ff_end_tower']=array('EGT',$end_tower_int);
+        $ffmap['ff_line_name']=$flydata['fly_line_name'];
+        $ffnum=M("fly_file")->where($ffmap)->count();
+        if ($ffnum>0){
+	       $base_data['tree_have_report']=1;
+         }
 
 
 
 $base=M("tree_base");
 $tid=$base->data($base_data)->add(); 
+
 
 }else{
  $tid=$found['0']['tid'];

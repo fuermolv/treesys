@@ -105,10 +105,7 @@ class TreeAggController extends AdminBaseController {
           {
             $this->error('导入失败:只能导入pdf文件','',5);
           }
-          // if(strpos($path,'#') !=false)
-          // {
-          //   $this->error('文件名不能含有#','',5);
-          // }
+      
           
           $temp=explode("/",$path);
           $name_t=$temp[count($temp)-1];
@@ -192,6 +189,20 @@ class TreeAggController extends AdminBaseController {
              $data['ag_start_tower']=explode("-",$tower_data)[0];
              $data['ag_end_tower']=explode("-",$tower_data)[1];
              $data['ag_file_path']=$path;
+
+
+             //上传时更新一下base的数据
+             $lmap['device_name']=$data['ag_line_name'];
+             $line_data=M("device_line")->where($lmap)->find();
+             if (!empty($line_data))
+             {
+                 $base_map['line_id']=$line_data['did'];
+                 $base_map['star_tower']=array('EGT',$data['ag_start_tower']);
+                 $base_map['end_tower']=array('ELT',$data['ag_end_tower']);
+                 $base_data['tree_have_agg']=1;
+                 M("tree_base")->where($base_map)->save($base_data);
+
+             }
 
             
 

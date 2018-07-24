@@ -225,11 +225,12 @@
 							
 
 								<td>
-                        			<if condition="$v['tree_cut'] eq '1'">是
-                        				<else /> 否
-                        			</if></option>                    
-                        			
-                        	  </td>
+										<if condition="$v['datail_tree_over'] eq '1'">是
+										</if> 
+										 <if condition="$v['datail_tree_over'] eq '0'">否
+										</if>                      
+
+								</td> 
 
                         	  <td >{$v['tree_age']}</td> 
   
@@ -303,8 +304,10 @@
 							<td>
                         		
                         			<if condition="$v['datail_tree_over'] eq '1'">是
-                        				<else /> 否
-                        			</if></option>                    
+                        				</if> 
+                        			 <if condition="$v['datail_tree_over'] eq '0'">否
+									</if> 
+                        			            
                         			
                         	</td>
 
