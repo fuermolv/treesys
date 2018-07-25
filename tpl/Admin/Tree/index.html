@@ -143,8 +143,8 @@
 							<th  >倒伏距离</th>
 							<th  >树障状态</th>
 
-							<th  >协议情况</th>
-							<th  >树障报告</th>
+							<th  >赔偿</th>
+							<th  >报告</th>
 						<!-- 	<th  >更新时间</th> -->
 
 							
@@ -205,10 +205,19 @@
 									<td  >{$v['datail_mix_lodging_distance']}</td>
 									<td  >{$v['tree_status']}</td>
 
+									<td  >
+										<if condition="$v['tree_have_agg'] eq '1'">
+											<a href="/ts/index.php/Admin/TreeAgg/agreement/line_name/{$v['device_name']}/start_tower/{$v['star_tower']}" >协议</a>
+
+										</if> 
+										
+
+									</td>
+
 
 									<td  >
 										<if condition="$v['tree_have_report'] eq '1'">
-										<a href="/ts/index.php/Admin/TreeFly/fly_file/line_name/{$v['device_name']}/start_tower/{$v['star_tower']}" >机巡报告</a>
+										<a href="/ts/index.php/Admin/TreeFly/fly_file/line_name/{$v['device_name']}/start_tower/{$v['star_tower']}" >列表</a>
 										</if> 
 										
 										
@@ -216,14 +225,7 @@
 									</td>
 
 
-									<td  >
-										<if condition="$v['tree_have_agg'] eq '1'">
-											<a href="/ts/index.php/Admin/TreeAgg/agreement/line_name/{$v['device_name']}/start_tower/{$v['star_tower']}" >清赔协议</a>
-
-										</if> 
-										
-
-									</td>
+									
 
 									<!-- <td  >{$v['datail_update_time'|date='Y-m-d',###]}</td> -->
 
